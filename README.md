@@ -1,5 +1,4 @@
-All SMDSL artifacts including models, feature hierarchies, correspondence views, and generated example outputs
-# SMDSL Artifacts — MODELS 2026 Submission
+# SMDSL Artifacts
 
 This repository contains the complete set of artifacts supporting the paper:
 
