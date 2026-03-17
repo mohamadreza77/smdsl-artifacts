@@ -7,15 +7,15 @@
         <nestedFeatures xmi:id="_duAo4ONWEfCu7-dLl7IJUQ" name="minimumSize"/>
         <nestedFeatures xmi:id="_9AbzIMV_EfCIz4WBK8SiNA" name="foreground"/>
         <nestedFeatures xmi:id="_NhzTsMWAEfCIz4WBK8SiNA" name="background"/>
-        <nestedFeatures xmi:id="_WWheYMWQEfCIz4WBK8SiNA" name="LayoutData">
+        <nestedFeatures xmi:id="_WWheYMWQEfCIz4WBK8SiNA" name="LayoutData" samples="_vJ-kMCJGEfGhd5hKUywO5A _zTFuoSJGEfGhd5hKUywO5A _zewzISJGEfGhd5hKUywO5A">
           <nestedFeatures xmi:id="_xJETAMXAEfCIz4WBK8SiNA" name="Point"/>
           <nestedFeatures xmi:id="_zKhNYMXAEfCIz4WBK8SiNA" name="Dimension"/>
         </nestedFeatures>
         <nestedFeatures xmi:id="_Cs1NEMWzEfCIz4WBK8SiNA" name="Type">
           <nestedFeatures xmi:id="_Na4JUMWhEfCIz4WBK8SiNA" name="Rectangle"/>
           <nestedFeatures xmi:id="_WU-9kMWhEfCIz4WBK8SiNA" name="Ellipse"/>
-          <nestedFeatures xmi:id="_Z09EYMWhEfCIz4WBK8SiNA" name="Polyline">
-            <nestedFeatures xmi:id="_aW-9QOZ4EfCbGf1_nr27lg" name="template points"/>
+          <nestedFeatures xmi:id="_Z09EYMWhEfCIz4WBK8SiNA" name="Polyline" samples="_zewzICJGEfGhd5hKUywO5A">
+            <nestedFeatures xmi:id="_aW-9QOZ4EfCbGf1_nr27lg" name="template points" samples="_NpR_QCJHEfGhd5hKUywO5A _QbbWwCJHEfGhd5hKUywO5A"/>
           </nestedFeatures>
           <nestedFeatures xmi:id="_fVLdEPrmEfCJw9T7EXHRmw" name="RoundedRectangle"/>
           <nestedFeatures xmi:id="_fqnhkPrmEfCJw9T7EXHRmw" name="Polygon">
@@ -95,11 +95,22 @@
         <children xmi:id="__k7FEMZvEfCeR8oIST4D4w" segment="Node.9"/>
         <children xmi:id="_YRz1kMZwEfCeR8oIST4D4w" segment="Node.10"/>
         <children xmi:id="_5OC8gNiMEfC6eumi-hp08w" segment="Figure Gallery">
-          <children xmi:id="_zFmiINiNEfC6eumi-hp08w" segment="Figure Descriptor.0">
+          <children xmi:id="_zFmiINiNEfC6eumi-hp08w" segment="Figure.0">
             <children xmi:id="_64_l8NiNEfC6eumi-hp08w" segment="Shape.0">
               <children xmi:id="_9hWIQNiNEfC6eumi-hp08w">
                 <children xmi:id="_-xKKUNiNEfC6eumi-hp08w" segment="Maximum Size"/>
                 <children xmi:id="_ASJb8NiOEfC6eumi-hp08w" segment="Minimum Size"/>
+              </children>
+              <children xmi:id="_uw8ZICJGEfGhd5hKUywO5A" segment="SubShape.0">
+                <children xmi:id="_vJ-kMCJGEfGhd5hKUywO5A" segment="XYLayoutData"/>
+              </children>
+              <children xmi:id="_zTFuoCJGEfGhd5hKUywO5A" segment="SubShape.1">
+                <children xmi:id="_zTFuoSJGEfGhd5hKUywO5A" segment="XYLayoutData"/>
+              </children>
+              <children xmi:id="_zewzICJGEfGhd5hKUywO5A" segment="SubShape.2">
+                <children xmi:id="_zewzISJGEfGhd5hKUywO5A" segment="XYLayoutData"/>
+                <children xmi:id="_NpR_QCJHEfGhd5hKUywO5A" segment="TemplatePoints.0"/>
+                <children xmi:id="_QbbWwCJHEfGhd5hKUywO5A" segment="TemplatePoints.1"/>
               </children>
             </children>
           </children>
@@ -123,7 +134,7 @@
       </locations>
     </files>
   </exampleRepositories>
-  <operators xmi:id="_tCufwMZwEfCeR8oIST4D4w" name="Mohamadreza"/>
+  <operators xmi:id="_tCufwMZwEfCeR8oIST4D4w" name="Mr. X"/>
   <mappings xmi:id="_1C_R4MVzEfCIz4WBK8SiNA" name="Node Definition - Structural">
     <correspondences xmi:id="_Q3mlMMcdEfCBo5CuJG-9rA" name="Node Mapping to Dia Element" sourceFeature="_3AY-UMcWEfCBo5CuJG-9rA" targetFeature="_QiCToNI7EfCGnY31vy1jEg _XjLwQNI9EfCGnY31vy1jEg" relation="A GMF Node Mapping specifies how a semantic element is represented as a node in the diagram, including its identity and containment context. In JointJS, this responsibility is realized by defining a Dia Element, whose type and uniqueness are determined through its namespace. Since both constructs serve to introduce a concrete node type tied to a domain element, the mapping is direct and can be fully automated, with namespace composition systematically derived from the GMF mapping context.">
       <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_R_tboMiwEfCBo5CuJG-9rA"/>
@@ -131,13 +142,13 @@
         <steps xmi:id="_X66WUMjSEfCBo5CuJG-9rA" description="take the element property (A) of the node mapping" order="1"/>
         <steps xmi:id="_Qo34ENb0EfC3pJN73lPkbQ" description="take the parent top node/child reference (B) of the node mapping" order="2"/>
         <steps xmi:id="_COLQMNeQEfCUYJN3_L4-Ew" description="check if B has the compartment property (X)" order="3"/>
-        <steps xmi:id="_HhztANeQEfCUYJN3_L4-Ew" description="if X is true" order="4">
+        <steps xmi:id="_HhztANeQEfCUYJN3_L4-Ew" description="if X is true" order="4" type="-">
           <nestedSteps xmi:id="_bLydMNb0EfC3pJN73lPkbQ" description="take the compartment property (C) of B" order="1"/>
           <nestedSteps xmi:id="_1wkqkNeQEfCUYJN3_L4-Ew" description="take the name property (D) of C" order="2"/>
           <nestedSteps xmi:id="_zrlaIMcgEfCBo5CuJG-9rA" description="if not already exist, create a dia element with the var name 'A_D' (E), else 'A_D_i' (E) where i is a counter computed by the last i + 1" order="3"/>
           <nestedSteps xmi:id="_j6UxANLKEfCGnY31vy1jEg" description="paste 'custom.E' into the namespace of dia element" order="4"/>
         </steps>
-        <steps xmi:id="_jmPoINeQEfCUYJN3_L4-Ew" description="if X is false" order="5">
+        <steps xmi:id="_jmPoINeQEfCUYJN3_L4-Ew" description="if X is false" order="5" type="-">
           <nestedSteps xmi:id="_mNDSUNeQEfCUYJN3_L4-Ew" description="if not already exist, create a dia element with the var name 'A' (E), else 'A_i' (E) where i is a counter computed by the last i + 1 " order="1"/>
           <nestedSteps xmi:id="_mNDSUdeQEfCUYJN3_L4-Ew" description="paste 'custom.E' into the namespace of dia element" order="2"/>
         </steps>
@@ -189,7 +200,7 @@
         <steps xmi:id="_mHDsgNMFEfCGnY31vy1jEg" description="take Dx (A) and Dy (B) of size (preferred/min/max in order)" order="1"/>
         <steps xmi:id="_L6necNiPEfC6eumi-hp08w" description="take the parent shape (C) of size" order="2"/>
         <steps xmi:id="_5w_xMNiPEfC6eumi-hp08w" description="check if C has a figure descriptor parent (X)" order="3"/>
-        <steps xmi:id="_BTOMgNiQEfC6eumi-hp08w" description="if X it true" order="4">
+        <steps xmi:id="_BTOMgNiQEfC6eumi-hp08w" description="if X it true" order="4" type="-">
           <nestedSteps xmi:id="_HGl5UNiQEfC6eumi-hp08w" description="take the figure descriptor parent (D)" order="1"/>
           <nestedSteps xmi:id="_OTsZMNiQEfC6eumi-hp08w" description="take the node (E) that refers to D in its figure property" order="2"/>
           <nestedSteps xmi:id="_cjgt4NiQEfC6eumi-hp08w" description="take all the node mappings (F) that refere to E in their diagram node feature" order="3"/>
@@ -202,11 +213,11 @@
       <complexity xsi:type="mgem_core_prefix:OperatorHelp" xmi:id="_TyqocNlCEfC6eumi-hp08w" operators="_tCufwMZwEfCeR8oIST4D4w"/>
       <strategy xmi:id="_ZxWMsNMIEfCGnY31vy1jEg">
         <steps xmi:id="__UMV8Nk9EfC6eumi-hp08w" description="check if LayoutData is a kind of XYLayoutData (X)" order="1"/>
-        <steps xmi:id="_FgPogNk-EfC6eumi-hp08w" description="if X is true" order="2">
+        <steps xmi:id="_FgPogNk-EfC6eumi-hp08w" description="if X is true" order="2" type="-">
           <nestedSteps xmi:id="_LDqi4NlAEfC6eumi-hp08w" description="take XYLayoutData (A)" order="1"/>
           <nestedSteps xmi:id="_wdSWoNk-EfC6eumi-hp08w" description="take the parent (B) of A" order="2"/>
           <nestedSteps xmi:id="_l63rUNk_EfC6eumi-hp08w" description="check if B's most top parent shape has a kind of size (Y)" order="3"/>
-          <nestedSteps xmi:id="_qOYH4Nk_EfC6eumi-hp08w" description="if Y is true" order="4">
+          <nestedSteps xmi:id="_qOYH4Nk_EfC6eumi-hp08w" description="if Y is true" order="4" type="-">
             <nestedSteps xmi:id="_sW56oNk_EfC6eumi-hp08w" description="take the size (preferred/min/max in order) of the most top parent shape (C)" order="1"/>
             <nestedSteps xmi:id="_8imtMNk_EfC6eumi-hp08w" description="take Dx (D) and Dy (E) of A" order="2"/>
             <nestedSteps xmi:id="_eqeKYNlAEfC6eumi-hp08w" description="take Dx (F) and Dy (G) of C" order="3"/>
@@ -215,16 +226,16 @@
             <nestedSteps xmi:id="_-PTFkNMKEfCGnY31vy1jEg" description="calc: refWidth= D/F, refHeight= E/G, refX= H/F, refY= I/G" order="6"/>
             <nestedSteps xmi:id="_oQXbsNlCEfC6eumi-hp08w" description="take the descriptor property (J) of B" order="7"/>
             <nestedSteps xmi:id="_5wJFQNlCEfC6eumi-hp08w" description="check if there is a compartment\diagram label (K) that its figure property referes to J and its accessor property referes to a child access that its figure property refers to B (Z)" order="8"/>
-            <nestedSteps xmi:id="_k5xd4NlDEfC6eumi-hp08w" description="if Z is true" order="9">
+            <nestedSteps xmi:id="_k5xd4NlDEfC6eumi-hp08w" description="if Z is true" order="9" type="-">
               <nestedSteps xmi:id="_AhNT8NlEEfC6eumi-hp08w" description="take the compartment\feature label mapping (L) that refers to K" order="1"/>
               <nestedSteps xmi:id="_u04cINlDEfC6eumi-hp08w" description="take the equivalent object (M) of L in attrs" order="2"/>
               <nestedSteps xmi:id="_UgtIQNlEEfC6eumi-hp08w" description="paste refWidth, refHeight, refx, and refY into M" order="3"/>
               <nestedSteps xmi:id="_BV_CUOG0EfCreafsdKqYmA" description="operators should adjust the numbers if there are gaps or needs fine-tuning" order="4" type="M"/>
             </nestedSteps>
             <nestedSteps xmi:id="_MotAoOZ-EfCbGf1_nr27lg" description="else check if there is a node (N) that its figure property refers to the top most parent (W)" order="10"/>
-            <nestedSteps xmi:id="_lGzfgOaEEfCbGf1_nr27lg" description="if W is true" order="11">
+            <nestedSteps xmi:id="_lGzfgOaEEfCbGf1_nr27lg" description="if W is true" order="11" type="-">
               <nestedSteps xmi:id="_makNcOaEEfCbGf1_nr27lg" description="take the node mappings (O) that refers to N" order="1"/>
-              <nestedSteps xmi:id="_J2CnkOaFEfCbGf1_nr27lg" description="for every node mapping (P) in O" order="2">
+              <nestedSteps xmi:id="_J2CnkOaFEfCbGf1_nr27lg" description="for every node mapping (P) in O" order="2" type="-">
                 <nestedSteps xmi:id="_MeG2AOaFEfCbGf1_nr27lg" description="take P's Dia Element equivalent (Q)" order="1"/>
                 <nestedSteps xmi:id="_QNOzIOaFEfCbGf1_nr27lg" description="if not exist, add an object (R) to attrs of Visual Attributes of Q with the name being the name property of B" order="2"/>
                 <nestedSteps xmi:id="_pTScIOaGEfCbGf1_nr27lg" description="paste refWidth, refHeight, refx, and refY into R" order="3"/>
@@ -257,13 +268,13 @@
         <steps xmi:id="_j0C8UOZyEfCbGf1_nr27lg" description="take the node (C) that its figure property refers to B" order="3"/>
         <steps xmi:id="_kVif0OZyEfCbGf1_nr27lg" description="take the node mappings (D) that refers to C" order="4"/>
         <steps xmi:id="_kgytkOZyEfCbGf1_nr27lg" description="take all the Ds' Dia Element equivalents" order="5"/>
-        <steps xmi:id="_k50RkOZyEfCbGf1_nr27lg" description="for every Dia Element (E) in D" order="6">
+        <steps xmi:id="_k50RkOZyEfCbGf1_nr27lg" description="for every Dia Element (E) in D" order="6" type="-">
           <nestedSteps xmi:id="_4B0yUOZ0EfCbGf1_nr27lg" description="check if E has an object in attrs with the name being A (X)" order="1"/>
-          <nestedSteps xmi:id="_Hm0xQOZ1EfCbGf1_nr27lg" description="if X is true" order="2">
+          <nestedSteps xmi:id="_Hm0xQOZ1EfCbGf1_nr27lg" description="if X is true" order="2" type="-">
             <nestedSteps xmi:id="_FZAckOZ6EfCbGf1_nr27lg" description="if not exist, add an object in Visual Structure of E with the tagName and selector being 'path' and A" order="1"/>
             <nestedSteps xmi:id="_WpxzEOZ1EfCbGf1_nr27lg" description="take the object (F)" order="2"/>
           </nestedSteps>
-          <nestedSteps xmi:id="_NX27wOZ1EfCbGf1_nr27lg" description="else" order="3">
+          <nestedSteps xmi:id="_NX27wOZ1EfCbGf1_nr27lg" description="else" order="3" type="-">
             <nestedSteps xmi:id="_cZDtQOZ5EfCbGf1_nr27lg" description="add an object to Visual Structure of E with the tagName and selector being 'path' and A" order="1"/>
             <nestedSteps xmi:id="_OjeaUOZ1EfCbGf1_nr27lg" description="add an object (F) to attrs of Visual Attributes of E with the name being A" order="2"/>
           </nestedSteps>
@@ -276,12 +287,12 @@
           <steps xmi:id="_vvXlMOZ6EfCbGf1_nr27lg" description="add a d property (H) to F" order="1"/>
           <steps xmi:id="_f7R5AOaIEfCbGf1_nr27lg" description="take the first template point x and y" order="2"/>
           <steps xmi:id="_MQx6wOZ8EfCbGf1_nr27lg" description="put a 'M x y ' string (I) for H" order="3"/>
-          <steps xmi:id="_ntw0UOZ8EfCbGf1_nr27lg" description="from the second, for every template point (J) in G" order="4">
+          <steps xmi:id="_ntw0UOZ8EfCbGf1_nr27lg" description="from the second, for every template point (J) in G" order="4" type="-">
             <nestedSteps xmi:id="_51t4MOZ8EfCbGf1_nr27lg" description="take x and y of J" order="1"/>
             <nestedSteps xmi:id="_BG3KkOZ9EfCbGf1_nr27lg" description="append 'L x y ' string to I" order="2"/>
           </steps>
           <steps xmi:id="_HbUyQOZ9EfCbGf1_nr27lg" description="check if Polyline is a kind of Polygon or Scalable Polygon (Y)" order="5"/>
-          <steps xmi:id="_Nprx8OZ9EfCbGf1_nr27lg" description="if Y is true" order="6">
+          <steps xmi:id="_Nprx8OZ9EfCbGf1_nr27lg" description="if Y is true" order="6" type="-">
             <nestedSteps xmi:id="_PHt2MOZ9EfCbGf1_nr27lg" description="append 'Z' string to I" order="1"/>
           </steps>
         </strategy>

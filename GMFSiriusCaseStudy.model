@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="ASCII"?>
 <mgem_core_prefix:Migration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mgem_core_prefix="mgem_core_uri" xmi:id="_NNx3YMVzEfCIz4WBK8SiNA" name="GMF-Sirius">
   <source xmi:id="_xfjAUMVzEfCIz4WBK8SiNA" name="GMF Workbench">
-    <features xmi:id="_BGoJcMWhEfCIz4WBK8SiNA" name="Figure">
-      <nestedFeatures xmi:id="_CgqHMMWQEfCIz4WBK8SiNA" name="Shape">
+    <features xmi:id="_BGoJcMWhEfCIz4WBK8SiNA" name="Figure" samples="_zWY3ECJCEfGhd5hKUywO5A">
+      <nestedFeatures xmi:id="_CgqHMMWQEfCIz4WBK8SiNA" name="Shape" samples="_EaobMCJDEfGhd5hKUywO5A _MCPFwCJDEfGhd5hKUywO5A _MbtVsCJDEfGhd5hKUywO5A _MymywCJDEfGhd5hKUywO5A">
         <nestedFeatures xmi:id="_oLGYcMV-EfCIz4WBK8SiNA" name="maximumSize"/>
         <nestedFeatures xmi:id="_okg-AMV-EfCIz4WBK8SiNA" name="minimumSize"/>
         <nestedFeatures xmi:id="_9AbzIMV_EfCIz4WBK8SiNA" name="foreground"/>
         <nestedFeatures xmi:id="_NhzTsMWAEfCIz4WBK8SiNA" name="background"/>
-        <nestedFeatures xmi:id="_WWheYMWQEfCIz4WBK8SiNA" name="LayoutData">
+        <nestedFeatures xmi:id="_WWheYMWQEfCIz4WBK8SiNA" name="LayoutData" samples="_Nmqs8CJDEfGhd5hKUywO5A _OFhzMCJDEfGhd5hKUywO5A _OaSiQCJDEfGhd5hKUywO5A">
           <nestedFeatures xmi:id="_xJETAMXAEfCIz4WBK8SiNA" name="Point"/>
           <nestedFeatures xmi:id="_zKhNYMXAEfCIz4WBK8SiNA" name="Dimension"/>
         </nestedFeatures>
@@ -92,6 +92,21 @@
         <children xmi:id="__UJeIMZvEfCeR8oIST4D4w" segment="Sixth Node"/>
         <children xmi:id="__k7FEMZvEfCeR8oIST4D4w" segment="Tenth Node"/>
         <children xmi:id="_YRz1kMZwEfCeR8oIST4D4w" segment="Eleventh Node"/>
+        <children xmi:id="_vX9SoCJCEfGhd5hKUywO5A" segment="Figure Gallery">
+          <children xmi:id="_zWY3ECJCEfGhd5hKUywO5A" segment="First Figure">
+            <children xmi:id="_EaobMCJDEfGhd5hKUywO5A" segment="Shape">
+              <children xmi:id="_MCPFwCJDEfGhd5hKUywO5A" segment="SubShape1">
+                <children xmi:id="_Nmqs8CJDEfGhd5hKUywO5A" segment="XYLayoutData"/>
+              </children>
+              <children xmi:id="_MbtVsCJDEfGhd5hKUywO5A" segment="SubShape2">
+                <children xmi:id="_OFhzMCJDEfGhd5hKUywO5A" segment="XYLayoutData"/>
+              </children>
+              <children xmi:id="_MymywCJDEfGhd5hKUywO5A" segment="SubShape3">
+                <children xmi:id="_OaSiQCJDEfGhd5hKUywO5A" segment="XYLayoutData"/>
+              </children>
+            </children>
+          </children>
+        </children>
       </locations>
     </files>
     <files xmi:id="_qG9IYMcDEfCBo5CuJG-9rA" name="pcn.gmfmap" path="/model">
@@ -111,9 +126,9 @@
       </locations>
     </files>
   </exampleRepositories>
-  <operators xmi:id="_tCufwMZwEfCeR8oIST4D4w" name="Mohamadreza"/>
-  <operators xmi:id="_g4HDkNolEfCKEarKCLDKOQ" name="Richard"/>
-  <operators xmi:id="_jZ7fcOavEfCtF6i4WAnaHQ" name="Dimitris"/>
+  <operators xmi:id="_tCufwMZwEfCeR8oIST4D4w" name="Mr. X"/>
+  <operators xmi:id="_g4HDkNolEfCKEarKCLDKOQ" name="Ms. Y"/>
+  <operators xmi:id="_jZ7fcOavEfCtF6i4WAnaHQ" name="Mrs. Z"/>
   <mappings xmi:id="_1C_R4MVzEfCIz4WBK8SiNA" name="Node Definition - Structural">
     <correspondences xmi:id="_Q3mlMMcdEfCBo5CuJG-9rA" name="Node Reference to Node/Container Mapping" sourceFeature="_Pi114McWEfCBo5CuJG-9rA" targetFeature="_dvxxgMcdEfCBo5CuJG-9rA _0D3XMMVzEfCIz4WBK8SiNA" relation="GMF Node References act as indirection points that bind semantic containment to graphical realization via Node Mappings. Since Sirius distinguishes explicitly between simple nodes and containers, the migration must inspect the structural context of the referenced Node Mapping. By conditionally creating a Container Mapping when compartments exist, or a Node Mapping otherwise, the mapping preserves both the containment semantics and the visual hierarchy encoded in GMF diagrams. ">
       <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_R_tboMiwEfCBo5CuJG-9rA" difficulty="COMPLEX"/>
