@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mgem_core_prefix:Migration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mgem_core_prefix="mgem_core_uri" xmi:id="_NNx3YMVzEfCIz4WBK8SiNA" name="GMF-Sirius">
+  <source xmi:id="_xfjAUMVzEfCIz4WBK8SiNA" name="GMF Workbench">
+    <features xmi:id="_BGoJcMWhEfCIz4WBK8SiNA" name="Figure">
+      <nestedFeatures xmi:id="_CgqHMMWQEfCIz4WBK8SiNA" name="Shape">
+        <nestedFeatures xmi:id="_oLGYcMV-EfCIz4WBK8SiNA" name="maximumSize"/>
+        <nestedFeatures xmi:id="_okg-AMV-EfCIz4WBK8SiNA" name="minimumSize"/>
+        <nestedFeatures xmi:id="_9AbzIMV_EfCIz4WBK8SiNA" name="foreground"/>
+        <nestedFeatures xmi:id="_NhzTsMWAEfCIz4WBK8SiNA" name="background"/>
+        <nestedFeatures xmi:id="_WWheYMWQEfCIz4WBK8SiNA" name="LayoutData">
+          <nestedFeatures xmi:id="_xJETAMXAEfCIz4WBK8SiNA" name="Point"/>
+          <nestedFeatures xmi:id="_zKhNYMXAEfCIz4WBK8SiNA" name="Dimension"/>
+        </nestedFeatures>
+        <nestedFeatures xmi:id="_Cs1NEMWzEfCIz4WBK8SiNA" name="Type">
+          <nestedFeatures xmi:id="_Na4JUMWhEfCIz4WBK8SiNA" name="Rectangle"/>
+          <nestedFeatures xmi:id="_WU-9kMWhEfCIz4WBK8SiNA" name="Ellipse"/>
+          <nestedFeatures xmi:id="_Z09EYMWhEfCIz4WBK8SiNA" name="Polyline">
+            <nestedFeatures xmi:id="_t7OgcPrmEfCJw9T7EXHRmw" name="template points"/>
+          </nestedFeatures>
+          <nestedFeatures xmi:id="_L0YxYONVEfCu7-dLl7IJUQ" name="RoundedRectangle"/>
+          <nestedFeatures xmi:id="_Nt1mUONVEfCu7-dLl7IJUQ" name="Polygon">
+            <nestedFeatures xmi:id="_w0yHgPrmEfCJw9T7EXHRmw" name="template points"/>
+          </nestedFeatures>
+          <nestedFeatures xmi:id="_Ot1qwONVEfCu7-dLl7IJUQ" name="ScalablePolygon">
+            <nestedFeatures xmi:id="_xjiq8PrmEfCJw9T7EXHRmw" name="template points"/>
+          </nestedFeatures>
+        </nestedFeatures>
+        <nestedFeatures xmi:id="_XsraoPrmEfCJw9T7EXHRmw" name="Size">
+          <nestedFeatures xmi:id="_ZEvZwPrmEfCJw9T7EXHRmw" name="Dx"/>
+          <nestedFeatures xmi:id="_Z8Ji4PrmEfCJw9T7EXHRmw" name="Dy"/>
+        </nestedFeatures>
+      </nestedFeatures>
+      <nestedFeatures xmi:id="_OmCU4MWhEfCIz4WBK8SiNA" name="Label"/>
+    </features>
+    <features xmi:id="_VF96gMcGEfCBo5CuJG-9rA" name="Canvas Mapping" samples="_fIiLoMcGEfCBo5CuJG-9rA">
+      <nestedFeatures xmi:id="_ANVBQMcSEfCBo5CuJG-9rA" name="Element"/>
+    </features>
+    <features xmi:id="_Pi114McWEfCBo5CuJG-9rA" name="Node Reference" samples="_cbPKEMjWEfCBo5CuJG-9rA">
+      <nestedFeatures xmi:id="_sAF5oMcWEfCBo5CuJG-9rA" name="Containment Feature"/>
+    </features>
+    <features xmi:id="_3AY-UMcWEfCBo5CuJG-9rA" name="Node Mapping" samples="_6InY8MjWEfCBo5CuJG-9rA">
+      <nestedFeatures xmi:id="_5VfNcMcWEfCBo5CuJG-9rA" name="Element"/>
+      <nestedFeatures xmi:id="_Ku5VkPrmEfCJw9T7EXHRmw" name="Diagram Node"/>
+    </features>
+    <features xmi:id="_5xyRUMiqEfCBo5CuJG-9rA" name="Compartment Mapping" samples="_kq89gMjWEfCBo5CuJG-9rA _qgAFUMjWEfCBo5CuJG-9rA _qoUT0MjWEfCBo5CuJG-9rA _rYOt0MjWEfCBo5CuJG-9rA _rhAPUMjWEfCBo5CuJG-9rA">
+      <nestedFeatures xmi:id="_XwQI0MiuEfCBo5CuJG-9rA" name="Children"/>
+      <nestedFeatures xmi:id="_Y5mWgMiuEfCBo5CuJG-9rA" name="Visual Representation Compartment"/>
+    </features>
+    <features xmi:id="_dCYOIMs9EfC_5dXRuYHIzA" name="Feature Label Mapping" samples="_t3NdQMs9EfC_5dXRuYHIzA _v00ZcMs9EfC_5dXRuYHIzA">
+      <nestedFeatures xmi:id="_h49T0MtDEfC_5dXRuYHIzA" name="Feauture to Display"/>
+    </features>
+  </source>
+  <target xmi:id="_zO_ksMVzEfCIz4WBK8SiNA" name="Sirius Workbench">
+    <features xmi:id="_0D3XMMVzEfCIz4WBK8SiNA" name="Container Mapping">
+      <nestedFeatures xmi:id="__EVPoMWiEfCIz4WBK8SiNA" name="Children Presentation"/>
+      <nestedFeatures xmi:id="_Jgtu8MWjEfCIz4WBK8SiNA" name="Domain Class"/>
+      <nestedFeatures xmi:id="_Qcvs8MWjEfCIz4WBK8SiNA" name="Semantic Candidates Expressionn"/>
+      <nestedFeatures xmi:id="_qjV-QNX9EfCr3byAh3mwFQ" name="Id"/>
+    </features>
+    <features xmi:id="_k-zRAMV9EfCIz4WBK8SiNA" name="Style">
+      <nestedFeatures xmi:id="_-YYdsMWkEfCIz4WBK8SiNA" name="Color"/>
+      <nestedFeatures xmi:id="__d4tMMWkEfCIz4WBK8SiNA" name="Label Color"/>
+      <nestedFeatures xmi:id="_BPsCAMWlEfCIz4WBK8SiNA" name="Border Color"/>
+      <nestedFeatures xmi:id="_EzpQ8MWlEfCIz4WBK8SiNA" name="Allow Resizing"/>
+      <nestedFeatures xmi:id="_nc71oMWkEfCIz4WBK8SiNA" name="Label Size"/>
+      <nestedFeatures xmi:id="_qeWYMMWkEfCIz4WBK8SiNA" name="Label Format"/>
+      <nestedFeatures xmi:id="_tKWrcMWkEfCIz4WBK8SiNA" name="Label Alignment"/>
+      <nestedFeatures xmi:id="_xhqC4MWkEfCIz4WBK8SiNA" name="Label Expression"/>
+      <nestedFeatures xmi:id="_vmwccMWkEfCIz4WBK8SiNA" name="Show Icon"/>
+    </features>
+    <features xmi:id="_8ogQoMcGEfCBo5CuJG-9rA" name="Diagram Description">
+      <nestedFeatures xmi:id="_-pPZUMcGEfCBo5CuJG-9rA" name="Domain Class"/>
+    </features>
+    <features xmi:id="_dvxxgMcdEfCBo5CuJG-9rA" name="Node Mapping">
+      <nestedFeatures xmi:id="_pmoDsMcdEfCBo5CuJG-9rA" name="Domain Class"/>
+      <nestedFeatures xmi:id="_sbQ38MixEfCBo5CuJG-9rA" name="Semantic Candidates Expression"/>
+      <nestedFeatures xmi:id="_2k65wNX9EfCr3byAh3mwFQ" name="Id"/>
+    </features>
+  </target>
+  <exampleRepositories xmi:id="_splR4MZuEfCeR8oIST4D4w" name="PCN-SmartContract-Bridges" uri="es.kybele.elastic.models.pcn">
+    <files xmi:id="_ywYRAMZuEfCeR8oIST4D4w" name="pcn.gmfgraph" path="/model">
+      <locations xmi:id="_TcHHYMZvEfCeR8oIST4D4w" segment="Canvas">
+        <children xmi:id="_YzuFQMZvEfCeR8oIST4D4w" segment="First Compartment"/>
+        <children xmi:id="_c8PZ0MZvEfCeR8oIST4D4w" segment="Second Compartment"/>
+        <children xmi:id="_hXBjEMZvEfCeR8oIST4D4w" segment="Third Cmpartment"/>
+        <children xmi:id="_iwhsoMZvEfCeR8oIST4D4w" segment="Fourth Compartment"/>
+        <children xmi:id="_k-tbcMZvEfCeR8oIST4D4w" segment="Fifth Compartment"/>
+        <children xmi:id="_6WTrIMZvEfCeR8oIST4D4w" segment="Second Node"/>
+        <children xmi:id="_-QRmUMZvEfCeR8oIST4D4w" segment="Third Node"/>
+        <children xmi:id="_-pKAYMZvEfCeR8oIST4D4w" segment="Fourth Node"/>
+        <children xmi:id="_-_uGQMZvEfCeR8oIST4D4w" segment="Fifth Node"/>
+        <children xmi:id="__UJeIMZvEfCeR8oIST4D4w" segment="Sixth Node"/>
+        <children xmi:id="__k7FEMZvEfCeR8oIST4D4w" segment="Tenth Node"/>
+        <children xmi:id="_YRz1kMZwEfCeR8oIST4D4w" segment="Eleventh Node"/>
+      </locations>
+    </files>
+    <files xmi:id="_qG9IYMcDEfCBo5CuJG-9rA" name="pcn.gmfmap" path="/model">
+      <locations xmi:id="_W8JZAMcGEfCBo5CuJG-9rA" segment="Mapping">
+        <children xmi:id="_fIiLoMcGEfCBo5CuJG-9rA" segment="Canvas Mapping"/>
+        <children xmi:id="_cbPKEMjWEfCBo5CuJG-9rA" segment="Top Node Reference">
+          <children xmi:id="_6InY8MjWEfCBo5CuJG-9rA" segment="Node Mapping">
+            <children xmi:id="_kq89gMjWEfCBo5CuJG-9rA" segment="Compartment Mapping.0"/>
+            <children xmi:id="_qgAFUMjWEfCBo5CuJG-9rA" segment="Compartment Mapping.1"/>
+            <children xmi:id="_qoUT0MjWEfCBo5CuJG-9rA" segment="Compartment Mapping.2"/>
+            <children xmi:id="_rYOt0MjWEfCBo5CuJG-9rA" segment="Compartment Mapping.3"/>
+            <children xmi:id="_rhAPUMjWEfCBo5CuJG-9rA" segment="Compartment Mapping.4"/>
+            <children xmi:id="_t3NdQMs9EfC_5dXRuYHIzA" segment="Label Mapping.0"/>
+            <children xmi:id="_v00ZcMs9EfC_5dXRuYHIzA" segment="Label Mapping.1"/>
+          </children>
+        </children>
+      </locations>
+    </files>
+  </exampleRepositories>
+  <operators xmi:id="_tCufwMZwEfCeR8oIST4D4w" name="Mohamadreza"/>
+  <operators xmi:id="_g4HDkNolEfCKEarKCLDKOQ" name="Richard"/>
+  <operators xmi:id="_jZ7fcOavEfCtF6i4WAnaHQ" name="Dimitris"/>
+  <mappings xmi:id="_1C_R4MVzEfCIz4WBK8SiNA" name="Node Definition - Structural">
+    <correspondences xmi:id="_Q3mlMMcdEfCBo5CuJG-9rA" name="Node Reference to Node/Container Mapping" sourceFeature="_Pi114McWEfCBo5CuJG-9rA" targetFeature="_dvxxgMcdEfCBo5CuJG-9rA _0D3XMMVzEfCIz4WBK8SiNA" relation="GMF Node References act as indirection points that bind semantic containment to graphical realization via Node Mappings. Since Sirius distinguishes explicitly between simple nodes and containers, the migration must inspect the structural context of the referenced Node Mapping. By conditionally creating a Container Mapping when compartments exist, or a Node Mapping otherwise, the mapping preserves both the containment semantics and the visual hierarchy encoded in GMF diagrams. ">
+      <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_R_tboMiwEfCBo5CuJG-9rA" difficulty="COMPLEX"/>
+      <strategy xmi:id="_WeTAkMcgEfCBo5CuJG-9rA">
+        <steps xmi:id="_X66WUMjSEfCBo5CuJG-9rA" description="take the node mapping (A) of the top node reference (B) or child reference (C)" order="1"/>
+        <steps xmi:id="_zrlaIMcgEfCBo5CuJG-9rA" description="check if A has a compartment and a child reference (X)" order="2"/>
+        <steps xmi:id="_oS5J0MiwEfCBo5CuJG-9rA" description="if X is true" order="3">
+          <nestedSteps xmi:id="_P6B5UNYpEfCr3byAh3mwFQ" description="create a container mapping under the default layer (for B) or under the parent reference's equivalent (for C)" order="1"/>
+          <nestedSteps xmi:id="_FIAHIOaxEfCtF6i4WAnaHQ" description="take all the compartment mappings (G) of A" order="2"/>
+          <nestedSteps xmi:id="_ZuK54OaxEfCtF6i4WAnaHQ" description="take all the visual representation compartments (H) of G" order="3"/>
+          <nestedSteps xmi:id="_hkbDAOc2EfCldY4y7Ptl7w" description="take all the child accesses (I) using the figure and accessor properties of H" order="4"/>
+          <nestedSteps xmi:id="_rrYE4Oc2EfCldY4y7Ptl7w" description="take all the shapes (J) using the figure property of I" order="5"/>
+          <nestedSteps xmi:id="_xltVUOc2EfCldY4y7Ptl7w" description="take all the LayoutData features properties of J" order="6"/>
+          <nestedSteps xmi:id="_hZx6oPr9EfCJw9T7EXHRmw" description="execute 'Computing Children Presentation for Container Mapping from Top Node/Child Reference'" order="7"/>
+        </steps>
+        <steps xmi:id="_kXcDYNYCEfCr3byAh3mwFQ" description="else check if B/C has a sibiling compartment (Y)" order="4"/>
+        <steps xmi:id="_gbhLQOW3EfCQdag0TpwWmA" description="if Y is true" order="5">
+          <nestedSteps xmi:id="_e_GbANYpEfCr3byAh3mwFQ" description="take all the sibiling compartment mappings (D)" order="1"/>
+          <nestedSteps xmi:id="_g1y24NYpEfCr3byAh3mwFQ" description="take the compartment mapping in D that include B/C in the children property (E)" order="2"/>
+          <nestedSteps xmi:id="_wL0lsNYpEfCr3byAh3mwFQ" description="take E's equivalent container mapping (F)" order="3"/>
+          <nestedSteps xmi:id="_zkFiANYpEfCr3byAh3mwFQ" description="create a (sub) node mapping under F" order="4"/>
+        </steps>
+      </strategy>
+      <subcorrespondences xmi:id="_Rtx34McgEfCBo5CuJG-9rA" name="Computing Domain Class" sourceFeature="_5VfNcMcWEfCBo5CuJG-9rA" targetFeature="_pmoDsMcdEfCBo5CuJG-9rA _Jgtu8MWjEfCIz4WBK8SiNA">
+        <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_IUmL8MjWEfCBo5CuJG-9rA"/>
+        <strategy xmi:id="_5cE4gMjVEfCBo5CuJG-9rA">
+          <steps xmi:id="_9BMlEMjVEfCBo5CuJG-9rA" description="copy the element property of A and paste it into domain class" order="1"/>
+        </strategy>
+      </subcorrespondences>
+      <subcorrespondences xmi:id="_Ujr-0MixEfCBo5CuJG-9rA" name="Computing Semantic Candidates Expression" sourceFeature="_sAF5oMcWEfCBo5CuJG-9rA" targetFeature="_sbQ38MixEfCBo5CuJG-9rA _Qcvs8MWjEfCIz4WBK8SiNA">
+        <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_J99WcMjWEfCBo5CuJG-9rA"/>
+        <strategy xmi:id="_KsNjkMjWEfCBo5CuJG-9rA">
+          <steps xmi:id="_LMEvYMjWEfCBo5CuJG-9rA" description="copy the containment property of B/C and paste it into semantic candidates expression" order="1"/>
+        </strategy>
+      </subcorrespondences>
+      <subcorrespondences xmi:id="_Aq6SUNX-EfCr3byAh3mwFQ" name="Computing Id" sourceFeature="_5VfNcMcWEfCBo5CuJG-9rA" targetFeature="_qjV-QNX9EfCr3byAh3mwFQ _2k65wNX9EfCr3byAh3mwFQ">
+        <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_Ropl0NX-EfCr3byAh3mwFQ"/>
+        <strategy xmi:id="__hOQ8NX-EfCr3byAh3mwFQ">
+          <steps xmi:id="__hOQ8dX-EfCr3byAh3mwFQ" description="copy the element property of A and paste it into id" order="1"/>
+        </strategy>
+      </subcorrespondences>
+    </correspondences>
+    <correspondences xmi:id="_l_gxMMWrEfCIz4WBK8SiNA" name="Compartment Mapping to Container Mapping" sourceFeature="_5xyRUMiqEfCBo5CuJG-9rA" targetFeature="_0D3XMMVzEfCIz4WBK8SiNA" relation="A GMF Compartment Mapping and a Sirius Container Mapping serve the same core purpose: they define a nested graphical container inside a node, used to visually group and structurally contain child elements. Since Sirius does not have a separate &#x201c;compartment&#x201d; concept independent of containers, a Container Mapping is the most direct target feature that preserves the compartment&#x2019;s role as a host region with an internal hierarchy.">
+      <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_ZtME4MjVEfCBo5CuJG-9rA"/>
+      <strategy xmi:id="_m93LoMWyEfCIz4WBK8SiNA">
+        <steps xmi:id="_6ZhNoMjUEfCBo5CuJG-9rA" description="take the parent top node or child reference (A) of the compartment mapping" order="1"/>
+        <steps xmi:id="_GTLjQMjVEfCBo5CuJG-9rA" description="take A's equivalent container mapping (B)" order="2"/>
+        <steps xmi:id="_nyIhMMWyEfCIz4WBK8SiNA" description="create a new container mapping (C) as a child of B" order="3"/>
+        <steps xmi:id="_gU74oNZBEfCr3byAh3mwFQ" description="write 'aql:self' into the semantic candidates expression of C" order="4"/>
+      </strategy>
+      <subcorrespondences xmi:id="_WPM_QMjOEfCBo5CuJG-9rA" name="Computing Domain Class" sourceFeature="_5VfNcMcWEfCBo5CuJG-9rA" targetFeature="_Jgtu8MWjEfCIz4WBK8SiNA">
+        <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_s-m58MjPEfCBo5CuJG-9rA"/>
+        <strategy xmi:id="_lYrqYMjPEfCBo5CuJG-9rA">
+          <steps xmi:id="_l3JIAMjPEfCBo5CuJG-9rA" description="copy the element feature of A's equivalent node mapping and paste it into domain class" order="1"/>
+        </strategy>
+      </subcorrespondences>
+      <subcorrespondences xmi:id="_GQESENYAEfCr3byAh3mwFQ" name="Computing Id" sourceFeature="_Y5mWgMiuEfCBo5CuJG-9rA" targetFeature="_qjV-QNX9EfCr3byAh3mwFQ">
+        <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_VvyvcNYAEfCr3byAh3mwFQ"/>
+        <strategy xmi:id="_ig974NYAEfCr3byAh3mwFQ">
+          <steps xmi:id="_i3UmYNYAEfCr3byAh3mwFQ" description="take the figure (D) of the visual representation compartment feature" order="1"/>
+          <steps xmi:id="_0m6NkNYAEfCr3byAh3mwFQ" description="copy the name of D and paste it into id" order="2"/>
+        </strategy>
+      </subcorrespondences>
+    </correspondences>
+  </mappings>
+  <mappings xmi:id="_DUeZYMcHEfCBo5CuJG-9rA" name="Diagram Infrastructure - Structural">
+    <correspondences xmi:id="_mr1WQMcMEfCBo5CuJG-9rA" name="Canvas Mapping to Diagram Description" sourceFeature="_VF96gMcGEfCBo5CuJG-9rA" targetFeature="_8ogQoMcGEfCBo5CuJG-9rA" relation="Canvas Mapping in GMF and Diagram Description in Sirius both act as the entry point of a graphical editor, defining the semantic root of the diagram and its global configuration. While the concrete mechanisms differ, their roles in establishing the diagram context are conceptually equivalent. Canvas Mapping specifies how a domain model element becomes the diagram canvas, while Diagram Description declares the diagram&#x2019;s root semantic element and overall behavior. ">
+      <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_nfIUEMcPEfCBo5CuJG-9rA"/>
+      <strategy xmi:id="_pgJwoMcPEfCBo5CuJG-9rA">
+        <steps xmi:id="_NaOgYMcSEfCBo5CuJG-9rA" description="creare a description diagram with a default layer" order="1"/>
+      </strategy>
+      <subcorrespondences xmi:id="_oBAukMcOEfCBo5CuJG-9rA" name="Computing Domain Class" sourceFeature="_ANVBQMcSEfCBo5CuJG-9rA" targetFeature="_-pPZUMcGEfCBo5CuJG-9rA">
+        <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_LJsoMMcSEfCBo5CuJG-9rA"/>
+        <strategy xmi:id="_L6P7YMcSEfCBo5CuJG-9rA">
+          <steps xmi:id="_QcA2YMcSEfCBo5CuJG-9rA" description="copy value of Element and paste into domain class" order="1"/>
+        </strategy>
+      </subcorrespondences>
+    </correspondences>
+  </mappings>
+  <mappings xmi:id="_Rx7NkMs9EfC_5dXRuYHIzA" name="Label Semantics - Visual">
+    <correspondences xmi:id="_UVq8sMs9EfC_5dXRuYHIzA" name="Multiple Label Mappings to Label" sourceFeature="_dCYOIMs9EfC_5dXRuYHIzA" relation="GMF Feature Label Mappings and Sirius Label Expressions both serve the same fundamental purpose: defining how semantic attributes are transformed into textual labels on diagram elements. However, GMF supports multiple independent label mappings per node, while Sirius enforces a single label expression per graphical element. This structural mismatch necessitates an approximation rather than a direct mapping. ">
+      <complexity xsi:type="mgem_core_prefix:NoDirectMapping" xmi:id="_n-5mEMs9EfC_5dXRuYHIzA" rationale="Because Sirius supports only one style - and consequently one label expression - per diagram element, all GMF Feature Label Mappings associated with the same node are merged into a single AQL expression. Line breaks are used to preserve label separation and readability." possibleApproximation="_xhqC4MWkEfCIz4WBK8SiNA" operators="_tCufwMZwEfCeR8oIST4D4w"/>
+      <strategy xmi:id="_M_E64MtDEfC_5dXRuYHIzA">
+        <steps xmi:id="_amBXQNohEfCKEarKCLDKOQ" description="take all the label mapping sibilings (A)" order="1"/>
+        <steps xmi:id="_SWNXoMtDEfC_5dXRuYHIzA" description="take the immediate top node/child reference (B) of A" order="2"/>
+        <steps xmi:id="_l5mCQMtEEfC_5dXRuYHIzA" description="take the B's equivalent container/node mapping (B)" order="3"/>
+        <steps xmi:id="_gEU4AMtEEfC_5dXRuYHIzA" description="take or create a new (if not already exist) style (C) for B and write: &quot;aql:&quot; in the label expression property (D) of C" order="4"/>
+        <steps xmi:id="_rjGBYMtEEfC_5dXRuYHIzA" description="for every label mapping (E) in A" order="5">
+          <nestedSteps xmi:id="_woz5ANohEfCKEarKCLDKOQ" description="take the features to display property (F) of E" order="1"/>
+          <nestedSteps xmi:id="_w9kBANohEfCKEarKCLDKOQ" description="append self.F + '\n' to D" order="2"/>
+        </steps>
+        <steps xmi:id="_ufu3MNoiEfCKEarKCLDKOQ" description="supervisors should inspect if it matches the structural and visual expectation. if not, they can follow Figure to Style Correspondence" order="6" type="M"/>
+      </strategy>
+    </correspondences>
+  </mappings>
+  <mappings xmi:id="_WGqsYNRVEfCxMJDUOK6zJw" name="Layout Semantics - Visual">
+    <correspondences xmi:id="_ZLH74NRVEfCxMJDUOK6zJw" name="Analyzing Figures" sourceFeature="_BGoJcMWhEfCIz4WBK8SiNA" relation="Both GMF Figure Descriptors and Sirius container aim to define the visual appearance in terms of structural composition of diagram elements. However, while GMF supports arbitrary nesting of graphical primitives, Sirius enforces a stricter separation between structure (container mappings) and appearance (styles). This mismatch makes the correspondence inherently approximate and requires manual interpretation to preserve the intended visual semantics. ">
+      <complexity xsi:type="mgem_core_prefix:NoDirectMapping" xmi:id="_TSh-sNolEfCKEarKCLDKOQ" rationale="GMF allows to draw complex figures by defining nested shapes. This could not happen in Sirius. This mapping needs supervisor's intuition to have a reasonable match." possibleApproximation="_0D3XMMVzEfCIz4WBK8SiNA" operators="_g4HDkNolEfCKEarKCLDKOQ _tCufwMZwEfCeR8oIST4D4w" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_vrb4gNomEfCKEarKCLDKOQ">
+        <steps xmi:id="_uNeaYNqiEfCk-fnjm2UsFw" description="supervisors should take the shape (A) of the figure descriptor" order="1" type="M"/>
+        <steps xmi:id="_5YN0gNqiEfCk-fnjm2UsFw" description="supervisors have to check if A presents a complex figure by defining nested shapes (X)" order="2" type="M"/>
+        <steps xmi:id="_OsecUNqjEfCk-fnjm2UsFw" description="if X is true" order="3" type="-">
+          <nestedSteps xmi:id="_QFgr0NqjEfCk-fnjm2UsFw" description="supervisors should split the nested shapes of A into two groups: B1) the shapes used for only drawing, B2) the shapes used for external access (usually are accessible by a child reference)" order="1" type="M"/>
+          <nestedSteps xmi:id="_DpnPANqnEfCk-fnjm2UsFw" description="for every shape (C) in B2" order="2" type="-">
+            <nestedSteps xmi:id="_MrnbANqnEfCk-fnjm2UsFw" description="supervisors should check what canvas feature (D) is referring to/accessing C" order="1" type="M"/>
+            <nestedSteps xmi:id="_dxvwgNreEfCk-fnjm2UsFw" description="if D is a kind of compartment" order="2" type="-">
+              <nestedSteps xmi:id="_iUlCgNreEfCk-fnjm2UsFw" description="supervisors should find the compartment mapping (E) referring to D" order="1" type="M"/>
+              <nestedSteps xmi:id="_Zv09wNrfEfCk-fnjm2UsFw" description="supervisors should find E's equivalent container mapping (F)" order="2" type="M"/>
+              <nestedSteps xmi:id="_EOr7ENrgEfCk-fnjm2UsFw" description="supervisors should create a style for F in a way that resembels the actual figure (Shape Resembalance can be reused)" order="3" type="M"/>
+              <nestedSteps xmi:id="_e70hgNrfEfCk-fnjm2UsFw" description="from A to the most top shape, in a way that matches the figure descriptor in terms of structure, for every shape, supervisors can define a container mapping and its style" order="4" type="M"/>
+            </nestedSteps>
+          </nestedSteps>
+          <nestedSteps xmi:id="_9ga4oNqlEfCk-fnjm2UsFw" description="for every shape (G) in B1" order="3" type="-">
+            <nestedSteps xmi:id="_lP8qoNriEfCk-fnjm2UsFw" description="supervisor should find and match G's equivalent mapping (H)" order="1" type="M"/>
+            <nestedSteps xmi:id="_re0nsNriEfCk-fnjm2UsFw" description="supervisors should create a style for H in a way that resembels the actual figure (Shape Resembalance can be used)" order="2" type="M"/>
+          </nestedSteps>
+        </steps>
+      </strategy>
+    </correspondences>
+    <correspondences xmi:id="_a4t8UMizEfCBo5CuJG-9rA" name="Computing Children Presentation for Container Mapping from Top Node/Child Reference" sourceFeature="_WWheYMWQEfCIz4WBK8SiNA" targetFeature="__EVPoMWiEfCIz4WBK8SiNA" relation="Although GMF and Sirius rely on fundamentally different layout paradigms - absolute positioning versus declarative layout policies - both mechanisms ultimately aim to control how child elements are visually organized within a container. Children Presentation in Sirius represents the closest abstraction capable of preserving the directional and sequential intent encoded implicitly in GMF layout data. ">
+      <complexity xsi:type="mgem_core_prefix:OperatorHelp" xmi:id="_fho_QOavEfCtF6i4WAnaHQ" operators="_jZ7fcOavEfCtF6i4WAnaHQ _tCufwMZwEfCeR8oIST4D4w"/>
+      <strategy xmi:id="_HjE3IMjQEfCBo5CuJG-9rA">
+        <steps xmi:id="_4YjGUMjSEfCBo5CuJG-9rA" description="check if LayoutData features are all a kind of XYLayoutData (Z)" order="1"/>
+        <steps xmi:id="_MYA64MjSEfCBo5CuJG-9rA" description="if Z is true" order="2" type="-">
+          <nestedSteps xmi:id="_sp9LQOatEfCtF6i4WAnaHQ" description="check if all the x properties of L is increasing but the y remained unchanged (W)" order="1"/>
+          <nestedSteps xmi:id="_vdAhsOatEfCtF6i4WAnaHQ" description="if W is true" order="2" type="-">
+            <nestedSteps xmi:id="_dhEs4Oc3EfCldY4y7Ptl7w" description="child presentation is horizontal stack" order="1"/>
+          </nestedSteps>
+          <nestedSteps xmi:id="_HjE3IcjQEfCBo5CuJG-9rA" description="else check if all the y properties of L are increasing but the x remained unchanged (Q)" order="3"/>
+          <nestedSteps xmi:id="_rkBDMOc3EfCldY4y7Ptl7w" description="if Q is true" order="4" type="-">
+            <nestedSteps xmi:id="_tURf4Oc3EfCldY4y7Ptl7w" description="child presentation is vertical stack" order="1"/>
+          </nestedSteps>
+          <nestedSteps xmi:id="_wUER0Oc3EfCldY4y7Ptl7w" description="supervisors should decide a desired option" order="5"/>
+        </steps>
+        <steps xmi:id="_52iGkOc3EfCldY4y7Ptl7w" description="else" order="3" type="-">
+          <nestedSteps xmi:id="_68V4EOc3EfCldY4y7Ptl7w" description="supervisors should decide a desired option" order="1" type="M"/>
+        </steps>
+      </strategy>
+    </correspondences>
+  </mappings>
+  <mappings xmi:id="_1Le3oPsKEfCJw9T7EXHRmw" name="Figure Appearance - Visual">
+    <correspondences xmi:id="_SDE4ANrgEfCk-fnjm2UsFw" name="Shape Resembalance" sourceFeature="_CgqHMMWQEfCIz4WBK8SiNA" targetFeature="_k-zRAMV9EfCIz4WBK8SiNA" relation="Both GMF Shapes and Sirius Styles are responsible for determining how a diagram element is visually rendered. While GMF provides explicit shape primitives, Sirius abstracts geometric form into style configurations, making Style the closest construct capable of preserving the visual intent expressed by a GMF Shape. ">
+      <complexity xsi:type="mgem_core_prefix:OperatorHelp" xmi:id="_8ndjoNriEfCk-fnjm2UsFw"/>
+      <strategy xmi:id="_TBadoNriEfCk-fnjm2UsFw">
+        <steps xmi:id="_ILXl4PsHEfCJw9T7EXHRmw" description="supervisors should identify the Sirius equivalent feature (A) for which this shape feature draws a figure in a GMF mapping" order="1" type="M"/>
+        <steps xmi:id="_MtFQENqmEfCk-fnjm2UsFw" description="supervisors should check if the shape draws a basic shape e.g. rectangle, triangle, circle etc. (X)" order="2" type="M"/>
+        <steps xmi:id="_04PFYNqmEfCk-fnjm2UsFw" description="if X is true" order="3" type="-">
+          <nestedSteps xmi:id="_RzXiQPsEEfCJw9T7EXHRmw" description="create a basic style for A (Square, Diamond, Ellipse, Parallelogram etc. based on the highest similarity and availability)" order="1"/>
+        </steps>
+        <steps xmi:id="_bgpyENqmEfCk-fnjm2UsFw" description="else" order="4" type="-">
+          <nestedSteps xmi:id="_kPDFkNqmEfCk-fnjm2UsFw" description="supervisors should create an image (B) visually matching what the shape describes in the svg, jpg, png, etc. format" order="1" type="M"/>
+          <nestedSteps xmi:id="_JGh7sPsJEfCJw9T7EXHRmw" description="take the path (C) of the image" order="2"/>
+          <nestedSteps xmi:id="_DesJcPsJEfCJw9T7EXHRmw" description="ceate a Workspace Image (D) for A" order="3"/>
+          <nestedSteps xmi:id="_RpYGgPsJEfCJw9T7EXHRmw" description="paste C into the image path property of D" order="4"/>
+        </steps>
+      </strategy>
+    </correspondences>
+  </mappings>
+</mgem_core_prefix:Migration>
