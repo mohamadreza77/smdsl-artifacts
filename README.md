@@ -55,7 +55,6 @@ It defines the abstract syntax of SMDSL, including:
 * **Features** (structural and behavioral)
 * **Correspondences**
 * **Mappings**
-* **Transformation-related constructs**
 
 This metamodel enables:
 
@@ -74,12 +73,6 @@ This metamodel enables:
 
 This model instantiates SMDSL for the migration from **Eclipse GMF** to **Eclipse Sirius**.
 
-It captures:
-
-* identified features in both platforms
-* correspondence relationships
-* mapping rationale and structure
-
 ---
 
 ### 2.2 GMF → JointJS
@@ -88,12 +81,6 @@ It captures:
 * `GMFJointJsCaseStudy.model.picto`
 
 This model represents migration from **GMF** to **JointJS** (cross-ecosystem case).
-
-It highlights:
-
-* structural decomposition (e.g., Canvas → Graph + Paper)
-* semantic mismatches
-* web-based rendering differences
 
 ---
 
@@ -121,12 +108,6 @@ These files illustrate concrete diagram-level outputs across platforms:
 * `EntityProcessSirius.png`
 * `EntityProcessJointJS.png`
 
-They show:
-
-* how the same conceptual model is rendered differently
-* visual differences across platforms
-* motivation for explicit correspondence modeling
-
 ---
 
 ## 📄 5. Generated Correspondence Reports
@@ -135,13 +116,11 @@ They show:
 
 Folder: `GMFSiriusReports/`
 
-Includes detailed correspondence analyses such as:
+Includes detailed reports of correspondence analyses such as:
 
 * Canvas Mapping → Diagram Description
 * Compartment Mapping → Container Mapping
 * Node Reference → Node/Container Mapping
-* Label Mapping
-* Shape resemblance and layout handling
 
 ---
 
@@ -149,13 +128,11 @@ Includes detailed correspondence analyses such as:
 
 Folder: `GMFJointJsReports/`
 
-Includes reports such as:
+Includes the same reports such as:
 
-* Canvas Mapping → Graph + Paper
 * Node Mapping → Dia Element
 * Compartment Mapping → Visual Attributes
 * Polyline → Path Data
-* Geometry and layout computations
 
 ---
 
@@ -214,14 +191,6 @@ SMDSL can represent migrations across:
 * same ecosystem (GMF → Sirius)
 * different ecosystems (GMF → JointJS)
 
-### ✔ Expressiveness
-
-Supports:
-
-* structural mappings
-* behavioral mappings
-* composite correspondences
-
 ### ✔ Traceability
 
 Explicit links between:
@@ -262,10 +231,6 @@ To explore the artifacts:
 * All artifacts are **self-contained**
 * No external dependencies are required
 * Reports are **human-readable explanations of mappings**
-* Case studies were selected to demonstrate:
-
-  * intra-ecosystem migration
-  * cross-technology migration
 
 ---
 
