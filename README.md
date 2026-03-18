@@ -15,28 +15,30 @@ They include the metamodel, instantiated models, feature analyses, correspondenc
 
 ## 📦 Repository Overview
 
+The repository is organized into four main artifact groups, reflecting the workflow presented in the paper:
 
-
-The repository is organized as follows:
-
-```
 .
-├── SMDSL.ecore
-├── GMFSiriusCaseStudy.model
-├── GMFSiriusCaseStudy.model.picto
-├── GMFJointJsCaseStudy.model
-├── GMFJointJsCaseStudy.model.picto
+├── 1. Core Language
+│   └── SMDSL.ecore
 │
-├── GMFSiriusReports/
-├── GMFJointJsReports/
+├── 2. Case Study Models
+│   ├── GMFSiriusCaseStudy.model
+│   ├── GMFSiriusCaseStudy.model.picto
+│   ├── GMFJointJsCaseStudy.model
+│   └── GMFJointJsCaseStudy.model.picto
 │
-├── GMF Features Identified.png
-├── Sirius Features Identified.png
-├── JointJs Features Identified.png
+├── 3. Feature Identification & Specification
+│   ├── GMF Features Identified.png
+│   ├── Sirius Features Identified.png
+│   ├── JointJs Features Identified.png
+│   └── Subset of Features and Correspondences.pdf
 │
-├── EntityProcessGMF.png
-├── EntityProcessSirius.png
-├── EntityProcessJointJS.png
+├── 4. Generated Outputs & Reports
+│   ├── GMFSiriusReports/
+│   ├── GMFJointJsReports/
+│   ├── EntityProcessGMF.png
+│   ├── EntityProcessSirius.png
+│   └── EntityProcessJointJS.png
 │
 └── README.md
 ```
@@ -100,7 +102,44 @@ They provide:
 
 ---
 
-## 🔄 4. Example Transformation Outputs
+## 📑 4. Feature & Correspondence Specification
+
+**File:** `Subset of Features and Correspondences.pdf`
+
+This document provides a structured and formalized subset of:
+
+- Identified features across **GMF, Sirius, and JointJS**
+- Defined correspondences for:
+  - GMF → Sirius
+  - GMF → JointJS
+
+### 🔹 Contents
+
+The document is organized into two main parts:
+
+#### Table 1 — Feature Definitions
+- Defines key platform features
+- Includes:
+  - name
+  - definition
+  - role in the editor
+
+This table operationalizes the feature spaces illustrated in:
+- `GMF Features Identified.png`
+- `Sirius Features Identified.png`
+- `JointJs Features Identified.png`
+
+#### Table 2 — Correspondences
+- Defines mappings between source and target features
+- Includes:
+  - source feature
+  - target feature(s)
+  - rationale
+  - correspondence type
+
+---
+
+## 🔄 5. Example Transformation Outputs
 
 These files illustrate concrete diagram-level outputs across platforms:
 
@@ -110,9 +149,9 @@ These files illustrate concrete diagram-level outputs across platforms:
 
 ---
 
-## 📄 5. Generated Correspondence Reports
+## 📄 6. Generated Correspondence Reports
 
-### 5.1 GMF → Sirius Reports
+### 6.1 GMF → Sirius Reports
 
 Folder: `GMFSiriusReports/`
 
@@ -124,7 +163,7 @@ Includes detailed reports of correspondence analyses such as:
 
 ---
 
-### 5.2 GMF → JointJS Reports
+### 6.2 GMF → JointJS Reports
 
 Folder: `GMFJointJsReports/`
 
@@ -151,7 +190,7 @@ These reports:
 
 ---
 
-## 🔍 6. How to Use the Artifacts
+## 🔍 7. How to Use the Artifacts
 
 ### Step 1 — Inspect the Metamodel
 
@@ -180,7 +219,7 @@ Browse `GMFSiriusReports/` and `GMFJointJsReports/`:
 
 ---
 
-## 🎯 7. What These Artifacts Demonstrate
+## 🎯 8. What These Artifacts Demonstrate
 
 The artifact suite provides evidence for:
 
