@@ -13,7 +13,7 @@ They include the metamodel, instantiated models, feature analyses, correspondenc
 
 ---
 
-## 📦 Repository Overview
+📦 Repository Overview
 
 The repository is organized into four main artifact groups, reflecting the workflow presented in the paper:
 
@@ -41,8 +41,8 @@ The repository is organized into four main artifact groups, reflecting the workf
 │   └── EntityProcessJointJS.png
 │
 └── README.md
-```
 
+---
 
 ## 🧠 1. SMDSL Metamodel
 
