@@ -43,7 +43,6 @@ The repository is organized into four main artifact groups, reflecting the workf
 └── README.md
 ```
 
----
 
 ## 🧠 1. SMDSL Metamodel
 
