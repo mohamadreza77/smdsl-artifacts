@@ -1,0 +1,70 @@
+[%
+// params from EGX:
+// - platform : mgem_core_package::Platform
+%]
+
+digraph FeatureHierarchy {
+  rankdir=TB;
+  fontname="Arial";
+
+  // All nodes: yellow circles with red text
+  node [
+    shape=circle,
+    style=filled,
+    fillcolor="yellow",
+    fontcolor="red",
+    fontname="Arial",
+    fixedsize=true,
+    width=1.5,
+    height=1.5
+  ];
+
+  // Generate nodes & edges for every root feature
+  [% var visited = Set{}; %]
+  [% for (f in platform.features) { %]
+    [% printFeatureTree(f, visited); %]
+  [% } %]
+}
+
+[%
+// ===== Helpers =====
+%]
+
+[% operation printFeatureTree(
+       f       : mgem_core_package::Feature,
+       visited : Set
+   ) { %]
+
+[% if (visited.contains(f)) { return; } %]
+[% visited.add(f); %]
+
+"[%=featureId(f)%]" [label="[%=featureLabel(f)%]"];
+
+[% for (child in f.nestedFeatures) { %]
+"[%=featureId(f)%]" -> "[%=featureId(child)%]";
+[%    printFeatureTree(child, visited); %]
+[% } %]
+
+[% } %]
+
+[% operation featureId(f : mgem_core_package::Feature) : String {
+  return "F_" + f.hashCode().toString();
+} %]
+
+[% operation featureLabel(f : mgem_core_package::Feature) : String {
+  var name = f.name;
+  
+  // Short names stay on one line
+  if (name.length() <= 10) return name;
+
+  // Split on spaces and put each word on a new line
+  var words = name.split(" ");
+  var buf = "";
+  var i = 0;
+  for (w in words) {
+    if (i > 0) buf = buf + "\\n";  // Graphviz newline
+    buf = buf + w;
+    i = i + 1;
+  }
+  return buf;
+} %]

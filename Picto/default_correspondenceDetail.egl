@@ -1,0 +1,401 @@
+[%
+// params from EGX:
+// - correspondence : Correspondence
+// - migration      : Migration
+%]
+
+[% var c   = correspondence; %]
+[% var src = c.sourceFeature; %]
+[% var tgts = c.targetFeature; %]
+[% var complexityName = c.complexity.eClass().name; %]
+[% var complexityDesc = ""; %]
+[%if (complexityName = "OperatorHelp") {%]
+[% complexityDesc = c.complexity.kind; %]
+[% } %]
+[%if (complexityName = "FullAutomation") {%]
+[% complexityDesc = c.complexity.difficulty; %]
+[% } %]
+
+# Correspondence: [%=c.name%]
+
+**Source feature:** [%=src.name%]  
+**Target feature(s):** [%=c.targetFeature.collect(t|t.name).concat(", ")%]  
+**Automation type:** [%=complexityName%] - [%=complexityDesc%]   
+**Relation:** [%=wrap(c.relation, 80)%]
+
+[% var ops = operatorsFor(c); %]
+[% if (not ops.isEmpty()) { %]
+**Operators:** [%=ops.collect(o|o.name).concat(", ")%]
+[% } %]
+
+[% if (c.complexity.eClass().name = "NoDirectMapping") { %]
+
+**Rationale:** [%=wrap(c.complexity.rationale, 80)%]
+
+[% var cas = c.complexity.possibleApproximation; %]
+[% var diff = c.complexity.difficulty; %]
+[% var kind = c.complexity.kind; %]
+[% if (cas.isDefined() and not cas.isEmpty()) { %]
+**Possible approximations (if any):** [%=cas.collect(a | a.name).concat(", ")%] ([%=diff%], [%=kind%])
+[% } %]
+[% } %]
+
+---
+**Main Strategy:**
+[% if (c.strategy.isDefined()) { %]
+<pre>
+[%=formatSteps(c.strategy.steps, "", 0)%]</pre>
+[% } else { %]
+No explicit strategy defined.
+[% } %]
+
+---
+[% var familyy = correspondenceFamily(c); %]
+[% var subsWithStrategy = familyy.select(fc | fc <> c and fc.strategy.isDefined()); %]
+
+[% if (not subsWithStrategy.isEmpty()) { %]
+**Strategies of subcorrespondences**
+[% for (fc in subsWithStrategy) { %]
+##### [%=fc.name%]
+
+<pre>
+[%=formatSteps(fc.strategy.steps, "", 0)%]</pre>
+[% } %]
+[% } %]
+---
+## Structural overview
+
+```render-graphviz-dot
+digraph CorrespondenceOverview {
+  rankdir=LR;
+  fontname="Arial";
+  node [fontname="Arial", shape=box];
+
+  // === 1. Correspondence family (root + all subcorrespondences) ===
+[% var family = correspondenceFamily(c); %]
+
+  // === 2. Collect all source & target features used in the family ===
+[% var srcSet = Set{}; %]
+[% var tgtSet = Set{}; %]
+[% for (fc in family) { %]
+  [% srcSet.add(fc.sourceFeature); %]
+  [% for (t in targetsIncludingApprox(fc)) { %]
+    [% tgtSet.add(t); %]
+  [% } %]
+[% } %]
+
+[% var srcAll = featuresWithAncestors(srcSet, migration.source); %]
+[% var tgtAll = featuresWithAncestors(tgtSet, migration.target); %]
+
+  // === 3. Source features (left) ===
+  subgraph cluster_source {
+    label="Source features";
+    style=filled; color="#9fc5e8";
+
+[% for (f in srcAll) { 
+     var style = "solid";
+     if (f = src) { style = "filled,bold"; } %]
+    "[%=nodeId("S", f)%]" [label="[%=f.name%]" shape=box style="[%=style%]"];
+[% } %]
+  }
+
+  // === 4. Target features (right) ===
+  subgraph cluster_target {
+    label="Target features";
+    style=filled; color="#ea9999";
+
+[% for (f in tgtAll) { 
+	var style = "solid";
+	if (tgts.includes(f)) { style = "filled,bold"; } %]
+    "[%=nodeId("T", f)%]" [label="[%=f.name%]" shape=box style="[%=style%]"];
+[% } %]
+  }
+
+    // === 5. Mapping edges ===
+  // solid  = root correspondence (c)
+  // dashed = subcorrespondences
+  // dotted = edges to possibleApproximation features in NoDirectMapping
+[% for (fc in family) { %]
+  [% var baseStyle = "solid"; %]
+  [% if (fc <> c) { baseStyle = "solid"; } %]
+
+  [% var approxTargets = Sequence{}; %]
+  [% if (fc.complexity.eClass().name = "NoDirectMapping") { %]
+    [% approxTargets = fc.complexity.possibleApproximation; %]
+  [% } %]
+
+  [% for (t in targetsIncludingApprox(fc)) { %]
+    [% var styleHere = baseStyle; %]
+    [% if (not approxTargets.isEmpty() and approxTargets.contains(t)) { %]
+      [% styleHere = "solid"; %]
+    [% } %]
+    "[%=nodeId("S", fc.sourceFeature)%]" -> "[%=nodeId("T", t)%]" [style="[%=styleHere%]", color="#6a329f"];
+  [% } %]
+[% } %]
+
+
+
+
+  // === 6. Parent–child nesting edges in source platform ===
+[% for (f in srcAll) { %]
+  [% for (child in f.nestedFeatures) { %]
+    [% if (srcAll.contains(child)) { %]
+      "[%=nodeId("S", f)%]" -> "[%=nodeId("S", child)%]"
+        [style=dotted, arrowhead=none, color="#000000"];
+    [% } %]
+  [% } %]
+[% } %]
+
+  // === 7. Parent–child nesting edges in target platform ===
+[% for (f in tgtAll) { %]
+  [% for (child in f.nestedFeatures) { %]
+    [% if (tgtAll.contains(child)) { %]
+      "[%=nodeId("T", f)%]" -> "[%=nodeId("T", child)%]"
+        [style=dotted, arrowhead=none, color="#000000"];
+    [% } %]
+  [% } %]
+[% } %]
+
+  // === 8. Sample locations (one note per feature) ===
+
+  // Source-side samples
+[% for (f in srcAll) { %]
+  [% if (not f.samples.isEmpty()) { %]
+    [% var sid = "SAMP_S_" + nodeId("S", f); %]
+    "[%=sid%]" [
+      label="[%=sampleLabelForFeature(f)%]"
+      shape=note
+      style="filled"
+      color="#8fce00"
+    ];
+    "[%=nodeId("S", f)%]" -> "[%=sid%]"
+      [style=dashed, arrowhead=none, label="sample", color="#274e13"];
+  [% } %]
+[% } %]
+
+  // Target-side samples
+[% for (f in tgtAll) { %]
+  [% if (not f.samples.isEmpty()) { %]
+    [% var sid = "SAMP_T_" + nodeId("T", f); %]
+    "[%=sid%]" [
+      label="[%=sampleLabelForFeature(f)%]"
+      shape=note
+      style="filled"
+      color="#8fce00"
+    ];
+    "[%=nodeId("T", f)%]" -> "[%=sid%]"
+      [style=dashed, arrowhead=none, label="sample", color="#274e13"];
+  [% } %]
+[% } %]
+
+
+
+}
+
+
+
+[% operation operatorsFor(c : mgem_core_package::Correspondence) {
+var a = c.complexity;
+if (a.eClass().name = "OperatorHelp" or a.eClass().name = "NoDirectMapping") {
+return a.operators;
+}
+return Sequence{};
+} %]
+
+
+[% operation locationContext(loc : mgem_core_package::Location) {
+var repo = null;
+var file = null;
+var path = "";
+
+var current = loc;
+var first = true;
+
+while (current <> null) {
+var ec = current.eClass().name;
+if (ec = "Location") {
+  if (first) {
+    path = current.segment;
+    first = false;
+  } else {
+    path = current.segment + "/" + path;
+  }
+} else if (ec = "File" and file = null) {
+  file = current;
+} else if (ec = "Repository" and repo = null) {
+  repo = current;
+}
+
+current = current.eContainer();
+}
+
+var info = Map{};
+
+if (repo <> null) {
+info.put("repoName", repo.name);
+info.put("repoUri", repo.uri);
+} else {
+info.put("repoName", "<unknown repo>");
+info.put("repoUri", "");
+}
+
+if (file <> null) {
+info.put("fileName", file.name);
+info.put("filePath", file.path);
+} else {
+info.put("fileName", "<unknown file>");
+info.put("filePath", "");
+}
+
+info.put("path", path);
+return info;
+} %]
+
+[% operation wrap(text : String, max : Integer) : String {
+if (not text.isDefined()) return "";
+var result = "";
+var i = 0;
+while (i < text.length()) {
+var end = i + max;
+if (end > text.length()) end = text.length();
+var chunk = text.substring(i, end);
+result = result + chunk;
+if (end < text.length()) {
+result = result + "\n"; // Markdown newline
+}
+i = end;
+}
+return result;
+} %]
+
+[% operation correspondenceFamily(root : mgem_core_package::Correspondence) {
+  var acc = Sequence{};
+  addWithChildren(root, acc);
+  return acc;
+} %]
+
+[% operation addWithChildren(c : mgem_core_package::Correspondence,
+                             acc : Sequence) {
+  if (acc.contains(c)) return;
+  acc.add(c);
+  for (sc in c.subcorrespondences) {
+    addWithChildren(sc, acc);
+  }
+} %]
+
+[% operation nodeId(side : String, f : mgem_core_package::Feature) : String {
+  var base = f.name.replaceAll("\\W", "_");
+  return side + "_" + f.hashCode().toString();
+} %]
+
+
+[% operation targetsIncludingApprox(c : mgem_core_package::Correspondence) {
+  var result = Sequence{};
+  result.addAll(c.targetFeature);
+
+  if (c.complexity.eClass().name = "NoDirectMapping") {
+    var cas = c.complexity.possibleApproximation;
+    if (cas.isDefined() and not cas.isEmpty()) {
+      for (ca in cas) {
+        if (not result.contains(ca)) {
+          result.add(ca);
+        }
+      }
+    }
+  }
+  return result;
+} %]
+
+
+
+[% operation featuresWithAncestors(features, p : mgem_core_package::Platform) {
+  var result = Set{};
+  for (f in features) {
+    var anc = ancestorsInPlatform(f, p);
+    for (a in anc) {
+      result.add(a);
+    }
+  }
+  return result;
+} %]
+
+[% operation ancestorsInPlatform(f : mgem_core_package::Feature,
+                                 p : mgem_core_package::Platform) : Sequence {
+  for (root in p.features) {
+    var path = findPathToFeature(root, f, Sequence{});
+    if (path.isDefined()) return path;
+  }
+  // Fallback: just the feature itself
+  var s = Sequence{};
+  s.add(f);
+  return s;
+} %]
+
+[% operation findPathToFeature(current : mgem_core_package::Feature,
+                               target  : mgem_core_package::Feature,
+                               acc     : Sequence) {
+  var path = acc.clone();
+  path.add(current);
+
+  if (current = target) return path;
+
+  for (child in current.nestedFeatures) {
+    var res = findPathToFeature(child, target, path);
+    if (res.isDefined()) return res;
+  }
+  return null;
+} %]
+
+[% operation sampleLabelForFeature(f : mgem_core_package::Feature) : String {
+  if (f.samples.isEmpty()) return "Samples:\n(no samples)";
+
+  var text = "Samples:";
+  for (loc in f.samples) {
+    var ctx = locationContext(loc);
+    text = text
+      + "\\n- "
+      + ctx.get("repoName")
+      + ": "
+      + ctx.get("filePath") + "/" + ctx.get("fileName")
+      + " :: " + ctx.get("path");
+  }
+  return text;
+} %]
+
+[% operation formatSteps(steps, prefix : String, level: Integer) : String {
+  var result = "";
+  var sorted = steps.sortBy(s | s.order);
+
+  for (s in sorted) {
+    var num = "";
+    if (prefix = "") {
+      num = s.order.toString();
+    } else {
+      num = prefix + "." + s.order.toString();
+    }
+    
+    var indent = "";
+    var i = 0;
+    while (i < level) {
+      indent = indent + "    ";
+      i = i + 1;
+    }
+    
+    var wrapped = wrap(s.description, 80);
+    //wrapped = wrapped.replaceAll("\n", "\n" + indent + "    ");
+
+    result = result
+      + indent
+      + num + ". " + "[" + s.type.toString()  + "] " 
+      + wrapped
+      + "\n";
+
+    if (not s.nestedSteps.isEmpty()) {
+      result = result + formatSteps(s.nestedSteps, num, level + 1);
+    }
+    
+    result = result + "\n";
+  }
+
+  return result;
+} %]

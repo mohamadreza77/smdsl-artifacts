@@ -1,0 +1,30 @@
+rule Correspondence2Detail
+  transform c : mgem_core_package::Correspondence {
+  guard : c.eContainer().eClass().name = "Mapping" 
+
+  template : "default_correspondenceDetail.egl"
+
+  parameters : Map{
+    "path"  = Sequence{
+                "Correspondences",
+                c.eContainer().name,
+                c.name
+              },
+    "icon"   = "source",
+    "format" = "markdown",
+    "correspondence" = c,
+    "migration"      = c.eContainer().eContainer()
+  }
+}
+
+rule Platform2FeatureHierarchy
+  transform p : mgem_core_package::Platform {
+
+  template  : "featureHierarchy.egl"
+  parameters : Map{
+    "path"     = Sequence{"Platforms", p.name, "Feature Hierarchy"},
+    "icon"     = "diagram-aaaaaa",
+    "format"   = "graphviz-dot",
+    "platform" = p
+  }
+}
