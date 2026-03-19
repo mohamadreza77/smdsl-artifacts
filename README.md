@@ -15,7 +15,7 @@ They include the metamodel, instantiated models, feature analyses, correspondenc
 
 📦 Repository Overview
 
-The repository is organized into four main artifact groups, reflecting the workflow presented in the paper:
+The repository is organized into five main artifact groups, reflecting the workflow presented in the paper:
 ```
 .
 ├── 1. Core Language
@@ -39,6 +39,11 @@ The repository is organized into four main artifact groups, reflecting the workf
 │   ├── EntityProcessGMF.png
 │   ├── EntityProcessSirius.png
 │   └── EntityProcessJointJS.png
+│
+├── 5. Picto (Visualization)
+│   ├── default_picto.egx
+│   ├── default_correspondenceDetail.egl
+│   └── featureHierarchy.egl
 │
 └── README.md
 ```
@@ -252,6 +257,16 @@ Reports indicate:
 * which mappings are automatable
 * where manual intervention is required
 
+---
+## 🎨 Picto Visualizations
+
+The `Picto/` folder contains EGL/EGX templates used to generate:
+
+- feature hierarchy views
+- correspondence visualizations
+- structured diagram representations
+
+These templates are used in conjunction with `.model.picto` files.
 ---
 
 ## ⚙️ Requirements
