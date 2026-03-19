@@ -15,11 +15,38 @@ They include the metamodel, instantiated models, feature analyses, correspondenc
 
 📦 Repository Overview
 
-The repository is organized into four main artifact groups, reflecting the workflow presented in the paper:
-```
-. ├── 1. Core Language │ └── SMDSL.ecore │ ├── 2. Case Study Models │ ├── GMFSiriusCaseStudy.model │ ├── GMFSiriusCaseStudy.model.picto │ ├── GMFJointJsCaseStudy.model │ └── GMFJointJsCaseStudy.model.picto │ ├── 3. Feature Identification & Specification │ ├── GMF Features Identified.png │ ├── Sirius Features Identified.png │ ├── JointJs Features Identified.png │ └── Subset of Features and Correspondences.pdf │ ├── 4. Generated Outputs & Reports │ ├── GMFSiriusReports/ │ ├── GMFJointJsReports/ │ ├── EntityProcessGMF.png │ ├── EntityProcessSirius.png │ └── EntityProcessJointJS.png │ ├── 5. Visualization (Picto) │ └── Picto/ │ ├── default_picto.egx │ ├── default_correspondenceDetail.egl │ └── featureHierarchy.egl │ └── README.md
-چ
-```
+The repository is organized into five main artifact groups, reflecting the workflow presented in the paper:
+
+.
+├── 1. Core Language
+│   └── SMDSL.ecore
+│
+├── 2. Case Study Models
+│   ├── GMFSiriusCaseStudy.model
+│   ├── GMFSiriusCaseStudy.model.picto
+│   ├── GMFJointJsCaseStudy.model
+│   └── GMFJointJsCaseStudy.model.picto
+│
+├── 3. Feature Identification & Specification
+│   ├── GMF Features Identified.png
+│   ├── Sirius Features Identified.png
+│   ├── JointJs Features Identified.png
+│   └── Subset of Features and Correspondences.pdf
+│
+├── 4. Generated Outputs & Reports
+│   ├── GMFSiriusReports/
+│   ├── GMFJointJsReports/
+│   ├── EntityProcessGMF.png
+│   ├── EntityProcessSirius.png
+│   └── EntityProcessJointJS.png
+│
+├── 5. Visualization (Picto)
+│   └── Picto/
+│       ├── default_picto.egx
+│       ├── default_correspondenceDetail.egl
+│       └── featureHierarchy.egl
+│
+└── README.md
 ---
 
 ## 🧠 1. SMDSL Metamodel
