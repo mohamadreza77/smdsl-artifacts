@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mgem_core_prefix:Migration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mgem_core_prefix="mgem_core_uri" xmi:id="_m0001" name="Python2-Python3-Migration">
+  <source xmi:id="_p0002" name="Python 2.7">
+    <features xmi:id="_f0029" name="Syntax">
+      <nestedFeatures xmi:id="_f0030" name="print statement"/>
+      <nestedFeatures xmi:id="_f0031" name="except X, T handler"/>
+      <nestedFeatures xmi:id="_f0032" name="raise Exception, args"/>
+    </features>
+    <features xmi:id="_f0033" name="Input and Iteration">
+      <nestedFeatures xmi:id="_f0035" name="xrange()"/>
+      <nestedFeatures xmi:id="_EP-uoCZaEfGoG4BVibP75w" name="User Input">
+        <nestedFeatures xmi:id="_f0034" name="raw_input()"/>
+        <nestedFeatures xmi:id="_GDkMICZaEfGoG4BVibP75w" name="input()"/>
+      </nestedFeatures>
+    </features>
+    <features xmi:id="_f0036" name="Dictionary Iteration">
+      <nestedFeatures xmi:id="_f0037" name="dict.iter() functions"/>
+    </features>
+    <features xmi:id="_f0041" name="Comparison Semantics">
+      <nestedFeatures xmi:id="_f0042" name="heterogeneous ordering comparisons">
+        <nestedFeatures xmi:id="_U_E6YCckEfGrN4nbjmdXFQ" name="direct heterogeneous ordering comparisons "/>
+        <nestedFeatures xmi:id="_ZqHtMCckEfGrN4nbjmdXFQ" name="sorting heterogeneous collections "/>
+      </nestedFeatures>
+    </features>
+  </source>
+  <target xmi:id="_p0003" name="Python 3.x">
+    <features xmi:id="_f0043" name="Syntax">
+      <nestedFeatures xmi:id="_f0044" name="print() function"/>
+      <nestedFeatures xmi:id="_f0045" name="except X as T handler"/>
+      <nestedFeatures xmi:id="_f0046" name="raise Exception(args)"/>
+    </features>
+    <features xmi:id="_f0047" name="Input and Iteration">
+      <nestedFeatures xmi:id="_f0048" name="input()"/>
+      <nestedFeatures xmi:id="_f0049" name="range() lazy range object"/>
+    </features>
+    <features xmi:id="_f0050" name="Dictionary Iteration">
+      <nestedFeatures xmi:id="_f0051" name="dict.keys()/ items()/ values() views"/>
+      <nestedFeatures xmi:id="_f0052" name="list(...) materialization when list semantics are needed"/>
+    </features>
+    <features xmi:id="_f0058" name="Comparison Semantics">
+      <nestedFeatures xmi:id="_f0059" name="meaningful natural ordering only"/>
+      <nestedFeatures xmi:id="_f0060" name="operator-defined key/comparison redesign"/>
+    </features>
+    <features xmi:id="_Sp3lUCZaEfGoG4BVibP75w" name="Expression Evaluation">
+      <nestedFeatures xmi:id="_U-mBACZaEfGoG4BVibP75w" name="eval()"/>
+    </features>
+  </target>
+  <operators xmi:id="_9QMFcCZuEfGoG4BVibP75w" name="Engineer X"/>
+  <mappings xmi:id="_map0061" name="Syntax Modernization">
+    <correspondences xmi:id="_c0062" name="print statement to print()" sourceFeature="_f0030" targetFeature="_f0044" relation="Python 3 replaces the print statement with the print() function, and 2to3 provides an explicit print fixer. This is a syntax-directed migration with well-defined replacement patterns.">
+      <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_fa0063"/>
+      <strategy xmi:id="_st0064">
+        <steps xmi:id="_LTzocCYzEfGoG4BVibP75w" description="if it only prints basic strings or empty-line" order="1" type="-">
+          <nestedSteps xmi:id="_W5qRQCYzEfGoG4BVibP75w" description="rewrite plain print statements as print() calls." order="1"/>
+        </steps>
+        <steps xmi:id="_iKfsUCYzEfGoG4BVibP75w" description="if it prints multiple items" order="2" type="-">
+          <nestedSteps xmi:id="_DJtfYCY0EfGoG4BVibP75w" description="convert comma-separated print operands into positional print() arguments. (preserve multi-argument output)" order="1"/>
+        </steps>
+        <steps xmi:id="_gxNIsCY0EfGoG4BVibP75w" description="if it uses trailing comma" order="3" type="-">
+          <nestedSteps xmi:id="_DBksgCYzEfGoG4BVibP75w" description="convert trailing-comma newline suppression into explicit end= behavior while preserving output layout" order="1"/>
+        </steps>
+        <steps xmi:id="_rt7U8CY0EfGoG4BVibP75w" description="if output is redirected to a stream or file" order="4" type="-">
+          <nestedSteps xmi:id="_FmPBoCYzEfGoG4BVibP75w" description="convert print >> target, ... into print(..., file=target) while preserving destination semantics" order="1"/>
+        </steps>
+      </strategy>
+    </correspondences>
+    <correspondences xmi:id="_c0068" name="except X, T syntax to except X as T" sourceFeature="_f0031" targetFeature="_f0045" relation="Python 3 requires except SomeException as variable instead of except SomeException, variable, and 2to3 includes an except fixer for this transformation.">
+      <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_fa0069"/>
+      <strategy xmi:id="_st0070">
+        <steps xmi:id="_step0071" description="if the handler binds the caught exception object to a variable (except X, T)" order="1" type="-">
+          <nestedSteps xmi:id="_vKbJoCY3EfGoG4BVibP75w" description="rewrite the binding as except X as T" order="1"/>
+        </steps>
+        <steps xmi:id="_u9oY4CY5EfGoG4BVibP75w" description="if the handler uses comma syntax, determine whether it is binding or tuple-catching" order="2" type="-">
+          <nestedSteps xmi:id="_step0072" description="if the handler catches multiple exception types (tuple form) i.e it is tuple-catching with binding (except (E1, E2), T)" order="1" type="-">
+            <nestedSteps xmi:id="_DxO1kCY4EfGoG4BVibP75w" description="rewrite the binding as except (E1, E2) as T" order="1"/>
+          </nestedSteps>
+        </steps>
+        <steps xmi:id="_step0073" description="if the handler does not bind the exception (except X:)" order="3" type="-">
+          <nestedSteps xmi:id="_xZSYcCY4EfGoG4BVibP75w" description="leave non-binding handlers such as except X: unchanged. (this correspondence applies only to exception-object binding syntax.)" order="1"/>
+        </steps>
+      </strategy>
+    </correspondences>
+  </mappings>
+  <mappings xmi:id="_map0080" name="Input and Iterator Semantics">
+    <correspondences xmi:id="_c0081" name="User Input to input()" sourceFeature="_EP-uoCZaEfGoG4BVibP75w" targetFeature="_f0048" relation="Python 3 renames raw_input() to input(). The official 2to3 example shows this conversion directly, making the correspondence highly automatable.">
+      <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_fa0082"/>
+      <subcorrespondences xmi:id="_YgBgYCZaEfGoG4BVibP75w" name="raw_input() to input()" sourceFeature="_f0034" relation="asdasd">
+        <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_dFB8oCZaEfGoG4BVibP75w"/>
+        <strategy xmi:id="_R2cH0CZbEfGoG4BVibP75w">
+          <steps xmi:id="_UrMHYCZbEfGoG4BVibP75w" description="rewrite raw_input() as input()" order="1"/>
+        </strategy>
+      </subcorrespondences>
+      <subcorrespondences xmi:id="_qmFG0CZaEfGoG4BVibP75w" name="input() to eval()" sourceFeature="_GDkMICZaEfGoG4BVibP75w" targetFeature="_U-mBACZaEfGoG4BVibP75w">
+        <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_yo3RgCZaEfGoG4BVibP75w"/>
+        <strategy xmi:id="_SMX7kCZbEfGoG4BVibP75w">
+          <steps xmi:id="_d6aQACZbEfGoG4BVibP75w" description="if the original code relied on evaluated input (Python 2 input() semantics)" order="1" type="-">
+            <nestedSteps xmi:id="_Yit9ICZcEfGoG4BVibP75w" description="wrap input() inside eval() (preserve evaluation behavior)" order="1"/>
+          </steps>
+        </strategy>
+      </subcorrespondences>
+    </correspondences>
+    <correspondences xmi:id="_c0087" name="xrange() to range()" sourceFeature="_f0035" targetFeature="_f0049" relation="Python 3 range() behaves like Python 2 xrange(), and 2to3 includes a dedicated xrange fixer. This mapping is direct for typical loops but may require review when list materialization or exact type expectations matter.">
+      <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_XGK_QCZfEfGoG4BVibP75w"/>
+      <strategy xmi:id="_st0089">
+        <steps xmi:id="_step0090" description="rewrite xrange() as range()" order="1"/>
+        <steps xmi:id="_step0091" description="if xrange() is used in contexts requiring a concrete list (e.g., slicing, serialization)" order="2" type="-">
+          <nestedSteps xmi:id="_te7mcCZeEfGoG4BVibP75w" description="wrap with list(...)" order="1"/>
+        </steps>
+      </strategy>
+    </correspondences>
+  </mappings>
+  <mappings xmi:id="_map0093" name="Dictionary Iteration Semantics">
+    <correspondences xmi:id="_c0094" name="dict iteration methods to dictionary views" sourceFeature="_f0037" targetFeature="_f0051 _f0052" relation="Python 3 removes dict.iterkeys(), dict.iteritems(), and dict.itervalues(); dict.keys(), items(), and values() now return views instead of lists. 2to3 has a dict fixer and may also wrap calls with list(...) where list semantics are required.">
+      <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_fa0095" difficulty="COMPLEX"/>
+      <strategy xmi:id="_st0096">
+        <steps xmi:id="_step0097" description="rewrite iterkeys()/iteritems()/itervalues() as keys()/items()/values()" order="1"/>
+        <steps xmi:id="_step0098" description="if xrange() is used in contexts requiring a concrete list (e.g., slicing)" order="2" type="-">
+          <nestedSteps xmi:id="_yTCjwCZgEfGoG4BVibP75w" description="wrap with list(...)" order="1"/>
+        </steps>
+      </strategy>
+    </correspondences>
+  </mappings>
+  <mappings xmi:id="_map0110" name="Semantic Incompatibilities">
+    <correspondences xmi:id="_c0111" name="heterogeneous ordering comparisons" sourceFeature="_f0042" relation="Python 3 raises TypeError for ordering comparisons when operands do not have a meaningful natural ordering, so Python 2 patterns such as 1 &lt; &quot;&quot; or sorting heterogeneous lists do not have a semantics-preserving direct translation. The migration therefore requires redesign, typically by normalizing data, defining an explicit key, or restructuring comparison logic.">
+      <complexity xsi:type="mgem_core_prefix:NoDirectMapping" xmi:id="_ndm0112" rationale="Python 3 raises TypeError for ordering comparisons when operands do not have a meaningful natural ordering, so Python 2 patterns such as 1 &lt; &quot;&quot; or sorting heterogeneous lists do not have a semantics-preserving direct translation. The migration therefore requires redesign, typically by normalizing data, defining an explicit key, or restructuring comparison logic." possibleApproximation="_f0060 _f0059" operators="_9QMFcCZuEfGoG4BVibP75w" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st0113">
+        <steps xmi:id="_step0114" description="operators should check if it performs direct heterogeneous ordering comparisons e.g., 1 is less than &quot;&quot;, var a is greater than None (X)" order="1" type="M"/>
+        <steps xmi:id="_step0115" description="if X is true" order="2" type="-">
+          <nestedSteps xmi:id="_RNBAQCZvEfGoG4BVibP75w" description="operators should identify the intended domain ordering or comparison policy." order="1" type="M"/>
+          <nestedSteps xmi:id="_VcTrMCZvEfGoG4BVibP75w" description="operators should replace the comparison with explicit normalization or homogeneous value conversion." order="2" type="M"/>
+        </steps>
+        <steps xmi:id="_step0116" description="operators should check if it sorts heterogeneous collections (Y)" order="3" type="M"/>
+        <steps xmi:id="_step0117" description="if Y is true" order="4" type="-">
+          <nestedSteps xmi:id="_nmvbUCZvEfGoG4BVibP75w" description="operators should determine the intended sort policy for mixed-type elements." order="1" type="M"/>
+          <nestedSteps xmi:id="_qj6XECZvEfGoG4BVibP75w" description="operators redesign sorting using an explicit key= function, normalization rule, or filtered homogeneous sequence." order="2" type="M"/>
+        </steps>
+        <steps xmi:id="_8zfF4CZvEfGoG4BVibP75w" description="operators should document the chosen approximation or replacement ordering policy." order="5" type="M"/>
+      </strategy>
+    </correspondences>
+  </mappings>
+</mgem_core_prefix:Migration>

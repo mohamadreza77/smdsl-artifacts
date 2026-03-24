@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mgem_core_prefix:Migration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mgem_core_prefix="mgem_core_uri" xmi:id="_m1001" name="SpringBoot3.5-SpringBoot4.0-MigrationGuide-Subset">
+  <source xmi:id="_p1002" name="Spring Boot 3.5.x">
+    <features xmi:id="_f1003" name="Starter Organization">
+      <nestedFeatures xmi:id="_f1004" name="legacy starter naming (e.g. spring-boot-starter-web)"/>
+      <nestedFeatures xmi:id="_f1005" name="direct third-party technology dependency without Boot starter"/>
+    </features>
+    <features xmi:id="_f1006" name="Runtime Support">
+      <nestedFeatures xmi:id="_f1007" name="Undertow embedded server support"/>
+    </features>
+  </source>
+  <target xmi:id="_p1008" name="Spring Boot 4.0">
+    <features xmi:id="_f1009" name="Starter Organization">
+      <nestedFeatures xmi:id="_f1010" name="modular starter naming (e.g. spring-boot-starter-webmvc)"/>
+      <nestedFeatures xmi:id="_f1011" name="technology-specific Boot starter"/>
+      <nestedFeatures xmi:id="_f1012" name="companion technology test starter when test infrastructure is used"/>
+    </features>
+    <features xmi:id="_f1013" name="Runtime Support">
+      <nestedFeatures xmi:id="_f1014" name="Servlet 6.1-compliant server or deployment target"/>
+      <nestedFeatures xmi:id="_f1015" name="operator-selected server/deployment redesign"/>
+    </features>
+  </target>
+  <operators xmi:id="_op1017" name="Ms. X"/>
+  <mappings xmi:id="_map1018" name="Starter Renaming and Modularization">
+    <correspondences xmi:id="_c1019" name="legacy web starter to modular webmvc starter" sourceFeature="_f1004" targetFeature="_f1010" relation="Spring Boot 4 deprecates several older starter names and recommends replacing spring-boot-starter-web with spring-boot-starter-webmvc to align starters with their corresponding module names.">
+      <complexity xsi:type="mgem_core_prefix:FullAutomation" xmi:id="_fa1020"/>
+      <strategy xmi:id="_st1021">
+        <steps xmi:id="_step1022" description="if the build declares spring-boot-starter-web" order="1" type="-">
+          <nestedSteps xmi:id="_step1023" description="replace it with spring-boot-starter-webmvc" order="1"/>
+        </steps>
+        <steps xmi:id="_step1024" description="if the codebase imports APIs that moved under modular packages" order="2" type="-">
+          <nestedSteps xmi:id="_step1025" description="update imports and package references after the starter rename" order="1"/>
+        </steps>
+      </strategy>
+    </correspondences>
+    <correspondences xmi:id="_c1028" name="direct technology dependency to Boot starter and test starter" sourceFeature="_f1005" targetFeature="_f1011 _f1012" relation="Spring Boot 4 introduces dedicated starters for technologies that previously often worked with only a third-party dependency">
+      <complexity xsi:type="mgem_core_prefix:OperatorHelp" xmi:id="_mambECbtEfGrN4nbjmdXFQ"/>
+      <strategy xmi:id="_st1030">
+        <steps xmi:id="_step1031" description="operators should identify and specify loose third-party dependencies (Ds)" order="1" type="M"/>
+        <steps xmi:id="_step1033" description="for every dependency (D)" order="2" type="-">
+          <nestedSteps xmi:id="_step1034" description="operators should look for D's core library (e.g., Flyway, Liquibase, Hazelcast, Batch) that are currently declared in pom.xml or build.gradle using their native group IDs" order="1" type="M"/>
+          <nestedSteps xmi:id="_KCh80CbuEfGrN4nbjmdXFQ" description="operators should consult the Spring Boot 4.0 Starter Registry to find the starter matching of the library" order="2" type="M"/>
+          <nestedSteps xmi:id="_Rs5ngCbuEfGrN4nbjmdXFQ" description="add (inject) the corresponding spring-boot-starter-technology" order="3"/>
+          <nestedSteps xmi:id="_iBURMCbuEfGrN4nbjmdXFQ" description="remove the direct third-party dependency." order="4"/>
+        </steps>
+        <steps xmi:id="_step1035" description="operators should check the test code for technology-specific annotations or utilities (e.g., @DataJpaTest, @JdbcTest, or Security-specific mock users). (X)" order="3" type="M"/>
+        <steps xmi:id="_step1037" description="if X is true" order="4" type="-">
+          <nestedSteps xmi:id="_step1038" description="add (inject) the companion spring-boot-starter-technology-test." order="1"/>
+        </steps>
+      </strategy>
+    </correspondences>
+  </mappings>
+  <mappings xmi:id="_map1039" name="Removed Runtime Support">
+    <correspondences xmi:id="_c1040" name="Undertow embedded server support" sourceFeature="_f1007" relation="Spring Boot 4 drops Undertow support because Boot 4 requires a Servlet 6.1 baseline and Undertow is not yet compatible. Applications using Undertow therefore do not have a semantics-preserving direct migration path inside Spring Boot 4 and must choose an alternative server or deployment redesign.">
+      <complexity xsi:type="mgem_core_prefix:NoDirectMapping" xmi:id="_ndm1041" rationale="Spring Boot 4 removes Undertow support entirely, including the Undertow starter and embedded-server option, due to the Servlet 6.1 baseline. Migrating an Undertow-based application therefore requires an operator-selected replacement server or deployment redesign rather than a direct one-to-one translation." possibleApproximation="_f1015 _f1014" operators="_op1017" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st1042">
+        <steps xmi:id="_step1043" description="operators should chelk if the application currently uses Undertow as an embedded server (X)" order="1" type="M"/>
+        <steps xmi:id="_hJKXoCbiEfGrN4nbjmdXFQ" description="if X is true" order="2" type="-">
+          <nestedSteps xmi:id="_step1044" description="operators should identify all build, configuration, and deployment references to Undertow" order="1" type="M"/>
+        </steps>
+        <steps xmi:id="_step1045" description="operators should check if the application can move to another supported server or container (Y)" order="3" type="M"/>
+        <steps xmi:id="__trTwCbrEfGrN4nbjmdXFQ" description="if Y is true" order="4" type="-">
+          <nestedSteps xmi:id="_step1046" description="operators should select a Servlet 6.1-compliant alternative" order="1" type="M"/>
+          <nestedSteps xmi:id="_tZwmkCbiEfGrN4nbjmdXFQ" description="operators should replace Undertow-specific dependencies and settings" order="2" type="M"/>
+        </steps>
+      </strategy>
+    </correspondences>
+  </mappings>
+</mgem_core_prefix:Migration>
