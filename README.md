@@ -4,10 +4,12 @@ This repository contains the complete set of artifacts supporting the paper:
 
 > **SMDSL: A Domain-Specific Language for Describing Software Platform Migrations**
 
-The artifacts demonstrate the design, application, and evaluation of SMDSL across two case studies:
+The artifacts demonstrate the design, application, and evaluation of SMDSL across multiple case studies:
 
 * **GMF → Sirius**
 * **GMF → JointJS**
+* **Python 2 → Python 3**
+* **Spring Boot 3 → Spring Boot 4**
 
 They include the metamodel, instantiated models, feature analyses, correspondence definitions, and generated reports.
 
@@ -19,31 +21,39 @@ The repository is organized into five main artifact groups, reflecting the workf
 ```
 .
 ├── 1. Core Language
-│   └── SMDSL.ecore
+│ └── SMDSL.ecore
 │
 ├── 2. Case Study Models
-│   ├── GMFSiriusCaseStudy.model
-│   ├── GMFSiriusCaseStudy.model.picto
-│   ├── GMFJointJsCaseStudy.model
-│   └── GMFJointJsCaseStudy.model.picto
+│ ├── GMFSiriusCaseStudy.model
+│ ├── GMFSiriusCaseStudy.model.picto
+│ ├── GMFJointJsCaseStudy.model
+│ ├── GMFJointJsCaseStudy.model.picto
+│ ├── Python2to3CaseStudy.model
+│ ├── Python2to3CaseStudy.model.picto
+│ ├── SpringBoot3to4GuideCaseStudy.model
+│ └── SpringBoot3to4GuideCaseStudy.model.picto
 │
 ├── 3. Feature Identification & Specification
-│   ├── GMF Features Identified.png
-│   ├── Sirius Features Identified.png
-│   ├── JointJs Features Identified.png
-│   └── Subset of Features and Correspondences.pdf
+│ ├── GMF Features Identified.png
+│ ├── Sirius Features Identified.png
+│ ├── JointJs Features Identified.png
+│ ├── Python 2 Features Identified.png
+│ ├── Python 3 Features Identified.png
+│ ├── Spring Boot 3 Features Identified.png
+│ ├── Spring Boot 4 Features Identified.png
+│ └── Subset of Features and Correspondences.pdf
 │
 ├── 4. Generated Outputs & Reports
-│   ├── GMFSiriusReports/
-│   ├── GMFJointJsReports/
-│   ├── EntityProcessGMF.png
-│   ├── EntityProcessSirius.png
-│   └── EntityProcessJointJS.png
+│ ├── GMFSiriusReports/
+│ ├── GMFJointJsReports/
+│ ├── EntityProcessGMF.png
+│ ├── EntityProcessSirius.png
+│ └── EntityProcessJointJS.png
 │
 ├── 5. Picto (Visualization)
-│   ├── default_picto.egx
-│   ├── default_correspondenceDetail.egl
-│   └── featureHierarchy.egl
+│ ├── default_picto.egx
+│ ├── default_correspondenceDetail.egl
+│ └── featureHierarchy.egl
 │
 └── README.md
 ```
@@ -89,6 +99,32 @@ This model instantiates SMDSL for the migration from **Eclipse GMF** to **Eclips
 This model represents migration from **GMF** to **JointJS** (cross-ecosystem case).
 
 ---
+
+### 2.3 Python 2 → Python 3
+
+* `Python2to3CaseStudy.model`
+* `Python2to3CaseStudy.model.picto`
+
+Represents migration between two versions of a programming language.
+
+This case highlights:
+- syntactic and semantic evolution
+- transformation rules at language level
+- version migration patterns
+
+---
+
+### 2.4 Spring Boot 3 → Spring Boot 4
+
+* `SpringBoot3to4GuideCaseStudy.model`
+* `SpringBoot3to4GuideCaseStudy.model.picto`
+
+Represents migration guided by framework documentation.
+
+This case highlights:
+- API evolution
+- configuration changes
+- migration knowledge derived from natural-language guides
 
 ## 📊 3. Feature Identification Artifacts
 
@@ -231,8 +267,10 @@ The artifact suite provides evidence for:
 
 SMDSL can represent migrations across:
 
-* same ecosystem (GMF → Sirius)
-* different ecosystems (GMF → JointJS)
+* Horizontal: modeling frameworks (GMF → Sirius)
+* Horizontal: cross-technology platforms (GMF → JointJS)
+* Vertical: programming languages (Python 2 → Python 3)
+* Vertical: framework evolution scenarios (Spring Boot 3 → Spring Boot 4)
 
 ### ✔ Traceability
 
