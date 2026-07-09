@@ -1,0 +1,509 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Semantic effect: ConfigurationProperties Constructor Injection Requires Explicit Autowired</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>SemanticEffect</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Semantic effect</h2>
+
+        
+
+        <p>
+
+            <strong>Effect kind:</strong> VALIDATION_REQUIRED
+
+            <br>
+
+            
+
+            <strong>Affected source feature(s):</strong> Constructor dependency injection in @ConfigurationProperties without @Autowired
+
+            <br>
+
+            
+
+            <strong>Affected target feature(s):</strong> @Autowired for dependency-injected configuration property constructors
+
+            <br>
+
+            
+
+            <strong>Rationale:</strong> A constructor in a @ConfigurationProperties class may be treated as a binding constructor unless dep
+
+endency injection is marked explicitly with @Autowired.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="517pt" viewBox="0.00 0.00 1712.00 517.00" width="1712pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 499)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="838" y="-465.8">Semantic effect: ConfigurationProperties Constructor Injection Requires Explicit Autowired</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M72,-8C72,-8 144,-8 144,-8 150,-8 156,-14 156,-20 156,-20 156,-272 156,-272 156,-278 150,-284 144,-284 144,-284 72,-284 72,-284 66,-284 60,-278 60,-272 60,-272 60,-20 60,-20 60,-14 66,-8 72,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="108" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M727,-292C727,-292 1248,-292 1248,-292 1254,-292 1260,-298 1260,-304 1260,-304 1260,-355 1260,-355 1260,-361 1254,-367 1248,-367 1248,-367 727,-367 727,-367 721,-367 715,-361 715,-355 715,-355 715,-304 715,-304 715,-298 721,-292 727,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="987.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M895.5,-375C895.5,-375 1656,-375 1656,-375 1662,-375 1668,-381 1668,-387 1668,-387 1668,-438 1668,-438 1668,-444 1662,-450 1656,-450 1656,-450 895.5,-450 895.5,-450 889.5,-450 883.5,-444 883.5,-438 883.5,-438 883.5,-387 883.5,-387 883.5,-381 889.5,-375 895.5,-375" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="1275.75" y="-434.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M20,-292C20,-292 629,-292 629,-292 635,-292 641,-298 641,-304 641,-304 641,-355 641,-355 641,-361 635,-367 629,-367 629,-367 20,-367 20,-367 14,-367 8,-361 8,-355 8,-355 8,-304 8,-304 8,-298 14,-292 20,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="324.5" y="-351.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M134,-256C134,-256 82,-256 82,-256 76,-256 70,-250 70,-244 70,-244 70,-232 70,-232 70,-226 76,-220 82,-220 82,-220 134,-220 134,-220 140,-220 146,-226 146,-232 146,-232 146,-244 146,-244 146,-250 140,-256 134,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="108" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M129,-188C129,-188 87,-188 87,-188 81,-188 75,-182 75,-176 75,-176 75,-164 75,-164 75,-158 81,-152 87,-152 87,-152 129,-152 129,-152 135,-152 141,-158 141,-164 141,-164 141,-176 141,-176 141,-182 135,-188 129,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="108" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M123,-120C123,-120 93,-120 93,-120 87,-120 81,-114 81,-108 81,-108 81,-96 81,-96 81,-90 87,-84 93,-84 93,-84 123,-84 123,-84 129,-84 135,-90 135,-96 135,-96 135,-108 135,-108 135,-114 129,-120 123,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="108" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M136,-52C136,-52 80,-52 80,-52 74,-52 68,-46 68,-40 68,-40 68,-28 68,-28 68,-22 74,-16 80,-16 80,-16 136,-16 136,-16 142,-16 148,-22 148,-28 148,-28 148,-40 148,-40 148,-46 142,-52 136,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="108" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1309826017 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1309826017</title>
+
+                    
+
+                    <path d="M621,-336C621,-336 275,-336 275,-336 269,-336 263,-330 263,-324 263,-324 263,-312 263,-312 263,-306 269,-300 275,-300 275,-300 621,-300 621,-300 627,-300 633,-306 633,-312 633,-312 633,-324 633,-324 633,-330 627,-336 621,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="448" y="-315.5">Constructor dependency injection in @ConfigurationProperties without @Autowired</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1666726878 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_1666726878</title>
+
+                    
+
+                    <path d="M1240,-336C1240,-336 735,-336 735,-336 729,-336 723,-330 723,-324 723,-324 723,-312 723,-312 723,-306 729,-300 735,-300 735,-300 1240,-300 1240,-300 1246,-300 1252,-306 1252,-312 1252,-312 1252,-324 1252,-324 1252,-330 1246,-336 1240,-336" fill="#fce5e5" stroke="#cc0000" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="987.5" y="-315.5">Semantic effect * &nbsp;ConfigurationProperties Constructor Injection Requires Explicit Autowired * VALIDATION_REQUIRED</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1309826017&#45;&gt;C_1666726878 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_1309826017-&gt;C_1666726878</title>
+
+                    
+
+                    <path d="M633.23,-318C659.61,-318 687.21,-318 714.85,-318" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="715.15,-320.63 722.65,-318 715.15,-315.38 715.15,-320.63" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="678" y="-320.8">affects</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1131557365</title>
+
+                    
+
+                    <path d="M188,-336C188,-336 28,-336 28,-336 22,-336 16,-330 16,-324 16,-324 16,-312 16,-312 16,-306 22,-300 28,-300 28,-300 188,-300 188,-300 194,-300 200,-306 200,-312 200,-312 200,-324 200,-324 200,-330 194,-336 188,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="108" y="-315.5">Core Spring Boot API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365&#45;&gt;S_1309826017 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>S_1131557365-&gt;S_1309826017</title>
+
+                    
+
+                    <path d="M200.02,-318C219.67,-318 241.13,-318 262.91,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_957239610 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_957239610</title>
+
+                    
+
+                    <path d="M1648,-419C1648,-419 1348,-419 1348,-419 1342,-419 1336,-413 1336,-407 1336,-407 1336,-395 1336,-395 1336,-389 1342,-383 1348,-383 1348,-383 1648,-383 1648,-383 1654,-383 1660,-389 1660,-395 1660,-395 1660,-407 1660,-407 1660,-413 1654,-419 1648,-419" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1498" y="-398.5">@Autowired for dependency-injected configuration property constructors</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1666726878&#45;&gt;T_957239610 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_1666726878-&gt;T_957239610</title>
+
+                    
+
+                    <path d="M1098.84,-336.01C1181.49,-349.5 1294.4,-367.93 1378.87,-381.72" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="1378.62,-384.34 1386.44,-382.95 1379.46,-379.15 1378.62,-384.34" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1294" y="-371.8">effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_937024294</title>
+
+                    
+
+                    <path d="M1071.5,-419C1071.5,-419 903.5,-419 903.5,-419 897.5,-419 891.5,-413 891.5,-407 891.5,-407 891.5,-395 891.5,-395 891.5,-389 897.5,-383 903.5,-383 903.5,-383 1071.5,-383 1071.5,-383 1077.5,-383 1083.5,-389 1083.5,-395 1083.5,-395 1083.5,-407 1083.5,-407 1083.5,-413 1077.5,-419 1071.5,-419" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="987.5" y="-398.5">Core Spring Boot 3 API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294&#45;&gt;T_957239610 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>T_937024294-&gt;T_957239610</title>
+
+                    
+
+                    <path d="M1083.55,-401C1154.41,-401 1252.87,-401 1335.93,-401" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

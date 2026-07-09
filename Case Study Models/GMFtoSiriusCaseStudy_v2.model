@@ -1,0 +1,344 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<smdsl_updated_updated_prefix:Migration xmlns:smdsl_updated_updated_prefix="smdsl_updated_updated_uri" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:version="2.0" xmi:id="_NNx3YMVzEfCIz4WBK8SiNA" name="GMF to Sirius Workbench Migration (SMDSL v2)">
+  <source xmi:id="_xfjAUMVzEfCIz4WBK8SiNA" name="GMF Workbench">
+    <features xmi:id="_BGoJcMWhEfCIz4WBK8SiNA" name="Figure">
+      <nestedFeatures xmi:id="_CgqHMMWQEfCIz4WBK8SiNA" name="Shape">
+        <nestedFeatures xmi:id="_oLGYcMV-EfCIz4WBK8SiNA" name="maximumSize"/>
+        <nestedFeatures xmi:id="_okg-AMV-EfCIz4WBK8SiNA" name="minimumSize"/>
+        <nestedFeatures xmi:id="_9AbzIMV_EfCIz4WBK8SiNA" name="foreground"/>
+        <nestedFeatures xmi:id="_NhzTsMWAEfCIz4WBK8SiNA" name="background"/>
+        <nestedFeatures xmi:id="_WWheYMWQEfCIz4WBK8SiNA" name="LayoutData">
+          <nestedFeatures xmi:id="_xJETAMXAEfCIz4WBK8SiNA" name="Point" />
+          <nestedFeatures xmi:id="_zKhNYMXAEfCIz4WBK8SiNA" name="Dimension" />
+        </nestedFeatures>
+        <nestedFeatures xmi:id="_Cs1NEMWzEfCIz4WBK8SiNA" name="Type">
+          <nestedFeatures xmi:id="_Na4JUMWhEfCIz4WBK8SiNA" name="Rectangle" />
+          <nestedFeatures xmi:id="_WU-9kMWhEfCIz4WBK8SiNA" name="Ellipse" />
+          <nestedFeatures xmi:id="_Z09EYMWhEfCIz4WBK8SiNA" name="Polyline">
+            <nestedFeatures xmi:id="_t7OgcPrmEfCJw9T7EXHRmw" name="template points" />
+          </nestedFeatures>
+          <nestedFeatures xmi:id="_L0YxYONVEfCu7-dLl7IJUQ" name="RoundedRectangle" />
+          <nestedFeatures xmi:id="_Nt1mUONVEfCu7-dLl7IJUQ" name="Polygon">
+            <nestedFeatures xmi:id="_w0yHgPrmEfCJw9T7EXHRmw" name="template points" />
+          </nestedFeatures>
+          <nestedFeatures xmi:id="_Ot1qwONVEfCu7-dLl7IJUQ" name="ScalablePolygon">
+            <nestedFeatures xmi:id="_xjiq8PrmEfCJw9T7EXHRmw" name="template points" />
+          </nestedFeatures>
+        </nestedFeatures>
+        <nestedFeatures xmi:id="_XsraoPrmEfCJw9T7EXHRmw" name="Size">
+          <nestedFeatures xmi:id="_ZEvZwPrmEfCJw9T7EXHRmw" name="Dx" />
+          <nestedFeatures xmi:id="_Z8Ji4PrmEfCJw9T7EXHRmw" name="Dy" />
+        </nestedFeatures>
+      </nestedFeatures>
+      <nestedFeatures xmi:id="_OmCU4MWhEfCIz4WBK8SiNA" name="Label" />
+      <nestedFeatures xmi:id="_feat_00010" name="Figure Descriptor" />
+      <nestedFeatures xmi:id="_feat_00011" name="Child Access" />
+    </features>
+    <features xmi:id="_VF96gMcGEfCBo5CuJG-9rA" name="Canvas Mapping">
+      <nestedFeatures xmi:id="_ANVBQMcSEfCBo5CuJG-9rA" name="Element" />
+    </features>
+    <features xmi:id="_Pi114McWEfCBo5CuJG-9rA" name="Node Reference">
+      <nestedFeatures xmi:id="_sAF5oMcWEfCBo5CuJG-9rA" name="Containment Feature" />
+    </features>
+    <features xmi:id="_3AY-UMcWEfCBo5CuJG-9rA" name="Node Mapping">
+      <nestedFeatures xmi:id="_5VfNcMcWEfCBo5CuJG-9rA" name="Element" />
+      <nestedFeatures xmi:id="_Ku5VkPrmEfCJw9T7EXHRmw" name="Diagram Node" />
+    </features>
+    <features xmi:id="_5xyRUMiqEfCBo5CuJG-9rA" name="Compartment Mapping">
+      <nestedFeatures xmi:id="_XwQI0MiuEfCBo5CuJG-9rA" name="Children" />
+      <nestedFeatures xmi:id="_Y5mWgMiuEfCBo5CuJG-9rA" name="Visual Representation Compartment" />
+    </features>
+    <features xmi:id="_dCYOIMs9EfC_5dXRuYHIzA" name="Feature Label Mapping">
+      <nestedFeatures xmi:id="_h49T0MtDEfC_5dXRuYHIzA" name="Feauture to Display" />
+    </features>
+    <features xmi:id="_feat_00001" name="EMF Semantic Domain Model" />
+    <features xmi:id="_feat_00002" name="Link Mapping">
+      <nestedFeatures xmi:id="_feat_00003" name="Source Feature" />
+      <nestedFeatures xmi:id="_feat_00004" name="Target Feature" />
+      <nestedFeatures xmi:id="_feat_00005" name="Link Constraint" />
+    </features>
+    <features xmi:id="_feat_00006" name="Tool Definition Model">
+      <nestedFeatures xmi:id="_feat_00007" name="Creation Tool" />
+    </features>
+    <features xmi:id="_feat_00008" name="Domain Specialization Constraint" />
+    <features xmi:id="_feat_00009" name="Custom Figure / Draw2D Figure" />
+  </source>
+  <target xmi:id="_zO_ksMVzEfCIz4WBK8SiNA" name="Sirius Workbench">
+    <features xmi:id="_0D3XMMVzEfCIz4WBK8SiNA" name="Container Mapping">
+      <nestedFeatures xmi:id="__EVPoMWiEfCIz4WBK8SiNA" name="Children Presentation" />
+      <nestedFeatures xmi:id="_Jgtu8MWjEfCIz4WBK8SiNA" name="Domain Class" />
+      <nestedFeatures xmi:id="_Qcvs8MWjEfCIz4WBK8SiNA" name="Semantic Candidates Expressionn" />
+      <nestedFeatures xmi:id="_qjV-QNX9EfCr3byAh3mwFQ" name="Id" />
+    </features>
+    <features xmi:id="_k-zRAMV9EfCIz4WBK8SiNA" name="Style">
+      <nestedFeatures xmi:id="_-YYdsMWkEfCIz4WBK8SiNA" name="Color" />
+      <nestedFeatures xmi:id="__d4tMMWkEfCIz4WBK8SiNA" name="Label Color" />
+      <nestedFeatures xmi:id="_BPsCAMWlEfCIz4WBK8SiNA" name="Border Color" />
+      <nestedFeatures xmi:id="_EzpQ8MWlEfCIz4WBK8SiNA" name="Allow Resizing" />
+      <nestedFeatures xmi:id="_nc71oMWkEfCIz4WBK8SiNA" name="Label Size" />
+      <nestedFeatures xmi:id="_qeWYMMWkEfCIz4WBK8SiNA" name="Label Format" />
+      <nestedFeatures xmi:id="_tKWrcMWkEfCIz4WBK8SiNA" name="Label Alignment" />
+      <nestedFeatures xmi:id="_xhqC4MWkEfCIz4WBK8SiNA" name="Label Expression" />
+      <nestedFeatures xmi:id="_vmwccMWkEfCIz4WBK8SiNA" name="Show Icon" />
+      <nestedFeatures xmi:id="_feat_00028" name="Conditional Style" />
+      <nestedFeatures xmi:id="_feat_00029" name="Workspace Image Style" />
+    </features>
+    <features xmi:id="_8ogQoMcGEfCBo5CuJG-9rA" name="Diagram Description">
+      <nestedFeatures xmi:id="_-pPZUMcGEfCBo5CuJG-9rA" name="Domain Class" />
+      <nestedFeatures xmi:id="_feat_00015" name="Default Layer" />
+    </features>
+    <features xmi:id="_dvxxgMcdEfCBo5CuJG-9rA" name="Node Mapping">
+      <nestedFeatures xmi:id="_pmoDsMcdEfCBo5CuJG-9rA" name="Domain Class" />
+      <nestedFeatures xmi:id="_sbQ38MixEfCBo5CuJG-9rA" name="Semantic Candidates Expression" />
+      <nestedFeatures xmi:id="_2k65wNX9EfCr3byAh3mwFQ" name="Id" />
+      <nestedFeatures xmi:id="_feat_00025" name="Precondition Expression" />
+      <nestedFeatures xmi:id="_feat_00026" name="Associated Elements Expression" />
+      <nestedFeatures xmi:id="_feat_00027" name="Synchronization" />
+    </features>
+    <features xmi:id="_feat_00012" name="EMF Semantic Domain Model" />
+    <features xmi:id="_feat_00013" name="Viewpoint" />
+    <features xmi:id="_feat_00014" name="Viewpoint Specification Model" />
+    <features xmi:id="_feat_00016" name="Edge Mapping">
+      <nestedFeatures xmi:id="_feat_00017" name="Relation-based Edge" />
+      <nestedFeatures xmi:id="_feat_00018" name="Element-based Edge" />
+      <nestedFeatures xmi:id="_feat_00019" name="Source Mapping" />
+      <nestedFeatures xmi:id="_feat_00020" name="Target Mapping" />
+      <nestedFeatures xmi:id="_feat_00021" name="Routing Style" />
+    </features>
+    <features xmi:id="_feat_00022" name="Tool Specification">
+      <nestedFeatures xmi:id="_feat_00023" name="Node Creation Tool" />
+      <nestedFeatures xmi:id="_feat_00024" name="Model Operation" />
+    </features>
+  </target>
+  <operators xmi:id="_tCufwMZwEfCeR8oIST4D4w" name="Mr. X" />
+  <operators xmi:id="_g4HDkNolEfCKEarKCLDKOQ" name="Ms. Y" />
+  <operators xmi:id="_jZ7fcOavEfCtF6i4WAnaHQ" name="Mrs. Z" />
+  <mappings xmi:id="_1C_R4MVzEfCIz4WBK8SiNA" name="Node Definition - Structural">
+    <correspondences xmi:id="_Q3mlMMcdEfCBo5CuJG-9rA" name="Node Reference to Node/Container Mapping" sourceFeature="_Pi114McWEfCBo5CuJG-9rA" targetFeature="_dvxxgMcdEfCBo5CuJG-9rA _0D3XMMVzEfCIz4WBK8SiNA" relation="GMF Node References act as indirection points that bind semantic containment to graphical realization via Node Mappings. Since Sirius distinguishes explicitly between simple nodes and containers, the migration must inspect the structural context of the referenced Node Mapping. By conditionally creating a Container Mapping when compartments exist, or a Node Mapping otherwise, the mapping preserves both the containment semantics and the visual hierarchy encoded in GMF diagrams. " xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_R_tboMiwEfCBo5CuJG-9rA" difficulty="COMPLEX" />
+      <strategy xmi:id="_WeTAkMcgEfCBo5CuJG-9rA">
+        <steps xmi:id="_X66WUMjSEfCBo5CuJG-9rA" description="take the node mapping (A) of the top node reference (B) or child reference (C)" order="1" type="A" />
+        <steps xmi:id="_zrlaIMcgEfCBo5CuJG-9rA" description="check if A has a compartment and a child reference (X)" order="2" type="A" />
+        <steps xmi:id="_oS5J0MiwEfCBo5CuJG-9rA" description="if X is true" order="3" type="A">
+          <nestedSteps xmi:id="_P6B5UNYpEfCr3byAh3mwFQ" description="create a container mapping under the default layer (for B) or under the parent reference's equivalent (for C)" order="1" type="A" />
+          <nestedSteps xmi:id="_FIAHIOaxEfCtF6i4WAnaHQ" description="take all the compartment mappings (G) of A" order="2" type="A" />
+          <nestedSteps xmi:id="_ZuK54OaxEfCtF6i4WAnaHQ" description="take all the visual representation compartments (H) of G" order="3" type="A" />
+          <nestedSteps xmi:id="_hkbDAOc2EfCldY4y7Ptl7w" description="take all the child accesses (I) using the figure and accessor properties of H" order="4" type="A" />
+          <nestedSteps xmi:id="_rrYE4Oc2EfCldY4y7Ptl7w" description="take all the shapes (J) using the figure property of I" order="5" type="A" />
+          <nestedSteps xmi:id="_xltVUOc2EfCldY4y7Ptl7w" description="take all the LayoutData features properties of J" order="6" type="A" />
+          <nestedSteps xmi:id="_hZx6oPr9EfCJw9T7EXHRmw" description="execute 'Computing Children Presentation for Container Mapping from Top Node/Child Reference'" order="7" type="A" />
+        </steps>
+        <steps xmi:id="_kXcDYNYCEfCr3byAh3mwFQ" description="else check if B/C has a sibling compartment (Y)" order="4" type="A" />
+        <steps xmi:id="_gbhLQOW3EfCQdag0TpwWmA" description="if Y is true" order="5" type="A">
+          <nestedSteps xmi:id="_e_GbANYpEfCr3byAh3mwFQ" description="take all the sibling compartment mappings (D)" order="1" type="A" />
+          <nestedSteps xmi:id="_g1y24NYpEfCr3byAh3mwFQ" description="take the compartment mapping in D that include B/C in the children property (E)" order="2" type="A" />
+          <nestedSteps xmi:id="_wL0lsNYpEfCr3byAh3mwFQ" description="take E's equivalent container mapping (F)" order="3" type="A" />
+          <nestedSteps xmi:id="_zkFiANYpEfCr3byAh3mwFQ" description="create a (sub) node mapping under F" order="4" type="A" />
+        </steps>
+      </strategy>
+      <subcorrespondences xmi:id="_Rtx34McgEfCBo5CuJG-9rA" name="Computing Domain Class" sourceFeature="_5VfNcMcWEfCBo5CuJG-9rA" targetFeature="_pmoDsMcdEfCBo5CuJG-9rA _Jgtu8MWjEfCIz4WBK8SiNA" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_IUmL8MjWEfCBo5CuJG-9rA" difficulty="EASY" />
+        <strategy xmi:id="_5cE4gMjVEfCBo5CuJG-9rA">
+          <steps xmi:id="_9BMlEMjVEfCBo5CuJG-9rA" description="copy the element property of A and paste it into domain class" order="1" type="A" />
+        </strategy>
+      </subcorrespondences>
+      <subcorrespondences xmi:id="_Ujr-0MixEfCBo5CuJG-9rA" name="Computing Semantic Candidates Expression" sourceFeature="_sAF5oMcWEfCBo5CuJG-9rA" targetFeature="_sbQ38MixEfCBo5CuJG-9rA _Qcvs8MWjEfCIz4WBK8SiNA" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_J99WcMjWEfCBo5CuJG-9rA" difficulty="EASY" />
+        <strategy xmi:id="_KsNjkMjWEfCBo5CuJG-9rA">
+          <steps xmi:id="_LMEvYMjWEfCBo5CuJG-9rA" description="copy the containment property of B/C and paste it into semantic candidates expression" order="1" type="A" />
+        </strategy>
+      </subcorrespondences>
+      <subcorrespondences xmi:id="_Aq6SUNX-EfCr3byAh3mwFQ" name="Computing Id" sourceFeature="_5VfNcMcWEfCBo5CuJG-9rA" targetFeature="_qjV-QNX9EfCr3byAh3mwFQ _2k65wNX9EfCr3byAh3mwFQ" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_Ropl0NX-EfCr3byAh3mwFQ" difficulty="EASY" />
+        <strategy xmi:id="__hOQ8NX-EfCr3byAh3mwFQ">
+          <steps xmi:id="__hOQ8dX-EfCr3byAh3mwFQ" description="copy the element property of A and paste it into id" order="1" type="A" />
+        </strategy>
+      </subcorrespondences>
+      <conditions xmi:id="_cond_00030" polarity="REQUIRED" expression="Apply when the GMF Node Reference can be resolved to a referenced or owned Node Mapping; choose Sirius Container Mapping when the referenced structure contains compartments or child containment, otherwise choose Sirius Node Mapping." subjectFeatures="_Pi114McWEfCBo5CuJG-9rA _3AY-UMcWEfCBo5CuJG-9rA _5xyRUMiqEfCBo5CuJG-9rA" />
+    </correspondences>
+    <correspondences xmi:id="_l_gxMMWrEfCIz4WBK8SiNA" name="Compartment Mapping to Container Mapping" sourceFeature="_5xyRUMiqEfCBo5CuJG-9rA" targetFeature="_0D3XMMVzEfCIz4WBK8SiNA" relation="A GMF Compartment Mapping and a Sirius Container Mapping serve the same core purpose: they define a nested graphical container inside a node, used to visually group and structurally contain child elements. Since Sirius does not have a separate compartment concept independent of containers, a Container Mapping is the most direct target feature that preserves the compartment's role as a host region with an internal hierarchy." xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_ZtME4MjVEfCBo5CuJG-9rA" difficulty="EASY" />
+      <strategy xmi:id="_m93LoMWyEfCIz4WBK8SiNA">
+        <steps xmi:id="_6ZhNoMjUEfCBo5CuJG-9rA" description="take the parent top node or child reference (A) of the compartment mapping" order="1" type="A" />
+        <steps xmi:id="_GTLjQMjVEfCBo5CuJG-9rA" description="take A's equivalent container mapping (B)" order="2" type="A" />
+        <steps xmi:id="_nyIhMMWyEfCIz4WBK8SiNA" description="create a new container mapping (C) as a child of B" order="3" type="A" />
+        <steps xmi:id="_gU74oNZBEfCr3byAh3mwFQ" description="write 'aql:self' into the semantic candidates expression of C" order="4" type="A" />
+      </strategy>
+      <subcorrespondences xmi:id="_WPM_QMjOEfCBo5CuJG-9rA" name="Computing Domain Class" sourceFeature="_5VfNcMcWEfCBo5CuJG-9rA" targetFeature="_Jgtu8MWjEfCIz4WBK8SiNA" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_s-m58MjPEfCBo5CuJG-9rA" difficulty="EASY" />
+        <strategy xmi:id="_lYrqYMjPEfCBo5CuJG-9rA">
+          <steps xmi:id="_l3JIAMjPEfCBo5CuJG-9rA" description="copy the element feature of A's equivalent node mapping and paste it into domain class" order="1" type="A" />
+        </strategy>
+      </subcorrespondences>
+      <subcorrespondences xmi:id="_GQESENYAEfCr3byAh3mwFQ" name="Computing Id" sourceFeature="_Y5mWgMiuEfCBo5CuJG-9rA" targetFeature="_qjV-QNX9EfCr3byAh3mwFQ" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_VvyvcNYAEfCr3byAh3mwFQ" difficulty="EASY" />
+        <strategy xmi:id="_ig974NYAEfCr3byAh3mwFQ">
+          <steps xmi:id="_i3UmYNYAEfCr3byAh3mwFQ" description="take the figure (D) of the visual representation compartment feature" order="1" type="A" />
+          <steps xmi:id="_0m6NkNYAEfCr3byAh3mwFQ" description="copy the name of D and paste it into id" order="2" type="A" />
+        </strategy>
+      </subcorrespondences>
+      <conditions xmi:id="_cond_00031" polarity="REQUIRED" expression="Apply when a GMF Compartment Mapping represents a nested visual region that hosts child elements." subjectFeatures="_5xyRUMiqEfCBo5CuJG-9rA" />
+    </correspondences>
+    <correspondences xmi:id="_corr_00129" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Node/Container Semantic Target Preservation" preservedFeatures="_3AY-UMcWEfCBo5CuJG-9rA _Pi114McWEfCBo5CuJG-9rA _dvxxgMcdEfCBo5CuJG-9rA _0D3XMMVzEfCIz4WBK8SiNA" kind="SEMANTICALLY_PRESERVED" reason="The domain concept represented by the GMF node mapping is preserved as the semantic target of the Sirius node or container mapping." />
+    <correspondences xmi:id="_corr_00130" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Node Reference Context Split" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="GMF separates Node Mapping from Node Reference to reuse the same diagram element in different containment contexts. Sirius encodes the resulting context through placement of mappings, reused mappings, and candidate expressions." affectedSourceFeatures="_Pi114McWEfCBo5CuJG-9rA _3AY-UMcWEfCBo5CuJG-9rA" affectedTargetFeatures="_dvxxgMcdEfCBo5CuJG-9rA _0D3XMMVzEfCIz4WBK8SiNA" />
+  </mappings>
+  <mappings xmi:id="_DUeZYMcHEfCBo5CuJG-9rA" name="Diagram Infrastructure - Structural">
+    <correspondences xmi:id="_mr1WQMcMEfCBo5CuJG-9rA" name="Canvas Mapping to Diagram Description" sourceFeature="_VF96gMcGEfCBo5CuJG-9rA" targetFeature="_8ogQoMcGEfCBo5CuJG-9rA" relation="Canvas Mapping in GMF and Diagram Description in Sirius both act as the entry point of a graphical editor, defining the semantic root of the diagram and its global configuration. While the concrete mechanisms differ, their roles in establishing the diagram context are conceptually equivalent. Canvas Mapping specifies how a domain model element becomes the diagram canvas, while Diagram Description declares the diagram’s root semantic element and overall behavior. " xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_nfIUEMcPEfCBo5CuJG-9rA" difficulty="EASY" />
+      <strategy xmi:id="_pgJwoMcPEfCBo5CuJG-9rA">
+        <steps xmi:id="_NaOgYMcSEfCBo5CuJG-9rA" description="create a description diagram with a default layer" order="1" type="A" />
+      </strategy>
+      <subcorrespondences xmi:id="_oBAukMcOEfCBo5CuJG-9rA" name="Computing Domain Class" sourceFeature="_ANVBQMcSEfCBo5CuJG-9rA" targetFeature="_-pPZUMcGEfCBo5CuJG-9rA" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_LJsoMMcSEfCBo5CuJG-9rA" difficulty="EASY" />
+        <strategy xmi:id="_L6P7YMcSEfCBo5CuJG-9rA">
+          <steps xmi:id="_QcA2YMcSEfCBo5CuJG-9rA" description="copy value of Element and paste into domain class" order="1" type="A" />
+        </strategy>
+      </subcorrespondences>
+      <conditions xmi:id="_cond_00032" polarity="REQUIRED" expression="Apply when the GMF Canvas Mapping identifies the semantic root element of the diagram." subjectFeatures="_VF96gMcGEfCBo5CuJG-9rA" />
+      <subcorrespondences xmi:id="_corr_00037" xsi:type="smdsl_updated_updated_prefix:Transformation" name="Default Layer Creation" sourceFeature="_VF96gMcGEfCBo5CuJG-9rA" targetFeature="_feat_00015" relation="A Sirius Diagram Description must contain a Default Layer for its graphical element mappings and tools. The GMF Canvas Mapping does not expose the same layer concept, so the layer is introduced as required Sirius diagram infrastructure.">
+        <complexity xmi:id="_comp_00038" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="EASY" />
+      </subcorrespondences>
+    </correspondences>
+    <correspondences xmi:id="_corr_00135" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Diagram Root Intent Preservation" preservedFeatures="_VF96gMcGEfCBo5CuJG-9rA _8ogQoMcGEfCBo5CuJG-9rA _feat_00015" kind="SEMANTICALLY_PRESERVED" reason="The GMF canvas/root mapping intent is preserved as a Sirius diagram description and default layer configured for the same root semantic class." />
+  </mappings>
+  <mappings xmi:id="_Rx7NkMs9EfC_5dXRuYHIzA" name="Label Semantics - Visual">
+    <correspondences xmi:id="_UVq8sMs9EfC_5dXRuYHIzA" name="Multiple Label Mappings to Label" sourceFeature="_dCYOIMs9EfC_5dXRuYHIzA" relation="GMF Feature Label Mappings and Sirius Label Expressions both serve the same fundamental purpose: defining how semantic attributes are transformed into textual labels on diagram elements. However, GMF supports multiple independent label mappings per node, while Sirius enforces a single label expression per graphical element. This structural mismatch necessitates an approximation rather than a direct mapping. " xsi:type="smdsl_updated_updated_prefix:Transformation" targetFeature="_xhqC4MWkEfCIz4WBK8SiNA">
+      <complexity xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" xmi:id="_n-5mEMs9EfC_5dXRuYHIzA" rationale="Because Sirius supports only one style - and consequently one label expression - per diagram element, all GMF Feature Label Mappings associated with the same node are merged into a single AQL expression. Line breaks are used to preserve label separation and readability." possibleApproximation="_xhqC4MWkEfCIz4WBK8SiNA" operators="_tCufwMZwEfCeR8oIST4D4w" difficulty="COMPLEX" kind="MANUAL" />
+      <strategy xmi:id="_M_E64MtDEfC_5dXRuYHIzA">
+        <steps xmi:id="_amBXQNohEfCKEarKCLDKOQ" description="take all the label mapping siblings (A)" order="1" type="A" />
+        <steps xmi:id="_SWNXoMtDEfC_5dXRuYHIzA" description="take the immediate top node/child reference (B) of A" order="2" type="A" />
+        <steps xmi:id="_l5mCQMtEEfC_5dXRuYHIzA" description="take B's equivalent container/node mapping" order="3" type="A" />
+        <steps xmi:id="_gEU4AMtEEfC_5dXRuYHIzA" description="take or create a new (if not already exist) style (C) for B and write: &quot;aql:&quot; in the label expression property (D) of C" order="4" type="A" />
+        <steps xmi:id="_rjGBYMtEEfC_5dXRuYHIzA" description="for every label mapping (E) in A" order="5" type="A">
+          <nestedSteps xmi:id="_woz5ANohEfCKEarKCLDKOQ" description="take the features to display property (F) of E" order="1" type="A" />
+          <nestedSteps xmi:id="_w9kBANohEfCKEarKCLDKOQ" description="append self.F + '\n' to D" order="2" type="A" />
+        </steps>
+        <steps xmi:id="_ufu3MNoiEfCKEarKCLDKOQ" description="operators should inspect whether it matches the structural and visual expectation. if not, they can follow Figure to Style Correspondence" order="6" type="M" />
+      </strategy>
+      <conditions xmi:id="_cond_00033" polarity="REQUIRED" expression="Apply when one Sirius graphical element would need to display one or more GMF Feature Label Mappings as a single style-level label expression." subjectFeatures="_dCYOIMs9EfC_5dXRuYHIzA" />
+    </correspondences>
+    <correspondences xmi:id="_corr_00127" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Label Content Intent Preservation" preservedFeatures="_dCYOIMs9EfC_5dXRuYHIzA _xhqC4MWkEfCIz4WBK8SiNA" kind="SEMANTICALLY_PRESERVED" reason="The semantic intent of showing selected domain attributes as labels is preserved by constructing a Sirius label expression." />
+    <correspondences xmi:id="_corr_00128" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Independent GMF Labels Consolidated" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="GMF can define multiple Feature Label Mappings for one node, whereas the target Sirius style has a single label expression. The migration therefore consolidates labels, often using line breaks or composed AQL expressions." affectedSourceFeatures="_dCYOIMs9EfC_5dXRuYHIzA" affectedTargetFeatures="_xhqC4MWkEfCIz4WBK8SiNA" />
+  </mappings>
+  <mappings xmi:id="_WGqsYNRVEfCxMJDUOK6zJw" name="Layout Semantics - Visual">
+    <correspondences xmi:id="_ZLH74NRVEfCxMJDUOK6zJw" name="Analyzing Figures" sourceFeature="_BGoJcMWhEfCIz4WBK8SiNA" relation="Both GMF Figure Descriptors and Sirius container aim to define the visual appearance in terms of structural composition of diagram elements. However, while GMF supports arbitrary nesting of graphical primitives, Sirius enforces a stricter separation between structure (container mappings) and appearance (styles). This mismatch makes the correspondence inherently approximate and requires manual interpretation to preserve the intended visual semantics. " xsi:type="smdsl_updated_updated_prefix:Transformation" targetFeature="_0D3XMMVzEfCIz4WBK8SiNA _k-zRAMV9EfCIz4WBK8SiNA _feat_00029">
+      <complexity xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" xmi:id="_TSh-sNolEfCKEarKCLDKOQ" rationale="GMF allows to draw complex figures by defining nested shapes. This could not happen in Sirius. This mapping needs supervisor's intuition to have a reasonable match." possibleApproximation="_0D3XMMVzEfCIz4WBK8SiNA" operators="_g4HDkNolEfCKEarKCLDKOQ _tCufwMZwEfCeR8oIST4D4w" difficulty="COMPLEX" kind="MANUAL" />
+      <strategy xmi:id="_vrb4gNomEfCKEarKCLDKOQ">
+        <steps xmi:id="_uNeaYNqiEfCk-fnjm2UsFw" description="operators should take the shape (A) of the figure descriptor" order="1" type="M" />
+        <steps xmi:id="_5YN0gNqiEfCk-fnjm2UsFw" description="operators should check if A presents a complex figure by defining nested shapes (X)" order="2" type="M" />
+        <steps xmi:id="_OsecUNqjEfCk-fnjm2UsFw" description="if X is true" order="3" type="NONE">
+          <nestedSteps xmi:id="_QFgr0NqjEfCk-fnjm2UsFw" description="supervisors should split the nested shapes of A into two groups: B1) the shapes used for only drawing, B2) the shapes used for external access (usually are accessible by a child reference)" order="1" type="M" />
+          <nestedSteps xmi:id="_DpnPANqnEfCk-fnjm2UsFw" description="for every shape (C) in B2" order="2" type="NONE">
+            <nestedSteps xmi:id="_MrnbANqnEfCk-fnjm2UsFw" description="supervisors should check what canvas feature (D) is referring to/accessing C" order="1" type="M" />
+            <nestedSteps xmi:id="_dxvwgNreEfCk-fnjm2UsFw" description="if D is a kind of compartment" order="2" type="NONE">
+              <nestedSteps xmi:id="_iUlCgNreEfCk-fnjm2UsFw" description="supervisors should find the compartment mapping (E) referring to D" order="1" type="M" />
+              <nestedSteps xmi:id="_Zv09wNrfEfCk-fnjm2UsFw" description="supervisors should find E's equivalent container mapping (F)" order="2" type="M" />
+              <nestedSteps xmi:id="_EOr7ENrgEfCk-fnjm2UsFw" description="supervisors should create a style for F in a way that resembels the actual figure (Shape Resembalance can be reused)" order="3" type="M" />
+              <nestedSteps xmi:id="_e70hgNrfEfCk-fnjm2UsFw" description="from A to the most top shape, in a way that matches the figure descriptor in terms of structure, for every shape, supervisors can define a container mapping and its style" order="4" type="M" />
+            </nestedSteps>
+          </nestedSteps>
+          <nestedSteps xmi:id="_9ga4oNqlEfCk-fnjm2UsFw" description="for every shape (G) in B1" order="3" type="NONE">
+            <nestedSteps xmi:id="_lP8qoNriEfCk-fnjm2UsFw" description="supervisor should find and match G's equivalent mapping (H)" order="1" type="M" />
+            <nestedSteps xmi:id="_re0nsNriEfCk-fnjm2UsFw" description="supervisors should create a style for H in a way that resembels the actual figure (Shape Resembalance can be used)" order="2" type="M" />
+          </nestedSteps>
+        </steps>
+      </strategy>
+      <conditions xmi:id="_cond_00034" polarity="REQUIRED" expression="Apply when the GMF Figure uses nested Draw2D figure structure, custom figures, or visual composition that cannot be represented as a single Sirius style." subjectFeatures="_BGoJcMWhEfCIz4WBK8SiNA _feat_00009" />
+    </correspondences>
+    <correspondences xmi:id="_a4t8UMizEfCBo5CuJG-9rA" name="Computing Children Presentation for Container Mapping from Top Node/Child Reference" sourceFeature="_WWheYMWQEfCIz4WBK8SiNA" targetFeature="__EVPoMWiEfCIz4WBK8SiNA" relation="Although GMF and Sirius rely on fundamentally different layout paradigms - absolute positioning versus declarative layout policies - both mechanisms ultimately aim to control how child elements are visually organized within a container. Children Presentation in Sirius represents the closest abstraction capable of preserving the directional and sequential intent encoded implicitly in GMF layout data. " xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_fho_QOavEfCtF6i4WAnaHQ" operators="_jZ7fcOavEfCtF6i4WAnaHQ _tCufwMZwEfCeR8oIST4D4w" kind="MIX" />
+      <strategy xmi:id="_HjE3IMjQEfCBo5CuJG-9rA">
+        <steps xmi:id="_4YjGUMjSEfCBo5CuJG-9rA" description="check if LayoutData features are all a kind of XYLayoutData (Z)" order="1" type="A" />
+        <steps xmi:id="_MYA64MjSEfCBo5CuJG-9rA" description="if Z is true" order="2" type="NONE">
+          <nestedSteps xmi:id="_sp9LQOatEfCtF6i4WAnaHQ" description="check if all the x properties of L is increasing but the y remained unchanged (W)" order="1" type="A" />
+          <nestedSteps xmi:id="_vdAhsOatEfCtF6i4WAnaHQ" description="if W is true" order="2" type="NONE">
+            <nestedSteps xmi:id="_dhEs4Oc3EfCldY4y7Ptl7w" description="child presentation is horizontal stack" order="1" type="A" />
+          </nestedSteps>
+          <nestedSteps xmi:id="_HjE3IcjQEfCBo5CuJG-9rA" description="else check if all the y properties of L are increasing but the x remained unchanged (Q)" order="3" type="A" />
+          <nestedSteps xmi:id="_rkBDMOc3EfCldY4y7Ptl7w" description="if Q is true" order="4" type="NONE">
+            <nestedSteps xmi:id="_tURf4Oc3EfCldY4y7Ptl7w" description="child presentation is vertical stack" order="1" type="A" />
+          </nestedSteps>
+          <nestedSteps xmi:id="_wUER0Oc3EfCldY4y7Ptl7w" description="supervisors should decide a desired option" order="5" type="A" />
+        </steps>
+        <steps xmi:id="_52iGkOc3EfCldY4y7Ptl7w" description="else" order="3" type="NONE">
+          <nestedSteps xmi:id="_68V4EOc3EfCldY4y7Ptl7w" description="supervisors should decide a desired option" order="1" type="M" />
+        </steps>
+      </strategy>
+      <conditions xmi:id="_cond_00035" polarity="REQUIRED" expression="Apply when GMF layout data or compartment structure affects the ordering or presentation of children inside a migrated Sirius container." subjectFeatures="_WWheYMWQEfCIz4WBK8SiNA _5xyRUMiqEfCBo5CuJG-9rA" />
+    </correspondences>
+    <correspondences xmi:id="_corr_00131" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Absolute Layout Data Approximation" kind="BEHAVIOR_CHANGE" rationale="GMF Draw2D/GEF layout data can encode point, dimension and custom layout behavior. Sirius often represents child organization through container children presentation, list/stack modes, automatic layout or manual arrangement." affectedSourceFeatures="_WWheYMWQEfCIz4WBK8SiNA" affectedTargetFeatures="__EVPoMWiEfCIz4WBK8SiNA" />
+    <correspondences xmi:id="_corr_00132" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Compartment Grouping Intent Preservation" preservedFeatures="_5xyRUMiqEfCBo5CuJG-9rA _0D3XMMVzEfCIz4WBK8SiNA __EVPoMWiEfCIz4WBK8SiNA" kind="SEMANTICALLY_PRESERVED" reason="The intent of grouping children inside a visual region is preserved, although the representation is re-expressed through Sirius container mappings and children presentation values." />
+  </mappings>
+  <mappings xmi:id="_1Le3oPsKEfCJw9T7EXHRmw" name="Figure Appearance - Visual">
+    <correspondences xmi:id="_SDE4ANrgEfCk-fnjm2UsFw" name="Shape Resemblance" sourceFeature="_CgqHMMWQEfCIz4WBK8SiNA" targetFeature="_k-zRAMV9EfCIz4WBK8SiNA" relation="Both GMF Shapes and Sirius Styles are responsible for determining how a diagram element is visually rendered. While GMF provides explicit shape primitives, Sirius abstracts geometric form into style configurations, making Style the closest construct capable of preserving the visual intent expressed by a GMF Shape. " xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_8ndjoNriEfCk-fnjm2UsFw" operators="_tCufwMZwEfCeR8oIST4D4w" kind="MIX" />
+      <strategy xmi:id="_TBadoNriEfCk-fnjm2UsFw">
+        <steps xmi:id="_ILXl4PsHEfCJw9T7EXHRmw" description="operators should identify the Sirius equivalent feature (A) for which this shape feature draws a figure in a GMF mapping" order="1" type="M" />
+        <steps xmi:id="_MtFQENqmEfCk-fnjm2UsFw" description="supervisors should check if the shape draws a basic shape e.g. rectangle, triangle, circle etc. (X)" order="2" type="M" />
+        <steps xmi:id="_04PFYNqmEfCk-fnjm2UsFw" description="if X is true" order="3" type="NONE">
+          <nestedSteps xmi:id="_RzXiQPsEEfCJw9T7EXHRmw" description="create a basic style for A (Square, Diamond, Ellipse, Parallelogram etc. based on the highest similarity and availability)" order="1" type="A" />
+        </steps>
+        <steps xmi:id="_bgpyENqmEfCk-fnjm2UsFw" description="else" order="4" type="NONE">
+          <nestedSteps xmi:id="_kPDFkNqmEfCk-fnjm2UsFw" description="supervisors should create an image (B) visually matching what the shape describes in the svg, jpg, png, etc. format" order="1" type="M" />
+          <nestedSteps xmi:id="_JGh7sPsJEfCJw9T7EXHRmw" description="take the path (C) of the image" order="2" type="A" />
+          <nestedSteps xmi:id="_DesJcPsJEfCJw9T7EXHRmw" description="ceate a Workspace Image (D) for A" order="3" type="A" />
+          <nestedSteps xmi:id="_RpYGgPsJEfCJw9T7EXHRmw" description="paste C into the image path property of D" order="4" type="A" />
+        </steps>
+      </strategy>
+      <conditions xmi:id="_cond_00036" polarity="REQUIRED" expression="Apply when the GMF Shape is basic enough to approximate with a Sirius built-in style or image style; otherwise operator validation is required." subjectFeatures="_CgqHMMWQEfCIz4WBK8SiNA" />
+    </correspondences>
+    <correspondences xmi:id="_corr_00133" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Arbitrary Draw2D Figure Structure Requires Approximation" kind="RISK_INTRODUCED" rationale="GMF supports arbitrary nested Draw2D figures, custom figures and custom layouts. Sirius offers style families and customization mechanisms, but not a one-to-one representation of every Draw2D structure." affectedSourceFeatures="_BGoJcMWhEfCIz4WBK8SiNA _feat_00009 _feat_00010 _feat_00011" affectedTargetFeatures="_k-zRAMV9EfCIz4WBK8SiNA _feat_00028 _feat_00029" />
+    <correspondences xmi:id="_corr_00134" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Basic Shape Visual Intent Preservation" preservedFeatures="_CgqHMMWQEfCIz4WBK8SiNA _k-zRAMV9EfCIz4WBK8SiNA" kind="SEMANTICALLY_PRESERVED" reason="For basic shapes such as rectangles, ellipses and simple polygons, the migration preserves the intended visual role using the closest Sirius style configuration." />
+  </mappings>
+  <mappings xmi:id="_map_00092" name="Semantic Model Preservation and Coexistence">
+    <correspondences xmi:id="_corr_00093" xsi:type="smdsl_updated_updated_prefix:Preservation" name="EMF Semantic Model Preservation" preservedFeatures="_feat_00001 _feat_00012" kind="SEMANTICALLY_PRESERVED" reason="The migration preserves the EMF domain model as the semantic source of truth. Sirius descriptions are created around the same domain concepts rather than forcing the domain model to depend on Sirius." />
+    <correspondences xmi:id="_corr_00094" xsi:type="smdsl_updated_updated_prefix:Bridge" name="Parallel GMF/Sirius Workbench Validation" bridgeFeatures="_feat_00001 _feat_00012" scope="WHOLE_MIGRATION" rationale="Because GMF and Sirius are Eclipse/EMF-based, the old GMF editor and the new Sirius viewpoint can be kept side-by-side during validation against the same semantic models." cleanupRequired="false" />
+    <correspondences xmi:id="_corr_00095" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Representation Model Separation" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="Sirius strongly separates semantic models from representation models and VSM descriptions. Migrating from generated GMF artifacts to Sirius therefore changes where editor structure, style and behavior are specified." affectedSourceFeatures="_3AY-UMcWEfCBo5CuJG-9rA _BGoJcMWhEfCIz4WBK8SiNA _feat_00006" affectedTargetFeatures="_feat_00014 _8ogQoMcGEfCBo5CuJG-9rA _k-zRAMV9EfCIz4WBK8SiNA" />
+  </mappings>
+  <mappings xmi:id="_map_00096" name="Tooling and Editing Behavior">
+    <correspondences xmi:id="_corr_00097" xsi:type="smdsl_updated_updated_prefix:Transformation" name="GMF Creation Tool to Sirius Node Creation Tool" sourceFeature="_feat_00007" targetFeature="_feat_00023 _feat_00024" relation="GMF palette creation tools define how users create domain elements through generated editor tooling. Sirius re-expresses this behavior using creation tools whose behavior is defined by model operations such as create instance, set, unset or service calls.">
+      <complexity xmi:id="_comp_00098" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_tCufwMZwEfCeR8oIST4D4w" />
+      <strategy xmi:id="_strat_00099">
+        <steps xmi:id="_step_00100" description="Identify the GMF tool entry and the node/link mapping it creates." order="1" type="A" />
+        <steps xmi:id="_step_00101" description="Create the corresponding Sirius creation tool for the target mapping." order="2" type="A" />
+        <steps xmi:id="_step_00102" description="Translate the creation behavior into Sirius model operations or Java services." order="3" type="M" />
+        <steps xmi:id="_step_00103" description="Validate the created semantic element and its graphical view in the target diagram." order="4" type="M" />
+      </strategy>
+      <conditions xmi:id="_cond_00104" polarity="REQUIRED" expression="Apply when the GMF model contains palette, menu or contextual creation tools that should remain editable in Sirius." subjectFeatures="_feat_00006 _feat_00007" />
+    </correspondences>
+    <correspondences xmi:id="_corr_00105" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Generated GMF Edit Behavior Re-expressed as Sirius Tools" kind="VALIDATION_REQUIRED" rationale="GMF can derive substantial edit behavior through generated code and edit policies. Sirius requires explicit tool specifications and model operations, so equivalent user interactions require validation." affectedSourceFeatures="_feat_00006 _feat_00007" affectedTargetFeatures="_feat_00022 _feat_00024" />
+  </mappings>
+  <mappings xmi:id="_map_00106" name="Edge and Link Semantics - Structural">
+    <correspondences xmi:id="_corr_00107" xsi:type="smdsl_updated_updated_prefix:Transformation" name="GMF Link Mapping to Sirius Edge Mapping" sourceFeature="_feat_00002" targetFeature="_feat_00016" relation="GMF Link Mappings tie a domain relationship to graphical links. Sirius represents links with Edge Mappings, which may be relation-based or element-based and require source/target mapping information plus candidate expressions.">
+      <complexity xmi:id="_comp_00108" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_tCufwMZwEfCeR8oIST4D4w" />
+      <strategy xmi:id="_strat_00109">
+        <steps xmi:id="_step_00110" description="Classify the GMF link as relationship-backed or element-backed." order="1" type="M" />
+        <steps xmi:id="_step_00111" description="Create the corresponding Sirius Edge Mapping." order="2" type="A" />
+        <steps xmi:id="_step_00112" description="Compute source and target mapping references and candidate expressions." order="3" type="A" />
+        <steps xmi:id="_step_00113" description="Review routing, decorations and creation behavior manually." order="4" type="M" />
+      </strategy>
+      <conditions xmi:id="_cond_00114" polarity="OPTIONAL" expression="Apply when the GMF editor contains Link Mappings or connection-like relationships." subjectFeatures="_feat_00002" />
+    </correspondences>
+    <correspondences xmi:id="_corr_00115" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Link Routing and Decoration Validation" kind="VALIDATION_REQUIRED" rationale="Sirius edge style and routing options do not necessarily preserve all GMF/GEF routing, anchors and generated edit-part behavior exactly." affectedSourceFeatures="_feat_00002" affectedTargetFeatures="_feat_00016" />
+  </mappings>
+  <mappings xmi:id="_map_00116" name="Selection, Constraint and Refresh Semantics">
+    <correspondences xmi:id="_corr_00117" xsi:type="smdsl_updated_updated_prefix:Transformation" name="GMF Domain Specialization Constraint to Sirius Precondition Expression" sourceFeature="_feat_00008" targetFeature="_feat_00025" relation="GMF domain specialization constraints refine which EObjects are represented by a mapping. Sirius can capture similar filtering through a Precondition Expression evaluated after semantic candidates and domain class filtering.">
+      <complexity xmi:id="_comp_00118" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="COMPLEX" />
+      <strategy xmi:id="_strat_00119">
+        <steps xmi:id="_step_00120" description="Extract the GMF domain specialization constraint." order="1" type="A" />
+        <steps xmi:id="_step_00121" description="Translate the constraint to a Sirius-supported interpreted expression such as AQL." order="2" type="A" />
+        <steps xmi:id="_step_00122" description="Attach the expression as a precondition on the target mapping." order="3" type="A" />
+        <steps xmi:id="_step_00123" description="Validate that the expression selects the same semantic elements." order="4" type="M" />
+      </strategy>
+      <conditions xmi:id="_cond_00124" polarity="OPTIONAL" expression="Apply when the GMF mapping uses domain specialization or constraints beyond simple EClass matching." subjectFeatures="_feat_00008" />
+    </correspondences>
+    <correspondences xmi:id="_corr_00125" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Mapping Refresh Semantics Need Review" kind="BEHAVIOR_CHANGE" rationale="Sirius mappings have explicit synchronization behavior: synchronized mappings automatically create and remove views during refresh, while non-synchronized mappings rely on tools. This may differ from generated GMF editor behavior." affectedSourceFeatures="_3AY-UMcWEfCBo5CuJG-9rA _Pi114McWEfCBo5CuJG-9rA" affectedTargetFeatures="_feat_00027 _feat_00025 _feat_00026" />
+    <correspondences xmi:id="_corr_00126" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Domain Class and Candidate Selection Intent" preservedFeatures="_3AY-UMcWEfCBo5CuJG-9rA _Pi114McWEfCBo5CuJG-9rA _feat_00025" kind="SEMANTICALLY_PRESERVED" reason="The intention of selecting the correct domain elements is preserved, even though GMF containment/children references are re-expressed as Sirius semantic candidates, domain classes and preconditions." />
+  </mappings>
+  <preMigrationRequirements xmi:id="_pre_00086" mandatory="true" note="Inventory the GMF source artifacts that define the editor: .gmfmap, .gmfgraph, .gmftool, generated editor behavior, and representative diagrams used as evidence." kind="CONFIGURATION_REVIEW" affectedFeatures="_VF96gMcGEfCBo5CuJG-9rA _Pi114McWEfCBo5CuJG-9rA _3AY-UMcWEfCBo5CuJG-9rA _5xyRUMiqEfCBo5CuJG-9rA _dCYOIMs9EfC_5dXRuYHIzA _BGoJcMWhEfCIz4WBK8SiNA _feat_00006" />
+  <preMigrationRequirements xmi:id="_pre_00087" mandatory="true" note="Identify the EMF semantic domain model and preserve it as the shared source of truth before creating Sirius viewpoint specifications." kind="BASELINE_VERSION" affectedFeatures="_feat_00001 _feat_00012" />
+  <preMigrationRequirements xmi:id="_pre_00088" mandatory="true" note="Prepare a Sirius Viewpoint Specification Project and ensure the target VSM depends on the semantic metamodel plug-ins." kind="DEPENDENCY_UPDATE" affectedFeatures="_feat_00014 _feat_00013 _8ogQoMcGEfCBo5CuJG-9rA" />
+  <preMigrationRequirements xmi:id="_pre_00089" mandatory="true" note="Establish a visual and behavioral baseline from the GMF editor to compare generated Sirius diagrams, labels, compartments, layout and tools." kind="TEST_BASELINE" affectedFeatures="_BGoJcMWhEfCIz4WBK8SiNA _CgqHMMWQEfCIz4WBK8SiNA _dCYOIMs9EfC_5dXRuYHIzA _5xyRUMiqEfCBo5CuJG-9rA _feat_00006" />
+  <preMigrationRequirements xmi:id="_pre_00090" mandatory="true" note="Review custom Draw2D figures, custom layouts and tool behavior because they may require operator decisions or Java services rather than direct VSM mappings." kind="CONFIGURATION_REVIEW" affectedFeatures="_feat_00009 _WWheYMWQEfCIz4WBK8SiNA _feat_00006" />
+  <preMigrationRequirements xmi:id="_pre_00091" mandatory="true" note="Validate the Sirius VSM after each migration increment to detect missing required expressions, invalid domain classes and unsupported compartment configurations." kind="TEST_BASELINE" affectedFeatures="_feat_00014 _8ogQoMcGEfCBo5CuJG-9rA _feat_00015" />
+</smdsl_updated_updated_prefix:Migration>

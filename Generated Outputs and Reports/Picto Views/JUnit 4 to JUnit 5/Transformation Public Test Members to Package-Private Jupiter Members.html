@@ -1,0 +1,535 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: Public Test Members to Package-Private Jupiter Members</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> JUnit 4 =&gt; JUnit 5 / JUnit Jupiter and JUnit Platform
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> public test method
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> package-private test method
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> FullAutomation / EASY
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> JUnit Jupiter test classes and methods do not need to be public. Keeping public is valid but no long
+
+er required, so this is a maintained/optional modernization case rather than a necessary mapping.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] Detect public modifier on test classes and methods.
+
+
+
+2. [A] Either keep the modifier unchanged for behavior preservation or remove it as style moderni
+
+zation.
+
+
+
+3. [M] Do not change visibility if external tooling, inheritance, or generated tests rely on publ
+
+ic access.
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="434pt" viewBox="0.00 0.00 1130.00 434.00" width="1130pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 416)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="547" y="-382.8">Transformation: Public Test Members to Package-Private Jupiter Members</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M51,-8C51,-8 123,-8 123,-8 129,-8 135,-14 135,-20 135,-20 135,-272 135,-272 135,-278 129,-284 123,-284 123,-284 51,-284 51,-284 45,-284 39,-278 39,-272 39,-272 39,-20 39,-20 39,-14 45,-8 51,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="87" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M409,-292C409,-292 853,-292 853,-292 859,-292 865,-298 865,-304 865,-304 865,-355 865,-355 865,-361 859,-367 853,-367 853,-367 409,-367 409,-367 403,-367 397,-361 397,-355 397,-355 397,-304 397,-304 397,-298 403,-292 409,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="631" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M577.5,-209C577.5,-209 1074,-209 1074,-209 1080,-209 1086,-215 1086,-221 1086,-221 1086,-272 1086,-272 1086,-278 1080,-284 1074,-284 1074,-284 577.5,-284 577.5,-284 571.5,-284 565.5,-278 565.5,-272 565.5,-272 565.5,-221 565.5,-221 565.5,-215 571.5,-209 577.5,-209" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="825.75" y="-268.8">Target platform feature context: JUnit 5 / JUnit Jupiter and JUnit Platform</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M20,-292C20,-292 310,-292 310,-292 316,-292 322,-298 322,-304 322,-304 322,-355 322,-355 322,-361 316,-367 310,-367 310,-367 20,-367 20,-367 14,-367 8,-361 8,-355 8,-355 8,-304 8,-304 8,-298 14,-292 20,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="165" y="-351.8">Source platform feature context: JUnit 4</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M113,-256C113,-256 61,-256 61,-256 55,-256 49,-250 49,-244 49,-244 49,-232 49,-232 49,-226 55,-220 61,-220 61,-220 113,-220 113,-220 119,-220 125,-226 125,-232 125,-232 125,-244 125,-244 125,-250 119,-256 113,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="87" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M108,-188C108,-188 66,-188 66,-188 60,-188 54,-182 54,-176 54,-176 54,-164 54,-164 54,-158 60,-152 66,-152 66,-152 108,-152 108,-152 114,-152 120,-158 120,-164 120,-164 120,-176 120,-176 120,-182 114,-188 108,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="87" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M102,-120C102,-120 72,-120 72,-120 66,-120 60,-114 60,-108 60,-108 60,-96 60,-96 60,-90 66,-84 72,-84 72,-84 102,-84 102,-84 108,-84 114,-90 114,-96 114,-96 114,-108 114,-108 114,-114 108,-120 102,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="87" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M115,-52C115,-52 59,-52 59,-52 53,-52 47,-46 47,-40 47,-40 47,-28 47,-28 47,-22 53,-16 59,-16 59,-16 115,-16 115,-16 121,-16 127,-22 127,-28 127,-28 127,-40 127,-40 127,-46 121,-52 115,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="87" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_995545543 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_995545543</title>
+
+                    
+
+                    <path d="M146,-336C146,-336 28,-336 28,-336 22,-336 16,-330 16,-324 16,-324 16,-312 16,-312 16,-306 22,-300 28,-300 28,-300 146,-300 146,-300 152,-300 158,-306 158,-312 158,-312 158,-324 158,-324 158,-330 152,-336 146,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="87" y="-315.5">Test Declaration and Visibility</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1897817575 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1897817575</title>
+
+                    
+
+                    <path d="M302,-336C302,-336 233,-336 233,-336 227,-336 221,-330 221,-324 221,-324 221,-312 221,-312 221,-306 227,-300 233,-300 233,-300 302,-300 302,-300 308,-300 314,-306 314,-312 314,-312 314,-324 314,-324 314,-330 308,-336 302,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="267.5" y="-315.5">public test method</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_995545543&#45;&gt;S_1897817575 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>S_995545543-&gt;S_1897817575</title>
+
+                    
+
+                    <path d="M158.04,-318C179.13,-318 201.73,-318 220.81,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1685073976 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_1685073976</title>
+
+                    
+
+                    <path d="M845,-336C845,-336 417,-336 417,-336 411,-336 405,-330 405,-324 405,-324 405,-312 405,-312 405,-306 411,-300 417,-300 417,-300 845,-300 845,-300 851,-300 857,-306 857,-312 857,-312 857,-324 857,-324 857,-330 851,-336 845,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="631" y="-315.5">Transformation * &nbsp;Public Test Members to Package-Private Jupiter Members * FullAutomation / EASY</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1897817575&#45;&gt;C_1685073976 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_1897817575-&gt;C_1685073976</title>
+
+                    
+
+                    <path d="M314.28,-318C336.8,-318 365.8,-318 397.09,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="397.15,-320.63 404.65,-318 397.15,-315.38 397.15,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="359.5" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1727169366 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1727169366</title>
+
+                    
+
+                    <path d="M1066,-253C1066,-253 955,-253 955,-253 949,-253 943,-247 943,-241 943,-241 943,-229 943,-229 943,-223 949,-217 955,-217 955,-217 1066,-217 1066,-217 1072,-217 1078,-223 1078,-229 1078,-229 1078,-241 1078,-241 1078,-247 1072,-253 1066,-253" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1010.5" y="-232.5">package-private test method</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1685073976&#45;&gt;T_1727169366 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_1685073976-&gt;T_1727169366</title>
+
+                    
+
+                    <path d="M827.82,-299.98C840.47,-297.64 852.95,-294.99 865,-292 899.5,-283.43 936.79,-268.57 964.84,-256.17" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="965.99,-258.54 971.77,-253.08 963.85,-253.74 965.99,-258.54" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="900" y="-287.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1787509651 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_1787509651</title>
+
+                    
+
+                    <path d="M676.5,-253C676.5,-253 585.5,-253 585.5,-253 579.5,-253 573.5,-247 573.5,-241 573.5,-241 573.5,-229 573.5,-229 573.5,-223 579.5,-217 585.5,-217 585.5,-217 676.5,-217 676.5,-217 682.5,-217 688.5,-223 688.5,-229 688.5,-229 688.5,-241 688.5,-241 688.5,-247 682.5,-253 676.5,-253" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="631" y="-232.5">Jupiter Test Declaration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1787509651&#45;&gt;T_1727169366 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>T_1787509651-&gt;T_1727169366</title>
+
+                    
+
+                    <path d="M688.52,-235C756.49,-235 870.46,-235 942.72,-235" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

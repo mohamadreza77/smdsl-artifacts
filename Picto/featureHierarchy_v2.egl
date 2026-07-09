@@ -1,0 +1,77 @@
+[%
+// params from EGX:
+// - platform : Platform
+%]
+
+digraph FeatureHierarchy {
+  graph [
+    rankdir=TB,
+    fontname="Arial",
+    labelloc="t",
+    label="Feature Hierarchy: [%=dotText(platform.name)%]",
+    bgcolor="transparent",
+    pad="0.30",
+    nodesep="0.45",
+    ranksep="0.60"
+  ];
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fillcolor="#FFF2CC",
+    color="#D6B656",
+    fontname="Arial",
+    fontsize=10,
+    margin="0.10,0.07"
+  ];
+
+  edge [
+    color="#666666",
+    arrowsize=0.7
+  ];
+
+  [% var visited = Set{}; %]
+  [% for (f in platform.features) { %]
+    [% printFeatureTree(f, visited, 0); %]
+  [% } %]
+}
+
+[% operation printFeatureTree(f, visited, depth) { %]
+[% if (visited.contains(f)) { return; } %]
+[% visited.add(f); %]
+
+"[%=featureId(f)%]" [
+  label="[%=dotText(f.name)%]",
+  fillcolor="[%=featureFill(depth)%]",
+  penwidth="[%=featurePen(depth)%]"
+];
+
+[% for (child in f.nestedFeatures) { %]
+"[%=featureId(f)%]" -> "[%=featureId(child)%]";
+[% printFeatureTree(child, visited, depth + 1); %]
+[% } %]
+[% } %]
+
+[% operation featureId(f) {
+  return "F_" + f.hashCode().toString().replaceAll("-", "N");
+} %]
+
+[% operation dotText(text) {
+  if (not text.isDefined()) return "";
+  var s = text.toString();
+  s = s.replaceAll("\"", "'");
+  s = s.replaceAll("\n", "\\n");
+  return s;
+} %]
+
+[% operation featureFill(depth) {
+  if (depth = 0) return "#D9EAD3";
+  if (depth = 1) return "#FFF2CC";
+  if (depth = 2) return "#FCE5CD";
+  return "#F3F3F3";
+} %]
+
+[% operation featurePen(depth) {
+  if (depth = 0) return "2.0";
+  return "1.2";
+} %]

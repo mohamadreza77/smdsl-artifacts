@@ -1,0 +1,403 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Preservation: Preserve Unchanged JUnit 4 Tests During Incremental Migration</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Preservation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> JUnit 4 =&gt; JUnit 5 / JUnit Jupiter and JUnit Platform
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong>
+
+        </p>
+
+        
+
+        <ul>
+
+            
+
+            <li>
+
+                <strong>OPTIONAL</strong> on Coexisting JUnit 4 tests during migration: Applies to incremental migrations where immediate full conversion is not feasible.
+
+            </li>
+
+            
+
+        </ul>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Preservation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Preserved feature(s):</strong> Coexisting JUnit 4 tests during migration
+
+            <br>
+
+            
+
+            <strong>Preservation kind:</strong> TEMPORARILY_RETAINED
+
+            <br>
+
+            
+
+            <strong>Reason:</strong> Existing JUnit 4 tests may remain unchanged and be executed through Vintage while the migration proc
+
+eeds class by class.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="517pt" viewBox="0.00 0.00 847.00 517.00" width="847pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 499)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="405.5" y="-465.8">Preservation: Preserve Unchanged JUnit 4 Tests During Incremental Migration</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M223.5,-8C223.5,-8 295.5,-8 295.5,-8 301.5,-8 307.5,-14 307.5,-20 307.5,-20 307.5,-272 307.5,-272 307.5,-278 301.5,-284 295.5,-284 295.5,-284 223.5,-284 223.5,-284 217.5,-284 211.5,-278 211.5,-272 211.5,-272 211.5,-20 211.5,-20 211.5,-14 217.5,-8 223.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="259.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M20,-292C20,-292 499,-292 499,-292 505,-292 511,-298 511,-304 511,-304 511,-355 511,-355 511,-361 505,-367 499,-367 499,-367 20,-367 20,-367 14,-367 8,-361 8,-355 8,-355 8,-304 8,-304 8,-298 14,-292 20,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="259.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M188,-375C188,-375 791,-375 791,-375 797,-375 803,-381 803,-387 803,-387 803,-438 803,-438 803,-444 797,-450 791,-450 791,-450 188,-450 188,-450 182,-450 176,-444 176,-438 176,-438 176,-387 176,-387 176,-381 182,-375 188,-375" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="489.5" y="-434.8">Source platform feature context: JUnit 4</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M285.5,-256C285.5,-256 233.5,-256 233.5,-256 227.5,-256 221.5,-250 221.5,-244 221.5,-244 221.5,-232 221.5,-232 221.5,-226 227.5,-220 233.5,-220 233.5,-220 285.5,-220 285.5,-220 291.5,-220 297.5,-226 297.5,-232 297.5,-232 297.5,-244 297.5,-244 297.5,-250 291.5,-256 285.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="259.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M280.5,-188C280.5,-188 238.5,-188 238.5,-188 232.5,-188 226.5,-182 226.5,-176 226.5,-176 226.5,-164 226.5,-164 226.5,-158 232.5,-152 238.5,-152 238.5,-152 280.5,-152 280.5,-152 286.5,-152 292.5,-158 292.5,-164 292.5,-164 292.5,-176 292.5,-176 292.5,-182 286.5,-188 280.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="259.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M274.5,-120C274.5,-120 244.5,-120 244.5,-120 238.5,-120 232.5,-114 232.5,-108 232.5,-108 232.5,-96 232.5,-96 232.5,-90 238.5,-84 244.5,-84 244.5,-84 274.5,-84 274.5,-84 280.5,-84 286.5,-90 286.5,-96 286.5,-96 286.5,-108 286.5,-108 286.5,-114 280.5,-120 274.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="259.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M287.5,-52C287.5,-52 231.5,-52 231.5,-52 225.5,-52 219.5,-46 219.5,-40 219.5,-40 219.5,-28 219.5,-28 219.5,-22 225.5,-16 231.5,-16 231.5,-16 287.5,-16 287.5,-16 293.5,-16 299.5,-22 299.5,-28 299.5,-28 299.5,-40 299.5,-40 299.5,-46 293.5,-52 287.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="259.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_10427468 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_10427468</title>
+
+                    
+
+                    <path d="M783,-419C783,-419 619,-419 619,-419 613,-419 607,-413 607,-407 607,-407 607,-395 607,-395 607,-389 613,-383 619,-383 619,-383 783,-383 783,-383 789,-383 795,-389 795,-395 795,-395 795,-407 795,-407 795,-413 789,-419 783,-419" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="701" y="-398.5">Coexisting JUnit 4 tests during migration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1937206825 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1937206825</title>
+
+                    
+
+                    <path d="M323,-419C323,-419 196,-419 196,-419 190,-419 184,-413 184,-407 184,-407 184,-395 184,-395 184,-389 190,-383 196,-383 196,-383 323,-383 323,-383 329,-383 335,-389 335,-395 335,-395 335,-407 335,-407 335,-413 329,-419 323,-419" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="259.5" y="-398.5">Build and Runtime Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1937206825&#45;&gt;S_10427468 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>S_1937206825-&gt;S_10427468</title>
+
+                    
+
+                    <path d="M335.06,-401C410,-401 525.71,-401 606.7,-401" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1416884173 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_1416884173</title>
+
+                    
+
+                    <path d="M491,-336C491,-336 28,-336 28,-336 22,-336 16,-330 16,-324 16,-324 16,-312 16,-312 16,-306 22,-300 28,-300 28,-300 491,-300 491,-300 497,-300 503,-306 503,-312 503,-312 503,-324 503,-324 503,-330 497,-336 491,-336" fill="#eaf7ea" stroke="#6aa84f" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="259.5" y="-315.5">Preservation * &nbsp;Preserve Unchanged JUnit 4 Tests During Incremental Migration * TEMPORARILY_RETAINED</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1416884173&#45;&gt;S_10427468 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>C_1416884173-&gt;S_10427468</title>
+
+                    
+
+                    <path d="M355.86,-336.01C427.75,-349.58 526.1,-368.16 599.26,-381.98" fill="none" stroke="#6aa84f"></path>
+
+                    
+
+                    <polygon fill="#6aa84f" points="598.85,-384.57 606.71,-383.38 599.82,-379.41 598.85,-384.57" stroke="#6aa84f"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="555" y="-378.8">preserves</text>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

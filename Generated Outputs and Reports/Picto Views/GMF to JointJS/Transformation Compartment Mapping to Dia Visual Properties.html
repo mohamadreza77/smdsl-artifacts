@@ -1,0 +1,1155 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: Compartment Mapping to Dia Visual Properties</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> GMF Workbench =&gt; JointJS
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong>
+
+        </p>
+
+        
+
+        <ul>
+
+            
+
+            <li>
+
+                <strong>REQUIRED</strong> on Compartment Mapping, markup, object of attrs, Embedding: Apply when a GMF Compartment Mapping represents a nested visual region inside a node; in JointJS thi
+
+s must be reified using SVG markup/attrs, embedding, ports, or application-level child management.
+
+            </li>
+
+            
+
+        </ul>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> Compartment Mapping
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> tagName, selector, object of attrs
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> FullAutomation / COMPLEX
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> A GMF Compartment Mapping introduces a dedicated visual region inside a node used to structure and p
+
+resent contained content. In JointJS, a possible equivalent is to materialize that region inside the
+
+element&rsquo;s SVG/markup by defining a sub-shape via tagName and selector, and then controlling its app
+
+earance through an obhect in attrs.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] take the visual representation compartment property (A) of the compartment mapping
+
+
+
+2. [A] take the name property (B) of A
+
+
+
+3. [A] take the parent node mapping (C) of the compartment mapping
+
+
+
+4. [A] take the C's equivalent Dia Element
+
+
+
+5. [A] add an object to Visual Structure of C with the tagName and selector being 'rect' and B
+
+
+
+6. [A] add an obejct to attrs of Visual Attributes of C with the name being B
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Strategies of nested transformations</h2>
+
+        
+
+        <h3>Compartment Mapping to Dia Behaviour</h3>
+
+        
+
+        <pre>
+
+1. [A] take all the child references (D) of the children property
+
+
+
+2. [A] take all the node mappings (E) of D
+
+
+
+3. [A] take all the Es' equivalent Dia Elements (F)
+
+
+
+4. [A] take all the namespaces (G) in F
+
+
+
+5. [A] if not exist, add a function called 'canEmbed' to Behaviour of C
+
+
+
+6. [A] add G to the list inside 'canEmbed'
+
+
+
+7. [A] if not exist, add a function called 'getCompartmentSelector' to Behaviour
+
+
+
+8. [A] for every namespace (I) in G, add an if statement to 'getCompartmentSelector' in a way tha
+
+t it compares equality between element type and I, and if true, return B
+
+
+
+9. [A] if not exist, create a JavaScript file called 'util.js' with the default implementation of
+
+ 'autoEmbedAll' and 'restrictTranslate'
+
+
+
+10. [A] call 'autoEmbedAll' wherever needed to bind sub-nodes and the super-node together
+
+
+
+11. [A] bind 'restrictTranslate' and the restrictTranslate property of paper together
+
+
+
+12. [M] operators must verify the implementation and binding
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Nested migration relations</h2>
+
+        
+
+        <table>
+
+            
+
+            <thead>
+
+                
+
+                <tr>
+
+                    
+
+                    <th>Name</th>
+
+<th>Type</th>
+
+<th>Summary</th>
+
+
+
+                </tr>
+
+                
+
+            </thead>
+
+            
+
+            <tbody>
+
+                
+
+                <tr>
+
+                    
+
+                    <td>Compartment Mapping to Dia Behaviour</td>
+
+<td><code>Transformation</code></td>
+
+<td>maps Children to function</td>
+
+
+
+                </tr>
+
+                
+
+            </tbody>
+
+            
+
+        </table>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="822pt" viewBox="0.00 0.00 1165.00 822.00" width="1165pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 804)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="564.5" y="-770.8">Transformation: Compartment Mapping to Dia Visual Properties</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M70.5,-8C70.5,-8 142.5,-8 142.5,-8 148.5,-8 154.5,-14 154.5,-20 154.5,-20 154.5,-272 154.5,-272 154.5,-278 148.5,-284 142.5,-284 142.5,-284 70.5,-284 70.5,-284 64.5,-284 58.5,-278 58.5,-272 58.5,-272 58.5,-20 58.5,-20 58.5,-14 64.5,-8 70.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="106.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M418,-281C418,-281 834,-281 834,-281 840,-281 846,-287 846,-293 846,-293 846,-444 846,-444 846,-450 840,-456 834,-456 834,-456 418,-456 418,-456 412,-456 406,-450 406,-444 406,-444 406,-293 406,-293 406,-287 412,-281 418,-281" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="626" y="-440.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M559.5,-476C559.5,-476 1109,-476 1109,-476 1115,-476 1121,-482 1121,-488 1121,-488 1121,-743 1121,-743 1121,-749 1115,-755 1109,-755 1109,-755 559.5,-755 559.5,-755 553.5,-755 547.5,-749 547.5,-743 547.5,-743 547.5,-488 547.5,-488 547.5,-482 553.5,-476 559.5,-476" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="834.25" y="-739.8">Target platform feature context: JointJS</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 319,-292 319,-292 325,-292 331,-298 331,-304 331,-304 331,-355 331,-355 331,-361 325,-367 319,-367 319,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="165.5" y="-351.8">Source platform feature context: GMF Workbench</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M132.5,-256C132.5,-256 80.5,-256 80.5,-256 74.5,-256 68.5,-250 68.5,-244 68.5,-244 68.5,-232 68.5,-232 68.5,-226 74.5,-220 80.5,-220 80.5,-220 132.5,-220 132.5,-220 138.5,-220 144.5,-226 144.5,-232 144.5,-232 144.5,-244 144.5,-244 144.5,-250 138.5,-256 132.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="106.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M127.5,-188C127.5,-188 85.5,-188 85.5,-188 79.5,-188 73.5,-182 73.5,-176 73.5,-176 73.5,-164 73.5,-164 73.5,-158 79.5,-152 85.5,-152 85.5,-152 127.5,-152 127.5,-152 133.5,-152 139.5,-158 139.5,-164 139.5,-164 139.5,-176 139.5,-176 139.5,-182 133.5,-188 127.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="106.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M121.5,-120C121.5,-120 91.5,-120 91.5,-120 85.5,-120 79.5,-114 79.5,-108 79.5,-108 79.5,-96 79.5,-96 79.5,-90 85.5,-84 91.5,-84 91.5,-84 121.5,-84 121.5,-84 127.5,-84 133.5,-90 133.5,-96 133.5,-96 133.5,-108 133.5,-108 133.5,-114 127.5,-120 121.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="106.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M134.5,-52C134.5,-52 78.5,-52 78.5,-52 72.5,-52 66.5,-46 66.5,-40 66.5,-40 66.5,-28 66.5,-28 66.5,-22 72.5,-16 78.5,-16 78.5,-16 134.5,-16 134.5,-16 140.5,-16 146.5,-22 146.5,-28 146.5,-28 146.5,-40 146.5,-40 146.5,-46 140.5,-52 134.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="106.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1168960287 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1168960287</title>
+
+                    
+
+                    <path d="M150,-336C150,-336 63,-336 63,-336 57,-336 51,-330 51,-324 51,-324 51,-312 51,-312 51,-306 57,-300 63,-300 63,-300 150,-300 150,-300 156,-300 162,-306 162,-312 162,-312 162,-324 162,-324 162,-330 156,-336 150,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="106.5" y="-315.5">Compartment Mapping</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1254726791 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1254726791</title>
+
+                    
+
+                    <path d="M267,-336C267,-336 237,-336 237,-336 231,-336 225,-330 225,-324 225,-324 225,-312 225,-312 225,-306 231,-300 237,-300 237,-300 267,-300 267,-300 273,-300 279,-306 279,-312 279,-312 279,-324 279,-324 279,-330 273,-336 267,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="252" y="-315.5">Children</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1168960287&#45;&gt;S_1254726791 -->
+
+                
+
+                <g class="edge" id="edge8">
+
+                    
+
+                    <title>S_1168960287-&gt;S_1254726791</title>
+
+                    
+
+                    <path d="M162.16,-318C183.7,-318 207.43,-318 224.94,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1802265524 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_1802265524</title>
+
+                    
+
+                    <path d="M826,-425C826,-425 426,-425 426,-425 420,-425 414,-419 414,-413 414,-413 414,-401 414,-401 414,-395 420,-389 426,-389 426,-389 826,-389 826,-389 832,-389 838,-395 838,-401 838,-401 838,-413 838,-413 838,-419 832,-425 826,-425" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="626" y="-404.5">Transformation * &nbsp;Compartment Mapping to Dia Visual Properties * FullAutomation / COMPLEX</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1168960287&#45;&gt;C_1802265524 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>S_1168960287-&gt;C_1802265524</title>
+
+                    
+
+                    <path d="M162.08,-335.58C181.75,-341.44 204.23,-347.59 225,-352 296.78,-367.24 376.75,-379.21 446.2,-388.04" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="445.98,-390.66 453.75,-388.99 446.63,-385.45 445.98,-390.66" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="252" y="-374.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_497338814 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>C_497338814</title>
+
+                    
+
+                    <path d="M790,-325C790,-325 462,-325 462,-325 456,-325 450,-319 450,-313 450,-313 450,-301 450,-301 450,-295 456,-289 462,-289 462,-289 790,-289 790,-289 796,-289 802,-295 802,-301 802,-301 802,-313 802,-313 802,-319 796,-325 790,-325" fill="#e8f0fe" stroke="#3c78d8" stroke-width="1.7"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="626" y="-304.5">Transformation * &nbsp;Compartment Mapping to Dia Behaviour * OperatorHelp / MIX</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1254726791&#45;&gt;C_497338814 -->
+
+                
+
+                <g class="edge" id="edge6">
+
+                    
+
+                    <title>S_1254726791-&gt;C_497338814</title>
+
+                    
+
+                    <path d="M279.16,-317.23C313.88,-316.2 378.29,-314.3 442.19,-312.41" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="442.56,-315.02 449.98,-312.18 442.4,-309.77 442.56,-315.02" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="368.5" y="-317.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1802265524&#45;&gt;C_497338814 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>C_1802265524-&gt;C_497338814</title>
+
+                    
+
+                    <path d="M626,-388.77C626,-373.16 626,-350.49 626,-332.98" fill="none" stroke="#777777" stroke-dasharray="1,5"></path>
+
+                    
+
+                    <polygon fill="#777777" points="626,-325.34 629.38,-332.84 626,-329.09 626,-332.84 626,-332.84 626,-332.84 626,-329.09 622.63,-332.84 626,-325.34 626,-325.34" stroke="#777777"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="618" y="-354.8">subrelation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1014609289 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_1014609289</title>
+
+                    
+
+                    <path d="M984,-520C984,-520 936,-520 936,-520 930,-520 924,-514 924,-508 924,-508 924,-496 924,-496 924,-490 930,-484 936,-484 936,-484 984,-484 984,-484 990,-484 996,-490 996,-496 996,-496 996,-508 996,-508 996,-514 990,-520 984,-520" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="960" y="-499.5">object of attrs</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1802265524&#45;&gt;T_1014609289 -->
+
+                
+
+                <g class="edge" id="edge5">
+
+                    
+
+                    <title>C_1802265524-&gt;T_1014609289</title>
+
+                    
+
+                    <path d="M693.23,-425.06C736.72,-437.02 794.82,-453.17 846,-468 869.41,-474.78 895.47,-482.6 916.66,-489.03" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="915.99,-491.58 923.93,-491.25 917.52,-486.55 915.99,-491.58" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="881" y="-484.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1355134016 -->
+
+                
+
+                <g class="node" id="node14">
+
+                    
+
+                    <title>T_1355134016</title>
+
+                    
+
+                    <path d="M1101,-656C1101,-656 1071,-656 1071,-656 1065,-656 1059,-650 1059,-644 1059,-644 1059,-632 1059,-632 1059,-626 1065,-620 1071,-620 1071,-620 1101,-620 1101,-620 1107,-620 1113,-626 1113,-632 1113,-632 1113,-644 1113,-644 1113,-650 1107,-656 1101,-656" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1086" y="-635.5">tagName</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1802265524&#45;&gt;T_1355134016 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_1802265524-&gt;T_1355134016</title>
+
+                    
+
+                    <path d="M838.09,-399.73C893.93,-407.03 951.09,-423.83 996,-458 1052.24,-500.79 1023.27,-543.03 1059,-604 1060.87,-607.2 1063,-610.44 1065.22,-613.59" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1063.28,-615.38 1069.84,-619.87 1067.51,-612.27 1063.28,-615.38" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="960" y="-460.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_952699520 -->
+
+                
+
+                <g class="node" id="node18">
+
+                    
+
+                    <title>T_952699520</title>
+
+                    
+
+                    <path d="M1101,-588C1101,-588 1071,-588 1071,-588 1065,-588 1059,-582 1059,-576 1059,-576 1059,-564 1059,-564 1059,-558 1065,-552 1071,-552 1071,-552 1101,-552 1101,-552 1107,-552 1113,-558 1113,-564 1113,-564 1113,-576 1113,-576 1113,-582 1107,-588 1101,-588" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1086" y="-567.5">selector</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1802265524&#45;&gt;T_952699520 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>C_1802265524-&gt;T_952699520</title>
+
+                    
+
+                    <path d="M698.94,-388.96C774.98,-373.31 897.34,-358.03 996,-392 1062.05,-414.74 1028.37,-473.21 1059,-536 1060.59,-539.25 1062.51,-542.5 1064.58,-545.62" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1062.51,-547.23 1069,-551.82 1066.79,-544.19 1062.51,-547.23" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="960" y="-394.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_2003230853 -->
+
+                
+
+                <g class="node" id="node12">
+
+                    
+
+                    <title>T_2003230853</title>
+
+                    
+
+                    <path d="M1101,-520C1101,-520 1071,-520 1071,-520 1065,-520 1059,-514 1059,-508 1059,-508 1059,-496 1059,-496 1059,-490 1065,-484 1071,-484 1071,-484 1101,-484 1101,-484 1107,-484 1113,-490 1113,-496 1113,-496 1113,-508 1113,-508 1113,-514 1107,-520 1101,-520" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1086" y="-499.5">function</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_497338814&#45;&gt;T_2003230853 -->
+
+                
+
+                <g class="edge" id="edge7">
+
+                    
+
+                    <title>C_497338814-&gt;T_2003230853</title>
+
+                    
+
+                    <path d="M802.33,-302.09C867.23,-307.48 938.84,-322.55 996,-358 1040,-385.29 1065.59,-443.22 1077.27,-476.69" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1074.8,-477.57 1079.68,-483.84 1079.77,-475.89 1074.8,-477.57" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="960" y="-360.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_175911486 -->
+
+                
+
+                <g class="node" id="node10">
+
+                    
+
+                    <title>T_175911486</title>
+
+                    
+
+                    <path d="M975,-588C975,-588 945,-588 945,-588 939,-588 933,-582 933,-576 933,-576 933,-564 933,-564 933,-558 939,-552 945,-552 945,-552 975,-552 975,-552 981,-552 987,-558 987,-564 987,-564 987,-576 987,-576 987,-582 981,-588 975,-588" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="960" y="-567.5">rules</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_175911486&#45;&gt;T_2003230853 -->
+
+                
+
+                <g class="edge" id="edge9">
+
+                    
+
+                    <title>T_175911486-&gt;T_2003230853</title>
+
+                    
+
+                    <path d="M987.3,-555.58C1008.34,-544.04 1037.71,-527.93 1058.74,-516.4" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_128346373 -->
+
+                
+
+                <g class="node" id="node11">
+
+                    
+
+                    <title>T_128346373</title>
+
+                    
+
+                    <path d="M644.5,-724C644.5,-724 607.5,-724 607.5,-724 601.5,-724 595.5,-718 595.5,-712 595.5,-712 595.5,-700 595.5,-700 595.5,-694 601.5,-688 607.5,-688 607.5,-688 644.5,-688 644.5,-688 650.5,-688 656.5,-694 656.5,-700 656.5,-700 656.5,-712 656.5,-712 656.5,-718 650.5,-724 644.5,-724" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="626" y="-703.5">Embedding</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1309198668 -->
+
+                
+
+                <g class="node" id="node13">
+
+                    
+
+                    <title>T_1309198668</title>
+
+                    
+
+                    <path d="M669.5,-588C669.5,-588 582.5,-588 582.5,-588 576.5,-588 570.5,-582 570.5,-576 570.5,-576 570.5,-564 570.5,-564 570.5,-558 576.5,-552 582.5,-552 582.5,-552 669.5,-552 669.5,-552 675.5,-552 681.5,-558 681.5,-564 681.5,-564 681.5,-576 681.5,-576 681.5,-582 675.5,-588 669.5,-588" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="626" y="-567.5">Dia Element Behaviour</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1309198668&#45;&gt;T_175911486 -->
+
+                
+
+                <g class="edge" id="edge10">
+
+                    
+
+                    <title>T_1309198668-&gt;T_175911486</title>
+
+                    
+
+                    <path d="M681.82,-570C754.2,-570 878.77,-570 932.77,-570" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_960518614 -->
+
+                
+
+                <g class="node" id="node15">
+
+                    
+
+                    <title>T_960518614</title>
+
+                    
+
+                    <path d="M684.5,-520C684.5,-520 567.5,-520 567.5,-520 561.5,-520 555.5,-514 555.5,-508 555.5,-508 555.5,-496 555.5,-496 555.5,-490 561.5,-484 567.5,-484 567.5,-484 684.5,-484 684.5,-484 690.5,-484 696.5,-490 696.5,-496 696.5,-496 696.5,-508 696.5,-508 696.5,-514 690.5,-520 684.5,-520" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="626" y="-499.5">Dia Element Visual Attributes</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_960518614&#45;&gt;T_1014609289 -->
+
+                
+
+                <g class="edge" id="edge11">
+
+                    
+
+                    <title>T_960518614-&gt;T_1014609289</title>
+
+                    
+
+                    <path d="M696.75,-505.47C750.42,-507.61 826.42,-509.52 893,-507 902.99,-506.62 913.81,-505.92 923.75,-505.17" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_2120702689 -->
+
+                
+
+                <g class="node" id="node16">
+
+                    
+
+                    <title>T_2120702689</title>
+
+                    
+
+                    <path d="M975,-656C975,-656 945,-656 945,-656 939,-656 933,-650 933,-644 933,-644 933,-632 933,-632 933,-626 939,-620 945,-620 945,-620 975,-620 975,-620 981,-620 987,-626 987,-632 987,-632 987,-644 987,-644 987,-650 981,-656 975,-656" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="960" y="-635.5">markup</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_2120702689&#45;&gt;T_1355134016 -->
+
+                
+
+                <g class="edge" id="edge12">
+
+                    
+
+                    <title>T_2120702689-&gt;T_1355134016</title>
+
+                    
+
+                    <path d="M987.3,-638C1008.34,-638 1037.71,-638 1058.74,-638" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_2120702689&#45;&gt;T_952699520 -->
+
+                
+
+                <g class="edge" id="edge13">
+
+                    
+
+                    <title>T_2120702689-&gt;T_952699520</title>
+
+                    
+
+                    <path d="M987.3,-623.58C1008.34,-612.04 1037.71,-595.93 1058.74,-584.4" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_3064614 -->
+
+                
+
+                <g class="node" id="node17">
+
+                    
+
+                    <title>T_3064614</title>
+
+                    
+
+                    <path d="M683.5,-656C683.5,-656 568.5,-656 568.5,-656 562.5,-656 556.5,-650 556.5,-644 556.5,-644 556.5,-632 556.5,-632 556.5,-626 562.5,-620 568.5,-620 568.5,-620 683.5,-620 683.5,-620 689.5,-620 695.5,-626 695.5,-632 695.5,-632 695.5,-644 695.5,-644 695.5,-650 689.5,-656 683.5,-656" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="626" y="-635.5">Dia Element Visual Structure</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_3064614&#45;&gt;T_2120702689 -->
+
+                
+
+                <g class="edge" id="edge14">
+
+                    
+
+                    <title>T_3064614-&gt;T_2120702689</title>
+
+                    
+
+                    <path d="M695.79,-638C769.29,-638 882.06,-638 932.74,-638" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

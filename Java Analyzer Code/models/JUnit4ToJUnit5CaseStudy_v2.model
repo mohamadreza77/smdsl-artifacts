@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smdsl_updated_updated_prefix:Migration xmlns:smdsl_updated_updated_prefix="smdsl_updated_updated_uri" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:version="2.0" xmi:id="_m00001" name="JUnit4-to-JUnit5-SMDSL-v2">
+  <source name="JUnit 4" xmi:id="_p00002">
+    <features name="Build and Runtime Configuration" xmi:id="_f00004">
+      <nestedFeatures name="junit:junit dependency" xmi:id="_f00005"/>
+      <nestedFeatures name="Maven Surefire / Failsafe JUnit 4 provider" xmi:id="_f00006"/>
+      <nestedFeatures name="Gradle JUnit 4 execution" xmi:id="_f00007"/>
+      <nestedFeatures name="JUnitCore / IDE runner execution" xmi:id="_f00008"/>
+      <nestedFeatures name="Coexisting JUnit 4 tests during migration" xmi:id="_f00009"/>
+      <nestedFeatures name="JUnit 4 regression test baseline" xmi:id="_f01000"/>
+      <nestedFeatures name="legacy rules runners categories and parameterized inventory" xmi:id="_f01001"/>
+    </features>
+    <features name="Test Declaration and Visibility" xmi:id="_f00010">
+      <nestedFeatures name="@Test annotation" xmi:id="_f00011"/>
+      <nestedFeatures name="public test class" xmi:id="_f00012"/>
+      <nestedFeatures name="public test method" xmi:id="_f00013"/>
+      <nestedFeatures name="@Ignore" xmi:id="_f00014"/>
+      <nestedFeatures name="test method body" xmi:id="_f01002"/>
+    </features>
+    <features name="Lifecycle Callbacks" xmi:id="_f00015">
+      <nestedFeatures name="@Before" xmi:id="_f00016"/>
+      <nestedFeatures name="@After" xmi:id="_f00017"/>
+      <nestedFeatures name="@BeforeClass" xmi:id="_f00018"/>
+      <nestedFeatures name="@AfterClass" xmi:id="_f00019"/>
+      <nestedFeatures name="static class-level lifecycle method" xmi:id="_f00020"/>
+    </features>
+    <features name="Assertions" xmi:id="_f00021">
+      <nestedFeatures name="org.junit.Assert imports" xmi:id="_f00022"/>
+      <nestedFeatures name="message-first assertion arguments" xmi:id="_f00023"/>
+      <nestedFeatures name="assertThat with Hamcrest" xmi:id="_f00024"/>
+      <nestedFeatures name="third-party assertion library usage" xmi:id="_f01003"/>
+    </features>
+    <features name="Assumptions" xmi:id="_f00025">
+      <nestedFeatures name="Assume.assumeTrue" xmi:id="_f00026"/>
+      <nestedFeatures name="Assume.assumeFalse" xmi:id="_f00027"/>
+      <nestedFeatures name="Assume.assumeThat" xmi:id="_f00028"/>
+      <nestedFeatures name="Assume.assumeNoException" xmi:id="_f00029"/>
+      <nestedFeatures name="Assume.assumeNotNull" xmi:id="_f00030"/>
+    </features>
+    <features name="Exception Testing" xmi:id="_f00031">
+      <nestedFeatures name="@Test(expected)" xmi:id="_f00032"/>
+      <nestedFeatures name="ExpectedException Rule" xmi:id="_f00033"/>
+      <nestedFeatures name="exception message expectation" xmi:id="_f00034"/>
+      <nestedFeatures name="exception cause expectation" xmi:id="_f00035"/>
+    </features>
+    <features name="Timeout Testing" xmi:id="_f00036">
+      <nestedFeatures name="@Test(timeout)" xmi:id="_f00037"/>
+      <nestedFeatures name="Timeout Rule" xmi:id="_f00038"/>
+    </features>
+    <features name="Rules and ClassRules" xmi:id="_f00039">
+      <nestedFeatures name="@Rule" xmi:id="_f00040"/>
+      <nestedFeatures name="@ClassRule" xmi:id="_f00041"/>
+      <nestedFeatures name="TemporaryFolder Rule" xmi:id="_f00042"/>
+      <nestedFeatures name="ExternalResource Rule" xmi:id="_f00043"/>
+      <nestedFeatures name="Verifier Rule" xmi:id="_f00044"/>
+      <nestedFeatures name="ErrorCollector Rule" xmi:id="_f00045"/>
+      <nestedFeatures name="TestName Rule" xmi:id="_f00046"/>
+      <nestedFeatures name="TestWatcher Rule" xmi:id="_f00047"/>
+      <nestedFeatures name="Custom TestRule" xmi:id="_f00048"/>
+      <nestedFeatures name="Custom MethodRule" xmi:id="_f00049"/>
+    </features>
+    <features name="Runners" xmi:id="_f00050">
+      <nestedFeatures name="@RunWith" xmi:id="_f00051"/>
+      <nestedFeatures name="BlockJUnit4ClassRunner" xmi:id="_f00052"/>
+      <nestedFeatures name="SpringRunner / SpringJUnit4ClassRunner" xmi:id="_f00053"/>
+      <nestedFeatures name="MockitoJUnitRunner" xmi:id="_f00054"/>
+      <nestedFeatures name="Parameterized Runner" xmi:id="_f00055"/>
+      <nestedFeatures name="Suite Runner" xmi:id="_f00056"/>
+      <nestedFeatures name="Categories Runner" xmi:id="_f00057"/>
+      <nestedFeatures name="Theories Runner" xmi:id="_f00058"/>
+      <nestedFeatures name="Enclosed Runner" xmi:id="_f00059"/>
+      <nestedFeatures name="Custom Runner" xmi:id="_f00060"/>
+    </features>
+    <features name="Suites and Aggregation" xmi:id="_f00061">
+      <nestedFeatures name="@RunWith(Suite.class)" xmi:id="_f00062"/>
+      <nestedFeatures name="@Suite.SuiteClasses" xmi:id="_f00063"/>
+      <nestedFeatures name="JUnit 4 suite class body" xmi:id="_f00064"/>
+      <nestedFeatures name="suite selected classes" xmi:id="_f00065"/>
+    </features>
+    <features name="Categories and Filtering" xmi:id="_f00066">
+      <nestedFeatures name="@Category on class" xmi:id="_f00067"/>
+      <nestedFeatures name="@Category on method" xmi:id="_f00068"/>
+      <nestedFeatures name="category marker interface" xmi:id="_f00069"/>
+      <nestedFeatures name="included/excluded categories" xmi:id="_f00070"/>
+    </features>
+    <features name="Method Ordering" xmi:id="_f00071">
+      <nestedFeatures name="@FixMethodOrder" xmi:id="_f00072"/>
+      <nestedFeatures name="MethodSorters.NAME_ASCENDING" xmi:id="_f00073"/>
+      <nestedFeatures name="MethodSorters.DEFAULT" xmi:id="_f00074"/>
+      <nestedFeatures name="MethodSorters.JVM" xmi:id="_f00075"/>
+      <nestedFeatures name="implicit source order dependency" xmi:id="_f00076"/>
+    </features>
+    <features name="Parameterized and Data-Driven Tests" xmi:id="_f00077">
+      <nestedFeatures name="@RunWith(Parameterized.class)" xmi:id="_f00078"/>
+      <nestedFeatures name="@Parameters factory" xmi:id="_f00079"/>
+      <nestedFeatures name="@Parameter field injection" xmi:id="_f00080"/>
+      <nestedFeatures name="constructor parameter injection" xmi:id="_f00081"/>
+      <nestedFeatures name="parameterized test display name" xmi:id="_f00082"/>
+      <nestedFeatures name="@UseParametersRunnerFactory" xmi:id="_f01010"/>
+      <nestedFeatures name="@BeforeParam" xmi:id="_f01011"/>
+      <nestedFeatures name="@AfterParam" xmi:id="_f01012"/>
+    </features>
+    <features name="Theories" xmi:id="_f00083">
+      <nestedFeatures name="@RunWith(Theories.class)" xmi:id="_f00084"/>
+      <nestedFeatures name="@Theory" xmi:id="_f00085"/>
+      <nestedFeatures name="@DataPoint" xmi:id="_f00086"/>
+      <nestedFeatures name="@DataPoints" xmi:id="_f00087"/>
+    </features>
+    <features name="Legacy JUnit 3/4 TestCase Style" xmi:id="_f01020">
+      <nestedFeatures name="junit.framework.TestCase inheritance" xmi:id="_f01021"/>
+      <nestedFeatures name="setUp / tearDown methods" xmi:id="_f01022"/>
+    </features>
+  </source>
+  <target name="JUnit 5 / JUnit Jupiter and JUnit Platform" xmi:id="_p00003">
+    <features name="JUnit Platform Build and Runtime" xmi:id="_f00088">
+      <nestedFeatures name="JUnit BOM" xmi:id="_f00089"/>
+      <nestedFeatures name="junit-jupiter-api" xmi:id="_f00090"/>
+      <nestedFeatures name="junit-jupiter-engine" xmi:id="_f00091"/>
+      <nestedFeatures name="junit-platform-launcher" xmi:id="_f00092"/>
+      <nestedFeatures name="junit-vintage-engine" xmi:id="_f00093"/>
+      <nestedFeatures name="junit-jupiter-migrationsupport" xmi:id="_f00094"/>
+      <nestedFeatures name="junit-platform-suite" xmi:id="_f00095"/>
+      <nestedFeatures name="Maven Surefire / Failsafe JUnit Platform provider" xmi:id="_f01050"/>
+      <nestedFeatures name="Gradle useJUnitPlatform()" xmi:id="_f01051"/>
+      <nestedFeatures name="JUnit Jupiter dependency set" xmi:id="_f01052"/>
+    </features>
+    <features name="Jupiter Test Declaration" xmi:id="_f00096">
+      <nestedFeatures name="org.junit.jupiter.api.Test" xmi:id="_f00097"/>
+      <nestedFeatures name="package-private test class" xmi:id="_f00098"/>
+      <nestedFeatures name="package-private test method" xmi:id="_f00099"/>
+      <nestedFeatures name="@Disabled" xmi:id="_f00100"/>
+      <nestedFeatures name="execution conditions" xmi:id="_f00101"/>
+    </features>
+    <features name="Jupiter Lifecycle Callbacks" xmi:id="_f00102">
+      <nestedFeatures name="@BeforeEach" xmi:id="_f00103"/>
+      <nestedFeatures name="@AfterEach" xmi:id="_f00104"/>
+      <nestedFeatures name="@BeforeAll" xmi:id="_f00105"/>
+      <nestedFeatures name="@AfterAll" xmi:id="_f00106"/>
+      <nestedFeatures name="@TestInstance(PER_CLASS)" xmi:id="_f00107"/>
+    </features>
+    <features name="Jupiter Assertions" xmi:id="_f00108">
+      <nestedFeatures name="org.junit.jupiter.api.Assertions" xmi:id="_f00109"/>
+      <nestedFeatures name="message-last assertion arguments" xmi:id="_f00110"/>
+      <nestedFeatures name="lazy failure message Supplier" xmi:id="_f00111"/>
+      <nestedFeatures name="assertAll" xmi:id="_f00112"/>
+      <nestedFeatures name="assertThrows" xmi:id="_f00113"/>
+      <nestedFeatures name="assertThrowsExactly" xmi:id="_f00114"/>
+      <nestedFeatures name="assertTimeout" xmi:id="_f00115"/>
+      <nestedFeatures name="assertTimeoutPreemptively" xmi:id="_f00116"/>
+    </features>
+    <features name="Jupiter Assumptions" xmi:id="_f00117">
+      <nestedFeatures name="org.junit.jupiter.api.Assumptions" xmi:id="_f00118"/>
+      <nestedFeatures name="assumeTrue" xmi:id="_f00119"/>
+      <nestedFeatures name="assumeFalse" xmi:id="_f00120"/>
+      <nestedFeatures name="assumingThat" xmi:id="_f00121"/>
+    </features>
+    <features name="Jupiter Timeout and Exception Constructs" xmi:id="_f00122">
+      <nestedFeatures name="@Timeout" xmi:id="_f00123"/>
+      <nestedFeatures name="assertThrows block" xmi:id="_f00124"/>
+      <nestedFeatures name="assertTimeout block" xmi:id="_f00125"/>
+      <nestedFeatures name="assertTimeoutPreemptively block" xmi:id="_f00126"/>
+    </features>
+    <features name="Jupiter Extension Model" xmi:id="_f00127">
+      <nestedFeatures name="@ExtendWith" xmi:id="_f00128"/>
+      <nestedFeatures name="@RegisterExtension" xmi:id="_f00129"/>
+      <nestedFeatures name="static @RegisterExtension" xmi:id="_f00130"/>
+      <nestedFeatures name="BeforeEachCallback" xmi:id="_f00131"/>
+      <nestedFeatures name="AfterEachCallback" xmi:id="_f00132"/>
+      <nestedFeatures name="BeforeAllCallback" xmi:id="_f00133"/>
+      <nestedFeatures name="AfterAllCallback" xmi:id="_f00134"/>
+      <nestedFeatures name="ParameterResolver" xmi:id="_f00135"/>
+      <nestedFeatures name="ExecutionCondition" xmi:id="_f00136"/>
+      <nestedFeatures name="TestWatcher extension" xmi:id="_f00137"/>
+      <nestedFeatures name="TempDirectory / @TempDir" xmi:id="_f00138"/>
+      <nestedFeatures name="TestInfo parameter" xmi:id="_f00139"/>
+      <nestedFeatures name="TestReporter parameter" xmi:id="_f00140"/>
+      <nestedFeatures name="SpringExtension" xmi:id="_f01060"/>
+      <nestedFeatures name="MockitoExtension" xmi:id="_f01061"/>
+    </features>
+    <features name="JUnit 4 Migration Support" xmi:id="_f00141">
+      <nestedFeatures name="@EnableRuleMigrationSupport" xmi:id="_f00142"/>
+      <nestedFeatures name="@EnableJUnit4MigrationSupport" xmi:id="_f00143"/>
+      <nestedFeatures name="IgnoreCondition" xmi:id="_f00144"/>
+      <nestedFeatures name="ExternalResourceSupport" xmi:id="_f00145"/>
+      <nestedFeatures name="VerifierSupport" xmi:id="_f00146"/>
+      <nestedFeatures name="ExpectedExceptionSupport" xmi:id="_f00147"/>
+    </features>
+    <features name="Platform Suites" xmi:id="_f00148">
+      <nestedFeatures name="@Suite" xmi:id="_f00149"/>
+      <nestedFeatures name="@SelectClasses" xmi:id="_f00150"/>
+      <nestedFeatures name="@SelectPackages" xmi:id="_f00151"/>
+      <nestedFeatures name="@IncludeTags" xmi:id="_f00152"/>
+      <nestedFeatures name="@ExcludeTags" xmi:id="_f00153"/>
+      <nestedFeatures name="@IncludeClassNamePatterns" xmi:id="_f00154"/>
+      <nestedFeatures name="@SuiteDisplayName" xmi:id="_f00155"/>
+      <nestedFeatures name="junit-platform-suite-engine" xmi:id="_f00156"/>
+      <nestedFeatures name="@IncludeEngines" xmi:id="_f00157"/>
+      <nestedFeatures name="@ExcludeEngines" xmi:id="_f00158"/>
+    </features>
+    <features name="Tags and Filtering" xmi:id="_f00159">
+      <nestedFeatures name="@Tag" xmi:id="_f00160"/>
+      <nestedFeatures name="tag expression" xmi:id="_f00161"/>
+      <nestedFeatures name="Vintage category tag exposure" xmi:id="_f00162"/>
+    </features>
+    <features name="Method Ordering in Jupiter" xmi:id="_f00163">
+      <nestedFeatures name="@TestMethodOrder" xmi:id="_f00164"/>
+      <nestedFeatures name="MethodOrderer.MethodName" xmi:id="_f00165"/>
+      <nestedFeatures name="MethodOrderer.DisplayName" xmi:id="_f00166"/>
+      <nestedFeatures name="MethodOrderer.OrderAnnotation" xmi:id="_f00167"/>
+      <nestedFeatures name="MethodOrderer.Random" xmi:id="_f00168"/>
+      <nestedFeatures name="custom MethodOrderer" xmi:id="_f00169"/>
+      <nestedFeatures name="@Order" xmi:id="_f00170"/>
+      <nestedFeatures name="junit.jupiter.testmethod.order.default" xmi:id="_f00171"/>
+    </features>
+    <features name="Jupiter Parameterized Tests" xmi:id="_f00172">
+      <nestedFeatures name="@ParameterizedTest" xmi:id="_f00173"/>
+      <nestedFeatures name="@ValueSource" xmi:id="_f00174"/>
+      <nestedFeatures name="@CsvSource" xmi:id="_f00175"/>
+      <nestedFeatures name="@CsvFileSource" xmi:id="_f00176"/>
+      <nestedFeatures name="@EnumSource" xmi:id="_f00177"/>
+      <nestedFeatures name="@MethodSource" xmi:id="_f00178"/>
+      <nestedFeatures name="@ArgumentsSource" xmi:id="_f00179"/>
+      <nestedFeatures name="ArgumentsAccessor" xmi:id="_f00180"/>
+      <nestedFeatures name="ArgumentsAggregator" xmi:id="_f00181"/>
+      <nestedFeatures name="parameterized display name" xmi:id="_f00182"/>
+      <nestedFeatures name="@ParameterizedClass" xmi:id="_f01070"/>
+      <nestedFeatures name="org.junit.jupiter.params.Parameter" xmi:id="_f01071"/>
+      <nestedFeatures name="@BeforeParameterizedClassInvocation" xmi:id="_f01072"/>
+      <nestedFeatures name="@AfterParameterizedClassInvocation" xmi:id="_f01073"/>
+    </features>
+    <features name="Jupiter Dynamic and Nested Tests" xmi:id="_f00183">
+      <nestedFeatures name="@TestFactory" xmi:id="_f00184"/>
+      <nestedFeatures name="DynamicTest" xmi:id="_f00185"/>
+      <nestedFeatures name="@Nested" xmi:id="_f00186"/>
+    </features>
+    <features name="Jupiter TestCase Migration Style" xmi:id="_f01080">
+      <nestedFeatures name="annotation-based Jupiter replacement for TestCase" xmi:id="_f01081"/>
+      <nestedFeatures name="BeforeEach / AfterEach replacement for setUp / tearDown" xmi:id="_f01082"/>
+    </features>
+  </target>
+  <operators name="Migration engineer / test developer" xmi:id="_op00187"/>
+  <preMigrationRequirements xmi:id="_pmr01000" affectedFeatures="_f00088" mandatory="true" kind="RUNTIME_BASELINE" note="Ensure the project runtime and build are compatible with JUnit Jupiter requirements before migrating tests. JUnit 5 requires at least Java 8 at runtime."/>
+  <preMigrationRequirements xmi:id="_pmr01001" affectedFeatures="_f00005 _f00090 _f00091 _f00088 _f01052" mandatory="true" kind="DEPENDENCY_UPDATE" note="Add the Jupiter dependency set and platform runtime dependencies before rewriting imports or annotations."/>
+  <preMigrationRequirements xmi:id="_pmr01002" affectedFeatures="_f00006 _f00007 _f01050 _f01051" mandatory="true" kind="DEPENDENCY_UPDATE" note="Update Maven Surefire/Failsafe or Gradle test execution so that the JUnit Platform discovers and executes Jupiter tests."/>
+  <preMigrationRequirements xmi:id="_pmr01003" affectedFeatures="_f00009 _f00093" mandatory="false" kind="DEPENDENCY_UPDATE" note="Add junit-vintage-engine only when incremental migration requires temporary execution of unchanged JUnit 4 tests on the JUnit Platform. Remove it after migration."/>
+  <preMigrationRequirements xmi:id="_pmr01004" affectedFeatures="_f01000" mandatory="true" kind="TEST_BASELINE" note="Run and record the current JUnit 4 test baseline before migration so behavioral regressions can be detected after each converted group."/>
+  <preMigrationRequirements xmi:id="_pmr01005" affectedFeatures="_f00039 _f00050 _f00066 _f00077 _f01001" mandatory="true" kind="CONFIGURATION_REVIEW" note="Inventory JUnit 4-specific constructs such as Rules, ClassRules, Runners, Categories, parameterized tests, theories, and custom extensions before applying automated or manual migration."/>
+  <preMigrationRequirements xmi:id="_pmr01006" affectedFeatures="_f00016 _f00017 _f00018 _f00019 _f00014 _f00011 _f00022" mandatory="false" kind="OTHER" note="Choose an automation path such as OpenRewrite or IDE migration for simple annotations/imports, but plan manual review for custom rules, custom runners, exception scopes, timeout semantics, and data-driven tests."/>
+  <exampleRepositories name="JUnit official documentation and migration guides" uri="https://docs.junit.org/6.1.0/migrating-from-junit4.html" xmi:id="_r00188">
+    <files name="JUnit 5 User Guide" path="Migrating from JUnit 4; migration tips; parameterized classes; limited JUnit 4 rule support" xmi:id="_file00189"/>
+  </exampleRepositories>
+  <mappings name="Build Runtime and Gradual Migration" xmi:id="_map00190">
+    <correspondences name="JUnit 4 Runtime to JUnit Vintage Engine" sourceFeature="_f00009" relation="JUnit 4 tests can be preserved temporarily and executed on the JUnit Platform through the Vintage engine. This correspondence captures gradual migration rather than final modernization." xmi:id="_c00191" targetFeature="_f00093" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00192" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00193">
+        <steps description="Add JUnit Platform/Jupiter dependencies without deleting JUnit 4 immediately." order="1" type="A" xmi:id="_s00194"/>
+        <steps description="Add junit-vintage-engine on the test runtime path so unchanged JUnit 4 tests are discovered by the JUnit Platform." order="2" type="A" xmi:id="_s00195"/>
+        <steps description="Keep junit:junit available while legacy tests remain." order="3" type="A" xmi:id="_s00196"/>
+        <steps description="Run the full suite and classify remaining JUnit 4 tests by feature usage: simple annotations, rules, runners, suites, categories, parameterized tests." order="4" type="M" xmi:id="_s00197"/>
+        <steps description="Migrate test classes incrementally and remove Vintage only when no JUnit 4 tests remain." order="5" type="M" xmi:id="_s00198"/>
+      </strategy>
+    </correspondences>
+    <correspondences name="JUnit 4 Build Dependencies to Jupiter Dependencies" sourceFeature="_f00005" relation="The source dependency on junit:junit is replaced by aligned JUnit Platform and Jupiter artifacts. The BOM is a target-side dependency management construct rather than a direct test feature." xmi:id="_c00199" targetFeature="_f00089 _f00090 _f00091 _f00092" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00200" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00201">
+        <steps description="Detect build tool: Maven, Gradle, or IDE-managed classpath." order="1" type="A" xmi:id="_s00202"/>
+        <steps description="Introduce the JUnit BOM when dependency versions are managed explicitly." order="2" type="A" xmi:id="_s00203"/>
+        <steps description="Add junit-jupiter-api for compilation and junit-jupiter-engine for execution." order="3" type="A" xmi:id="_s00204"/>
+        <steps description="Add junit-platform-launcher when the build/IDE requires explicit launcher dependency." order="4" type="A" xmi:id="_s00205"/>
+        <steps description="Preserve junit:junit and Vintage if some tests still rely on JUnit 4." order="5" type="M" xmi:id="_s00206"/>
+        <steps description="After full migration, remove junit:junit, Vintage, and migration-support dependencies unless deliberately retained." order="6" type="M" xmi:id="_s00207"/>
+      </strategy>
+    </correspondences>
+    <correspondences xmi:id="_c01000" xsi:type="smdsl_updated_updated_prefix:Bridge" name="JUnit Vintage Engine Coexistence Bridge" bridgeFeatures="_f00009 _f00093 _f00092" scope="WHOLE_MIGRATION" rationale="The Vintage engine bridges unchanged JUnit 3/4 tests into the JUnit Platform, allowing JUnit 4 and Jupiter tests to coexist during incremental migration." cleanupRequired="true">
+      <conditions xmi:id="_cond10021" polarity="OPTIONAL" subjectFeatures="_f00009 _f00093" expression="Use only while unchanged JUnit 4 tests remain; remove after full Jupiter migration."/>
+    </correspondences>
+    <correspondences xmi:id="_c01001" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Unchanged JUnit 4 Tests During Incremental Migration" preservedFeatures="_f00009" kind="TEMPORARILY_RETAINED" reason="Existing JUnit 4 tests may remain unchanged and be executed through Vintage while the migration proceeds class by class.">
+      <conditions xmi:id="_cond10022" polarity="OPTIONAL" subjectFeatures="_f00009" expression="Applies to incremental migrations where immediate full conversion is not feasible."/>
+    </correspondences>
+    <correspondences xmi:id="_c01002" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Vintage Engine Temporary and Deprecated Support" kind="SUPPORT_DEPRECATED" affectedSourceFeatures="_f00009" affectedTargetFeatures="_f00093" rationale="Vintage support is a temporary compatibility path rather than the final target state; relying on it long term introduces upgrade risk."/>
+    <correspondences xmi:id="_c01003" xsi:type="smdsl_updated_updated_prefix:Transformation" name="JUnit 4 Build Execution to JUnit Platform Execution" sourceFeature="_f00006" targetFeature="_f01050 _f01051" relation="JUnit 4-specific build execution is replaced by JUnit Platform-aware execution in Maven Surefire/Failsafe or Gradle useJUnitPlatform().">
+      <complexity xmi:id="_ad10023" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st10024">
+        <steps xmi:id="_s10025" order="1" type="A" description="Upgrade or configure Maven Surefire/Failsafe or Gradle Test to execute via the JUnit Platform."/>
+        <steps xmi:id="_s10026" order="2" type="A" description="Keep both Vintage and Jupiter engines during incremental migration if required."/>
+        <steps xmi:id="_s10027" order="3" type="M" description="Run the full suite and verify that both legacy and migrated tests are discovered correctly."/>
+      </strategy>
+    </correspondences>
+  </mappings>
+  <mappings name="Core Test Annotation and Lifecycle Migration" xmi:id="_map00208">
+    <correspondences name="@Test Annotation to Jupiter @Test" sourceFeature="_f00011" relation="Both annotations declare a test method, but the package changes from org.junit.Test to org.junit.jupiter.api.Test and JUnit 4 attributes expected and timeout are not part of Jupiter @Test." xmi:id="_c00209" targetFeature="_f00097" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00210" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00211">
+        <steps description="Replace import org.junit.Test with import org.junit.jupiter.api.Test." order="1" type="A" xmi:id="_s00212"/>
+        <steps description="If @Test has no expected or timeout attributes, leave the annotation shape unchanged." order="2" type="A" xmi:id="_s00213"/>
+        <steps description="If expected is present, delegate to the @Test(expected) to assertThrows correspondence." order="3" type="A" xmi:id="_s00214"/>
+        <steps description="If timeout is present, delegate to the @Test(timeout) correspondence." order="4" type="A" xmi:id="_s00215"/>
+        <steps description="Verify that method visibility and runner/rule semantics do not depend on JUnit 4 behavior." order="5" type="M" xmi:id="_s00216"/>
+      </strategy>
+      <conditions xmi:id="_cond10012" polarity="ABSENT" subjectFeatures="_f00032 _f00037" expression="Applies only to simple @Test usage without expected or timeout attributes; otherwise use exception or timeout transformations."/>
+    </correspondences>
+    <correspondences name="Public Test Members to Package-Private Jupiter Members" sourceFeature="_f00013" relation="JUnit Jupiter test classes and methods do not need to be public. Keeping public is valid but no longer required, so this is a maintained/optional modernization case rather than a necessary mapping." xmi:id="_c00217" targetFeature="_f00099" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00218" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="EASY"/>
+      <strategy xmi:id="_st00219">
+        <steps description="Detect public modifier on test classes and methods." order="1" type="A" xmi:id="_s00220"/>
+        <steps description="Either keep the modifier unchanged for behavior preservation or remove it as style modernization." order="2" type="A" xmi:id="_s00221"/>
+        <steps description="Do not change visibility if external tooling, inheritance, or generated tests rely on public access." order="3" type="M" xmi:id="_s00222"/>
+      </strategy>
+    </correspondences>
+    <correspondences name="@Before and @After to @BeforeEach and @AfterEach" sourceFeature="_f00016" relation="JUnit 4 per-test setup maps directly to Jupiter per-test setup. The analogous mapping holds for @After to @AfterEach." xmi:id="_c00223" targetFeature="_f00103" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00224" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="EASY"/>
+      <strategy xmi:id="_st00225">
+        <steps description="Replace org.junit.Before import with org.junit.jupiter.api.BeforeEach." order="1" type="A" xmi:id="_s00226"/>
+        <steps description="Replace @Before annotation with @BeforeEach." order="2" type="A" xmi:id="_s00227"/>
+        <steps description="For @After, replace import and annotation with @AfterEach." order="3" type="A" xmi:id="_s00228"/>
+        <steps description="Preserve method body and order relative to other lifecycle methods." order="4" type="A" xmi:id="_s00229"/>
+      </strategy>
+      <subcorrespondences name="@After to @AfterEach" sourceFeature="_f00017" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00230" targetFeature="_f00104" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00231" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="EASY"/>
+        <strategy xmi:id="_st00232">
+          <steps description="Replace org.junit.After import with org.junit.jupiter.api.AfterEach." order="1" type="A" xmi:id="_s00233"/>
+          <steps description="Replace @After with @AfterEach." order="2" type="A" xmi:id="_s00234"/>
+        </strategy>
+      </subcorrespondences>
+    </correspondences>
+    <correspondences name="@BeforeClass and @AfterClass to @BeforeAll and @AfterAll" sourceFeature="_f00018" relation="JUnit 4 class-level setup and teardown map to Jupiter class-level lifecycle callbacks. Static requirements are mostly preserved unless the target class opts into per-class test instance lifecycle." xmi:id="_c00235" targetFeature="_f00105" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00236" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00237">
+        <steps description="Replace @BeforeClass with @BeforeAll and @AfterClass with @AfterAll." order="1" type="A" xmi:id="_s00238"/>
+        <steps description="If the source method is static, preserve static and migrate directly." order="2" type="A" xmi:id="_s00239"/>
+        <steps description="If modernization wants non-static class-level callbacks, add @TestInstance(PER_CLASS) at the class level." order="3" type="M" xmi:id="_s00240"/>
+        <steps description="Check inherited lifecycle methods because Jupiter has its own inheritance and overriding rules." order="4" type="M" xmi:id="_s00241"/>
+      </strategy>
+      <subcorrespondences name="@AfterClass to @AfterAll" sourceFeature="_f00019" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00242" targetFeature="_f00106" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00243" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="EASY"/>
+        <strategy xmi:id="_st00244">
+          <steps description="Replace org.junit.AfterClass import with org.junit.jupiter.api.AfterAll." order="1" type="A" xmi:id="_s00245"/>
+          <steps description="Replace @AfterClass with @AfterAll." order="2" type="A" xmi:id="_s00246"/>
+        </strategy>
+      </subcorrespondences>
+      <conditions xmi:id="_cond10013" polarity="OPTIONAL" subjectFeatures="_f00020 _f00107" expression="If class-level lifecycle methods should be non-static in Jupiter, add @TestInstance(PER_CLASS); otherwise keep static method shape."/>
+    </correspondences>
+    <correspondences name="@Ignore to @Disabled or Migration-Support IgnoreCondition" sourceFeature="_f00014" relation="@Ignore no longer exists in Jupiter. The normal target is @Disabled, but JUnit 4 @Ignore can also be supported temporarily via junit-jupiter-migrationsupport." xmi:id="_c00247" targetFeature="_f00100 _f00144 _f00143" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00248" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00249">
+        <steps description="If the class/method is being fully migrated to Jupiter, replace @Ignore with @Disabled and preserve the reason string when present." order="1" type="A" xmi:id="_s00250"/>
+        <steps description="If a gradual migration keeps @Ignore temporarily on Jupiter tests, add junit-jupiter-migrationsupport and register IgnoreCondition or @EnableJUnit4MigrationSupport." order="2" type="M" xmi:id="_s00251"/>
+        <steps description="If @Ignore is on a still-vintage JUnit 4 test, leave unchanged until that class is migrated." order="3" type="M" xmi:id="_s00252"/>
+        <steps description="Verify build/test reports because ignored/disabled terminology may appear differently." order="4" type="M" xmi:id="_s00253"/>
+      </strategy>
+      <conditions xmi:id="_cond10014" polarity="OPTIONAL" subjectFeatures="_f00014 _f00100 _f00144 _f00143" expression="Use @Disabled for full migration; use IgnoreCondition or @EnableJUnit4MigrationSupport only during gradual migration."/>
+    </correspondences>
+    <correspondences xmi:id="_c01010" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Test Method Bodies When Migrating Simple Tests" preservedFeatures="_f01002" kind="SEMANTICALLY_PRESERVED" reason="For simple tests, the test body normally remains semantically preserved; migration mainly changes imports, annotations, and assertion APIs.">
+      <conditions xmi:id="_cond10028" polarity="ABSENT" subjectFeatures="_f00032 _f00037 _f00039 _f00050" expression="Does not apply when the body depends on expected-exception scoping, timeout behavior, rules, runners, or lifecycle side effects."/>
+    </correspondences>
+    <correspondences xmi:id="_c01011" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Optional Preservation of Public Visibility" preservedFeatures="_f00012 _f00013" kind="UNCHANGED" reason="Jupiter does not require public classes or methods, but retaining public visibility is valid and can reduce unnecessary diff noise.">
+      <conditions xmi:id="_cond10029" polarity="OPTIONAL" subjectFeatures="_f00098 _f00099" expression="Remove public modifiers only when code style or automation policy prefers package-private tests."/>
+    </correspondences>
+    <correspondences xmi:id="_c01012" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Test Member Visibility Requirement Relaxed" kind="DEFAULT_VALUE_CHANGED" affectedSourceFeatures="_f00012 _f00013" affectedTargetFeatures="_f00098 _f00099" rationale="JUnit Jupiter permits package-private test classes and methods, so public visibility is no longer required even though it may be preserved."/>
+  </mappings>
+  <mappings name="Assertions and Assumptions Migration" xmi:id="_map00254">
+    <correspondences name="JUnit 4 Assert Imports to Jupiter Assertions" sourceFeature="_f00022" relation="JUnit 4 assertions can often be replaced by Jupiter Assertions, but JUnit Jupiter also allows continued use of org.junit.Assert or third-party assertion libraries." xmi:id="_c00255" targetFeature="_f00109" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00256" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00257">
+        <steps description="Replace static imports from org.junit.Assert with org.junit.jupiter.api.Assertions when equivalent methods exist." order="1" type="A" xmi:id="_s00258"/>
+        <steps description="For assertion methods with message argument, delegate to the message-first to message-last subcorrespondence." order="2" type="A" xmi:id="_s00259"/>
+        <steps description="For assertThat, decide whether to keep Hamcrest assertThat or migrate to another assertion library; Jupiter Assertions has no direct assertThat replacement." order="3" type="M" xmi:id="_s00260"/>
+        <steps description="Run tests to confirm overload resolution, especially arrays, floating point deltas, and primitive/object overloads." order="4" type="M" xmi:id="_s00261"/>
+      </strategy>
+      <subcorrespondences name="Message-first Assertion Arguments to Message-last Assertion Arguments" sourceFeature="_f00023" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00262" targetFeature="_f00110 _f00111" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00263" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+        <strategy xmi:id="_st00264">
+          <steps description="Detect assertions where the first argument is a String failure message." order="1" type="A" xmi:id="_s00265"/>
+          <steps description="Move the message argument to the last position." order="2" type="A" xmi:id="_s00266"/>
+          <steps description="If desired, convert expensive message construction to Supplier&lt;String&gt;." order="3" type="M" xmi:id="_s00267"/>
+          <steps description="Compile to verify overloaded method resolution." order="4" type="A" xmi:id="_s00268"/>
+        </strategy>
+      </subcorrespondences>
+      <conditions xmi:id="_cond10015" polarity="OPTIONAL" subjectFeatures="_f00022 _f01003" expression="Assertions may be migrated to Jupiter Assertions, but external assertion libraries can be preserved."/>
+    </correspondences>
+    <correspondences name="Assume.assumeTrue / assumeFalse to Jupiter assumeTrue / assumeFalse" sourceFeature="_f00026" relation="The boolean assumption concepts are directly available in Jupiter Assumptions, with message argument ordering adjusted when a message is used." xmi:id="_c00269" targetFeature="_f00119" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00270" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="EASY"/>
+      <strategy xmi:id="_st00271">
+        <steps description="Replace static imports from org.junit.Assume.assumeTrue/assumeFalse with org.junit.jupiter.api.Assumptions.assumeTrue/assumeFalse." order="1" type="A" xmi:id="_s00272"/>
+        <steps description="Keep the boolean condition unchanged." order="2" type="A" xmi:id="_s00273"/>
+        <steps description="Move an optional failure message from first position to last position if present." order="3" type="A" xmi:id="_s00274"/>
+        <steps description="For complex conditional execution with a lambda block, consider assumingThat only when the source intent is conditional execution of a block rather than aborting the whole test." order="4" type="M" xmi:id="_s00275"/>
+      </strategy>
+      <subcorrespondences name="Assume.assumeFalse to Jupiter assumeFalse" sourceFeature="_f00027" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00276" targetFeature="_f00120" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00277" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="EASY"/>
+        <strategy xmi:id="_st00278">
+          <steps description="Replace import and preserve condition." order="1" type="A" xmi:id="_s00279"/>
+          <steps description="Move message argument to the end if present." order="2" type="A" xmi:id="_s00280"/>
+        </strategy>
+      </subcorrespondences>
+    </correspondences>
+    <correspondences name="Assume.assumeNoException Approximation" sourceFeature="_f00029" relation="JUnit 4 provides assumeNoException(Throwable), but Jupiter Assumptions does not provide the same method. The closest approximation is to express the absence of a Throwable as a boolean assumption." xmi:id="_c00281" targetFeature="_f00119 _f00120" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00282" xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" rationale="No dedicated assumeNoException method exists in Jupiter Assumptions. The migration must rewrite the intent as a boolean assumption over the Throwable variable or redesign the surrounding try/catch." possibleApproximation="_f00119 _f00120" operators="_op00187" difficulty="EASY" kind="MIX"/>
+      <strategy xmi:id="_st00283">
+        <steps description="Locate the Throwable value passed to assumeNoException(t)." order="1" type="A" xmi:id="_s00284"/>
+        <steps description="If t is a variable available after a catch block, rewrite to assumeTrue(t == null) or assumeFalse(t != null)." order="2" type="A" xmi:id="_s00285"/>
+        <steps description="If the source call is inside a catch block, inspect whether aborting the test or rethrowing/asserting is the intended behavior." order="3" type="M" xmi:id="_s00286"/>
+        <steps description="If a message was attached in source code or surrounding code, move it to the last argument or a Supplier in the target." order="4" type="A" xmi:id="_s00287"/>
+        <steps description="Run the test to ensure abort semantics are preserved rather than converted into failure semantics." order="5" type="M" xmi:id="_s00288"/>
+      </strategy>
+    </correspondences>
+    <correspondences name="Assume.assumeNotNull Approximation" sourceFeature="_f00030" relation="JUnit 4 assumeNotNull(Object...) has no direct Jupiter Assumptions equivalent. The intent is approximated by checking all referenced objects with assumeTrue or assumeFalse." xmi:id="_c00289" targetFeature="_f00119 _f00120" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00290" xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" rationale="Jupiter Assumptions does not provide assumeNotNull(Object...). A migration must synthesize a boolean non-null condition over one or more objects." possibleApproximation="_f00119 _f00120" operators="_op00187" difficulty="EASY" kind="MIX"/>
+      <strategy xmi:id="_st00291">
+        <steps description="Extract the object list passed to assumeNotNull." order="1" type="A" xmi:id="_s00292"/>
+        <steps description="If there is one object x, rewrite to assumeTrue(x != null)." order="2" type="A" xmi:id="_s00293"/>
+        <steps description="If there are multiple objects, synthesize assumeTrue(Stream.of(objects).allMatch(Objects::nonNull)) or a conjunction x != null &amp;&amp; y != null." order="3" type="A" xmi:id="_s00294"/>
+        <steps description="Add imports for java.util.Objects/Stream only if the Stream formulation is selected." order="4" type="A" xmi:id="_s00295"/>
+        <steps description="Ask the operator to choose readability-preserving formulation when the object list is long or contains method calls with side effects." order="5" type="M" xmi:id="_s00296"/>
+      </strategy>
+    </correspondences>
+    <correspondences name="Assume.assumeThat and Hamcrest Assumptions" sourceFeature="_f00028" relation="JUnit 4 assumeThat relies on a Hamcrest matcher. Jupiter does not provide the same assumeThat API, so the matcher intent must either be preserved through migration-support/Hamcrest facilities or rewritten as a boolean assumption." xmi:id="_c00297" targetFeature="_f00119 _f00121" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00298" xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" rationale="The source matcher-based assumption is not structurally equivalent to Jupiter assumeTrue/assumeFalse. Rewriting may require understanding matcher semantics." possibleApproximation="_f00119 _f00120 _f00121" operators="_op00187" difficulty="COMPLEX" kind="MIX"/>
+      <strategy xmi:id="_st00299">
+        <steps description="Identify the actual value and Hamcrest matcher." order="1" type="A" xmi:id="_s00300"/>
+        <steps description="If the matcher is simple, such as is(nullValue()), notNullValue(), equalTo(v), containsString(s), rewrite to an equivalent boolean condition." order="2" type="M" xmi:id="_s00301"/>
+        <steps description="If the matcher is complex or custom, keep the Hamcrest assumption temporarily or redesign the test condition manually." order="3" type="M" xmi:id="_s00302"/>
+        <steps description="Use assumingThat only if the intended target is conditional execution of a block rather than aborting the entire test." order="4" type="M" xmi:id="_s00303"/>
+      </strategy>
+    </correspondences>
+    <correspondences xmi:id="_c01020" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Third-Party Assertion Libraries" preservedFeatures="_f00024 _f01003" kind="UNCHANGED" reason="JUnit Jupiter can coexist with Hamcrest, AssertJ, Truth, and other assertion libraries; these do not need to be rewritten merely because the test framework changes.">
+      <conditions xmi:id="_cond10030" polarity="OPTIONAL" subjectFeatures="_f00024" expression="Applies when assertion library dependencies are explicitly retained and assertions are not org.junit.Assert-specific."/>
+    </correspondences>
+    <correspondences xmi:id="_c01021" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Failure Message Argument Order Changed" kind="CONFIGURATION_SEMANTICS_CHANGED" affectedSourceFeatures="_f00023 _f00026 _f00027" affectedTargetFeatures="_f00110 _f00111" rationale="JUnit 4 assertion and assumption messages are usually first arguments, while Jupiter places messages last and may use lazy Supplier messages."/>
+    <correspondences xmi:id="_c01022" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Matcher-Based Assumption Requires Validation" kind="VALIDATION_REQUIRED" affectedSourceFeatures="_f00028" affectedTargetFeatures="_f00119 _f00120 _f00121" rationale="Matcher-based assumptions require semantic inspection because Jupiter does not provide a structurally identical assumeThat replacement."/>
+  </mappings>
+  <mappings name="Exception and Timeout Migration" xmi:id="_map00304">
+    <correspondences name="@Test(expected) to assertThrows" sourceFeature="_f00032" relation="JUnit 4 expected-exception tests declare only the exception type at annotation level. Jupiter assertThrows requires the operator or transformation to identify and wrap the specific executable statement or block expected to throw." xmi:id="_c00305" targetFeature="_f00113 _f00124" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00306" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00307">
+        <steps description="Detect @Test(expected = E.class) and remove the expected attribute from @Test." order="1" type="A" xmi:id="_s00308"/>
+        <steps description="Identify the minimal statement or expression that is expected to throw E. This information is often implicit in the source test body." order="2" type="M" xmi:id="_s00309"/>
+        <steps description="Wrap that statement in assertThrows(E.class, () -&gt; { ... })." order="3" type="M" xmi:id="_s00310"/>
+        <steps description="If statements before the throwing line set up state, keep them before assertThrows." order="4" type="M" xmi:id="_s00311"/>
+        <steps description="If statements after the throwing line existed in JUnit 4, mark them unreachable under the source semantics and inspect whether they should be removed or moved into target assertions." order="5" type="M" xmi:id="_s00312"/>
+        <steps description="If the exception object is needed, assign the result of assertThrows to a variable and add message/cause assertions." order="6" type="M" xmi:id="_s00313"/>
+        <steps description="Run the migrated test to ensure it fails if no exception is thrown and also fails for the wrong exception type." order="7" type="A" xmi:id="_s00314"/>
+      </strategy>
+      <conditions xmi:id="_cond10016" polarity="REQUIRED" subjectFeatures="_f00032 _f00113" expression="Applies when @Test declares expected = SomeException.class; target code must wrap the exact throwing statement or block."/>
+    </correspondences>
+    <correspondences name="ExpectedException Rule to assertThrows or Migration Support" sourceFeature="_f00033" relation="The ExpectedException rule is not a Jupiter rule. It can be rewritten to assertThrows with explicit assertions, or temporarily preserved through JUnit Jupiter migration support." xmi:id="_c00315" targetFeature="_f00113 _f00147 _f00142" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00316" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00317">
+        <steps description="Detect ExpectedException field annotated with @Rule." order="1" type="A" xmi:id="_s00318"/>
+        <steps description="If the project chooses gradual migration, enable @EnableRuleMigrationSupport or @EnableJUnit4MigrationSupport and keep the rule temporarily." order="2" type="M" xmi:id="_s00319"/>
+        <steps description="For full Jupiter migration, locate rule.expect(E.class), expectMessage, expectCause, and expectThat declarations." order="3" type="A" xmi:id="_s00320"/>
+        <steps description="Identify the executable statement expected to throw." order="4" type="M" xmi:id="_s00321"/>
+        <steps description="Create Exception ex = assertThrows(E.class, () -&gt; ...)." order="5" type="M" xmi:id="_s00322"/>
+        <steps description="Translate expectMessage into assertions on ex.getMessage()." order="6" type="A" xmi:id="_s00323"/>
+        <steps description="Translate expectCause / expectThat into explicit assertions; custom matchers may require manual rewriting." order="7" type="M" xmi:id="_s00324"/>
+      </strategy>
+    </correspondences>
+    <correspondences name="@Test(timeout) to Timeout Constructs" sourceFeature="_f00037" relation="JUnit 4 timeout on @Test applies a method-level timeout. Jupiter offers annotation-level @Timeout and assertion-level timeout blocks, with non-preemptive and preemptive variants." xmi:id="_c00325" targetFeature="_f00123 _f00115 _f00116" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00326" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00327">
+        <steps description="Remove timeout attribute from @Test." order="1" type="A" xmi:id="_s00328"/>
+        <steps description="If the whole test method should be bounded, add @Timeout with the same duration and time unit conversion." order="2" type="A" xmi:id="_s00329"/>
+        <steps description="If only a specific operation should be timed, wrap that operation with assertTimeout." order="3" type="M" xmi:id="_s00330"/>
+        <steps description="Use assertTimeoutPreemptively only when interrupting the executable is acceptable; warn operator about thread-local and cleanup risks." order="4" type="M" xmi:id="_s00331"/>
+        <steps description="If both expected and timeout attributes exist, combine assertThrows with assertTimeout carefully and verify nesting semantics." order="5" type="M" xmi:id="_s00332"/>
+      </strategy>
+      <conditions xmi:id="_cond10017" polarity="REQUIRED" subjectFeatures="_f00037 _f00123 _f00115" expression="Applies when @Test declares timeout = milliseconds; choose @Timeout or assertTimeout based on desired scope and semantics."/>
+    </correspondences>
+    <correspondences name="Timeout Rule to @Timeout or Timeout Assertions" sourceFeature="_f00038" relation="The JUnit 4 Timeout rule applies timeout behavior through the rule mechanism. Jupiter has annotation and assertion constructs instead of the rule." xmi:id="_c00333" targetFeature="_f00123 _f00115 _f00116" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00334" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00335">
+        <steps description="Detect @Rule Timeout or @ClassRule Timeout and its configured duration." order="1" type="A" xmi:id="_s00336"/>
+        <steps description="If rule applies uniformly to each test, replace with class-level or method-level @Timeout." order="2" type="A" xmi:id="_s00337"/>
+        <steps description="If timeout behavior is conditional or composed with other rules, inspect manually." order="3" type="M" xmi:id="_s00338"/>
+        <steps description="If timeout is intended for only part of a test, use assertTimeout around that executable." order="4" type="M" xmi:id="_s00339"/>
+        <steps description="Validate behavior under parallel execution and thread interruption policies." order="5" type="M" xmi:id="_s00340"/>
+      </strategy>
+    </correspondences>
+    <correspondences xmi:id="_c01030" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Expected Exception Attribute Removed From @Test" kind="SUPPORT_REMOVED" affectedSourceFeatures="_f00032 _f00034 _f00035" affectedTargetFeatures="_f00113 _f00114 _f00124" rationale="The expected attribute is not part of Jupiter @Test. Migrated code must introduce assertThrows around the intended throwing code and explicitly check message or cause when required."/>
+    <correspondences xmi:id="_c01031" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Timeout Annotation Semantics Need Selection" kind="VALIDATION_REQUIRED" affectedSourceFeatures="_f00037 _f00038" affectedTargetFeatures="_f00123 _f00115 _f00116" rationale="JUnit 4 timeout mechanisms do not map to one unique Jupiter construct. The model must record whether timeout applies to a whole test, a block, or preemptive execution."/>
+    <correspondences xmi:id="_c01032" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Exception Type Intent" preservedFeatures="_f00032 _f00033" kind="SEMANTICALLY_PRESERVED" reason="The intended exception type can be preserved even though the syntax changes from annotation/rule-based expectation to assertThrows."/>
+  </mappings>
+  <mappings name="Rules ClassRules and Extension Model Migration" xmi:id="_map00341">
+    <correspondences name="TemporaryFolder Rule to @TempDir" sourceFeature="_f00042" relation="The TemporaryFolder rule is represented in Jupiter by the built-in TempDirectory extension and @TempDir injection." xmi:id="_c00342" targetFeature="_f00138" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00343" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00344">
+        <steps description="Detect TemporaryFolder fields or methods annotated with @Rule." order="1" type="A" xmi:id="_s00345"/>
+        <steps description="Replace field-based rule with @TempDir Path or File field/parameter." order="2" type="A" xmi:id="_s00346"/>
+        <steps description="Rewrite folder.newFile/newFolder calls to Files.createFile/createDirectory or resolve against the injected directory." order="3" type="M" xmi:id="_s00347"/>
+        <steps description="If legacy code depends on TemporaryFolder API methods, choose between adapter support and manual rewrite." order="4" type="M" xmi:id="_s00348"/>
+        <steps description="Remove org.junit.rules.TemporaryFolder import after rewrite." order="5" type="A" xmi:id="_s00349"/>
+      </strategy>
+    </correspondences>
+    <correspondences name="ExternalResource Rule to Extension Callbacks" sourceFeature="_f00043" relation="ExternalResource before/after behavior can be adapted temporarily through migration support or reified as Jupiter before/after extension callbacks." xmi:id="_c00350" targetFeature="_f00131 _f00132 _f00133 _f00134 _f00145" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00351" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00352">
+        <steps description="Detect whether ExternalResource is used as @Rule or @ClassRule." order="1" type="A" xmi:id="_s00353"/>
+        <steps description="For gradual migration, enable ExternalResourceSupport through @EnableRuleMigrationSupport." order="2" type="M" xmi:id="_s00354"/>
+        <steps description="For full migration, create an extension implementing BeforeEachCallback and AfterEachCallback for @Rule semantics." order="3" type="M" xmi:id="_s00355"/>
+        <steps description="For @ClassRule semantics, implement BeforeAllCallback and AfterAllCallback or use static @RegisterExtension." order="4" type="M" xmi:id="_s00356"/>
+        <steps description="Move resource acquisition and cleanup code preserving exception behavior." order="5" type="M" xmi:id="_s00357"/>
+        <steps description="Register extension using @ExtendWith for reusable extension classes or @RegisterExtension for configured instances." order="6" type="M" xmi:id="_s00358"/>
+      </strategy>
+    </correspondences>
+    <correspondences name="Verifier and ErrorCollector Rules" sourceFeature="_f00044" relation="Verifier and ErrorCollector are supported by JUnit Jupiter migration support, but full modernization usually requires explicit grouped assertions or custom after-each verification." xmi:id="_c00359" targetFeature="_f00146 _f00112 _f00132" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00360" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00361">
+        <steps description="Detect Verifier, ErrorCollector, or subclasses." order="1" type="A" xmi:id="_s00362"/>
+        <steps description="For gradual migration, enable VerifierSupport through @EnableRuleMigrationSupport." order="2" type="M" xmi:id="_s00363"/>
+        <steps description="For ErrorCollector, collect expected checks and rewrite to assertAll where each collected check becomes an executable assertion." order="3" type="M" xmi:id="_s00364"/>
+        <steps description="For custom Verifier, implement AfterEachCallback or AfterTestExecutionCallback." order="4" type="M" xmi:id="_s00365"/>
+        <steps description="Check whether verification must run after failed tests; choose callback accordingly." order="5" type="M" xmi:id="_s00366"/>
+      </strategy>
+      <subcorrespondences name="ErrorCollector Rule to assertAll" sourceFeature="_f00045" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00367" targetFeature="_f00112" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00368" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+        <strategy xmi:id="_st00369">
+          <steps description="Find collector.checkThat/checkSucceeds usages." order="1" type="A" xmi:id="_s00370"/>
+          <steps description="Convert independent collected assertions to lambdas inside assertAll." order="2" type="M" xmi:id="_s00371"/>
+          <steps description="Preserve failure aggregation semantics as closely as possible." order="3" type="M" xmi:id="_s00372"/>
+        </strategy>
+      </subcorrespondences>
+    </correspondences>
+    <correspondences name="TestName Rule to TestInfo Parameter" sourceFeature="_f00046" relation="JUnit 4 TestName exposes the current test method name through a rule. Jupiter injects TestInfo into test methods and lifecycle callbacks." xmi:id="_c00373" targetFeature="_f00139" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00374" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00375">
+        <steps description="Detect TestName rule field." order="1" type="A" xmi:id="_s00376"/>
+        <steps description="For each use of testName.getMethodName(), add TestInfo parameter to the test or lifecycle method where the name is needed." order="2" type="A" xmi:id="_s00377"/>
+        <steps description="Replace getMethodName() with testInfo.getTestMethod().map(Method::getName) or display-name-based access depending on intent." order="3" type="M" xmi:id="_s00378"/>
+        <steps description="If many helper methods depend on the field, consider storing TestInfo in a before-each field manually." order="4" type="M" xmi:id="_s00379"/>
+      </strategy>
+    </correspondences>
+    <correspondences name="TestWatcher Rule to Jupiter TestWatcher Extension" sourceFeature="_f00047" relation="TestWatcher maps conceptually to Jupiter TestWatcher extension callbacks, but exact timing and available context should be verified." xmi:id="_c00380" targetFeature="_f00137 _f00129 _f00128" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00381" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00382">
+        <steps description="Detect TestWatcher subclass methods: succeeded, failed, skipped, starting, finished." order="1" type="A" xmi:id="_s00383"/>
+        <steps description="Create a Jupiter extension implementing org.junit.jupiter.api.extension.TestWatcher and any needed lifecycle callbacks." order="2" type="M" xmi:id="_s00384"/>
+        <steps description="Map succeeded/failed/skipped events to the corresponding Jupiter callbacks." order="3" type="M" xmi:id="_s00385"/>
+        <steps description="Replace Description-dependent code with ExtensionContext access." order="4" type="M" xmi:id="_s00386"/>
+        <steps description="Register using @ExtendWith for stateless watchers or @RegisterExtension for configured watchers." order="5" type="M" xmi:id="_s00387"/>
+      </strategy>
+    </correspondences>
+    <correspondences name="Custom @Rule to @RegisterExtension or @ExtendWith" sourceFeature="_f00048" relation="Custom JUnit 4 rules have no automatic general mapping. They must be classified according to the lifecycle phase or service they implement and then redesigned as one or more Jupiter extensions." xmi:id="_c00388" targetFeature="_f00129 _f00128 _f00131 _f00132 _f00136 _f00135" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00389" xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" rationale="JUnit Jupiter does not natively support arbitrary JUnit 4 rules. Only selected rule types are supported by migration-support; custom TestRule/MethodRule behavior may change execution flow and needs redesign." possibleApproximation="_f00129 _f00128 _f00131 _f00132 _f00136 _f00135" operators="_op00187" difficulty="COMPLEX" kind="MIX"/>
+      <strategy xmi:id="_st00390">
+        <steps description="Classify the custom rule behavior: before/after resource, conditional disabling, exception handling, parameter injection, reporting, or statement wrapping." order="1" type="M" xmi:id="_s00391"/>
+        <steps description="If it is a supported ExternalResource/Verifier/ExpectedException subclass, decide whether migration-support is acceptable temporarily." order="2" type="M" xmi:id="_s00392"/>
+        <steps description="If the rule wraps Statement to alter control flow, manually design an equivalent extension or accept that no direct equivalent exists." order="3" type="M" xmi:id="_s00393"/>
+        <steps description="Implement the closest Jupiter extension callback set." order="4" type="M" xmi:id="_s00394"/>
+        <steps description="Register with @ExtendWith when no per-test instance configuration is needed; otherwise use @RegisterExtension." order="5" type="M" xmi:id="_s00395"/>
+        <steps description="Validate behavior with passing, failing, skipped, and aborted tests." order="6" type="M" xmi:id="_s00396"/>
+      </strategy>
+    </correspondences>
+    <correspondences name="@ClassRule to Static @RegisterExtension or Class-Level Extension" sourceFeature="_f00041" relation="JUnit 4 @ClassRule expresses class-level rule behavior. Jupiter can represent many class-level behaviors via static registered extensions or before-all/after-all callbacks." xmi:id="_c00397" targetFeature="_f00130 _f00128 _f00133 _f00134" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00398" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00399">
+        <steps description="Determine whether the class rule manages resource lifecycle, reporting, timeout, or custom control flow." order="1" type="M" xmi:id="_s00400"/>
+        <steps description="For a configured extension instance, create a static field annotated with @RegisterExtension." order="2" type="M" xmi:id="_s00401"/>
+        <steps description="For reusable class-level behavior, implement BeforeAllCallback/AfterAllCallback and register with @ExtendWith." order="3" type="M" xmi:id="_s00402"/>
+        <steps description="For supported migration rules, optionally use @EnableRuleMigrationSupport temporarily." order="4" type="M" xmi:id="_s00403"/>
+        <steps description="Check static initialization order and shared mutable state." order="5" type="M" xmi:id="_s00404"/>
+      </strategy>
+    </correspondences>
+    <correspondences xmi:id="_c01040" xsi:type="smdsl_updated_updated_prefix:Bridge" name="JUnit Jupiter Migration Support Bridge for Selected Rules" bridgeFeatures="_f00094 _f00142 _f00143 _f00145 _f00146 _f00147" scope="CORRESPONDENCE" rationale="The migrationsupport module bridges selected JUnit 4 rules into Jupiter through adapters, enabling gradual migration for semantically compatible rules." cleanupRequired="true">
+      <conditions xmi:id="_cond10031" polarity="REQUIRED" subjectFeatures="_f00043 _f00042 _f00044 _f00045 _f00033" expression="Only ExternalResource/TemporaryFolder, Verifier/ErrorCollector, and ExpectedException-style rules are covered by the limited rule migration support."/>
+    </correspondences>
+    <correspondences xmi:id="_c01041" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Temporarily Preserve Selected Rule Fields and Imports" preservedFeatures="_f00043 _f00042 _f00044 _f00045 _f00033" kind="TEMPORARILY_RETAINED" reason="With migration support enabled, selected JUnit 4 rule fields and imports can be left unchanged during gradual migration, but should eventually be replaced by Jupiter APIs/extensions.">
+      <conditions xmi:id="_cond10032" polarity="REQUIRED" subjectFeatures="_f00094 _f00142 _f00143" expression="Requires junit-jupiter-migrationsupport and @EnableRuleMigrationSupport or @EnableJUnit4MigrationSupport."/>
+    </correspondences>
+    <correspondences xmi:id="_c01042" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="JUnit 4 Rules Not Natively Supported By Jupiter" kind="SUPPORT_REMOVED" affectedSourceFeatures="_f00040 _f00041 _f00048 _f00049" affectedTargetFeatures="_f00128 _f00129 _f00130" rationale="JUnit Jupiter does not natively support JUnit 4 Rules/ClassRules; selected rules have adapter support, while custom or execution-flow-changing rules require redesign as extensions."/>
+    <correspondences xmi:id="_c01043" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Custom Rule Redesign Risk" kind="RISK_INTRODUCED" affectedSourceFeatures="_f00048 _f00049" affectedTargetFeatures="_f00128 _f00129 _f00131 _f00132 _f00135 _f00136" rationale="Custom rules may encode execution-flow assumptions that are not directly reproducible in Jupiter; validation is required after redesign."/>
+  </mappings>
+  <mappings name="Runner Suite Category and Ordering Migration" xmi:id="_map00405">
+    <correspondences name="General @RunWith to @ExtendWith" sourceFeature="_f00051" relation="@RunWith no longer exists in Jupiter and is generally superseded by the Jupiter extension model. The mapping depends on the concrete runner." xmi:id="_c00406" targetFeature="_f00128" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00407" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00408">
+        <steps description="Inspect the runner class supplied to @RunWith." order="1" type="A" xmi:id="_s00409"/>
+        <steps description="If the runner has an official Jupiter extension counterpart, replace @RunWith(R.class) with @ExtendWith(E.class)." order="2" type="A" xmi:id="_s00410"/>
+        <steps description="If runner-specific annotations/configuration exist, migrate them according to that framework." order="3" type="M" xmi:id="_s00411"/>
+        <steps description="If multiple runners were impossible in JUnit 4 but rules compensated, reconsider composition using multiple extensions." order="4" type="M" xmi:id="_s00412"/>
+        <steps description="If no extension counterpart exists, treat as custom runner redesign." order="5" type="M" xmi:id="_s00413"/>
+      </strategy>
+      <subcorrespondences name="MockitoJUnitRunner to MockitoExtension" sourceFeature="_f00054" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00414" targetFeature="_f00128" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00415" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+        <strategy xmi:id="_st00416">
+          <steps description="Replace @RunWith(MockitoJUnitRunner.class) with @ExtendWith(MockitoExtension.class) when Mockito Jupiter dependency is available." order="1" type="A" xmi:id="_s00417"/>
+          <steps description="Keep @Mock/@InjectMocks fields and verify initialization behavior." order="2" type="M" xmi:id="_s00418"/>
+        </strategy>
+      </subcorrespondences>
+      <subcorrespondences name="SpringRunner to SpringExtension" sourceFeature="_f00053" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00419" targetFeature="_f00128" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00420" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+        <strategy xmi:id="_st00421">
+          <steps description="Replace @RunWith(SpringRunner.class) with @ExtendWith(SpringExtension.class) or use Spring composed test annotations where applicable." order="1" type="A" xmi:id="_s00422"/>
+          <steps description="Verify Spring test context configuration and transactional behavior." order="2" type="M" xmi:id="_s00423"/>
+        </strategy>
+      </subcorrespondences>
+      <conditions xmi:id="_cond10018" polarity="OPTIONAL" subjectFeatures="_f00051 _f00128" expression="Applies only when the runner corresponds to an extension-supported integration such as Spring or Mockito; obsolete JUnit4 runners may simply be removed."/>
+    </correspondences>
+    <correspondences name="Custom Runner to Jupiter Extension Redesign" sourceFeature="_f00060" relation="A custom JUnit 4 runner may control discovery, instantiation, parameterization, lifecycle, or execution. Jupiter extension APIs cover many but not all runner behaviors." xmi:id="_c00424" targetFeature="_f00128 _f00131 _f00132 _f00135 _f00136" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00425" xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" rationale="There is no generic mechanical mapping from arbitrary Runner implementations to Jupiter extensions because runners can redefine the entire execution model." possibleApproximation="_f00128 _f00131 _f00132 _f00135 _f00136" operators="_op00187" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st00426">
+        <steps description="Read the custom runner implementation and classify overridden behavior." order="1" type="M" xmi:id="_s00427"/>
+        <steps description="Map lifecycle hooks to Before/After callbacks where possible." order="2" type="M" xmi:id="_s00428"/>
+        <steps description="Map constructor/test instance customization to TestInstanceFactory or ParameterResolver when applicable." order="3" type="M" xmi:id="_s00429"/>
+        <steps description="If the runner changes test discovery semantics, consider @TestFactory or a custom TestEngine rather than a simple extension." order="4" type="M" xmi:id="_s00430"/>
+        <steps description="Create characterization tests before migration to compare behavior." order="5" type="M" xmi:id="_s00431"/>
+      </strategy>
+    </correspondences>
+    <correspondences name="JUnit 4 Suite Runner to JUnit Platform Suite" sourceFeature="_f00062" relation="JUnit 4 explicit suite classes are migrated to the JUnit Platform suite API. Several target states are possible: direct selected classes, package selectors, tag filters, engine filters, or temporary Vintage execution." xmi:id="_c00432" targetFeature="_f00149 _f00150 _f00151 _f00155 _f00156" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00433" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00434">
+        <steps description="Detect suite class annotated with @RunWith(Suite.class)." order="1" type="A" xmi:id="_s00435"/>
+        <steps description="Extract classes from @Suite.SuiteClasses." order="2" type="A" xmi:id="_s00436"/>
+        <steps description="State 1 - direct class suite: create a suite class annotated with @Suite and @SelectClasses({ ... })." order="3" type="A" xmi:id="_s00437"/>
+        <steps description="State 2 - package-based suite: if selected classes share stable packages and the source intent is package aggregation, use @SelectPackages instead of listing classes." order="4" type="M" xmi:id="_s00438"/>
+        <steps description="State 3 - filtered platform suite: if the old suite was used to simulate categories/groups, combine @Suite with @IncludeTags/@ExcludeTags or class-name patterns." order="5" type="M" xmi:id="_s00439"/>
+        <steps description="State 4 - mixed-engine suite: if both Jupiter and Vintage tests remain, keep Vintage on runtime path and optionally use @IncludeEngines/@ExcludeEngines." order="6" type="M" xmi:id="_s00440"/>
+        <steps description="State 5 - transitional JUnitPlatform runner: when a JUnit 4 environment must run JUnit Platform suites, use @RunWith(JUnitPlatform.class) only as a temporary compatibility state." order="7" type="M" xmi:id="_s00441"/>
+        <steps description="Add junit-platform-suite or suite-api and suite-engine dependencies." order="8" type="A" xmi:id="_s00442"/>
+        <steps description="Run the suite and compare discovered test count with the original JUnit 4 suite." order="9" type="M" xmi:id="_s00443"/>
+      </strategy>
+      <subcorrespondences name="@Suite.SuiteClasses to @SelectClasses" sourceFeature="_f00063" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00444" targetFeature="_f00150" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00445" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="EASY"/>
+        <strategy xmi:id="_st00446">
+          <steps description="Copy the class list from @Suite.SuiteClasses into @SelectClasses." order="1" type="A" xmi:id="_s00447"/>
+          <steps description="Remove org.junit.runners.Suite imports." order="2" type="A" xmi:id="_s00448"/>
+          <steps description="Check nested suite classes recursively." order="3" type="M" xmi:id="_s00449"/>
+        </strategy>
+      </subcorrespondences>
+      <subcorrespondences name="Suite Selected Classes to SelectPackages" sourceFeature="_f00065" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00450" targetFeature="_f00151" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00451" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+        <strategy xmi:id="_st00452">
+          <steps description="Inspect whether the explicit class list represents all tests in one or more packages." order="1" type="M" xmi:id="_s00453"/>
+          <steps description="Replace with @SelectPackages only if package-level discovery will not add unintended tests." order="2" type="M" xmi:id="_s00454"/>
+        </strategy>
+      </subcorrespondences>
+    </correspondences>
+    <correspondences name="Categories to Tags" sourceFeature="_f00067" relation="JUnit 4 categories are migrated to Jupiter tags. During Vintage execution, category fully qualified names are exposed as tags by the Vintage engine." xmi:id="_c00455" targetFeature="_f00160 _f00162" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00456" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00457">
+        <steps description="For full Jupiter migration, replace @Category(C.class) with @Tag(&quot;C&quot;) or a chosen stable tag name." order="1" type="M" xmi:id="_s00458"/>
+        <steps description="If multiple category marker interfaces exist, create multiple @Tag annotations." order="2" type="A" xmi:id="_s00459"/>
+        <steps description="Update build filters from category include/exclude settings to tag expressions." order="3" type="M" xmi:id="_s00460"/>
+        <steps description="During gradual migration under Vintage, remember that category FQNs are exposed as tags; align filtering strategy with that representation." order="4" type="M" xmi:id="_s00461"/>
+      </strategy>
+      <subcorrespondences name="Method-level Category to Method-level Tag" sourceFeature="_f00068" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00462" targetFeature="_f00160" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00463" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+        <strategy xmi:id="_st00464">
+          <steps description="Replace method-level @Category with method-level @Tag." order="1" type="A" xmi:id="_s00465"/>
+          <steps description="Check inherited category behavior because class-level and method-level inheritance differ." order="2" type="M" xmi:id="_s00466"/>
+        </strategy>
+      </subcorrespondences>
+    </correspondences>
+    <correspondences name="@FixMethodOrder to @TestMethodOrder" sourceFeature="_f00072" relation="JUnit 4 @FixMethodOrder controls method ordering through MethodSorters. Jupiter uses @TestMethodOrder with MethodOrderer implementations. Some JUnit 4 states are direct; others are approximate or should be made explicit with @Order." xmi:id="_c00467" targetFeature="_f00164 _f00165 _f00167 _f00168 _f00169 _f00170 _f00171" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00468" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00469">
+        <steps description="Detect @FixMethodOrder and extract the MethodSorters value." order="1" type="A" xmi:id="_s00470"/>
+        <steps description="State 1 - NAME_ASCENDING: replace with @TestMethodOrder(MethodOrderer.MethodName.class)." order="2" type="A" xmi:id="_s00471"/>
+        <steps description="State 2 - DEFAULT: either omit @TestMethodOrder and accept Jupiter default deterministic ordering, or choose MethodName/custom orderer if test behavior depends on exact order. Operator validation required." order="3" type="M" xmi:id="_s00472"/>
+        <steps description="State 3 - JVM: no exact Jupiter equivalent for raw JVM reflection order should be assumed; approximate with MethodOrderer.Random when the intent is order independence testing, or remove ordering and verify." order="4" type="M" xmi:id="_s00473"/>
+        <steps description="State 4 - source relies on a specific semantic sequence: use @TestMethodOrder(MethodOrderer.OrderAnnotation.class) and add @Order(n) to each test method." order="5" type="M" xmi:id="_s00474"/>
+        <steps description="State 5 - project-wide ordering policy: move orderer to junit.jupiter.testmethod.order.default only if the old policy was global rather than class-local." order="6" type="M" xmi:id="_s00475"/>
+        <steps description="Run tests repeatedly and detect hidden inter-test dependencies." order="7" type="M" xmi:id="_s00476"/>
+      </strategy>
+      <subcorrespondences name="MethodSorters.NAME_ASCENDING to MethodOrderer.MethodName" sourceFeature="_f00073" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00477" targetFeature="_f00165" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00478" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="EASY"/>
+        <strategy xmi:id="_st00479">
+          <steps description="Replace @FixMethodOrder(MethodSorters.NAME_ASCENDING.class/value) with @TestMethodOrder(MethodOrderer.MethodName.class)." order="1" type="A" xmi:id="_s00480"/>
+          <steps description="Update imports." order="2" type="A" xmi:id="_s00481"/>
+        </strategy>
+      </subcorrespondences>
+      <subcorrespondences name="MethodSorters.DEFAULT Approximation" sourceFeature="_f00074" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00482" targetFeature="_f00164 _f00169" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00483" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+        <strategy xmi:id="_st00484">
+          <steps description="Decide whether default deterministic but non-obvious ordering is sufficient." order="1" type="M" xmi:id="_s00485"/>
+          <steps description="If exact legacy behavior matters, implement a custom MethodOrderer or add explicit @Order values." order="2" type="M" xmi:id="_s00486"/>
+        </strategy>
+      </subcorrespondences>
+      <subcorrespondences name="MethodSorters.JVM Approximation" sourceFeature="_f00075" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00487" targetFeature="_f00168 _f00169" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00488" xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" rationale="Jupiter should not be modeled as preserving JUnit 4 JVM reflection ordering. The intent must be interpreted: either deliberately randomize to expose order coupling or define an explicit order." operators="_op00187" difficulty="COMPLEX" kind="MIX" possibleApproximation="_f00168 _f00169"/>
+        <strategy xmi:id="_st00489">
+          <steps description="Inspect why JVM order was used." order="1" type="M" xmi:id="_s00490"/>
+          <steps description="Use MethodOrderer.Random if the goal is non-determinism/order-dependency detection." order="2" type="M" xmi:id="_s00491"/>
+          <steps description="Use explicit @Order or custom MethodOrderer if a specific legacy order was accidentally relied on." order="3" type="M" xmi:id="_s00492"/>
+        </strategy>
+      </subcorrespondences>
+      <conditions xmi:id="_cond10020" polarity="OPTIONAL" subjectFeatures="_f00076 _f00164" expression="Ordering should be preserved only when tests intentionally depend on order; otherwise prefer independent tests."/>
+    </correspondences>
+    <correspondences xmi:id="_c01050" xsi:type="smdsl_updated_updated_prefix:Transformation" name="SpringRunner to SpringExtension" sourceFeature="_f00053" targetFeature="_f00128 _f01060" relation="SpringRunner/SpringJUnit4ClassRunner is replaced by Jupiter extension registration with SpringExtension.">
+      <complexity xmi:id="_ad10033" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st10034">
+        <steps xmi:id="_s10035" order="1" type="A" description="Replace @RunWith(SpringRunner.class) or @RunWith(SpringJUnit4ClassRunner.class) with @ExtendWith(SpringExtension.class)."/>
+        <steps xmi:id="_s10036" order="2" type="M" description="Verify existing Spring test annotations and context configuration still behave as expected."/>
+      </strategy>
+    </correspondences>
+    <correspondences xmi:id="_c01051" xsi:type="smdsl_updated_updated_prefix:Transformation" name="MockitoJUnitRunner to MockitoExtension" sourceFeature="_f00054" targetFeature="_f00128 _f01061" relation="MockitoJUnitRunner is replaced by MockitoExtension in Jupiter.">
+      <complexity xmi:id="_ad10037" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st10038">
+        <steps xmi:id="_s10039" order="1" type="A" description="Replace @RunWith(MockitoJUnitRunner.class) with @ExtendWith(MockitoExtension.class)."/>
+        <steps xmi:id="_s10040" order="2" type="M" description="Verify strictness, mock initialization, and rule/runner interaction semantics."/>
+      </strategy>
+    </correspondences>
+    <correspondences xmi:id="_c01052" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="JUnit 4 Runners Not Natively Supported By Jupiter" kind="SUPPORT_REMOVED" affectedSourceFeatures="_f00051 _f00060 _f00052" affectedTargetFeatures="_f00128 _f00186 _f00173 _f01070" rationale="JUnit Jupiter removes the JUnit 4 runner model. Some common runners become extensions or new test styles; arbitrary custom runners require redesign."/>
+    <correspondences xmi:id="_c01053" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Category Marker Interfaces Become String Tags" kind="BEHAVIOR_CHANGE" affectedSourceFeatures="_f00067 _f00068 _f00069 _f00070" affectedTargetFeatures="_f00160 _f00161 _f00162" rationale="Jupiter tags are string-based whereas JUnit 4 categories use marker types. During Vintage execution categories are exposed as fully qualified tag names."/>
+    <correspondences xmi:id="_c01054" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Method Orderer Approximation Requires Validation" kind="VALIDATION_REQUIRED" affectedSourceFeatures="_f00074 _f00075 _f00076" affectedTargetFeatures="_f00168 _f00169 _f00171" rationale="NAME_ASCENDING maps cleanly to MethodOrderer.MethodName, but DEFAULT/JVM ordering and accidental order dependencies may require a custom MethodOrderer or redesign."/>
+  </mappings>
+  <mappings name="Parameterized Theories and Advanced Test Forms" xmi:id="_map00493">
+    <correspondences name="JUnit 4 Parameterized Runner to Jupiter @ParameterizedTest" sourceFeature="_f00078" relation="JUnit 4 parameterized tests are runner-based and class-instance oriented. Jupiter parameterized tests are method-level and source-driven, so many migrations require restructuring." xmi:id="_c00494" targetFeature="_f00173 _f00178 _f00175 _f00174 _f00179 _f00180 _f00181 _f00182" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00495" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st00496">
+        <steps description="Detect @RunWith(Parameterized.class)." order="1" type="A" xmi:id="_s00497"/>
+        <steps description="Extract the @Parameters factory method and its returned data shape." order="2" type="A" xmi:id="_s00498"/>
+        <steps description="If there is one test method and simple scalar data, migrate to @ParameterizedTest with @ValueSource/CsvSource/MethodSource." order="3" type="M" xmi:id="_s00499"/>
+        <steps description="If the source uses constructor injection, convert constructor parameters into method parameters or use @MethodSource returning Arguments." order="4" type="M" xmi:id="_s00500"/>
+        <steps description="If the source uses @Parameter fields, convert fields into parameters of each @ParameterizedTest method or use ArgumentsAccessor/Aggregator." order="5" type="M" xmi:id="_s00501"/>
+        <steps description="If multiple test methods share the same parameterized fixture, consider keeping a MethodSource reused by multiple parameterized methods or use @TestInstance(PER_CLASS) cautiously." order="6" type="M" xmi:id="_s00502"/>
+        <steps description="Translate the JUnit 4 name pattern to Jupiter parameterized display name if possible." order="7" type="A" xmi:id="_s00503"/>
+        <steps description="Run generated tests and compare invocation count and display names." order="8" type="M" xmi:id="_s00504"/>
+      </strategy>
+      <subcorrespondences name="@Parameters factory to @MethodSource" sourceFeature="_f00079" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00505" targetFeature="_f00178" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00506" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+        <strategy xmi:id="_st00507">
+          <steps description="Move or adapt factory method to return Stream&lt;Arguments&gt;, Iterable, Iterator, or array accepted by Jupiter." order="1" type="M" xmi:id="_s00508"/>
+          <steps description="Ensure method is static unless PER_CLASS lifecycle is selected." order="2" type="M" xmi:id="_s00509"/>
+        </strategy>
+      </subcorrespondences>
+      <subcorrespondences name="@Parameter field injection to method parameters" sourceFeature="_f00080" relation="Subcorrespondence extracted to document a finer-grained migration decision." xmi:id="_sc00510" targetFeature="_f00180 _f00181" xsi:type="smdsl_updated_updated_prefix:Transformation">
+        <complexity xmi:id="_ad00511" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+        <strategy xmi:id="_st00512">
+          <steps description="Order fields by @Parameter index." order="1" type="A" xmi:id="_s00513"/>
+          <steps description="Create method parameters in the same order or introduce an aggregator object." order="2" type="M" xmi:id="_s00514"/>
+          <steps description="Remove field mutation assumptions." order="3" type="M" xmi:id="_s00515"/>
+        </strategy>
+      </subcorrespondences>
+      <conditions xmi:id="_cond10019" polarity="ABSENT" subjectFeatures="_f01010" expression="The current JUnit migration guide gives a direct class-level path unless @UseParametersRunnerFactory is used; custom factories require manual treatment."/>
+    </correspondences>
+    <correspondences name="JUnit 4 Theories to Jupiter Parameterized or Dynamic Tests" sourceFeature="_f00084" relation="JUnit 4 theories combine data points with theory methods. Jupiter has no direct Theories runner; the closest forms are parameterized tests or dynamic tests, depending on data generation and assumptions." xmi:id="_c00516" targetFeature="_f00173 _f00178 _f00184 _f00185" xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xmi:id="_ad00517" xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" rationale="The Theories runner has discovery and data-point semantics that are not directly represented by a single Jupiter annotation." possibleApproximation="_f00173 _f00178 _f00184 _f00185" operators="_op00187" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st00518">
+        <steps description="Extract @DataPoint and @DataPoints providers." order="1" type="A" xmi:id="_s00519"/>
+        <steps description="For finite Cartesian-product style data, generate @MethodSource streams of Arguments." order="2" type="M" xmi:id="_s00520"/>
+        <steps description="For dynamically generated cases or custom naming, create @TestFactory producing DynamicTest instances." order="3" type="M" xmi:id="_s00521"/>
+        <steps description="Convert @Theory methods into @ParameterizedTest methods or dynamic test executables." order="4" type="M" xmi:id="_s00522"/>
+        <steps description="Rewrite assumptions inside theories using Jupiter assumptions; handle assumeThat/assumeNotNull gaps separately." order="5" type="M" xmi:id="_s00523"/>
+        <steps description="Compare number of generated cases and skipped/aborted cases." order="6" type="M" xmi:id="_s00524"/>
+      </strategy>
+    </correspondences>
+    <correspondences xmi:id="_c01060" xsi:type="smdsl_updated_updated_prefix:Transformation" name="JUnit 4 Parameterized Class to Jupiter @ParameterizedClass" sourceFeature="_f00078" targetFeature="_f01070 _f00178 _f01071 _f01072 _f01073" relation="Current JUnit migration guidance supports converting JUnit 4 parameterized test classes to Jupiter @ParameterizedClass with @MethodSource and Jupiter parameter annotations.">
+      <conditions xmi:id="_cond10041" polarity="ABSENT" subjectFeatures="_f01010" expression="Direct class-level conversion applies only when @UseParametersRunnerFactory is not used."/>
+      <complexity xmi:id="_ad10042" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st10043">
+        <steps xmi:id="_s10044" order="1" type="A" description="Replace @RunWith(Parameterized.class) with @ParameterizedClass."/>
+        <steps xmi:id="_s10045" order="2" type="A" description="Replace @Parameters with a class-level @MethodSource reference to the data factory."/>
+        <steps xmi:id="_s10046" order="3" type="A" description="Change @Parameter field imports to org.junit.jupiter.params.Parameter."/>
+        <steps xmi:id="_s10047" order="4" type="A" description="Convert @BeforeParam/@AfterParam to @BeforeParameterizedClassInvocation/@AfterParameterizedClassInvocation when present."/>
+        <steps xmi:id="_s10048" order="5" type="M" description="Inspect constructor injection, display names, custom parameter runner factories, and assertion imports."/>
+      </strategy>
+      <subcorrespondences xmi:id="_sc10049" xsi:type="smdsl_updated_updated_prefix:Transformation" name="@BeforeParam to @BeforeParameterizedClassInvocation" sourceFeature="_f01011" targetFeature="_f01072" relation="Nested transformation correspondence.">
+        <complexity xmi:id="_ad10050" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="EASY"/>
+      </subcorrespondences>
+      <subcorrespondences xmi:id="_sc10051" xsi:type="smdsl_updated_updated_prefix:Transformation" name="@AfterParam to @AfterParameterizedClassInvocation" sourceFeature="_f01012" targetFeature="_f01073" relation="Nested transformation correspondence.">
+        <complexity xmi:id="_ad10052" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="EASY"/>
+      </subcorrespondences>
+      <subcorrespondences xmi:id="_sc10053" xsi:type="smdsl_updated_updated_prefix:Transformation" name="@Parameter to Jupiter Parameter" sourceFeature="_f00080" targetFeature="_f01071" relation="Nested transformation correspondence.">
+        <complexity xmi:id="_ad10054" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="EASY"/>
+      </subcorrespondences>
+    </correspondences>
+    <correspondences xmi:id="_c01061" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Parameterized Runner Migration May Restructure Test Shape" kind="BEHAVIOR_CHANGE" affectedSourceFeatures="_f00078 _f00081 _f00080 _f00082" affectedTargetFeatures="_f00173 _f01070 _f00178 _f00180 _f00181 _f00182" rationale="JUnit 4 parameterized tests are runner/class-instantiation based; Jupiter supports both parameterized methods and parameterized classes, but constructor/field injection and display-name behavior may require restructuring."/>
+    <correspondences xmi:id="_c01062" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Theories Have No Direct Jupiter Equivalent" kind="SUPPORT_REMOVED" affectedSourceFeatures="_f00084 _f00085 _f00086 _f00087" affectedTargetFeatures="_f00173 _f00178 _f00184 _f00185" rationale="The JUnit 4 Theories runner has no single direct Jupiter equivalent; migration usually approximates theories with parameterized or dynamic tests."/>
+  </mappings>
+  <exampleRepositories name="Baeldung JUnit 4 to JUnit 5 migration article" uri="https://www.baeldung.com/junit-5-migration" xmi:id="_r10000">
+    <files name="Baeldung migration guide" path="annotations, assertions, assumptions, tagging, filtering" xmi:id="_file10001"/>
+  </exampleRepositories>
+  <exampleRepositories name="JetBrains IntelliJ JUnit migration tutorial" uri="https://blog.jetbrains.com/idea/2020/08/migrating-from-junit-4-to-junit-5/" xmi:id="_r10002">
+    <files name="IntelliJ migration tutorial" path="IDE-assisted migration, dependencies, annotations, assertions" xmi:id="_file10003"/>
+  </exampleRepositories>
+  <exampleRepositories name="OpenRewrite JUnit 4 to 5 migration recipes" uri="https://docs.openrewrite.org/recipes/java/testing/junit5/junit4to5migration" xmi:id="_r10004">
+    <files name="OpenRewrite composite recipe" path="automated recipes for annotations, assertions, assumptions, rules, runners, categories, parameterized tests, build files" xmi:id="_file10005"/>
+  </exampleRepositories>
+  <exampleRepositories name="Kinaxis large application migration experience" uri="https://www.kinaxis.com/en/blog/migrating-junit-4-junit-5-large-application" xmi:id="_r10006">
+    <files name="Kinaxis migration experience" path="large-codebase migration process and practical planning" xmi:id="_file10007"/>
+  </exampleRepositories>
+  <exampleRepositories name="Medium migration from JUnit 4 to JUnit 5" uri="https://medium.com/@GalletVictor/migration-from-junit-4-to-junit-5-d8fe38644abe" xmi:id="_r10008">
+    <files name="Victor Gallet migration note" path="Vintage engine coexistence and rule migration support" xmi:id="_file10009"/>
+  </exampleRepositories>
+  <exampleRepositories name="Symflower tools for JUnit 4 to 5 migration" uri="https://symflower.com/en/company/blog/2024/tools-for-junit-4-to-5-migration/" xmi:id="_r10010">
+    <files name="Symflower tooling comparison" path="OpenRewrite, IntelliJ, and manual migration boundaries" xmi:id="_file10011"/>
+  </exampleRepositories>
+  <mappings name="Legacy TestCase and Tool-Assisted Migration" xmi:id="_map01070">
+    <correspondences xmi:id="_c01070" xsi:type="smdsl_updated_updated_prefix:Transformation" name="JUnit 4 TestCase Inheritance to Annotation-Based Jupiter Tests" sourceFeature="_f01021" targetFeature="_f01081 _f00097 _f00109" relation="JUnit 3/4 TestCase-style tests are migrated to annotation-based Jupiter tests by removing inheritance and using Jupiter annotations/assertions.">
+      <complexity xmi:id="_ad10055" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_op00187"/>
+      <strategy xmi:id="_st10056">
+        <steps xmi:id="_s10057" order="1" type="A" description="Remove extends TestCase when no longer needed."/>
+        <steps xmi:id="_s10058" order="2" type="A" description="Convert test methods and lifecycle methods to Jupiter annotations."/>
+        <steps xmi:id="_s10059" order="3" type="A" description="Rewrite assertions to Jupiter Assertions or preserve external assertion libraries."/>
+        <steps xmi:id="_s10060" order="4" type="M" description="Verify inheritance-based setup or helper behavior is not lost."/>
+      </strategy>
+    </correspondences>
+    <correspondences xmi:id="_c01071" xsi:type="smdsl_updated_updated_prefix:Transformation" name="setUp and tearDown to @BeforeEach and @AfterEach" sourceFeature="_f01022" targetFeature="_f01082 _f00103 _f00104" relation="TestCase setUp/tearDown lifecycle methods correspond to per-test Jupiter lifecycle callbacks.">
+      <complexity xmi:id="_ad10061" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="EASY"/>
+      <strategy xmi:id="_st10062">
+        <steps xmi:id="_s10063" order="1" type="A" description="Rename setUp to a method annotated with @BeforeEach if it is used as per-test setup."/>
+        <steps xmi:id="_s10064" order="2" type="A" description="Rename tearDown to a method annotated with @AfterEach if it is used as per-test cleanup."/>
+        <steps xmi:id="_s10065" order="3" type="M" description="Check superclass lifecycle behavior and visibility requirements."/>
+      </strategy>
+    </correspondences>
+    <correspondences xmi:id="_c01072" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Automated Tooling Has Partial Coverage" kind="VALIDATION_REQUIRED" affectedSourceFeatures="_f00011 _f00015 _f00021 _f00039 _f00050 _f00077" affectedTargetFeatures="_f00097 _f00102 _f00108 _f00127 _f00172" rationale="OpenRewrite and IDE refactorings cover many annotation/import/assertion/rule/runner patterns, but complex tests and custom constructs still need manual review."/>
+  </mappings>
+</smdsl_updated_updated_prefix:Migration>

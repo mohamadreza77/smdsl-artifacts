@@ -1,0 +1,917 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Preservation: Temporarily Preserve Selected Rule Fields and Imports</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Preservation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> JUnit 4 =&gt; JUnit 5 / JUnit Jupiter and JUnit Platform
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong>
+
+        </p>
+
+        
+
+        <ul>
+
+            
+
+            <li>
+
+                <strong>REQUIRED</strong> on junit-jupiter-migrationsupport, @EnableRuleMigrationSupport, @EnableJUnit4MigrationSupport: Requires junit-jupiter-migrationsupport and @EnableRuleMigrationSupport or @EnableJUnit4MigrationSup
+
+port.
+
+            </li>
+
+            
+
+        </ul>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Preservation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Preserved feature(s):</strong> ExternalResource Rule, TemporaryFolder Rule, Verifier Rule, ErrorCollector Rule, ExpectedException Rule
+
+            <br>
+
+            
+
+            <strong>Preservation kind:</strong> TEMPORARILY_RETAINED
+
+            <br>
+
+            
+
+            <strong>Reason:</strong> With migration support enabled, selected JUnit 4 rule fields and imports can be left unchanged durin
+
+g gradual migration, but should eventually be replaced by Jupiter APIs/extensions.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="1008pt" viewBox="0.00 0.00 773.00 1008.00" width="773pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 990)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="368.5" y="-956.8">Preservation: Temporarily Preserve Selected Rule Fields and Imports</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M204,-8C204,-8 276,-8 276,-8 282,-8 288,-14 288,-20 288,-20 288,-272 288,-272 288,-278 282,-284 276,-284 276,-284 204,-284 204,-284 198,-284 192,-278 192,-272 192,-272 192,-20 192,-20 192,-14 198,-8 204,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="240" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M166,-730C166,-730 717,-730 717,-730 723,-730 729,-736 729,-742 729,-742 729,-929 729,-929 729,-935 723,-941 717,-941 717,-941 166,-941 166,-941 160,-941 154,-935 154,-929 154,-929 154,-742 154,-742 154,-736 160,-730 166,-730" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="441.5" y="-925.8">Target platform feature context: JUnit 5 / JUnit Jupiter and JUnit Platform</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M189.5,-375C189.5,-375 700.5,-375 700.5,-375 706.5,-375 712.5,-381 712.5,-387 712.5,-387 712.5,-710 712.5,-710 712.5,-716 706.5,-722 700.5,-722 700.5,-722 189.5,-722 189.5,-722 183.5,-722 177.5,-716 177.5,-710 177.5,-710 177.5,-387 177.5,-387 177.5,-381 183.5,-375 189.5,-375" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="445" y="-706.8">Source platform feature context: JUnit 4</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M20,-292C20,-292 460,-292 460,-292 466,-292 472,-298 472,-304 472,-304 472,-355 472,-355 472,-361 466,-367 460,-367 460,-367 20,-367 20,-367 14,-367 8,-361 8,-355 8,-355 8,-304 8,-304 8,-298 14,-292 20,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="240" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M266,-256C266,-256 214,-256 214,-256 208,-256 202,-250 202,-244 202,-244 202,-232 202,-232 202,-226 208,-220 214,-220 214,-220 266,-220 266,-220 272,-220 278,-226 278,-232 278,-232 278,-244 278,-244 278,-250 272,-256 266,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="240" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M261,-188C261,-188 219,-188 219,-188 213,-188 207,-182 207,-176 207,-176 207,-164 207,-164 207,-158 213,-152 219,-152 219,-152 261,-152 261,-152 267,-152 273,-158 273,-164 273,-164 273,-176 273,-176 273,-182 267,-188 261,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="240" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M255,-120C255,-120 225,-120 225,-120 219,-120 213,-114 213,-108 213,-108 213,-96 213,-96 213,-90 219,-84 225,-84 225,-84 255,-84 255,-84 261,-84 267,-90 267,-96 267,-96 267,-108 267,-108 267,-114 261,-120 255,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="240" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M268,-52C268,-52 212,-52 212,-52 206,-52 200,-46 200,-40 200,-40 200,-28 200,-28 200,-22 206,-16 212,-16 212,-16 268,-16 268,-16 274,-16 280,-22 280,-28 280,-28 280,-40 280,-40 280,-46 274,-52 268,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="240" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1100945310 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1100945310</title>
+
+                    
+
+                    <path d="M273.5,-540C273.5,-540 206.5,-540 206.5,-540 200.5,-540 194.5,-534 194.5,-528 194.5,-528 194.5,-516 194.5,-516 194.5,-510 200.5,-504 206.5,-504 206.5,-504 273.5,-504 273.5,-504 279.5,-504 285.5,-510 285.5,-516 285.5,-516 285.5,-528 285.5,-528 285.5,-534 279.5,-540 273.5,-540" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="240" y="-519.5">Exception Testing</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_2050390304 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>S_2050390304</title>
+
+                    
+
+                    <path d="M692.5,-419C692.5,-419 596.5,-419 596.5,-419 590.5,-419 584.5,-413 584.5,-407 584.5,-407 584.5,-395 584.5,-395 584.5,-389 590.5,-383 596.5,-383 596.5,-383 692.5,-383 692.5,-383 698.5,-383 704.5,-389 704.5,-395 704.5,-395 704.5,-407 704.5,-407 704.5,-413 698.5,-419 692.5,-419" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="644.5" y="-398.5">ExpectedException Rule</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1100945310&#45;&gt;S_2050390304 -->
+
+                
+
+                <g class="edge" id="edge6">
+
+                    
+
+                    <title>S_1100945310-&gt;S_2050390304</title>
+
+                    
+
+                    <path d="M285.59,-535.48C347.98,-551.45 462.07,-569.72 537,-517 568.87,-494.58 541.31,-463.39 568,-435 574.01,-428.61 581.44,-423.34 589.27,-419.01" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_438690768 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_438690768</title>
+
+                    
+
+                    <path d="M688.5,-623C688.5,-623 600.5,-623 600.5,-623 594.5,-623 588.5,-617 588.5,-611 588.5,-611 588.5,-599 588.5,-599 588.5,-593 594.5,-587 600.5,-587 600.5,-587 688.5,-587 688.5,-587 694.5,-587 700.5,-593 700.5,-599 700.5,-599 700.5,-611 700.5,-611 700.5,-617 694.5,-623 688.5,-623" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="644.5" y="-602.5">ExternalResource Rule</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_38563369 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>S_38563369</title>
+
+                    
+
+                    <path d="M679.5,-691C679.5,-691 609.5,-691 609.5,-691 603.5,-691 597.5,-685 597.5,-679 597.5,-679 597.5,-667 597.5,-667 597.5,-661 603.5,-655 609.5,-655 609.5,-655 679.5,-655 679.5,-655 685.5,-655 691.5,-661 691.5,-667 691.5,-667 691.5,-679 691.5,-679 691.5,-685 685.5,-691 679.5,-691" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="644.5" y="-670.5">ErrorCollector Rule</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1806523146 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>S_1806523146</title>
+
+                    
+
+                    <path d="M686.5,-555C686.5,-555 602.5,-555 602.5,-555 596.5,-555 590.5,-549 590.5,-543 590.5,-543 590.5,-531 590.5,-531 590.5,-525 596.5,-519 602.5,-519 602.5,-519 686.5,-519 686.5,-519 692.5,-519 698.5,-525 698.5,-531 698.5,-531 698.5,-543 698.5,-543 698.5,-549 692.5,-555 686.5,-555" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="644.5" y="-534.5">TemporaryFolder Rule</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1212221485 -->
+
+                
+
+                <g class="node" id="node10">
+
+                    
+
+                    <title>S_1212221485</title>
+
+                    
+
+                    <path d="M665,-487C665,-487 624,-487 624,-487 618,-487 612,-481 612,-475 612,-475 612,-463 612,-463 612,-457 618,-451 624,-451 624,-451 665,-451 665,-451 671,-451 677,-457 677,-463 677,-463 677,-475 677,-475 677,-481 671,-487 665,-487" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="644.5" y="-466.5">Verifier Rule</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_132039923 -->
+
+                
+
+                <g class="node" id="node11">
+
+                    
+
+                    <title>S_132039923</title>
+
+                    
+
+                    <path d="M282.5,-615C282.5,-615 197.5,-615 197.5,-615 191.5,-615 185.5,-609 185.5,-603 185.5,-603 185.5,-591 185.5,-591 185.5,-585 191.5,-579 197.5,-579 197.5,-579 282.5,-579 282.5,-579 288.5,-579 294.5,-585 294.5,-591 294.5,-591 294.5,-603 294.5,-603 294.5,-609 288.5,-615 282.5,-615" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="240" y="-594.5">Rules and ClassRules</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_132039923&#45;&gt;S_438690768 -->
+
+                
+
+                <g class="edge" id="edge8">
+
+                    
+
+                    <title>S_132039923-&gt;S_438690768</title>
+
+                    
+
+                    <path d="M294.87,-598.07C371.45,-599.59 511.06,-602.37 588.34,-603.9" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_132039923&#45;&gt;S_38563369 -->
+
+                
+
+                <g class="edge" id="edge10">
+
+                    
+
+                    <title>S_132039923-&gt;S_38563369</title>
+
+                    
+
+                    <path d="M294.87,-607.17C374.55,-622.22 522.49,-650.15 597.43,-664.3" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_132039923&#45;&gt;S_1806523146 -->
+
+                
+
+                <g class="edge" id="edge7">
+
+                    
+
+                    <title>S_132039923-&gt;S_1806523146</title>
+
+                    
+
+                    <path d="M294.62,-590.98C354.04,-584.06 452.61,-571.87 537,-558 554.39,-555.14 573.28,-551.57 590.26,-548.19" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_132039923&#45;&gt;S_1212221485 -->
+
+                
+
+                <g class="edge" id="edge9">
+
+                    
+
+                    <title>S_132039923-&gt;S_1212221485</title>
+
+                    
+
+                    <path d="M294.53,-596.9C357.17,-594.44 461.87,-582.85 537,-536 554.08,-525.35 551.62,-514.69 568,-503 581.34,-493.48 597.77,-485.7 611.89,-479.99" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_965495254 -->
+
+                
+
+                <g class="node" id="node12">
+
+                    
+
+                    <title>C_965495254</title>
+
+                    
+
+                    <path d="M452,-336C452,-336 28,-336 28,-336 22,-336 16,-330 16,-324 16,-324 16,-312 16,-312 16,-306 22,-300 28,-300 28,-300 452,-300 452,-300 458,-300 464,-306 464,-312 464,-312 464,-324 464,-324 464,-330 458,-336 452,-336" fill="#eaf7ea" stroke="#6aa84f" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="240" y="-315.5">Preservation * &nbsp;Temporarily Preserve Selected Rule Fields and Imports * TEMPORARILY_RETAINED</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_965495254&#45;&gt;S_438690768 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>C_965495254-&gt;S_438690768</title>
+
+                    
+
+                    <path d="M416.97,-336.07C436.93,-343.51 455.86,-353.54 472,-367 492.66,-384.23 479.24,-401.19 495,-423 509.4,-442.92 523.81,-438.25 537,-459 564.7,-502.59 534.38,-531.79 568,-571 571.95,-575.6 576.64,-579.61 581.74,-583.1" fill="none" stroke="#6aa84f"></path>
+
+                    
+
+                    <polygon fill="#6aa84f" points="580.62,-585.5 588.37,-587.24 583.4,-581.04 580.62,-585.5" stroke="#6aa84f"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="516" y="-461.8">preserves</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_965495254&#45;&gt;S_38563369 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>C_965495254-&gt;S_38563369</title>
+
+                    
+
+                    <path d="M425.24,-336.05C442.55,-343.66 458.59,-353.74 472,-367 505.34,-399.99 480.53,-425.38 495,-470 520.25,-547.83 510.59,-580.7 568,-639 574.38,-645.48 582.22,-650.84 590.41,-655.23" fill="none" stroke="#6aa84f"></path>
+
+                    
+
+                    <polygon fill="#6aa84f" points="589.46,-657.69 597.35,-658.69 591.81,-652.99 589.46,-657.69" stroke="#6aa84f"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="516" y="-602.8">preserves</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_965495254&#45;&gt;S_2050390304 -->
+
+                
+
+                <g class="edge" id="edge5">
+
+                    
+
+                    <title>C_965495254-&gt;S_2050390304</title>
+
+                    
+
+                    <path d="M369.31,-299.99C422.5,-297.09 484.03,-299.8 537,-318 571.04,-329.7 602.57,-357.23 622.34,-377.39" fill="none" stroke="#6aa84f"></path>
+
+                    
+
+                    <polygon fill="#6aa84f" points="620.51,-379.27 627.6,-382.86 624.3,-375.63 620.51,-379.27" stroke="#6aa84f"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="516" y="-320.8">preserves</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_965495254&#45;&gt;S_1806523146 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_965495254-&gt;S_1806523146</title>
+
+                    
+
+                    <path d="M370.28,-336.03C404.21,-343.28 440.19,-353.28 472,-367 504.26,-380.92 515.83,-383.96 537,-412 562.75,-446.1 539.25,-471.39 568,-503 572.45,-507.89 577.74,-512.12 583.42,-515.77" fill="none" stroke="#6aa84f"></path>
+
+                    
+
+                    <polygon fill="#6aa84f" points="582.45,-518.25 590.24,-519.8 585.12,-513.73 582.45,-518.25" stroke="#6aa84f"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="516" y="-414.8">preserves</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_965495254&#45;&gt;S_1212221485 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_965495254-&gt;S_1212221485</title>
+
+                    
+
+                    <path d="M464.09,-328.43C490.37,-336.66 515.45,-348.42 537,-365 563.97,-385.75 544.02,-410.87 568,-435 578.09,-445.15 591.75,-452.55 604.68,-457.8" fill="none" stroke="#6aa84f"></path>
+
+                    
+
+                    <polygon fill="#6aa84f" points="603.82,-460.28 611.76,-460.5 605.69,-455.38 603.82,-460.28" stroke="#6aa84f"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="516" y="-367.8">preserves</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1121627547 -->
+
+                
+
+                <g class="node" id="node13">
+
+                    
+
+                    <title>T_1121627547</title>
+
+                    
+
+                    <path d="M289,-876C289,-876 191,-876 191,-876 185,-876 179,-870 179,-864 179,-864 179,-852 179,-852 179,-846 185,-840 191,-840 191,-840 289,-840 289,-840 295,-840 301,-846 301,-852 301,-852 301,-864 301,-864 301,-870 295,-876 289,-876" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="240" y="-855.5">JUnit 4 Migration Support</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1361169791 -->
+
+                
+
+                <g class="node" id="node16">
+
+                    
+
+                    <title>T_1361169791</title>
+
+                    
+
+                    <path d="M705,-842C705,-842 584,-842 584,-842 578,-842 572,-836 572,-830 572,-830 572,-818 572,-818 572,-812 578,-806 584,-806 584,-806 705,-806 705,-806 711,-806 717,-812 717,-818 717,-818 717,-830 717,-830 717,-836 711,-842 705,-842" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="644.5" y="-821.5">@EnableRuleMigrationSupport</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1121627547&#45;&gt;T_1361169791 -->
+
+                
+
+                <g class="edge" id="edge11">
+
+                    
+
+                    <title>T_1121627547-&gt;T_1361169791</title>
+
+                    
+
+                    <path d="M301.26,-852.91C373.63,-846.8 494.88,-836.55 571.94,-830.04" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_2092536438 -->
+
+                
+
+                <g class="node" id="node17">
+
+                    
+
+                    <title>T_2092536438</title>
+
+                    
+
+                    <path d="M709,-910C709,-910 580,-910 580,-910 574,-910 568,-904 568,-898 568,-898 568,-886 568,-886 568,-880 574,-874 580,-874 580,-874 709,-874 709,-874 715,-874 721,-880 721,-886 721,-886 721,-898 721,-898 721,-904 715,-910 709,-910" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="644.5" y="-889.5">@EnableJUnit4MigrationSupport</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1121627547&#45;&gt;T_2092536438 -->
+
+                
+
+                <g class="edge" id="edge12">
+
+                    
+
+                    <title>T_1121627547-&gt;T_2092536438</title>
+
+                    
+
+                    <path d="M301.26,-863.09C372.31,-869.09 490.49,-879.07 567.7,-885.6" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_2091934889 -->
+
+                
+
+                <g class="node" id="node14">
+
+                    
+
+                    <title>T_2091934889</title>
+
+                    
+
+                    <path d="M700,-774C700,-774 589,-774 589,-774 583,-774 577,-768 577,-762 577,-762 577,-750 577,-750 577,-744 583,-738 589,-738 589,-738 700,-738 700,-738 706,-738 712,-744 712,-750 712,-750 712,-762 712,-762 712,-768 706,-774 700,-774" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="644.5" y="-753.5">junit-jupiter-migrationsupport</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_2143736571 -->
+
+                
+
+                <g class="node" id="node15">
+
+                    
+
+                    <title>T_2143736571</title>
+
+                    
+
+                    <path d="M306,-774C306,-774 174,-774 174,-774 168,-774 162,-768 162,-762 162,-762 162,-750 162,-750 162,-744 168,-738 174,-738 174,-738 306,-738 306,-738 312,-738 318,-744 318,-750 318,-750 318,-762 318,-762 318,-768 312,-774 306,-774" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="240" y="-753.5">JUnit Platform Build and Runtime</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_2143736571&#45;&gt;T_2091934889 -->
+
+                
+
+                <g class="edge" id="edge13">
+
+                    
+
+                    <title>T_2143736571-&gt;T_2091934889</title>
+
+                    
+
+                    <path d="M318.13,-756C393.12,-756 505.82,-756 576.97,-756" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

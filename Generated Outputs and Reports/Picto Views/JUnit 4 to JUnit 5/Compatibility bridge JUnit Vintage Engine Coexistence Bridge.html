@@ -1,0 +1,597 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Compatibility bridge: JUnit Vintage Engine Coexistence Bridge</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Bridge</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> JUnit 4 =&gt; JUnit 5 / JUnit Jupiter and JUnit Platform
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong>
+
+        </p>
+
+        
+
+        <ul>
+
+            
+
+            <li>
+
+                <strong>OPTIONAL</strong> on Coexisting JUnit 4 tests during migration, junit-vintage-engine: Use only while unchanged JUnit 4 tests remain; remove after full Jupiter migration.
+
+            </li>
+
+            
+
+        </ul>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Bridge intent</h2>
+
+        
+
+        <p>
+
+            <strong>Bridge feature(s):</strong> Coexisting JUnit 4 tests during migration, junit-vintage-engine, junit-platform-launcher
+
+            <br>
+
+            
+
+            <strong>Scope:</strong> WHOLE_MIGRATION
+
+            <br>
+
+            
+
+            <strong>Cleanup required:</strong> true
+
+            <br>
+
+            
+
+            <strong>Rationale:</strong> The Vintage engine bridges unchanged JUnit 3/4 tests into the JUnit Platform, allowing JUnit 4 and J
+
+upiter tests to coexist during incremental migration.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="668pt" viewBox="0.00 0.00 820.00 668.00" width="820pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 650)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="392" y="-616.8">Compatibility bridge: JUnit Vintage Engine Coexistence Bridge</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M217.5,-8C217.5,-8 289.5,-8 289.5,-8 295.5,-8 301.5,-14 301.5,-20 301.5,-20 301.5,-272 301.5,-272 301.5,-278 295.5,-284 289.5,-284 289.5,-284 217.5,-284 217.5,-284 211.5,-284 205.5,-278 205.5,-272 205.5,-272 205.5,-20 205.5,-20 205.5,-14 211.5,-8 217.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="253.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M20,-443C20,-443 487,-443 487,-443 493,-443 499,-449 499,-455 499,-455 499,-506 499,-506 499,-512 493,-518 487,-518 487,-518 20,-518 20,-518 14,-518 8,-512 8,-506 8,-506 8,-455 8,-455 8,-449 14,-443 20,-443" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="253.5" y="-502.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M182,-526C182,-526 764,-526 764,-526 770,-526 776,-532 776,-538 776,-538 776,-589 776,-589 776,-595 770,-601 764,-601 764,-601 182,-601 182,-601 176,-601 170,-595 170,-589 170,-589 170,-538 170,-538 170,-532 176,-526 182,-526" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="473" y="-585.8">Source platform feature context: JUnit 4</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M179.5,-292C179.5,-292 724,-292 724,-292 730,-292 736,-298 736,-304 736,-304 736,-423 736,-423 736,-429 730,-435 724,-435 724,-435 179.5,-435 179.5,-435 173.5,-435 167.5,-429 167.5,-423 167.5,-423 167.5,-304 167.5,-304 167.5,-298 173.5,-292 179.5,-292" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="451.75" y="-419.8">Target platform feature context: JUnit 5 / JUnit Jupiter and JUnit Platform</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M279.5,-256C279.5,-256 227.5,-256 227.5,-256 221.5,-256 215.5,-250 215.5,-244 215.5,-244 215.5,-232 215.5,-232 215.5,-226 221.5,-220 227.5,-220 227.5,-220 279.5,-220 279.5,-220 285.5,-220 291.5,-226 291.5,-232 291.5,-232 291.5,-244 291.5,-244 291.5,-250 285.5,-256 279.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="253.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M274.5,-188C274.5,-188 232.5,-188 232.5,-188 226.5,-188 220.5,-182 220.5,-176 220.5,-176 220.5,-164 220.5,-164 220.5,-158 226.5,-152 232.5,-152 232.5,-152 274.5,-152 274.5,-152 280.5,-152 286.5,-158 286.5,-164 286.5,-164 286.5,-176 286.5,-176 286.5,-182 280.5,-188 274.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="253.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M268.5,-120C268.5,-120 238.5,-120 238.5,-120 232.5,-120 226.5,-114 226.5,-108 226.5,-108 226.5,-96 226.5,-96 226.5,-90 232.5,-84 238.5,-84 238.5,-84 268.5,-84 268.5,-84 274.5,-84 280.5,-90 280.5,-96 280.5,-96 280.5,-108 280.5,-108 280.5,-114 274.5,-120 268.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="253.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M281.5,-52C281.5,-52 225.5,-52 225.5,-52 219.5,-52 213.5,-46 213.5,-40 213.5,-40 213.5,-28 213.5,-28 213.5,-22 219.5,-16 225.5,-16 225.5,-16 281.5,-16 281.5,-16 287.5,-16 293.5,-22 293.5,-28 293.5,-28 293.5,-40 293.5,-40 293.5,-46 287.5,-52 281.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="253.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_10427468 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_10427468</title>
+
+                    
+
+                    <path d="M756,-570C756,-570 592,-570 592,-570 586,-570 580,-564 580,-558 580,-558 580,-546 580,-546 580,-540 586,-534 592,-534 592,-534 756,-534 756,-534 762,-534 768,-540 768,-546 768,-546 768,-558 768,-558 768,-564 762,-570 756,-570" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="674" y="-549.5">Coexisting JUnit 4 tests during migration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1937206825 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1937206825</title>
+
+                    
+
+                    <path d="M317,-570C317,-570 190,-570 190,-570 184,-570 178,-564 178,-558 178,-558 178,-546 178,-546 178,-540 184,-534 190,-534 190,-534 317,-534 317,-534 323,-534 329,-540 329,-546 329,-546 329,-558 329,-558 329,-564 323,-570 317,-570" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="253.5" y="-549.5">Build and Runtime Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1937206825&#45;&gt;S_10427468 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>S_1937206825-&gt;S_10427468</title>
+
+                    
+
+                    <path d="M329.32,-552C399.38,-552 504.31,-552 579.79,-552" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_365110351 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_365110351</title>
+
+                    
+
+                    <path d="M479,-487C479,-487 28,-487 28,-487 22,-487 16,-481 16,-475 16,-475 16,-463 16,-463 16,-457 22,-451 28,-451 28,-451 479,-451 479,-451 485,-451 491,-457 491,-463 491,-463 491,-475 491,-475 491,-481 485,-487 479,-487" fill="#fff2cc" stroke="#f1a208" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="253.5" y="-466.5">Compatibility bridge * &nbsp;JUnit Vintage Engine Coexistence Bridge * WHOLE_MIGRATION * cleanup required</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_365110351&#45;&gt;S_10427468 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>C_365110351-&gt;S_10427468</title>
+
+                    
+
+                    <path d="M345.31,-487.01C412.92,-500.42 505.13,-518.71 574.52,-532.47" fill="none" stroke="#f1a208"></path>
+
+                    
+
+                    <polygon fill="#f1a208" points="574.14,-535.07 582.01,-533.95 575.16,-529.92 574.14,-535.07" stroke="#f1a208"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="535.5" y="-527.8">bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1330163912 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1330163912</title>
+
+                    
+
+                    <path d="M716,-404C716,-404 632,-404 632,-404 626,-404 620,-398 620,-392 620,-392 620,-380 620,-380 620,-374 626,-368 632,-368 632,-368 716,-368 716,-368 722,-368 728,-374 728,-380 728,-380 728,-392 728,-392 728,-398 722,-404 716,-404" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="674" y="-383.5">junit-platform-launcher</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_365110351&#45;&gt;T_1330163912 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_365110351-&gt;T_1330163912</title>
+
+                    
+
+                    <path d="M456.18,-450.96C470.72,-448.62 485.12,-445.98 499,-443 540.35,-434.13 585.71,-419.09 619.75,-406.68" fill="none" stroke="#f1a208"></path>
+
+                    
+
+                    <polygon fill="#f1a208" points="620.7,-409.13 626.84,-404.08 618.89,-404.2 620.7,-409.13" stroke="#f1a208"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="535.5" y="-439.8">bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1269074887 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_1269074887</title>
+
+                    
+
+                    <path d="M709.5,-336C709.5,-336 638.5,-336 638.5,-336 632.5,-336 626.5,-330 626.5,-324 626.5,-324 626.5,-312 626.5,-312 626.5,-306 632.5,-300 638.5,-300 638.5,-300 709.5,-300 709.5,-300 715.5,-300 721.5,-306 721.5,-312 721.5,-312 721.5,-324 721.5,-324 721.5,-330 715.5,-336 709.5,-336" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="674" y="-315.5">junit-vintage-engine</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_365110351&#45;&gt;T_1269074887 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_365110351-&gt;T_1269074887</title>
+
+                    
+
+                    <path d="M483.56,-450.91C488.84,-448.49 494,-445.86 499,-443 513.89,-434.49 510.9,-425.08 522,-412 545.99,-383.71 548.9,-372.21 580,-352 591.8,-344.33 605.56,-338.09 618.82,-333.15" fill="none" stroke="#f1a208"></path>
+
+                    
+
+                    <polygon fill="#f1a208" points="619.94,-335.54 626.12,-330.54 618.17,-330.59 619.94,-335.54" stroke="#f1a208"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="535.5" y="-414.8">bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_2143736571 -->
+
+                
+
+                <g class="node" id="node10">
+
+                    
+
+                    <title>T_2143736571</title>
+
+                    
+
+                    <path d="M319.5,-360C319.5,-360 187.5,-360 187.5,-360 181.5,-360 175.5,-354 175.5,-348 175.5,-348 175.5,-336 175.5,-336 175.5,-330 181.5,-324 187.5,-324 187.5,-324 319.5,-324 319.5,-324 325.5,-324 331.5,-330 331.5,-336 331.5,-336 331.5,-348 331.5,-348 331.5,-354 325.5,-360 319.5,-360" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="253.5" y="-339.5">JUnit Platform Build and Runtime</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_2143736571&#45;&gt;T_1330163912 -->
+
+                
+
+                <g class="edge" id="edge5">
+
+                    
+
+                    <title>T_2143736571-&gt;T_1330163912</title>
+
+                    
+
+                    <path d="M331.79,-341.19C391.42,-341.58 475.82,-344.35 549,-355 572.5,-358.42 598.01,-364.4 619.76,-370.2" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_2143736571&#45;&gt;T_1269074887 -->
+
+                
+
+                <g class="edge" id="edge6">
+
+                    
+
+                    <title>T_2143736571-&gt;T_1269074887</title>
+
+                    
+
+                    <path d="M331.75,-337.57C418.07,-332.62 555.05,-324.76 626.37,-320.67" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

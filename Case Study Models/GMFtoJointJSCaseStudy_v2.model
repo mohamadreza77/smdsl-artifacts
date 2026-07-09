@@ -1,0 +1,409 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<smdsl_updated_updated_prefix:Migration xmlns:smdsl_updated_updated_prefix="smdsl_updated_updated_uri" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:version="2.0" xmi:id="_NNx3YMVzEfCIz4WBK8SiNA" name="GMF to JointJS Migration (SMDSL v2)">
+  <source xmi:id="_xfjAUMVzEfCIz4WBK8SiNA" name="GMF Workbench">
+    <features xmi:id="_BGoJcMWhEfCIz4WBK8SiNA" name="Figure">
+      <nestedFeatures xmi:id="_CgqHMMWQEfCIz4WBK8SiNA" name="Shape">
+        <nestedFeatures xmi:id="_d8RuYONWEfCu7-dLl7IJUQ" name="maximumSize" />
+        <nestedFeatures xmi:id="_duAo4ONWEfCu7-dLl7IJUQ" name="minimumSize" />
+        <nestedFeatures xmi:id="_9AbzIMV_EfCIz4WBK8SiNA" name="foreground" />
+        <nestedFeatures xmi:id="_NhzTsMWAEfCIz4WBK8SiNA" name="background" />
+        <nestedFeatures xmi:id="_WWheYMWQEfCIz4WBK8SiNA" name="LayoutData" >
+          <nestedFeatures xmi:id="_xJETAMXAEfCIz4WBK8SiNA" name="Point" />
+          <nestedFeatures xmi:id="_zKhNYMXAEfCIz4WBK8SiNA" name="Dimension" />
+        </nestedFeatures>
+        <nestedFeatures xmi:id="_Cs1NEMWzEfCIz4WBK8SiNA" name="Type">
+          <nestedFeatures xmi:id="_Na4JUMWhEfCIz4WBK8SiNA" name="Rectangle" />
+          <nestedFeatures xmi:id="_WU-9kMWhEfCIz4WBK8SiNA" name="Ellipse" />
+          <nestedFeatures xmi:id="_Z09EYMWhEfCIz4WBK8SiNA" name="Polyline">
+            <nestedFeatures xmi:id="_aW-9QOZ4EfCbGf1_nr27lg" name="template points" />
+          </nestedFeatures>
+          <nestedFeatures xmi:id="_fVLdEPrmEfCJw9T7EXHRmw" name="RoundedRectangle" />
+          <nestedFeatures xmi:id="_fqnhkPrmEfCJw9T7EXHRmw" name="Polygon">
+            <nestedFeatures xmi:id="_y6dakPrmEfCJw9T7EXHRmw" name="template points" />
+          </nestedFeatures>
+          <nestedFeatures xmi:id="_gT8ycPrmEfCJw9T7EXHRmw" name="ScalablePolygon">
+            <nestedFeatures xmi:id="_zENMcPrmEfCJw9T7EXHRmw" name="template points" />
+          </nestedFeatures>
+        </nestedFeatures>
+        <nestedFeatures xmi:id="_jA3iMNMGEfCGnY31vy1jEg" name="Size">
+          <nestedFeatures xmi:id="_UF3igNMGEfCGnY31vy1jEg" name="Dx" />
+          <nestedFeatures xmi:id="_U_ocENMGEfCGnY31vy1jEg" name="Dy" />
+        </nestedFeatures>
+      </nestedFeatures>
+      <nestedFeatures xmi:id="_OmCU4MWhEfCIz4WBK8SiNA" name="Label" />
+      <nestedFeatures name="Custom Draw2D Figure" xmi:id="_feat_gmfj_00012" />
+    </features>
+    <features xmi:id="_VF96gMcGEfCBo5CuJG-9rA" name="Canvas Mapping">
+      <nestedFeatures xmi:id="_ANVBQMcSEfCBo5CuJG-9rA" name="Element" />
+    </features>
+    <features xmi:id="_Pi114McWEfCBo5CuJG-9rA" name="Node Reference">
+      <nestedFeatures xmi:id="_sAF5oMcWEfCBo5CuJG-9rA" name="Containment Feature" />
+    </features>
+    <features xmi:id="_3AY-UMcWEfCBo5CuJG-9rA" name="Node Mapping">
+      <nestedFeatures xmi:id="_5VfNcMcWEfCBo5CuJG-9rA" name="Element" />
+      <nestedFeatures xmi:id="_pErJoNMEEfCGnY31vy1jEg" name="Diagram Node" />
+    </features>
+    <features xmi:id="_5xyRUMiqEfCBo5CuJG-9rA" name="Compartment Mapping" >
+      <nestedFeatures xmi:id="_XwQI0MiuEfCBo5CuJG-9rA" name="Children" />
+      <nestedFeatures xmi:id="_Y5mWgMiuEfCBo5CuJG-9rA" name="Visual Representation Compartment" />
+    </features>
+    <features xmi:id="_dCYOIMs9EfC_5dXRuYHIzA" name="Feature Label Mapping" >
+      <nestedFeatures xmi:id="_h49T0MtDEfC_5dXRuYHIzA" name="Feauture to Display" />
+    </features>
+    <features name="EMF Semantic Domain Model" xmi:id="_feat_gmfj_00001" />
+    <features name="Link Mapping" xmi:id="_feat_gmfj_00002">
+      <nestedFeatures name="Source Feature" xmi:id="_feat_gmfj_00003" />
+      <nestedFeatures name="Target Feature" xmi:id="_feat_gmfj_00004" />
+      <nestedFeatures name="Link Label Mapping" xmi:id="_feat_gmfj_00005" />
+    </features>
+    <features name="Tool Definition Model" xmi:id="_feat_gmfj_00006">
+      <nestedFeatures name="Creation Tool" xmi:id="_feat_gmfj_00007" />
+      <nestedFeatures name="Connection Tool" xmi:id="_feat_gmfj_00008" />
+    </features>
+    <features name="Domain Specialization Constraint" xmi:id="_feat_gmfj_00009" />
+    <features name="Generated Edit Policies and Commands" xmi:id="_feat_gmfj_00010" />
+    <features name="GMF Notation Model" xmi:id="_feat_gmfj_00011" />
+    <features name="Connection Routing and Anchors" xmi:id="_feat_gmfj_00013" />
+  </source>
+  <target xmi:id="_zO_ksMVzEfCIz4WBK8SiNA" name="JointJS">
+    <features xmi:id="_LhVX8NGNEfCFdd5sWaqdsQ" name="Graph" />
+    <features xmi:id="_M5Q0MNGNEfCFdd5sWaqdsQ" name="Paper" />
+    <features xmi:id="_QiCToNI7EfCGnY31vy1jEg" name="Dia Element">
+      <nestedFeatures xmi:id="_XjLwQNI9EfCGnY31vy1jEg" name="namespace" />
+    </features>
+    <features xmi:id="_0hN-INJDEfCGnY31vy1jEg" name="Dia Element Visual Attributes">
+      <nestedFeatures xmi:id="_kEubcNLQEfCGnY31vy1jEg" name="width" />
+      <nestedFeatures xmi:id="_lH03MNLQEfCGnY31vy1jEg" name="height" />
+      <nestedFeatures xmi:id="_fSDZ0NLUEfCGnY31vy1jEg" name="object of attrs">
+        <nestedFeatures xmi:id="_LK-kwNL-EfCGnY31vy1jEg" name="refX" />
+        <nestedFeatures xmi:id="_LsJYINL-EfCGnY31vy1jEg" name="refY" />
+        <nestedFeatures xmi:id="_L55gQNL-EfCGnY31vy1jEg" name="refWidth" />
+        <nestedFeatures xmi:id="_MLF98NL-EfCGnY31vy1jEg" name="refHeight" />
+        <nestedFeatures xmi:id="_RkZ_QOZ2EfCbGf1_nr27lg" name="d" />
+      </nestedFeatures>
+    </features>
+    <features xmi:id="_ui0hENLHEfCGnY31vy1jEg" name="Dia Element Visual Structure">
+      <nestedFeatures xmi:id="_Vzs8UOt7EfCnVsesC4f2Zw" name="markup">
+        <nestedFeatures xmi:id="_tXkaoNLiEfCGnY31vy1jEg" name="tagName" />
+        <nestedFeatures xmi:id="_HfgTMNLrEfCGnY31vy1jEg" name="selector" />
+      </nestedFeatures>
+    </features>
+    <features xmi:id="_vuZG4NLIEfCGnY31vy1jEg" name="Dia Element Behaviour">
+      <nestedFeatures xmi:id="_Z4LeYOt7EfCnVsesC4f2Zw" name="rules">
+        <nestedFeatures xmi:id="_PmeIYNLtEfCGnY31vy1jEg" name="function" />
+      </nestedFeatures>
+    </features>
+    <features name="Cell" xmi:id="_feat_gmfj_00020">
+      <nestedFeatures name="id" xmi:id="_feat_gmfj_00021" />
+      <nestedFeatures name="cellNamespace" xmi:id="_feat_gmfj_00022" />
+    </features>
+    <features name="Custom Element Definition" xmi:id="_feat_gmfj_00023" />
+    <features name="Dia Link" xmi:id="_feat_gmfj_00024">
+      <nestedFeatures name="source" xmi:id="_feat_gmfj_00025" />
+      <nestedFeatures name="target" xmi:id="_feat_gmfj_00026" />
+      <nestedFeatures name="vertices" xmi:id="_feat_gmfj_00027" />
+      <nestedFeatures name="router" xmi:id="_feat_gmfj_00028" />
+      <nestedFeatures name="connector" xmi:id="_feat_gmfj_00029" />
+      <nestedFeatures name="labels" xmi:id="_feat_gmfj_00030" />
+    </features>
+    <features name="Ports" xmi:id="_feat_gmfj_00031">
+      <nestedFeatures name="port groups" xmi:id="_feat_gmfj_00032" />
+      <nestedFeatures name="port markup" xmi:id="_feat_gmfj_00033" />
+    </features>
+    <features name="Embedding" xmi:id="_feat_gmfj_00034" />
+    <features name="Paper Events" xmi:id="_feat_gmfj_00035">
+      <nestedFeatures name="element:pointerdown" xmi:id="_feat_gmfj_00036" />
+      <nestedFeatures name="blank:pointerclick" xmi:id="_feat_gmfj_00037" />
+    </features>
+    <features name="Element and Link Tools" xmi:id="_feat_gmfj_00038" />
+    <features name="Graph JSON Serialization" xmi:id="_feat_gmfj_00039" />
+    <features name="Paper Interaction Options" xmi:id="_feat_gmfj_00040" />
+    <features name="LinkView" xmi:id="_feat_gmfj_00041" />
+    <features name="ElementView" xmi:id="_feat_gmfj_00042" />
+    <features name="Application-level Validation Logic" xmi:id="_feat_gmfj_00043" />
+  </target>
+  <operators xmi:id="_tCufwMZwEfCeR8oIST4D4w" name="Mr. X" />
+  <preMigrationRequirements mandatory="true" kind="CONFIGURATION_REVIEW" note="Inventory GMF source artifacts and generated behavior: .gmfmap, .gmfgraph, .gmftool, generated edit parts/policies, notation samples, and representative diagrams before translating to a browser-native JointJS application." xmi:id="_pre_00010" affectedFeatures="_VF96gMcGEfCBo5CuJG-9rA _3AY-UMcWEfCBo5CuJG-9rA _5xyRUMiqEfCBo5CuJG-9rA _dCYOIMs9EfC_5dXRuYHIzA _BGoJcMWhEfCIz4WBK8SiNA _feat_gmfj_00006 _feat_gmfj_00010 _feat_gmfj_00011" />
+  <preMigrationRequirements mandatory="true" kind="BASELINE_VERSION" note="Identify and freeze the EMF semantic domain model as the stable source of truth; JointJS does not provide EMF semantics directly, so domain instances must be exported, synchronized, or wrapped by application code." xmi:id="_pre_00011" affectedFeatures="_feat_gmfj_00001 _feat_gmfj_00039" />
+  <preMigrationRequirements mandatory="true" kind="DEPENDENCY_UPDATE" note="Prepare the target web application runtime with JointJS Graph, Paper, shape namespace, rendering container, bundling/build configuration, and any application services that will read or write domain data." xmi:id="_pre_00012" affectedFeatures="_LhVX8NGNEfCFdd5sWaqdsQ _M5Q0MNGNEfCFdd5sWaqdsQ _feat_gmfj_00020 _feat_gmfj_00023" />
+  <preMigrationRequirements mandatory="true" kind="TEST_BASELINE" note="Establish a visual and behavioral comparison baseline from the GMF editor, including nodes, compartments, labels, links, routing, layout, editing actions and representative serialized diagrams." xmi:id="_pre_00013" affectedFeatures="_BGoJcMWhEfCIz4WBK8SiNA _dCYOIMs9EfC_5dXRuYHIzA _5xyRUMiqEfCBo5CuJG-9rA _feat_gmfj_00002 _feat_gmfj_00024" />
+  <preMigrationRequirements mandatory="true" kind="CONFIGURATION_REVIEW" note="Review custom Draw2D figures, layout data, palettes, generated commands, edit policies and validation constraints because many of them require explicit JavaScript/SVG implementation rather than direct model-to-model translation." xmi:id="_pre_00014" affectedFeatures="_feat_gmfj_00012 _WWheYMWQEfCIz4WBK8SiNA _feat_gmfj_00006 _feat_gmfj_00009 _feat_gmfj_00010" />
+  <preMigrationRequirements mandatory="true" kind="CONFIGURATION_REVIEW" note="Decide the synchronization and serialization strategy between EMF resources, GMF notation information and JointJS graph JSON/cells before migrating diagram contents." xmi:id="_pre_00015" affectedFeatures="_feat_gmfj_00001 _feat_gmfj_00011 _feat_gmfj_00039 _LhVX8NGNEfCFdd5sWaqdsQ" />
+  <mappings xmi:id="_1C_R4MVzEfCIz4WBK8SiNA" name="Node Definition - Structural">
+    <correspondences xmi:id="_Q3mlMMcdEfCBo5CuJG-9rA" name="Node Mapping to Dia Element" sourceFeature="_3AY-UMcWEfCBo5CuJG-9rA" targetFeature="_QiCToNI7EfCGnY31vy1jEg _XjLwQNI9EfCGnY31vy1jEg" relation="A GMF Node Mapping specifies how a semantic element is represented as a node in the diagram, including its identity and containment context. In JointJS, this responsibility is realized by defining a Dia Element, whose type and uniqueness are determined through its namespace. Since both constructs serve to introduce a concrete node type tied to a domain element, the mapping is direct and can be fully automated, with namespace composition systematically derived from the GMF mapping context." xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_R_tboMiwEfCBo5CuJG-9rA" />
+      <strategy xmi:id="_WeTAkMcgEfCBo5CuJG-9rA">
+        <steps xmi:id="_X66WUMjSEfCBo5CuJG-9rA" description="take the element property (A) of the node mapping" order="1" type="A" />
+        <steps xmi:id="_Qo34ENb0EfC3pJN73lPkbQ" description="take the parent top node/child reference (B) of the node mapping" order="2" type="A" />
+        <steps xmi:id="_COLQMNeQEfCUYJN3_L4-Ew" description="check if B has the compartment property (X)" order="3" type="A" />
+        <steps xmi:id="_HhztANeQEfCUYJN3_L4-Ew" description="if X is true" order="4" type="NONE">
+          <nestedSteps xmi:id="_bLydMNb0EfC3pJN73lPkbQ" description="take the compartment property (C) of B" order="1" type="A" />
+          <nestedSteps xmi:id="_1wkqkNeQEfCUYJN3_L4-Ew" description="take the name property (D) of C" order="2" type="A" />
+          <nestedSteps xmi:id="_zrlaIMcgEfCBo5CuJG-9rA" description="if not already exist, create a dia element with the var name 'A_D' (E), else 'A_D_i' (E) where i is a counter computed by the last i + 1" order="3" type="A" />
+          <nestedSteps xmi:id="_j6UxANLKEfCGnY31vy1jEg" description="paste 'custom.E' into the namespace of dia element" order="4" type="A" />
+        </steps>
+        <steps xmi:id="_jmPoINeQEfCUYJN3_L4-Ew" description="if X is false" order="5" type="NONE">
+          <nestedSteps xmi:id="_mNDSUNeQEfCUYJN3_L4-Ew" description="if not already exist, create a dia element with the var name 'A' (E), else 'A_i' (E) where i is a counter computed by the last i + 1" order="1" type="A" />
+          <nestedSteps xmi:id="_mNDSUdeQEfCUYJN3_L4-Ew" description="paste 'custom.E' into the namespace of dia element" order="2" type="A" />
+        </steps>
+      </strategy>
+      <conditions polarity="REQUIRED" expression="Apply when a GMF Node Mapping identifies a semantic element type that should be represented as a JointJS custom element/cell type." xmi:id="_cond_00016" subjectFeatures="_3AY-UMcWEfCBo5CuJG-9rA _QiCToNI7EfCGnY31vy1jEg _XjLwQNI9EfCGnY31vy1jEg" />
+    </correspondences>
+    <correspondences xmi:id="_l_gxMMWrEfCIz4WBK8SiNA" name="Compartment Mapping to Dia Visual Properties" sourceFeature="_5xyRUMiqEfCBo5CuJG-9rA" targetFeature="_tXkaoNLiEfCGnY31vy1jEg _HfgTMNLrEfCGnY31vy1jEg _fSDZ0NLUEfCGnY31vy1jEg" relation="A GMF Compartment Mapping introduces a dedicated visual region inside a node used to structure and present contained content. In JointJS, a possible equivalent is to materialize that region inside the element’s SVG/markup by defining a sub-shape via tagName and selector, and then controlling its appearance through an obhect in attrs." xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_ZtME4MjVEfCBo5CuJG-9rA" difficulty="COMPLEX" />
+      <strategy xmi:id="_m93LoMWyEfCIz4WBK8SiNA">
+        <steps xmi:id="_6ZhNoMjUEfCBo5CuJG-9rA" description="take the visual representation compartment property (A) of the compartment mapping" order="1" type="A" />
+        <steps xmi:id="_GTLjQMjVEfCBo5CuJG-9rA" description="take the name property (B) of A" order="2" type="A" />
+        <steps xmi:id="_uvIWMNeSEfCUYJN3_L4-Ew" description="take the parent node mapping (C) of the compartment mapping" order="3" type="A" />
+        <steps xmi:id="_z2CloNeSEfCUYJN3_L4-Ew" description="take the C's equivalent Dia Element" order="4" type="A" />
+        <steps xmi:id="_THGYgNLXEfCGnY31vy1jEg" description="add an object to Visual Structure of C with the tagName and selector being 'rect' and B" order="5" type="A" />
+        <steps xmi:id="_nyIhMMWyEfCIz4WBK8SiNA" description="add an obejct to attrs of Visual Attributes of C with the name being B" order="6" type="A" />
+      </strategy>
+      <subcorrespondences xmi:id="_uDalQNLoEfCGnY31vy1jEg" name="Compartment Mapping to Dia Behaviour" sourceFeature="_XwQI0MiuEfCBo5CuJG-9rA" targetFeature="_PmeIYNLtEfCGnY31vy1jEg" xsi:type="smdsl_updated_updated_prefix:Transformation" relation="">
+        <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_LU1g0NL9EfCGnY31vy1jEg" operators="_tCufwMZwEfCeR8oIST4D4w" />
+        <strategy xmi:id="_FMDfUNLqEfCGnY31vy1jEg">
+          <steps xmi:id="_gToDMNLiEfCGnY31vy1jEg" description="take all the child references (D) of the children property" order="1" type="A" />
+          <steps xmi:id="_WYK88NeTEfCUYJN3_L4-Ew" description="take all the node mappings (E) of D" order="2" type="A" />
+          <steps xmi:id="_RaGYQNLkEfCGnY31vy1jEg" description="take all the Es' equivalent Dia Elements (F)" order="3" type="A" />
+          <steps xmi:id="_4G4TQNeTEfCUYJN3_L4-Ew" description="take all the namespaces (G) in F" order="4" type="A" />
+          <steps xmi:id="_VnSm4NLjEfCGnY31vy1jEg" description="if not exist, add a function called 'canEmbed' to Behaviour of C" order="5" type="A" />
+          <steps xmi:id="_AKkc4NeUEfCUYJN3_L4-Ew" description="add G to the list inside 'canEmbed'" order="6" type="A" />
+          <steps xmi:id="_43XpUNLjEfCGnY31vy1jEg" description="if not exist, add a function called 'getCompartmentSelector' to Behaviour" order="7" type="A" />
+          <steps xmi:id="_-l7uoNLjEfCGnY31vy1jEg" description="for every namespace (I) in G, add an if statement to 'getCompartmentSelector' in a way that it compares equality between element type and I, and if true, return B" order="8" type="A" />
+          <steps xmi:id="_QgHIUNL8EfCGnY31vy1jEg" description="if not exist, create a JavaScript file called 'util.js' with the default implementation of 'autoEmbedAll' and 'restrictTranslate'" order="9" type="A" />
+          <steps xmi:id="_ZZaEQNL8EfCGnY31vy1jEg" description="call 'autoEmbedAll' wherever needed to bind sub-nodes and the super-node together" order="10" type="A" />
+          <steps xmi:id="_pgAUYNL8EfCGnY31vy1jEg" description="bind 'restrictTranslate' and the restrictTranslate property of paper together" order="11" type="A" />
+          <steps xmi:id="_FKXTsP7QEfCSwLIet1pVuQ" description="operators must verify the implementation and binding" order="12" type="M" />
+        </strategy>
+      </subcorrespondences>
+      <conditions polarity="REQUIRED" expression="Apply when a GMF Compartment Mapping represents a nested visual region inside a node; in JointJS this must be reified using SVG markup/attrs, embedding, ports, or application-level child management." xmi:id="_cond_00017" subjectFeatures="_5xyRUMiqEfCBo5CuJG-9rA _Vzs8UOt7EfCnVsesC4f2Zw _fSDZ0NLUEfCGnY31vy1jEg _feat_gmfj_00034" />
+    </correspondences>
+  </mappings>
+  <mappings xmi:id="_DUeZYMcHEfCBo5CuJG-9rA" name="Diagram Infrastructure - Structural">
+    <correspondences xmi:id="_mr1WQMcMEfCBo5CuJG-9rA" name="Canvas Mapping to Graph/Paper" sourceFeature="_VF96gMcGEfCBo5CuJG-9rA" targetFeature="_LhVX8NGNEfCFdd5sWaqdsQ _M5Q0MNGNEfCFdd5sWaqdsQ" relation="Canvas Mapping in GMF defines the diagram-level entry point, combining both the semantic root of the diagram and its global visual configuration. In JointJS, these responsibilities are intentionally separated: Graph manages the diagram’s underlying model, while Paper manages rendering, layout, and interaction. Therefore, a single Canvas Mapping can be realized by coordinating Graph and Paper, making the correspondence valid despite the structural decomposition." xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_j9v9wOwLEfCKspm6e6k1Tg" operators="_tCufwMZwEfCeR8oIST4D4w" />
+      <strategy xmi:id="_pgJwoMcPEfCBo5CuJG-9rA">
+        <steps xmi:id="_-sxq4NGNEfCFdd5sWaqdsQ" description="take the element property (A) of the canvas mapping" order="1" type="A" />
+        <steps xmi:id="_NaOgYMcSEfCBo5CuJG-9rA" description="create one JavaScript file (name it A.js) with instantiating Graph and Paper, and another JavaScript file (name it A+Elements.js)" order="2" type="A" />
+        <steps xmi:id="_m9YXoOwLEfCKspm6e6k1Tg" description="supervisors should set the desired Paper's properties such as width, height, drawGrid, gridSize, binding to the HTML element, etc." order="3" type="A" />
+      </strategy>
+      <conditions polarity="REQUIRED" expression="Apply when the GMF Canvas Mapping provides the diagram entry point/root; in JointJS this becomes a Graph data model and a Paper view bound to an HTML/SVG rendering surface." xmi:id="_cond_00018" subjectFeatures="_VF96gMcGEfCBo5CuJG-9rA _LhVX8NGNEfCFdd5sWaqdsQ _M5Q0MNGNEfCFdd5sWaqdsQ" />
+    </correspondences>
+    <correspondences name="Graph and Paper Split Model from View" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="JointJS separates the diagram data model (Graph) from the rendering surface/view (Paper). GMF Canvas Mapping is a generated editor-level diagram root, so migration changes the architectural boundary between model storage and rendering." xmi:id="_corr_00107" affectedSourceFeatures="_VF96gMcGEfCBo5CuJG-9rA" affectedTargetFeatures="_LhVX8NGNEfCFdd5sWaqdsQ _M5Q0MNGNEfCFdd5sWaqdsQ" />
+    <correspondences name="Diagram Root Intent Preservation" xsi:type="smdsl_updated_updated_prefix:Preservation" preservedFeatures="_VF96gMcGEfCBo5CuJG-9rA _LhVX8NGNEfCFdd5sWaqdsQ _M5Q0MNGNEfCFdd5sWaqdsQ" kind="SEMANTICALLY_PRESERVED" reason="The intention of having one diagram-level entry point is preserved by creating a JointJS Graph and associated Paper for the root diagram context." xmi:id="_corr_00108" />
+  </mappings>
+  <mappings xmi:id="_pCcNEMjUEfCBo5CuJG-9rA" name="Layout Semantics - Visual">
+    <correspondences xmi:id="_V9CSkNLREfCGnY31vy1jEg" name="Computing Dia Element Width and Height" sourceFeature="_jA3iMNMGEfCGnY31vy1jEg" targetFeature="_kEubcNLQEfCGnY31vy1jEg _lH03MNLQEfCGnY31vy1jEg" relation="Both features are responsible for fixing the concrete spatial extent of a node. GMF Size captures dimensional constraints (preferred, minimum, or maximum) at the figure-definition level. JointJS expresses the same intent more directly by assigning explicit width and height values to Dia Eements. Size constraints defined in GMF can be preserved as explicit geometric properties in the JointJS model." xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_gLxXcNLREfCGnY31vy1jEg" difficulty="COMPLEX" />
+      <strategy xmi:id="_Oc2CINLSEfCGnY31vy1jEg">
+        <steps xmi:id="_mHDsgNMFEfCGnY31vy1jEg" description="take Dx (A) and Dy (B) of size (preferred/min/max in order)" order="1" type="A" />
+        <steps xmi:id="_L6necNiPEfC6eumi-hp08w" description="take the parent shape (C) of size" order="2" type="A" />
+        <steps xmi:id="_5w_xMNiPEfC6eumi-hp08w" description="check if C has a figure descriptor parent (X)" order="3" type="A" />
+        <steps xmi:id="_BTOMgNiQEfC6eumi-hp08w" description="if X it true" order="4" type="NONE">
+          <nestedSteps xmi:id="_HGl5UNiQEfC6eumi-hp08w" description="take the figure descriptor parent (D)" order="1" type="A" />
+          <nestedSteps xmi:id="_OTsZMNiQEfC6eumi-hp08w" description="take the node (E) that refers to D in its figure property" order="2" type="A" />
+          <nestedSteps xmi:id="_cjgt4NiQEfC6eumi-hp08w" description="take all the node mappings (F) that refere to E in their diagram node feature" order="3" type="A" />
+          <nestedSteps xmi:id="_H5sEENMHEfCGnY31vy1jEg" description="take all the equivalent Dia Elements (G) of F" order="4" type="A" />
+          <nestedSteps xmi:id="_IPy28NMHEfCGnY31vy1jEg" description="paste A and B into width and height of the Visual Attributes of G" order="5" type="A" />
+        </steps>
+      </strategy>
+      <conditions polarity="REQUIRED" expression="Apply when GMF figure size information can be translated into JointJS element size/width/height values." xmi:id="_cond_00019" subjectFeatures="_jA3iMNMGEfCGnY31vy1jEg _kEubcNLQEfCGnY31vy1jEg _lH03MNLQEfCGnY31vy1jEg" />
+    </correspondences>
+    <correspondences xmi:id="_slTtsNLWEfCGnY31vy1jEg" name="Computing Geometry for Attrs" sourceFeature="_WWheYMWQEfCIz4WBK8SiNA" targetFeature="_LK-kwNL-EfCGnY31vy1jEg _LsJYINL-EfCGnY31vy1jEg _MLF98NL-EfCGnY31vy1jEg _L55gQNL-EfCGnY31vy1jEg" relation="Although GMF LayoutData and JointJS refX/refY/refWidth/refHeight are grounded in different layout paradigms, both mechanisms ultimately serve to encode the spatial intent of sub-figures within a container. GMF expresses this intent through nested XY offsets that are resolved imperatively during rendering, whereas JointJS captures the same intent declaratively by anchoring sub-elements relative to their parent’s dimensions." xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_TyqocNlCEfC6eumi-hp08w" operators="_tCufwMZwEfCeR8oIST4D4w" />
+      <strategy xmi:id="_ZxWMsNMIEfCGnY31vy1jEg">
+        <steps xmi:id="__UMV8Nk9EfC6eumi-hp08w" description="check if LayoutData is a kind of XYLayoutData (X)" order="1" type="A" />
+        <steps xmi:id="_FgPogNk-EfC6eumi-hp08w" description="if X is true" order="2" type="NONE">
+          <nestedSteps xmi:id="_LDqi4NlAEfC6eumi-hp08w" description="take XYLayoutData (A)" order="1" type="A" />
+          <nestedSteps xmi:id="_wdSWoNk-EfC6eumi-hp08w" description="take the parent (B) of A" order="2" type="A" />
+          <nestedSteps xmi:id="_l63rUNk_EfC6eumi-hp08w" description="check if B's most top parent shape has a kind of size (Y)" order="3" type="A" />
+          <nestedSteps xmi:id="_qOYH4Nk_EfC6eumi-hp08w" description="if Y is true" order="4" type="NONE">
+            <nestedSteps xmi:id="_sW56oNk_EfC6eumi-hp08w" description="take the size (preferred/min/max in order) of the most top parent shape (C)" order="1" type="A" />
+            <nestedSteps xmi:id="_8imtMNk_EfC6eumi-hp08w" description="take Dx (D) and Dy (E) of A" order="2" type="A" />
+            <nestedSteps xmi:id="_eqeKYNlAEfC6eumi-hp08w" description="take Dx (F) and Dy (G) of C" order="3" type="A" />
+            <nestedSteps xmi:id="_0hWXENlAEfC6eumi-hp08w" description="take Zx=sum of all Xs of the XYLayoutDatas from A to C (H)" order="4" type="A" />
+            <nestedSteps xmi:id="_BbqpAOGzEfCreafsdKqYmA" description="take Zy=sum of all Ys of the XYLayoutDatas from A to C (I)" order="5" type="A" />
+            <nestedSteps xmi:id="_-PTFkNMKEfCGnY31vy1jEg" description="calc: refWidth= D/F, refHeight= E/G, refX= H/F, refY= I/G" order="6" type="A" />
+            <nestedSteps xmi:id="_oQXbsNlCEfC6eumi-hp08w" description="take the descriptor property (J) of B" order="7" type="A" />
+            <nestedSteps xmi:id="_5wJFQNlCEfC6eumi-hp08w" description="check if there is a compartment\diagram label (K) that its figure property referes to J and its accessor property referes to a child access that its figure property refers to B (Z)" order="8" type="A" />
+            <nestedSteps xmi:id="_k5xd4NlDEfC6eumi-hp08w" description="if Z is true" order="9" type="NONE">
+              <nestedSteps xmi:id="_AhNT8NlEEfC6eumi-hp08w" description="take the compartment\feature label mapping (L) that refers to K" order="1" type="A" />
+              <nestedSteps xmi:id="_u04cINlDEfC6eumi-hp08w" description="take the equivalent object (M) of L in attrs" order="2" type="A" />
+              <nestedSteps xmi:id="_UgtIQNlEEfC6eumi-hp08w" description="paste refWidth, refHeight, refx, and refY into M" order="3" type="A" />
+              <nestedSteps xmi:id="_BV_CUOG0EfCreafsdKqYmA" description="operators should adjust the numbers if there are gaps or needs fine-tuning" order="4" type="M" />
+            </nestedSteps>
+            <nestedSteps xmi:id="_MotAoOZ-EfCbGf1_nr27lg" description="else check if there is a node (N) that its figure property refers to the top most parent (W)" order="10" type="A" />
+            <nestedSteps xmi:id="_lGzfgOaEEfCbGf1_nr27lg" description="if W is true" order="11" type="NONE">
+              <nestedSteps xmi:id="_makNcOaEEfCbGf1_nr27lg" description="take the node mappings (O) that refers to N" order="1" type="A" />
+              <nestedSteps xmi:id="_J2CnkOaFEfCbGf1_nr27lg" description="for every node mapping (P) in O" order="2" type="NONE">
+                <nestedSteps xmi:id="_MeG2AOaFEfCbGf1_nr27lg" description="take P's Dia Element equivalent (Q)" order="1" type="A" />
+                <nestedSteps xmi:id="_QNOzIOaFEfCbGf1_nr27lg" description="if not exist, add an object (R) to attrs of Visual Attributes of Q with the name being the name property of B" order="2" type="A" />
+                <nestedSteps xmi:id="_pTScIOaGEfCbGf1_nr27lg" description="paste refWidth, refHeight, refx, and refY into R" order="3" type="A" />
+                <nestedSteps xmi:id="_pTScIeaGEfCbGf1_nr27lg" description="operators should adjust the numbers if there are gaps or needs fine-tuning" order="4" type="M" />
+              </nestedSteps>
+            </nestedSteps>
+          </nestedSteps>
+        </steps>
+      </strategy>
+      <conditions polarity="REQUIRED" expression="Apply when GMF layout data and shape geometry can be translated into JointJS attrs values such as refX/refY/refWidth/refHeight or SVG path data." xmi:id="_cond_00020" subjectFeatures="_WWheYMWQEfCIz4WBK8SiNA _LK-kwNL-EfCGnY31vy1jEg _LsJYINL-EfCGnY31vy1jEg _L55gQNL-EfCGnY31vy1jEg _MLF98NL-EfCGnY31vy1jEg" />
+    </correspondences>
+  </mappings>
+  <mappings xmi:id="_Rx7NkMs9EfC_5dXRuYHIzA" name="Label Semantics - Visual">
+    <correspondences xmi:id="_Bhu_UOQlEfCe7dIxmvlV7w" name="Feature Label Mapping to Dia Visual Properties" sourceFeature="_dCYOIMs9EfC_5dXRuYHIzA" targetFeature="_tXkaoNLiEfCGnY31vy1jEg _HfgTMNLrEfCGnY31vy1jEg _fSDZ0NLUEfCGnY31vy1jEg" relation="A GMF Feature Label Mapping specifies which feature is displayed and associates it with a label figure. In JointJS, the same intent is realized by introducing a text sub-element in the element’s markup (tagName/selector) and assigning its visual and textual configuration through attrs." xsi:type="smdsl_updated_updated_prefix:Transformation">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_q-0JMORqEfCh2_WxUtAqMw" />
+      <strategy xmi:id="_rimLsORqEfCh2_WxUtAqMw">
+        <steps xmi:id="_sIREkORqEfCh2_WxUtAqMw" description="take the feature to display (A) property of Feature Label Mapping" order="1" type="A" />
+        <steps xmi:id="_lEhYMORuEfCh2_WxUtAqMw" description="take the node mapping parent (B) of Feature Label Mapping" order="2" type="A" />
+        <steps xmi:id="_CXqiIORvEfCh2_WxUtAqMw" description="take B's Dia Element equivalent (C)" order="3" type="A" />
+        <steps xmi:id="_OSsskOR2EfCh2_WxUtAqMw" description="add an object to Visual Structure of C with the tagName and selector being 'text' and 'A+Label'" order="4" type="A" />
+        <steps xmi:id="_VCCWkORvEfCh2_WxUtAqMw" description="add an object to attrs of Visual Attributes of C with the name being 'A+Label'" order="5" type="A" />
+      </strategy>
+      <conditions polarity="REQUIRED" expression="Apply when a GMF Feature Label Mapping specifies a domain attribute that must be rendered as SVG text using JointJS markup selectors and attrs." xmi:id="_cond_00021" subjectFeatures="_dCYOIMs9EfC_5dXRuYHIzA _tXkaoNLiEfCGnY31vy1jEg _HfgTMNLrEfCGnY31vy1jEg _fSDZ0NLUEfCGnY31vy1jEg" />
+    </correspondences>
+    <correspondences name="Label Content Intent Preservation" xsi:type="smdsl_updated_updated_prefix:Preservation" preservedFeatures="_dCYOIMs9EfC_5dXRuYHIzA _tXkaoNLiEfCGnY31vy1jEg _HfgTMNLrEfCGnY31vy1jEg _fSDZ0NLUEfCGnY31vy1jEg" kind="SEMANTICALLY_PRESERVED" reason="The intent of displaying selected semantic attributes as labels is preserved by creating SVG text subelements and setting text-related attrs in JointJS." xmi:id="_corr_00105" />
+    <correspondences name="Label Layout and Selector Semantics Changed" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="GMF Feature Label Mapping identifies semantic attributes and generated edit-part label behavior. JointJS labels are SVG subelements selected by selectors and styled through attrs, so positioning and update behavior must be explicitly implemented." xmi:id="_corr_00106" affectedSourceFeatures="_dCYOIMs9EfC_5dXRuYHIzA" affectedTargetFeatures="_tXkaoNLiEfCGnY31vy1jEg _HfgTMNLrEfCGnY31vy1jEg _fSDZ0NLUEfCGnY31vy1jEg" />
+  </mappings>
+  <mappings xmi:id="_32uosOGqEfCreafsdKqYmA" name="Figure Appearance - Visual">
+    <correspondences xmi:id="_BO8VQOGrEfCreafsdKqYmA" name="Polyline to Path Data" sourceFeature="_Z09EYMWhEfCIz4WBK8SiNA" targetFeature="_tXkaoNLiEfCGnY31vy1jEg _HfgTMNLrEfCGnY31vy1jEg _fSDZ0NLUEfCGnY31vy1jEg" xsi:type="smdsl_updated_updated_prefix:Transformation" relation="">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_fkB3oOZ9EfCbGf1_nr27lg" difficulty="COMPLEX" />
+      <strategy xmi:id="_geIogOYGEfC9Me990hLAnQ">
+        <steps xmi:id="_iOR4YOZyEfCbGf1_nr27lg" description="take the name (A) of polyline" order="1" type="A" />
+        <steps xmi:id="_jwJTwOZyEfCbGf1_nr27lg" description="take the most top parent shape (B) of polyline" order="2" type="A" />
+        <steps xmi:id="_j0C8UOZyEfCbGf1_nr27lg" description="take the node (C) that its figure property refers to B" order="3" type="A" />
+        <steps xmi:id="_kVif0OZyEfCbGf1_nr27lg" description="take the node mappings (D) that refers to C" order="4" type="A" />
+        <steps xmi:id="_kgytkOZyEfCbGf1_nr27lg" description="take all the Ds' Dia Element equivalents" order="5" type="A" />
+        <steps xmi:id="_k50RkOZyEfCbGf1_nr27lg" description="for every Dia Element (E) in D" order="6" type="NONE">
+          <nestedSteps xmi:id="_4B0yUOZ0EfCbGf1_nr27lg" description="check if E has an object in attrs with the name being A (X)" order="1" type="A" />
+          <nestedSteps xmi:id="_Hm0xQOZ1EfCbGf1_nr27lg" description="if X is true" order="2" type="NONE">
+            <nestedSteps xmi:id="_FZAckOZ6EfCbGf1_nr27lg" description="if not exist, add an object in Visual Structure of E with the tagName and selector being 'path' and A" order="1" type="A" />
+            <nestedSteps xmi:id="_WpxzEOZ1EfCbGf1_nr27lg" description="take the object (F)" order="2" type="A" />
+          </nestedSteps>
+          <nestedSteps xmi:id="_NX27wOZ1EfCbGf1_nr27lg" description="else" order="3" type="NONE">
+            <nestedSteps xmi:id="_cZDtQOZ5EfCbGf1_nr27lg" description="add an object to Visual Structure of E with the tagName and selector being 'path' and A" order="1" type="A" />
+            <nestedSteps xmi:id="_OjeaUOZ1EfCbGf1_nr27lg" description="add an object (F) to attrs of Visual Attributes of E with the name being A" order="2" type="A" />
+          </nestedSteps>
+          <nestedSteps xmi:id="_gLdLYOZ6EfCbGf1_nr27lg" description="take the tamplate points (G) of polyline (in the same order they listed)" order="4" type="A" />
+        </steps>
+      </strategy>
+      <subcorrespondences xmi:id="_lv7ygOZ4EfCbGf1_nr27lg" name="Computing Path Data" sourceFeature="_aW-9QOZ4EfCbGf1_nr27lg" targetFeature="_RkZ_QOZ2EfCbGf1_nr27lg" xsi:type="smdsl_updated_updated_prefix:Transformation" relation="">
+        <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_tWKkEOZ4EfCbGf1_nr27lg" />
+        <strategy xmi:id="_vIcvIOZ6EfCbGf1_nr27lg">
+          <steps xmi:id="_vvXlMOZ6EfCbGf1_nr27lg" description="add a d property (H) to F" order="1" type="A" />
+          <steps xmi:id="_f7R5AOaIEfCbGf1_nr27lg" description="take the first template point x and y" order="2" type="A" />
+          <steps xmi:id="_MQx6wOZ8EfCbGf1_nr27lg" description="put a 'M x y ' string (I) for H" order="3" type="A" />
+          <steps xmi:id="_ntw0UOZ8EfCbGf1_nr27lg" description="from the second, for every template point (J) in G" order="4" type="NONE">
+            <nestedSteps xmi:id="_51t4MOZ8EfCbGf1_nr27lg" description="take x and y of J" order="1" type="A" />
+            <nestedSteps xmi:id="_BG3KkOZ9EfCbGf1_nr27lg" description="append 'L x y ' string to I" order="2" type="A" />
+          </steps>
+          <steps xmi:id="_HbUyQOZ9EfCbGf1_nr27lg" description="check if Polyline is a kind of Polygon or Scalable Polygon (Y)" order="5" type="A" />
+          <steps xmi:id="_Nprx8OZ9EfCbGf1_nr27lg" description="if Y is true" order="6" type="NONE">
+            <nestedSteps xmi:id="_PHt2MOZ9EfCbGf1_nr27lg" description="append 'Z' string to I" order="1" type="A" />
+          </steps>
+        </strategy>
+      </subcorrespondences>
+      <conditions polarity="REQUIRED" expression="Apply when GMF Polyline template points can be approximated as SVG path data in JointJS markup/attrs." xmi:id="_cond_00022" subjectFeatures="_Z09EYMWhEfCIz4WBK8SiNA _zENMcPrmEfCJw9T7EXHRmw _RkZ_QOZ2EfCbGf1_nr27lg" />
+    </correspondences>
+    <correspondences name="Basic Shape Visual Intent Preservation" xsi:type="smdsl_updated_updated_prefix:Preservation" preservedFeatures="_CgqHMMWQEfCIz4WBK8SiNA _Vzs8UOt7EfCnVsesC4f2Zw _fSDZ0NLUEfCGnY31vy1jEg" kind="SEMANTICALLY_PRESERVED" reason="Basic visual shapes such as rectangles, ellipses, simple paths and labels can preserve their visual intent by using SVG markup and attrs in JointJS." xmi:id="_corr_00102" />
+    <correspondences name="Draw2D Figure Hierarchy Flattened into SVG Markup" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="GMF/Draw2D figures may be deeply nested Java objects. JointJS element presentation is defined through SVG markup selectors and attrs, which usually flattens or restructures the original figure hierarchy." xmi:id="_corr_00103" affectedSourceFeatures="_BGoJcMWhEfCIz4WBK8SiNA _feat_gmfj_00012" affectedTargetFeatures="_Vzs8UOt7EfCnVsesC4f2Zw _HfgTMNLrEfCGnY31vy1jEg _fSDZ0NLUEfCGnY31vy1jEg" />
+    <correspondences name="Custom Draw2D Figures Require Manual SVG Approximation" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" kind="RISK_INTRODUCED" rationale="Custom Java Draw2D figures, custom painting code and layout managers do not have direct JointJS equivalents and must be approximated through SVG markup, attrs, custom elements, custom views or application code." xmi:id="_corr_00104" affectedSourceFeatures="_feat_gmfj_00012 _BGoJcMWhEfCIz4WBK8SiNA" affectedTargetFeatures="_feat_gmfj_00023 _Vzs8UOt7EfCnVsesC4f2Zw _fSDZ0NLUEfCGnY31vy1jEg" />
+  </mappings>
+  <mappings name="Semantic Model, Serialization and Coexistence" xmi:id="_map_00023">
+    <correspondences name="EMF Domain Model Intent Preservation" xsi:type="smdsl_updated_updated_prefix:Preservation" preservedFeatures="_feat_gmfj_00001 _feat_gmfj_00039" kind="SEMANTICALLY_PRESERVED" reason="The conceptual domain model remains the semantic source of truth, but JointJS stores rendered diagram cells in a Graph/JSON structure. The migration preserves domain intent by connecting JointJS cells back to domain identifiers." xmi:id="_corr_00024" />
+    <correspondences name="Parallel GMF and JointJS Validation via Exported Models" xsi:type="smdsl_updated_updated_prefix:Bridge" bridgeFeatures="_feat_gmfj_00001 _feat_gmfj_00011 _feat_gmfj_00039" scope="WHOLE_MIGRATION" rationale="The GMF editor can remain available while the JointJS editor is incrementally validated against exported EMF/notation instances and generated JointJS graph JSON." cleanupRequired="false" xmi:id="_corr_00025" />
+    <correspondences name="EMF Semantics Externalized from JointJS" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" kind="SUPPORT_EXTERNALIZED" rationale="JointJS is a browser-native diagramming toolkit and does not natively understand EMF resources, Ecore typing, or GMF notation; semantic synchronization must be provided by application code or services." xmi:id="_corr_00026" affectedSourceFeatures="_feat_gmfj_00001 _feat_gmfj_00011" affectedTargetFeatures="_LhVX8NGNEfCFdd5sWaqdsQ _feat_gmfj_00039" />
+    <correspondences name="Generated Eclipse Editor Architecture Replaced by Web Diagram Architecture" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="The migration changes the editor architecture from GMF Runtime/Tooling and generated Eclipse plug-ins to a JavaScript/SVG architecture based on Graph, Paper, Cells and custom application code." xmi:id="_corr_00027" affectedSourceFeatures="_feat_gmfj_00006 _feat_gmfj_00010" affectedTargetFeatures="_LhVX8NGNEfCFdd5sWaqdsQ _M5Q0MNGNEfCFdd5sWaqdsQ _feat_gmfj_00035" />
+    <correspondences name="GMF Notation Model to JointJS Graph JSON" xsi:type="smdsl_updated_updated_prefix:Transformation" sourceFeature="_feat_gmfj_00011" targetFeature="_feat_gmfj_00039 _LhVX8NGNEfCFdd5sWaqdsQ" relation="GMF notation stores diagram-specific view information separately from the semantic model. JointJS graph JSON stores cells, geometry, visual attributes, embeddings and links, so a migration must serialize notation-level information into graph/cell attributes." xmi:id="_corr_00028">
+      <conditions polarity="OPTIONAL" expression="Apply when existing GMF diagrams, not only editor definitions, must be migrated into JointJS graph instances." xmi:id="_cond_00029" subjectFeatures="_feat_gmfj_00011 _feat_gmfj_00039" />
+      <complexity xmi:id="_comp_00030" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_tCufwMZwEfCeR8oIST4D4w" />
+      <strategy xmi:id="_strategy_00031">
+        <steps description="Extract GMF notation/view data and semantic element references." order="1" type="A" xmi:id="_step_00032" />
+        <steps description="Create JointJS cells with stable identifiers and domain-reference metadata." order="2" type="A" xmi:id="_step_00033" />
+        <steps description="Serialize cells, links, embeddings and visual attributes into graph JSON." order="3" type="A" xmi:id="_step_00034" />
+        <steps description="Manually validate round-trip and synchronization assumptions." order="4" type="M" xmi:id="_step_00035" />
+      </strategy>
+    </correspondences>
+  </mappings>
+  <mappings name="Edge and Link Semantics - Structural" xmi:id="_map_00036">
+    <correspondences name="GMF Link Mapping to JointJS Dia Link" xsi:type="smdsl_updated_updated_prefix:Transformation" sourceFeature="_feat_gmfj_00002" targetFeature="_feat_gmfj_00024 _feat_gmfj_00023 _feat_gmfj_00020" relation="GMF Link Mapping describes edge-like relationships in the graphical editor. JointJS represents connections as dia.Link cells with source and target endpoints, optional labels, routers and connectors." xmi:id="_corr_00037">
+      <conditions polarity="OPTIONAL" expression="Apply when the GMF editor uses Link Mappings or connection tools." xmi:id="_cond_00038" subjectFeatures="_feat_gmfj_00002 _feat_gmfj_00024" />
+      <complexity xmi:id="_comp_00039" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_tCufwMZwEfCeR8oIST4D4w" />
+      <strategy xmi:id="_strategy_00040">
+        <steps description="Identify source and target features of the GMF Link Mapping." order="1" type="A" xmi:id="_step_00041" />
+        <steps description="Create a JointJS Link subtype or standard Link configuration." order="2" type="A" xmi:id="_step_00042" />
+        <steps description="Map semantic source/target references to JointJS source and target endpoint definitions." order="3" type="A" xmi:id="_step_00043" />
+        <steps description="Choose router, connector, anchors and labels based on desired visual behavior." order="4" type="M" xmi:id="_step_00044" />
+        <steps description="Validate editing behavior for creating and reconnecting links." order="5" type="M" xmi:id="_step_00045" />
+      </strategy>
+    </correspondences>
+    <correspondences name="GMF Link Source/Target to JointJS Endpoint Objects" xsi:type="smdsl_updated_updated_prefix:Transformation" sourceFeature="_feat_gmfj_00002" targetFeature="_feat_gmfj_00025 _feat_gmfj_00026 _feat_gmfj_00031" relation="GMF link endpoints are defined by mapping and domain references. JointJS endpoints are represented by source/target objects that can point to element ids, ports or absolute points." xmi:id="_corr_00046">
+      <conditions polarity="OPTIONAL" expression="Apply only for edge mappings where source and target semantic references are identifiable." xmi:id="_cond_00047" subjectFeatures="_feat_gmfj_00002" />
+      <complexity xmi:id="_comp_00048" xsi:type="smdsl_updated_updated_prefix:FullAutomation" difficulty="COMPLEX" />
+      <strategy xmi:id="_strategy_00049">
+        <steps description="Read source and target domain features from the GMF link mapping." order="1" type="A" xmi:id="_step_00050" />
+        <steps description="Resolve the migrated JointJS elements that represent endpoint semantic objects." order="2" type="A" xmi:id="_step_00051" />
+        <steps description="Populate link.source and link.target with element ids and optional port selectors." order="3" type="A" xmi:id="_step_00052" />
+        <steps description="Validate cases where GMF anchors, decorations or bendpoints require manual endpoint adjustment." order="4" type="M" xmi:id="_step_00053" />
+      </strategy>
+    </correspondences>
+    <correspondences name="GMF Routing and Anchors to JointJS Router/Connector" xsi:type="smdsl_updated_updated_prefix:Transformation" sourceFeature="_feat_gmfj_00013" targetFeature="_feat_gmfj_00028 _feat_gmfj_00029 _feat_gmfj_00027" relation="GMF/GEF routing and anchors are approximated through JointJS routers, connectors, vertices and endpoint options." xmi:id="_corr_00054">
+      <conditions polarity="OPTIONAL" expression="Apply when link routing or anchor behavior is significant to the source editor." xmi:id="_cond_00055" subjectFeatures="_feat_gmfj_00013 _feat_gmfj_00028" />
+      <complexity xmi:id="_comp_00056" xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" rationale="GMF routing, bendpoint behavior and anchors are not structurally equivalent to JointJS routers/connectors; the closest built-in router or a custom router must be selected and validated." difficulty="COMPLEX" kind="MIX" operators="_tCufwMZwEfCeR8oIST4D4w" possibleApproximation="_feat_gmfj_00028 _feat_gmfj_00029" />
+      <strategy xmi:id="_strategy_00057">
+        <steps description="Inspect GMF routing, bendpoints, anchors and connection decorations." order="1" type="M" xmi:id="_step_00058" />
+        <steps description="Choose a JointJS built-in router such as normal, orthogonal, manhattan, metro or rightAngle, or define a custom router." order="2" type="M" xmi:id="_step_00059" />
+        <steps description="Map existing bendpoints to JointJS vertices where appropriate." order="3" type="A" xmi:id="_step_00060" />
+        <steps description="Validate route geometry and obstacle avoidance visually." order="4" type="M" xmi:id="_step_00061" />
+      </strategy>
+    </correspondences>
+    <correspondences name="Link Connectivity Intent Preservation" xsi:type="smdsl_updated_updated_prefix:Preservation" preservedFeatures="_feat_gmfj_00002 _feat_gmfj_00025 _feat_gmfj_00026 _feat_gmfj_00024" kind="SEMANTICALLY_PRESERVED" reason="The semantic intention that two domain elements are connected is preserved, even though the runtime representation changes from GMF generated links to JointJS Link cells." xmi:id="_corr_00062" />
+    <correspondences name="Link Routing and Endpoint Semantics Need Validation" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" kind="VALIDATION_REQUIRED" rationale="JointJS links support source/target endpoints, ports, anchors, vertices, routers and connectors, but these do not guarantee exact reproduction of GMF/GEF routing, bendpoints and anchors." xmi:id="_corr_00063" affectedSourceFeatures="_feat_gmfj_00002 _feat_gmfj_00013" affectedTargetFeatures="_feat_gmfj_00024 _feat_gmfj_00028 _feat_gmfj_00029 _feat_gmfj_00031" />
+  </mappings>
+  <mappings name="Editing Interaction and Tool Behavior" xmi:id="_map_00064">
+    <correspondences name="GMF Creation Tool to JointJS Paper Event Handler" xsi:type="smdsl_updated_updated_prefix:Transformation" sourceFeature="_feat_gmfj_00006" targetFeature="_feat_gmfj_00035 _feat_gmfj_00038 _feat_gmfj_00040" relation="GMF creation tools and palette behavior are re-expressed in JointJS through Paper events, interactive options, element/link tools and application-level command handlers." xmi:id="_corr_00065">
+      <conditions polarity="OPTIONAL" expression="Apply when the migration includes editor interaction behavior, not only static diagram rendering." xmi:id="_cond_00066" subjectFeatures="_feat_gmfj_00006 _feat_gmfj_00035" />
+      <complexity xmi:id="_comp_00067" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_tCufwMZwEfCeR8oIST4D4w" />
+      <strategy xmi:id="_strategy_00068">
+        <steps description="Identify GMF creation/connection tools and their target mappings." order="1" type="A" xmi:id="_step_00069" />
+        <steps description="Bind JointJS Paper events or UI controls to create elements/links." order="2" type="M" xmi:id="_step_00070" />
+        <steps description="Instantiate the corresponding JointJS cell type and add it to the graph." order="3" type="A" xmi:id="_step_00071" />
+        <steps description="Implement validation, undo/redo or command behavior in application code if needed." order="4" type="M" xmi:id="_step_00072" />
+      </strategy>
+    </correspondences>
+    <correspondences name="GMF Domain Specialization Constraint to Application Validation Logic" xsi:type="smdsl_updated_updated_prefix:Transformation" sourceFeature="_feat_gmfj_00009" targetFeature="_feat_gmfj_00043 _feat_gmfj_00035" relation="GMF domain specialization and constraints can be reimplemented as JavaScript predicates used during creation, rendering or validation." xmi:id="_corr_00073">
+      <conditions polarity="OPTIONAL" expression="Apply when mappings are restricted by constraints beyond simple type checks." xmi:id="_cond_00074" subjectFeatures="_feat_gmfj_00009" />
+      <complexity xmi:id="_comp_00075" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_tCufwMZwEfCeR8oIST4D4w" />
+      <strategy xmi:id="_strategy_00076">
+        <steps description="Extract the GMF domain specialization constraint or OCL-like predicate." order="1" type="A" xmi:id="_step_00077" />
+        <steps description="Translate it into JavaScript or service-level validation logic." order="2" type="M" xmi:id="_step_00078" />
+        <steps description="Call the predicate from Paper events, creation commands or rendering filters." order="3" type="M" xmi:id="_step_00079" />
+        <steps description="Validate against representative semantic models." order="4" type="M" xmi:id="_step_00080" />
+      </strategy>
+    </correspondences>
+    <correspondences name="Generated Edit Policies Become Application Code" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" kind="SUPPORT_EXTERNALIZED" rationale="GMF generated edit policies and commands provide behavior inside Eclipse. In JointJS, equivalent behavior is not generated by the diagramming library and must be implemented with events, tools and application code." xmi:id="_corr_00081" affectedSourceFeatures="_feat_gmfj_00010 _feat_gmfj_00006" affectedTargetFeatures="_feat_gmfj_00035 _feat_gmfj_00038 _feat_gmfj_00043" />
+    <correspondences name="Editing Intent Preservation" xsi:type="smdsl_updated_updated_prefix:Preservation" preservedFeatures="_feat_gmfj_00006 _feat_gmfj_00035 _feat_gmfj_00038" kind="SEMANTICALLY_PRESERVED" reason="The user-facing intent of creating and connecting diagram elements is preserved, but the implementation mechanism moves from GMF tooling/generated commands to JointJS event handlers and custom UI tools." xmi:id="_corr_00082" />
+  </mappings>
+  <mappings name="Containment, Compartments and Ports" xmi:id="_map_00083">
+    <correspondences name="GMF Node Reference to JointJS Cell Embedding" xsi:type="smdsl_updated_updated_prefix:Transformation" sourceFeature="_Pi114McWEfCBo5CuJG-9rA" targetFeature="_feat_gmfj_00034 _LhVX8NGNEfCFdd5sWaqdsQ _QiCToNI7EfCGnY31vy1jEg" relation="GMF Node References and containment features determine where child nodes appear. JointJS can represent containment by embedding cells, grouping cells, or storing parent-child metadata in graph/cell attributes." xmi:id="_corr_00084">
+      <conditions polarity="REQUIRED" expression="Apply when GMF Node References define containment or child-node placement." xmi:id="_cond_00085" subjectFeatures="_Pi114McWEfCBo5CuJG-9rA _sAF5oMcWEfCBo5CuJG-9rA _feat_gmfj_00034" />
+      <complexity xmi:id="_comp_00086" xsi:type="smdsl_updated_updated_prefix:OperatorHelp" kind="MIX" operators="_tCufwMZwEfCeR8oIST4D4w" />
+      <strategy xmi:id="_strategy_00087">
+        <steps description="Read the GMF containment feature from the Node Reference." order="1" type="A" xmi:id="_step_00088" />
+        <steps description="Find the migrated parent and child JointJS element types." order="2" type="A" xmi:id="_step_00089" />
+        <steps description="Use embedding or application metadata to preserve parent-child relationships." order="3" type="M" xmi:id="_step_00090" />
+        <steps description="Validate move, resize and serialization behavior for embedded children." order="4" type="M" xmi:id="_step_00091" />
+      </strategy>
+    </correspondences>
+    <correspondences name="GMF Compartment Children to JointJS Ports or Embedded Child Cells" xsi:type="smdsl_updated_updated_prefix:Transformation" sourceFeature="_XwQI0MiuEfCBo5CuJG-9rA" targetFeature="_feat_gmfj_00031 _feat_gmfj_00034 _PmeIYNLtEfCGnY31vy1jEg" relation="GMF compartment children can be represented as embedded child cells, custom SVG subelements, ports, or custom layout functions depending on whether they are real semantic children, connection points, or visual-only rows." xmi:id="_corr_00092">
+      <conditions polarity="REQUIRED" expression="Apply when a GMF Compartment Mapping has children whose behavior matters in the target editor." xmi:id="_cond_00093" subjectFeatures="_5xyRUMiqEfCBo5CuJG-9rA _XwQI0MiuEfCBo5CuJG-9rA" />
+      <complexity xmi:id="_comp_00094" xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" rationale="JointJS has no first-class GMF compartment mapping. A compartment must be approximated using embedding, ports, SVG markup, layout functions or application code." difficulty="COMPLEX" kind="MIX" operators="_tCufwMZwEfCeR8oIST4D4w" possibleApproximation="_feat_gmfj_00031 _feat_gmfj_00034 _PmeIYNLtEfCGnY31vy1jEg" />
+      <strategy xmi:id="_strategy_00095">
+        <steps description="Classify each compartment child as semantic child, visual part, or connection point." order="1" type="M" xmi:id="_step_00096" />
+        <steps description="Use embedding for semantic child elements." order="2" type="M" xmi:id="_step_00097" />
+        <steps description="Use ports for connection points or border-like child behavior." order="3" type="M" xmi:id="_step_00098" />
+        <steps description="Use markup/attrs or layout function for visual-only compartment rows." order="4" type="M" xmi:id="_step_00099" />
+      </strategy>
+    </correspondences>
+    <correspondences name="Compartment Grouping Intent Preservation" xsi:type="smdsl_updated_updated_prefix:Preservation" preservedFeatures="_5xyRUMiqEfCBo5CuJG-9rA _feat_gmfj_00034 _feat_gmfj_00031 _Vzs8UOt7EfCnVsesC4f2Zw" kind="SEMANTICALLY_PRESERVED" reason="The intention of grouping related child elements inside or around a parent node is preserved, even when the target realization uses embedding, ports, or explicit SVG substructure." xmi:id="_corr_00100" />
+    <correspondences name="Compartment Semantics Become Custom Layout/Embedding Logic" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" kind="RISK_INTRODUCED" rationale="GMF compartments are mapping-level editor concepts. JointJS provides lower-level SVG/cell mechanisms, so exact compartment behavior, scrolling/listing, child movement and serialization require manual design." xmi:id="_corr_00101" affectedSourceFeatures="_5xyRUMiqEfCBo5CuJG-9rA _XwQI0MiuEfCBo5CuJG-9rA" affectedTargetFeatures="_feat_gmfj_00034 _feat_gmfj_00031 _PmeIYNLtEfCGnY31vy1jEg" />
+  </mappings>
+</smdsl_updated_updated_prefix:Migration>

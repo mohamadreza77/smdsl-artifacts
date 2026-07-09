@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="smdsl_updated_updated_package" nsURI="smdsl_updated_updated_uri"
+    nsPrefix="smdsl_updated_updated_prefix">
+  <eClassifiers xsi:type="ecore:EClass" name="Migration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Platform" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//Platform" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
+        eType="#//Operator" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
+        eType="#//Mapping" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preMigrationRequirements"
+        upperBound="-1" eType="#//PreMigrationRequirement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Platform">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="#//Feature" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedFeatures" upperBound="-1"
+        eType="#//Feature" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operator">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PreMigrationRequirement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="affectedFeatures" upperBound="-1"
+        eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mandatory" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="note" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//PreMigrationRequirementKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Mapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="correspondences" upperBound="-1"
+        eType="#//Correspondence" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Correspondence" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subcorrespondences" upperBound="-1"
+        eType="#//Correspondence" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
+        eType="#//ApplicabilityCondition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transformation" eSuperTypes="#//Correspondence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceFeature" lowerBound="1"
+        eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetFeature" upperBound="-1"
+        eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="relation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complexity" lowerBound="1"
+        eType="#//AutomationDegree" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="strategy" eType="#//Strategy"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Preservation" eSuperTypes="#//Correspondence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preservedFeatures" lowerBound="1"
+        upperBound="-1" eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//PreservationKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PreservationKind">
+    <eLiterals name="UNCHANGED"/>
+    <eLiterals name="TEMPORARILY_RETAINED" value="1"/>
+    <eLiterals name="SYNTACTICALLY_PRESERVED" value="2"/>
+    <eLiterals name="SEMANTICALLY_PRESERVED" value="3" literal="SEMANTICALLY_PRESERVED"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Bridge" eSuperTypes="#//Correspondence">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scope" eType="#//BridgeEffectScope"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rationale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bridgeFeatures" lowerBound="1"
+        upperBound="-1" eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cleanupRequired" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BridgeEffectScope">
+    <eLiterals name="WHOLE_MIGRATION"/>
+    <eLiterals name="CORRESPONDENCE" value="1"/>
+    <eLiterals name="FEATURE" value="2"/>
+    <eLiterals name="RUNTIME" value="3"/>
+    <eLiterals name="BUILD" value="4"/>
+    <eLiterals name="TEST" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SemanticEffect" eSuperTypes="#//Correspondence">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//EffectKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="affectedSourceFeatures"
+        upperBound="-1" eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="affectedTargetFeatures"
+        upperBound="-1" eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rationale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EffectKind">
+    <eLiterals name="BEHAVIOR_CHANGE"/>
+    <eLiterals name="SUPPORT_REMOVED" value="1"/>
+    <eLiterals name="SUPPORT_EXTERNALIZED" value="2"/>
+    <eLiterals name="SUPPORT_DEPRECATED" value="3"/>
+    <eLiterals name="CONFIGURATION_SEMANTICS_CHANGED" value="4"/>
+    <eLiterals name="DEFAULT_VALUE_CHANGED" value="5"/>
+    <eLiterals name="VALIDATION_REQUIRED" value="6"/>
+    <eLiterals name="RISK_INTRODUCED" value="7"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AutomationDegree" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Strategy">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="steps" lowerBound="1" upperBound="-1"
+        eType="#//Step" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Step">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//StepType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedSteps" upperBound="-1"
+        eType="#//Step" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FullAutomation" eSuperTypes="#//AutomationDegree">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="difficulty" eType="#//DifficultyType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperatorHelp" eSuperTypes="#//AutomationDegree">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//HelpType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operators" lowerBound="1"
+        upperBound="-1" eType="#//Operator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NoDirectMapping" eSuperTypes="#//AutomationDegree">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rationale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="possibleApproximation"
+        upperBound="-1" eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operators" lowerBound="1"
+        upperBound="-1" eType="#//Operator"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="difficulty" eType="#//DifficultyType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//HelpType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ApplicabilityCondition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="polarity" eType="#//ConditionPolarity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subjectFeatures" upperBound="-1"
+        eType="#//Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ConditionPolarity">
+    <eLiterals name="REQUIRED"/>
+    <eLiterals name="ABSENT" value="1"/>
+    <eLiterals name="OPTIONAL" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DifficultyType">
+    <eLiterals name="EASY"/>
+    <eLiterals name="COMPLEX" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HelpType">
+    <eLiterals name="MIX"/>
+    <eLiterals name="MANUAL" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StepType">
+    <eLiterals name="A"/>
+    <eLiterals name="M" value="1"/>
+    <eLiterals name="NONE" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PreMigrationRequirementKind">
+    <eLiterals name="BASELINE_VERSION" literal="BASELINE_VERSION"/>
+    <eLiterals name="RUNTIME_BASELINE" value="1" literal="RUNTIME_BASELINE"/>
+    <eLiterals name="DEPENDENCY_UPDATE" value="2"/>
+    <eLiterals name="DEPRECATION_CLEANUP" value="3" literal="DEPRECATION_CLEANUP"/>
+    <eLiterals name="TEST_BASELINE" value="4"/>
+    <eLiterals name="CONFIGURATION_REVIEW" value="5"/>
+    <eLiterals name="OTHER" value="6" literal="OTHER"/>
+  </eClassifiers>
+</ecore:EPackage>

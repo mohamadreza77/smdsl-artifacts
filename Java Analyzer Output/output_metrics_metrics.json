@@ -1,0 +1,36 @@
+{
+  "migration": "JUnit4-to-JUnit5-SMDSL-v2",
+  "sourcePlatform": "JUnit 4",
+  "targetPlatform": "JUnit 5 / JUnit Jupiter and JUnit Platform",
+  "sourceFeatureCount": 94,
+  "targetFeatureCount": 111,
+  "mappingCount": 8,
+  "correspondenceCount": 76,
+  "transformationCount": 54,
+  "preservationCount": 6,
+  "bridgeCount": 2,
+  "semanticEffectCount": 14,
+  "preMigrationRequirementCount": 7,
+  "manualStepRatio": "55.7%",
+  "overallRiskScore": 111,
+  "overallRiskLevel": "CRITICAL",
+  "riskConfig": "medium>=5, high>=12, critical>=25",
+  "coverage": {
+    "sourceTransformationCoverage": "53.2%",
+    "sourceMentionedCoverage": "83.0%",
+    "targetUsedCoverage": "75.7%",
+    "targetMentionedCoverage": "79.3%"
+  },
+  "mappingRisks": [
+    {"name":"Build Runtime and Gradual Migration","riskScore":5,"riskLevel":"MEDIUM","manualStepRatio":"35.7%","riskReasons":"Transformation 'JUnit 4 Runtime to JUnit Vintage Engine': OperatorHelp (+1); Transformation 'JUnit 4 Build Dependencies to Jupiter Dependencies': OperatorHelp (+1); Bridge 'JUnit Vintage Engine Coexistence Bridge': Cleanup-required bridge (+1); SemanticEffect 'Vintage Engine Temporary and Deprecated Support': Support deprecated (+1); Transformation 'JUnit 4 Build Execution to JUnit Platform Execution': OperatorHelp (+1)"},
+    {"name":"Core Test Annotation and Lifecycle Migration","riskScore":5,"riskLevel":"MEDIUM","manualStepRatio":"29.2%","riskReasons":"Transformation '@Test Annotation to Jupiter @Test': OperatorHelp (+1); Transformation '@BeforeClass and @AfterClass to @BeforeAll and @AfterAll': OperatorHelp (+1); Transformation '@Ignore to @Disabled or Migration-Support IgnoreCondition': OperatorHelp (+1); Transformation '@Ignore to @Disabled or Migration-Support IgnoreCondition': Manual-heavy strategy (+1); SemanticEffect 'Test Member Visibility Requirement Relaxed': Default value changed (+1)"},
+    {"name":"Assertions and Assumptions Migration","riskScore":15,"riskLevel":"HIGH","manualStepRatio":"35.7%","riskReasons":"Transformation 'JUnit 4 Assert Imports to Jupiter Assertions': OperatorHelp (+1); Transformation 'Message-first Assertion Arguments to Message-last Assertion Arguments': OperatorHelp (+1); Transformation 'Assume.assumeNoException Approximation': NoDirectMapping (+3); Transformation 'Assume.assumeNotNull Approximation': NoDirectMapping (+3); Transformation 'Assume.assumeThat and Hamcrest Assumptions': NoDirectMapping (+3); Transformation 'Assume.assumeThat and Hamcrest Assumptions': Manual-heavy strategy (+1); SemanticEffect 'Failure Message Argument Order Changed': Configuration semantics c..."},
+    {"name":"Exception and Timeout Migration","riskScore":12,"riskLevel":"HIGH","manualStepRatio":"62.5%","riskReasons":"Transformation '@Test(expected) to assertThrows': OperatorHelp (+1); Transformation '@Test(expected) to assertThrows': Manual-heavy strategy (+1); Transformation 'ExpectedException Rule to assertThrows or Migration Support': OperatorHelp (+1); Transformation 'ExpectedException Rule to assertThrows or Migration Support': Manual-heavy strategy (+1); Transformation '@Test(timeout) to Timeout Constructs': OperatorHelp (+1); Transformation '@Test(timeout) to Timeout Constructs': Manual-heavy strategy (+1); Transformation 'Timeout Rule to @Timeout or Timeout Assertions': OperatorHelp (+1); Transf..."},
+    {"name":"Rules ClassRules and Extension Model Migration","riskScore":22,"riskLevel":"HIGH","manualStepRatio":"76.9%","riskReasons":"Transformation 'TemporaryFolder Rule to @TempDir': OperatorHelp (+1); Transformation 'ExternalResource Rule to Extension Callbacks': OperatorHelp (+1); Transformation 'ExternalResource Rule to Extension Callbacks': Manual-heavy strategy (+1); Transformation 'Verifier and ErrorCollector Rules': OperatorHelp (+1); Transformation 'Verifier and ErrorCollector Rules': Manual-heavy strategy (+1); Transformation 'ErrorCollector Rule to assertAll': OperatorHelp (+1); Transformation 'ErrorCollector Rule to assertAll': Manual-heavy strategy (+1); Transformation 'TestName Rule to TestInfo Parameter': ..."},
+    {"name":"Runner Suite Category and Ordering Migration","riskScore":31,"riskLevel":"CRITICAL","manualStepRatio":"65.4%","riskReasons":"Transformation 'General @RunWith to @ExtendWith': OperatorHelp (+1); Transformation 'General @RunWith to @ExtendWith': Manual-heavy strategy (+1); Transformation 'MockitoJUnitRunner to MockitoExtension': OperatorHelp (+1); Transformation 'SpringRunner to SpringExtension': OperatorHelp (+1); Transformation 'Custom Runner to Jupiter Extension Redesign': NoDirectMapping (+3); Transformation 'Custom Runner to Jupiter Extension Redesign': Manual-heavy strategy (+1); Transformation 'JUnit 4 Suite Runner to JUnit Platform Suite': OperatorHelp (+1); Transformation 'JUnit 4 Suite Runner to JUnit Pla..."},
+    {"name":"Parameterized Theories and Advanced Test Forms","riskScore":18,"riskLevel":"HIGH","manualStepRatio":"62.5%","riskReasons":"Transformation 'JUnit 4 Parameterized Runner to Jupiter @ParameterizedTest': OperatorHelp (+1); Transformation 'JUnit 4 Parameterized Runner to Jupiter @ParameterizedTest': Manual-heavy strategy (+1); Transformation '@Parameters factory to @MethodSource': OperatorHelp (+1); Transformation '@Parameters factory to @MethodSource': Manual-heavy strategy (+1); Transformation '@Parameter field injection to method parameters': OperatorHelp (+1); Transformation '@Parameter field injection to method parameters': Manual-heavy strategy (+1); Transformation 'JUnit 4 Theories to Jupiter Parameterized or..."},
+    {"name":"Legacy TestCase and Tool-Assisted Migration","riskScore":3,"riskLevel":"LOW","manualStepRatio":"28.6%","riskReasons":"Transformation 'JUnit 4 TestCase Inheritance to Annotation-Based Jupiter Tests': OperatorHelp (+1); SemanticEffect 'Automated Tooling Has Partial Coverage': Validation required (+2)"}
+  ],
+  "warnings": ["Bridge 'JUnit Vintage Engine Coexistence Bridge': Bridge requires cleanup after migration.", "Bridge 'JUnit Jupiter Migration Support Bridge for Selected Rules': Bridge requires cleanup after migration.", "Transformation '@BeforeParam to @BeforeParameterizedClassInvocation': Transformation has no strategy.", "Transformation '@AfterParam to @AfterParameterizedClassInvocation': Transformation has no strategy.", "Transformation '@Parameter to Jupiter Parameter': Transformation has no strategy."],
+  "hints": []
+}

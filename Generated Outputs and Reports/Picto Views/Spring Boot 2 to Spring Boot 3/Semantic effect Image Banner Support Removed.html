@@ -1,0 +1,509 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Semantic effect: Image Banner Support Removed</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>SemanticEffect</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Semantic effect</h2>
+
+        
+
+        <p>
+
+            <strong>Effect kind:</strong> SUPPORT_REMOVED
+
+            <br>
+
+            
+
+            <strong>Affected source feature(s):</strong> Image banner resources
+
+            <br>
+
+            
+
+            <strong>Affected target feature(s):</strong> Text-based banner.txt
+
+            <br>
+
+            
+
+            <strong>Rationale:</strong> Spring Boot 3 ignores image-based banners such as banner.gif, banner.jpg, and banner.png; a text ban
+
+ner is the target equivalent.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="517pt" viewBox="0.00 0.00 1188.00 517.00" width="1188pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 499)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="576" y="-465.8">Semantic effect: Image Banner Support Removed</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M138,-8C138,-8 210,-8 210,-8 216,-8 222,-14 222,-20 222,-20 222,-272 222,-272 222,-278 216,-284 210,-284 210,-284 138,-284 138,-284 132,-284 126,-278 126,-272 126,-272 126,-20 126,-20 126,-14 132,-8 138,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="174" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M603,-292C603,-292 938,-292 938,-292 944,-292 950,-298 950,-304 950,-304 950,-355 950,-355 950,-361 944,-367 938,-367 938,-367 603,-367 603,-367 597,-367 591,-361 591,-355 591,-355 591,-304 591,-304 591,-298 597,-292 603,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="770.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 516,-292 516,-292 522,-292 528,-298 528,-304 528,-304 528,-355 528,-355 528,-361 522,-367 516,-367 516,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="264" y="-351.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M667.5,-375C667.5,-375 1140,-375 1140,-375 1146,-375 1152,-381 1152,-387 1152,-387 1152,-438 1152,-438 1152,-444 1146,-450 1140,-450 1140,-450 667.5,-450 667.5,-450 661.5,-450 655.5,-444 655.5,-438 655.5,-438 655.5,-387 655.5,-387 655.5,-381 661.5,-375 667.5,-375" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="903.75" y="-434.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M200,-256C200,-256 148,-256 148,-256 142,-256 136,-250 136,-244 136,-244 136,-232 136,-232 136,-226 142,-220 148,-220 148,-220 200,-220 200,-220 206,-220 212,-226 212,-232 212,-232 212,-244 212,-244 212,-250 206,-256 200,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="174" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M195,-188C195,-188 153,-188 153,-188 147,-188 141,-182 141,-176 141,-176 141,-164 141,-164 141,-158 147,-152 153,-152 153,-152 195,-152 195,-152 201,-152 207,-158 207,-164 207,-164 207,-176 207,-176 207,-182 201,-188 195,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="174" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M189,-120C189,-120 159,-120 159,-120 153,-120 147,-114 147,-108 147,-108 147,-96 147,-96 147,-90 153,-84 159,-84 159,-84 189,-84 189,-84 195,-84 201,-90 201,-96 201,-96 201,-108 201,-108 201,-114 195,-120 189,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="174" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M202,-52C202,-52 146,-52 146,-52 140,-52 134,-46 134,-40 134,-40 134,-28 134,-28 134,-22 140,-16 146,-16 146,-16 202,-16 202,-16 208,-16 214,-22 214,-28 214,-28 214,-40 214,-40 214,-46 208,-52 202,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="174" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1875586605 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1875586605</title>
+
+                    
+
+                    <path d="M434,-336C434,-336 341,-336 341,-336 335,-336 329,-330 329,-324 329,-324 329,-312 329,-312 329,-306 335,-300 341,-300 341,-300 434,-300 434,-300 440,-300 446,-306 446,-312 446,-312 446,-324 446,-324 446,-330 440,-336 434,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="387.5" y="-315.5">Image banner resources</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1469036152 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_1469036152</title>
+
+                    
+
+                    <path d="M930,-336C930,-336 611,-336 611,-336 605,-336 599,-330 599,-324 599,-324 599,-312 599,-312 599,-306 605,-300 611,-300 611,-300 930,-300 930,-300 936,-300 942,-306 942,-312 942,-312 942,-324 942,-324 942,-330 936,-336 930,-336" fill="#fce5e5" stroke="#cc0000" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="770.5" y="-315.5">Semantic effect * &nbsp;Image Banner Support Removed * SUPPORT_REMOVED</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1875586605&#45;&gt;C_1469036152 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_1875586605-&gt;C_1469036152</title>
+
+                    
+
+                    <path d="M446.37,-318C485.25,-318 538.78,-318 591.09,-318" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="591.3,-320.63 598.8,-318 591.3,-315.38 591.3,-320.63" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="565" y="-320.8">affects</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1131557365</title>
+
+                    
+
+                    <path d="M254,-336C254,-336 94,-336 94,-336 88,-336 82,-330 82,-324 82,-324 82,-312 82,-312 82,-306 88,-300 94,-300 94,-300 254,-300 254,-300 260,-300 266,-306 266,-312 266,-312 266,-324 266,-324 266,-330 260,-336 254,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="174" y="-315.5">Core Spring Boot API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365&#45;&gt;S_1875586605 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>S_1131557365-&gt;S_1875586605</title>
+
+                    
+
+                    <path d="M266.23,-318C287.47,-318 309.51,-318 328.83,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1283992783 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1283992783</title>
+
+                    
+
+                    <path d="M1121,-419C1121,-419 1038,-419 1038,-419 1032,-419 1026,-413 1026,-407 1026,-407 1026,-395 1026,-395 1026,-389 1032,-383 1038,-383 1038,-383 1121,-383 1121,-383 1127,-383 1133,-389 1133,-395 1133,-395 1133,-407 1133,-407 1133,-413 1127,-419 1121,-419" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1079.5" y="-398.5">Text-based banner.txt</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1469036152&#45;&gt;T_1283992783 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_1469036152-&gt;T_1283992783</title>
+
+                    
+
+                    <path d="M838.11,-336.01C891.73,-350.51 966.44,-370.7 1018.28,-384.72" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="1017.84,-387.32 1025.76,-386.74 1019.21,-382.25 1017.84,-387.32" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="984" y="-378.8">effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_937024294</title>
+
+                    
+
+                    <path d="M854.5,-419C854.5,-419 686.5,-419 686.5,-419 680.5,-419 674.5,-413 674.5,-407 674.5,-407 674.5,-395 674.5,-395 674.5,-389 680.5,-383 686.5,-383 686.5,-383 854.5,-383 854.5,-383 860.5,-383 866.5,-389 866.5,-395 866.5,-395 866.5,-407 866.5,-407 866.5,-413 860.5,-419 854.5,-419" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="770.5" y="-398.5">Core Spring Boot 3 API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294&#45;&gt;T_1283992783 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>T_937024294-&gt;T_1283992783</title>
+
+                    
+
+                    <path d="M866.53,-401C919.01,-401 982.21,-401 1025.87,-401" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

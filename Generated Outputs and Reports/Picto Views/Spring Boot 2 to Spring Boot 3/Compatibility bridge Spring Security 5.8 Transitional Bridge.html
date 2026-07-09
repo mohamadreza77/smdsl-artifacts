@@ -1,0 +1,645 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Compatibility bridge: Spring Security 5.8 Transitional Bridge</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Bridge</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong>
+
+        </p>
+
+        
+
+        <ul>
+
+            
+
+            <li>
+
+                <strong>OPTIONAL</strong> on Spring Security 5.x configuration: Recommended for applications with non-trivial Spring Security configuration.
+
+            </li>
+
+            
+
+        </ul>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Bridge intent</h2>
+
+        
+
+        <p>
+
+            <strong>Bridge feature(s):</strong> Spring Security 5.x configuration, Spring Security 5.8 preparation state, Spring Security 5.8 intermediate migration state, Spring Security 6 Configuration
+
+            <br>
+
+            
+
+            <strong>Scope:</strong> CORRESPONDENCE
+
+            <br>
+
+            
+
+            <strong>Cleanup required:</strong> false
+
+            <br>
+
+            
+
+            <strong>Rationale:</strong> Spring Security 5.8 exposes and prepares many of the changes needed for Spring Security 6, enabling
+
+a staged security migration before the full Boot 3 upgrade.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="589pt" viewBox="0.00 0.00 1020.00 589.00" width="1020pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 571)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="492" y="-537.8">Compatibility bridge: Spring Security 5.8 Transitional Bridge</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M171.5,-8C171.5,-8 243.5,-8 243.5,-8 249.5,-8 255.5,-14 255.5,-20 255.5,-20 255.5,-272 255.5,-272 255.5,-278 249.5,-284 243.5,-284 243.5,-284 171.5,-284 171.5,-284 165.5,-284 159.5,-278 159.5,-272 159.5,-272 159.5,-20 159.5,-20 159.5,-14 165.5,-8 171.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="207.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M20,-292C20,-292 395,-292 395,-292 401,-292 407,-298 407,-304 407,-304 407,-355 407,-355 407,-361 401,-367 395,-367 395,-367 20,-367 20,-367 14,-367 8,-361 8,-355 8,-355 8,-304 8,-304 8,-298 14,-292 20,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="207.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M492,-225C492,-225 965,-225 965,-225 971,-225 977,-231 977,-237 977,-237 977,-356 977,-356 977,-362 971,-368 965,-368 965,-368 492,-368 492,-368 486,-368 480,-362 480,-356 480,-356 480,-237 480,-237 480,-231 486,-225 492,-225" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="728.5" y="-352.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M156,-447C156,-447 940,-447 940,-447 946,-447 952,-453 952,-459 952,-459 952,-510 952,-510 952,-516 946,-522 940,-522 940,-522 156,-522 156,-522 150,-522 144,-516 144,-510 144,-510 144,-459 144,-459 144,-453 150,-447 156,-447" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="548" y="-506.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M233.5,-256C233.5,-256 181.5,-256 181.5,-256 175.5,-256 169.5,-250 169.5,-244 169.5,-244 169.5,-232 169.5,-232 169.5,-226 175.5,-220 181.5,-220 181.5,-220 233.5,-220 233.5,-220 239.5,-220 245.5,-226 245.5,-232 245.5,-232 245.5,-244 245.5,-244 245.5,-250 239.5,-256 233.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="207.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M228.5,-188C228.5,-188 186.5,-188 186.5,-188 180.5,-188 174.5,-182 174.5,-176 174.5,-176 174.5,-164 174.5,-164 174.5,-158 180.5,-152 186.5,-152 186.5,-152 228.5,-152 228.5,-152 234.5,-152 240.5,-158 240.5,-164 240.5,-164 240.5,-176 240.5,-176 240.5,-182 234.5,-188 228.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="207.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M222.5,-120C222.5,-120 192.5,-120 192.5,-120 186.5,-120 180.5,-114 180.5,-108 180.5,-108 180.5,-96 180.5,-96 180.5,-90 186.5,-84 192.5,-84 192.5,-84 222.5,-84 222.5,-84 228.5,-84 234.5,-90 234.5,-96 234.5,-96 234.5,-108 234.5,-108 234.5,-114 228.5,-120 222.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="207.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M235.5,-52C235.5,-52 179.5,-52 179.5,-52 173.5,-52 167.5,-46 167.5,-40 167.5,-40 167.5,-28 167.5,-28 167.5,-22 173.5,-16 179.5,-16 179.5,-16 235.5,-16 235.5,-16 241.5,-16 247.5,-22 247.5,-28 247.5,-28 247.5,-40 247.5,-40 247.5,-46 241.5,-52 235.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="207.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1405534694 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1405534694</title>
+
+                    
+
+                    <path d="M651.5,-491C651.5,-491 521.5,-491 521.5,-491 515.5,-491 509.5,-485 509.5,-479 509.5,-479 509.5,-467 509.5,-467 509.5,-461 515.5,-455 521.5,-455 521.5,-455 651.5,-455 651.5,-455 657.5,-455 663.5,-461 663.5,-467 663.5,-467 663.5,-479 663.5,-479 663.5,-485 657.5,-491 651.5,-491" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="586.5" y="-470.5">Spring Security 5.x configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_635321548 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_635321548</title>
+
+                    
+
+                    <path d="M932,-491C932,-491 784,-491 784,-491 778,-491 772,-485 772,-479 772,-479 772,-467 772,-467 772,-461 778,-455 784,-455 784,-455 932,-455 932,-455 938,-455 944,-461 944,-467 944,-467 944,-479 944,-479 944,-485 938,-491 932,-491" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="858" y="-470.5">Spring Security 5.8 preparation state</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1405534694&#45;&gt;S_635321548 -->
+
+                
+
+                <g class="edge" id="edge5">
+
+                    
+
+                    <title>S_1405534694-&gt;S_635321548</title>
+
+                    
+
+                    <path d="M663.65,-473C697.27,-473 736.93,-473 771.56,-473" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_895230827 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>S_895230827</title>
+
+                    
+
+                    <path d="M251,-491C251,-491 164,-491 164,-491 158,-491 152,-485 152,-479 152,-479 152,-467 152,-467 152,-461 158,-455 164,-455 164,-455 251,-455 251,-455 257,-455 263,-461 263,-467 263,-467 263,-479 263,-479 263,-485 257,-491 251,-491" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="207.5" y="-470.5">Pre-migration Baseline</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_895230827&#45;&gt;S_1405534694 -->
+
+                
+
+                <g class="edge" id="edge6">
+
+                    
+
+                    <title>S_895230827-&gt;S_1405534694</title>
+
+                    
+
+                    <path d="M263.32,-473C328.16,-473 436.48,-473 509.41,-473" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_2143883589 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>C_2143883589</title>
+
+                    
+
+                    <path d="M387,-336C387,-336 28,-336 28,-336 22,-336 16,-330 16,-324 16,-324 16,-312 16,-312 16,-306 22,-300 28,-300 28,-300 387,-300 387,-300 393,-300 399,-306 399,-312 399,-312 399,-324 399,-324 399,-330 393,-336 387,-336" fill="#fff2cc" stroke="#f1a208" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="207.5" y="-315.5">Compatibility bridge * &nbsp;Spring Security 5.8 Transitional Bridge * CORRESPONDENCE</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_2143883589&#45;&gt;S_1405534694 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>C_2143883589-&gt;S_1405534694</title>
+
+                    
+
+                    <path d="M241.52,-336.18C284.16,-359.16 361.09,-398.99 430,-426 455.57,-436.02 484.19,-445.22 509.84,-452.77" fill="none" stroke="#f1a208"></path>
+
+                    
+
+                    <polygon fill="#f1a208" points="509.41,-455.38 517.34,-454.96 510.88,-450.34 509.41,-455.38" stroke="#f1a208"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="443.5" y="-437.8">bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_2143883589&#45;&gt;S_635321548 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_2143883589-&gt;S_635321548</title>
+
+                    
+
+                    <path d="M288.3,-336.04C383.04,-357.58 545.76,-394.98 685,-429 716.33,-436.66 750.78,-445.4 780.57,-453.07" fill="none" stroke="#f1a208"></path>
+
+                    
+
+                    <polygon fill="#f1a208" points="780.12,-455.67 788.04,-455 781.43,-450.58 780.12,-455.67" stroke="#f1a208"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="586.5" y="-431.8">bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_735876285 -->
+
+                
+
+                <g class="node" id="node10">
+
+                    
+
+                    <title>T_735876285</title>
+
+                    
+
+                    <path d="M956,-303C956,-303 760,-303 760,-303 754,-303 748,-297 748,-291 748,-291 748,-279 748,-279 748,-273 754,-267 760,-267 760,-267 956,-267 956,-267 962,-267 968,-273 968,-279 968,-279 968,-291 968,-291 968,-297 962,-303 956,-303" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="858" y="-282.5">Spring Security 5.8 intermediate migration state</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_2143883589&#45;&gt;T_735876285 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_2143883589-&gt;T_735876285</title>
+
+                    
+
+                    <path d="M390.41,-299.88C396.1,-297.51 401.65,-294.89 407,-292 450.8,-268.31 434.75,-227.79 480,-207 562.79,-168.97 595.95,-187.75 685,-207 734.52,-217.7 786.92,-243.9 820.68,-262.99" fill="none" stroke="#f1a208"></path>
+
+                    
+
+                    <polygon fill="#f1a208" points="819.78,-265.5 827.6,-266.95 822.39,-260.94 819.78,-265.5" stroke="#f1a208"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="586.5" y="-209.8">bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_330849841 -->
+
+                
+
+                <g class="node" id="node11">
+
+                    
+
+                    <title>T_330849841</title>
+
+                    
+
+                    <path d="M648,-269C648,-269 525,-269 525,-269 519,-269 513,-263 513,-257 513,-257 513,-245 513,-245 513,-239 519,-233 525,-233 525,-233 648,-233 648,-233 654,-233 660,-239 660,-245 660,-245 660,-257 660,-257 660,-263 654,-269 648,-269" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="586.5" y="-248.5">Spring Security 6 Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_2143883589&#45;&gt;T_330849841 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>C_2143883589-&gt;T_330849841</title>
+
+                    
+
+                    <path d="M358.04,-299.97C374.6,-297.51 391.18,-294.85 407,-292 439.88,-286.08 475.84,-278.12 506.82,-270.78" fill="none" stroke="#f1a208"></path>
+
+                    
+
+                    <polygon fill="#f1a208" points="507.48,-273.32 514.17,-269.03 506.26,-268.21 507.48,-273.32" stroke="#f1a208"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="443.5" y="-289.8">bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1344545573 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_1344545573</title>
+
+                    
+
+                    <path d="M673,-337C673,-337 500,-337 500,-337 494,-337 488,-331 488,-325 488,-325 488,-313 488,-313 488,-307 494,-301 500,-301 500,-301 673,-301 673,-301 679,-301 685,-307 685,-313 685,-313 685,-325 685,-325 685,-331 679,-337 673,-337" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="586.5" y="-316.5">Prepared Spring Boot 3 Migration Baseline</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1344545573&#45;&gt;T_735876285 -->
+
+                
+
+                <g class="edge" id="edge7">
+
+                    
+
+                    <title>T_1344545573-&gt;T_735876285</title>
+
+                    
+
+                    <path d="M685.18,-306.68C705.51,-304.11 727.07,-301.39 747.79,-298.78" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>

@@ -1,0 +1,939 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: @BeforeClass and @AfterClass to @BeforeAll and @AfterAll</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> JUnit 4 =&gt; JUnit 5 / JUnit Jupiter and JUnit Platform
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong>
+
+        </p>
+
+        
+
+        <ul>
+
+            
+
+            <li>
+
+                <strong>OPTIONAL</strong> on static class-level lifecycle method, @TestInstance(PER_CLASS): If class-level lifecycle methods should be non-static in Jupiter, add @TestInstance(PER_CLASS); othe
+
+rwise keep static method shape.
+
+            </li>
+
+            
+
+        </ul>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> @BeforeClass
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> @BeforeAll
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> OperatorHelp / MIX
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> JUnit 4 class-level setup and teardown map to Jupiter class-level lifecycle callbacks. Static requir
+
+ements are mostly preserved unless the target class opts into per-class test instance lifecycle.
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Operators:</strong> Migration engineer / test developer
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] Replace @BeforeClass with @BeforeAll and @AfterClass with @AfterAll.
+
+
+
+2. [A] If the source method is static, preserve static and migrate directly.
+
+
+
+3. [M] If modernization wants non-static class-level callbacks, add @TestInstance(PER_CLASS) at t
+
+he class level.
+
+
+
+4. [M] Check inherited lifecycle methods because Jupiter has its own inheritance and overriding r
+
+ules.
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Strategies of nested transformations</h2>
+
+        
+
+        <h3>@AfterClass to @AfterAll</h3>
+
+        
+
+        <pre>
+
+1. [A] Replace org.junit.AfterClass import with org.junit.jupiter.api.AfterAll.
+
+
+
+2. [A] Replace @AfterClass with @AfterAll.
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Nested migration relations</h2>
+
+        
+
+        <table>
+
+            
+
+            <thead>
+
+                
+
+                <tr>
+
+                    
+
+                    <th>Name</th>
+
+<th>Type</th>
+
+<th>Summary</th>
+
+
+
+                </tr>
+
+                
+
+            </thead>
+
+            
+
+            <tbody>
+
+                
+
+                <tr>
+
+                    
+
+                    <td>@AfterClass to @AfterAll</td>
+
+<td><code>Transformation</code></td>
+
+<td>maps @AfterClass to @AfterAll</td>
+
+
+
+                </tr>
+
+                
+
+            </tbody>
+
+            
+
+        </table>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="570pt" viewBox="0.00 0.00 1150.00 570.00" width="1150pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 552)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="557" y="-518.8">Transformation: @BeforeClass and @AfterClass to @BeforeAll and @AfterAll</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M28.5,-8C28.5,-8 100.5,-8 100.5,-8 106.5,-8 112.5,-14 112.5,-20 112.5,-20 112.5,-272 112.5,-272 112.5,-278 106.5,-284 100.5,-284 100.5,-284 28.5,-284 28.5,-284 22.5,-284 16.5,-278 16.5,-272 16.5,-272 16.5,-20 16.5,-20 16.5,-14 22.5,-8 28.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="64.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M429,-314C429,-314 866,-314 866,-314 872,-314 878,-320 878,-326 878,-326 878,-477 878,-477 878,-483 872,-489 866,-489 866,-489 429,-489 429,-489 423,-489 417,-483 417,-477 417,-477 417,-326 417,-326 417,-320 423,-314 429,-314" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="647.5" y="-473.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M20,-292C20,-292 330,-292 330,-292 336,-292 342,-298 342,-304 342,-304 342,-491 342,-491 342,-497 336,-503 330,-503 330,-503 20,-503 20,-503 14,-503 8,-497 8,-491 8,-491 8,-304 8,-304 8,-298 14,-292 20,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="175" y="-487.8">Source platform feature context: JUnit 4</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M587.5,-95C587.5,-95 1094,-95 1094,-95 1100,-95 1106,-101 1106,-107 1106,-107 1106,-294 1106,-294 1106,-300 1100,-306 1094,-306 1094,-306 587.5,-306 587.5,-306 581.5,-306 575.5,-300 575.5,-294 575.5,-294 575.5,-107 575.5,-107 575.5,-101 581.5,-95 587.5,-95" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="840.75" y="-290.8">Target platform feature context: JUnit 5 / JUnit Jupiter and JUnit Platform</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M90.5,-256C90.5,-256 38.5,-256 38.5,-256 32.5,-256 26.5,-250 26.5,-244 26.5,-244 26.5,-232 26.5,-232 26.5,-226 32.5,-220 38.5,-220 38.5,-220 90.5,-220 90.5,-220 96.5,-220 102.5,-226 102.5,-232 102.5,-232 102.5,-244 102.5,-244 102.5,-250 96.5,-256 90.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="64.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M85.5,-188C85.5,-188 43.5,-188 43.5,-188 37.5,-188 31.5,-182 31.5,-176 31.5,-176 31.5,-164 31.5,-164 31.5,-158 37.5,-152 43.5,-152 43.5,-152 85.5,-152 85.5,-152 91.5,-152 97.5,-158 97.5,-164 97.5,-164 97.5,-176 97.5,-176 97.5,-182 91.5,-188 85.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="64.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M79.5,-120C79.5,-120 49.5,-120 49.5,-120 43.5,-120 37.5,-114 37.5,-108 37.5,-108 37.5,-96 37.5,-96 37.5,-90 43.5,-84 49.5,-84 49.5,-84 79.5,-84 79.5,-84 85.5,-84 91.5,-90 91.5,-96 91.5,-96 91.5,-108 91.5,-108 91.5,-114 85.5,-120 79.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="64.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M92.5,-52C92.5,-52 36.5,-52 36.5,-52 30.5,-52 24.5,-46 24.5,-40 24.5,-40 24.5,-28 24.5,-28 24.5,-22 30.5,-16 36.5,-16 36.5,-16 92.5,-16 92.5,-16 98.5,-16 104.5,-22 104.5,-28 104.5,-28 104.5,-40 104.5,-40 104.5,-46 98.5,-52 92.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="64.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1294900925 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1294900925</title>
+
+                    
+
+                    <path d="M101,-404C101,-404 28,-404 28,-404 22,-404 16,-398 16,-392 16,-392 16,-380 16,-380 16,-374 22,-368 28,-368 28,-368 101,-368 101,-368 107,-368 113,-374 113,-380 113,-380 113,-392 113,-392 113,-398 107,-404 101,-404" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="64.5" y="-383.5">Lifecycle Callbacks</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_77439945 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_77439945</title>
+
+                    
+
+                    <path d="M280.5,-472C280.5,-472 229.5,-472 229.5,-472 223.5,-472 217.5,-466 217.5,-460 217.5,-460 217.5,-448 217.5,-448 217.5,-442 223.5,-436 229.5,-436 229.5,-436 280.5,-436 280.5,-436 286.5,-436 292.5,-442 292.5,-448 292.5,-448 292.5,-460 292.5,-460 292.5,-466 286.5,-472 280.5,-472" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="255" y="-451.5">@BeforeClass</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1294900925&#45;&gt;S_77439945 -->
+
+                
+
+                <g class="edge" id="edge6">
+
+                    
+
+                    <title>S_1294900925-&gt;S_77439945</title>
+
+                    
+
+                    <path d="M113.07,-403.16C145.46,-414.84 187.69,-430.08 217.45,-440.82" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_497001079 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>S_497001079</title>
+
+                    
+
+                    <path d="M322,-404C322,-404 188,-404 188,-404 182,-404 176,-398 176,-392 176,-392 176,-380 176,-380 176,-374 182,-368 188,-368 188,-368 322,-368 322,-368 328,-368 334,-374 334,-380 334,-380 334,-392 334,-392 334,-398 328,-404 322,-404" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="255" y="-383.5">static class-level lifecycle method</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1294900925&#45;&gt;S_497001079 -->
+
+                
+
+                <g class="edge" id="edge8">
+
+                    
+
+                    <title>S_1294900925-&gt;S_497001079</title>
+
+                    
+
+                    <path d="M113.07,-386C132.04,-386 154.4,-386 175.65,-386" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1040129681 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>S_1040129681</title>
+
+                    
+
+                    <path d="M276.5,-336C276.5,-336 233.5,-336 233.5,-336 227.5,-336 221.5,-330 221.5,-324 221.5,-324 221.5,-312 221.5,-312 221.5,-306 227.5,-300 233.5,-300 233.5,-300 276.5,-300 276.5,-300 282.5,-300 288.5,-306 288.5,-312 288.5,-312 288.5,-324 288.5,-324 288.5,-330 282.5,-336 276.5,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="255" y="-315.5">@AfterClass</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1294900925&#45;&gt;S_1040129681 -->
+
+                
+
+                <g class="edge" id="edge7">
+
+                    
+
+                    <title>S_1294900925-&gt;S_1040129681</title>
+
+                    
+
+                    <path d="M113.07,-368.84C146.88,-356.64 191.41,-340.58 221.29,-329.8" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1594742190 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>C_1594742190</title>
+
+                    
+
+                    <path d="M858,-458C858,-458 437,-458 437,-458 431,-458 425,-452 425,-446 425,-446 425,-434 425,-434 425,-428 431,-422 437,-422 437,-422 858,-422 858,-422 864,-422 870,-428 870,-434 870,-434 870,-446 870,-446 870,-452 864,-458 858,-458" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="647.5" y="-437.5">Transformation * &nbsp;@BeforeClass and @AfterClass to @BeforeAll and @AfterAll * OperatorHelp / MIX</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_77439945&#45;&gt;C_1594742190 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>S_77439945-&gt;C_1594742190</title>
+
+                    
+
+                    <path d="M292.74,-452.68C322.99,-451.6 368.66,-449.96 417.24,-448.22" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="417.34,-450.84 424.74,-447.95 417.15,-445.6 417.34,-450.84" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="379.5" y="-451.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1779805130 -->
+
+                
+
+                <g class="node" id="node10">
+
+                    
+
+                    <title>C_1779805130</title>
+
+                    
+
+                    <path d="M790.5,-358C790.5,-358 504.5,-358 504.5,-358 498.5,-358 492.5,-352 492.5,-346 492.5,-346 492.5,-334 492.5,-334 492.5,-328 498.5,-322 504.5,-322 504.5,-322 790.5,-322 790.5,-322 796.5,-322 802.5,-328 802.5,-334 802.5,-334 802.5,-346 802.5,-346 802.5,-352 796.5,-358 790.5,-358" fill="#e8f0fe" stroke="#3c78d8" stroke-width="1.7"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="647.5" y="-337.5">Transformation * &nbsp;@AfterClass to @AfterAll * FullAutomation / EASY</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1040129681&#45;&gt;C_1779805130 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>S_1040129681-&gt;C_1779805130</title>
+
+                    
+
+                    <path d="M288.62,-319.84C331.95,-322.28 411.56,-326.76 484.7,-330.88" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="484.58,-333.51 492.21,-331.31 484.87,-328.26 484.58,-333.51" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="379.5" y="-327.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1594742190&#45;&gt;C_1779805130 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>C_1594742190-&gt;C_1779805130</title>
+
+                    
+
+                    <path d="M647.5,-421.77C647.5,-406.16 647.5,-383.49 647.5,-365.98" fill="none" stroke="#777777" stroke-dasharray="1,5"></path>
+
+                    
+
+                    <polygon fill="#777777" points="647.5,-358.34 650.88,-365.84 647.5,-362.09 647.5,-365.84 647.5,-365.84 647.5,-365.84 647.5,-362.09 644.13,-365.84 647.5,-358.34 647.5,-358.34" stroke="#777777"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="639.5" y="-387.8">subrelation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_112639069 -->
+
+                
+
+                <g class="node" id="node13">
+
+                    
+
+                    <title>T_112639069</title>
+
+                    
+
+                    <path d="M1045.5,-275C1045.5,-275 1008.5,-275 1008.5,-275 1002.5,-275 996.5,-269 996.5,-263 996.5,-263 996.5,-251 996.5,-251 996.5,-245 1002.5,-239 1008.5,-239 1008.5,-239 1045.5,-239 1045.5,-239 1051.5,-239 1057.5,-245 1057.5,-251 1057.5,-251 1057.5,-263 1057.5,-263 1057.5,-269 1051.5,-275 1045.5,-275" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1027" y="-254.5">@BeforeAll</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1594742190&#45;&gt;T_112639069 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_1594742190-&gt;T_112639069</title>
+
+                    
+
+                    <path d="M741.52,-421.95C784.53,-411.45 835.41,-395.88 878,-374 926.69,-348.99 974.88,-306.78 1002.47,-280.48" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1004.46,-282.21 1008.04,-275.12 1000.82,-278.43 1004.46,-282.21" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="913" y="-360.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1219289056 -->
+
+                
+
+                <g class="node" id="node14">
+
+                    
+
+                    <title>T_1219289056</title>
+
+                    
+
+                    <path d="M1042,-207C1042,-207 1012,-207 1012,-207 1006,-207 1000,-201 1000,-195 1000,-195 1000,-183 1000,-183 1000,-177 1006,-171 1012,-171 1012,-171 1042,-171 1042,-171 1048,-171 1054,-177 1054,-183 1054,-183 1054,-195 1054,-195 1054,-201 1048,-207 1042,-207" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1027" y="-186.5">@AfterAll</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1779805130&#45;&gt;T_1219289056 -->
+
+                
+
+                <g class="edge" id="edge5">
+
+                    
+
+                    <title>C_1779805130-&gt;T_1219289056</title>
+
+                    
+
+                    <path d="M802.67,-338.57C828.84,-333.89 854.97,-326.21 878,-314 925.06,-289.05 913.83,-255.54 956,-223 967.09,-214.45 980.67,-207.24 992.92,-201.7" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="994.12,-204.04 999.94,-198.63 992.02,-199.23 994.12,-204.04" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="913" y="-298.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1013860172 -->
+
+                
+
+                <g class="node" id="node11">
+
+                    
+
+                    <title>T_1013860172</title>
+
+                    
+
+                    <path d="M699.5,-207C699.5,-207 595.5,-207 595.5,-207 589.5,-207 583.5,-201 583.5,-195 583.5,-195 583.5,-183 583.5,-183 583.5,-177 589.5,-171 595.5,-171 595.5,-171 699.5,-171 699.5,-171 705.5,-171 711.5,-177 711.5,-183 711.5,-183 711.5,-195 711.5,-195 711.5,-201 705.5,-207 699.5,-207" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="647.5" y="-186.5">Jupiter Lifecycle Callbacks</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_577721578 -->
+
+                
+
+                <g class="node" id="node12">
+
+                    
+
+                    <title>T_577721578</title>
+
+                    
+
+                    <path d="M1086,-139C1086,-139 968,-139 968,-139 962,-139 956,-133 956,-127 956,-127 956,-115 956,-115 956,-109 962,-103 968,-103 968,-103 1086,-103 1086,-103 1092,-103 1098,-109 1098,-115 1098,-115 1098,-127 1098,-127 1098,-133 1092,-139 1086,-139" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1027" y="-118.5">@TestInstance(PER_CLASS)</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1013860172&#45;&gt;T_577721578 -->
+
+                
+
+                <g class="edge" id="edge11">
+
+                    
+
+                    <title>T_1013860172-&gt;T_577721578</title>
+
+                    
+
+                    <path d="M711.69,-177.62C779.17,-165.46 885.83,-146.25 955.87,-133.63" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1013860172&#45;&gt;T_112639069 -->
+
+                
+
+                <g class="edge" id="edge9">
+
+                    
+
+                    <title>T_1013860172-&gt;T_112639069</title>
+
+                    
+
+                    <path d="M711.69,-200.38C794.17,-215.24 935.22,-240.65 996.32,-251.65" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1013860172&#45;&gt;T_1219289056 -->
+
+                
+
+                <g class="edge" id="edge10">
+
+                    
+
+                    <title>T_1013860172-&gt;T_1219289056</title>
+
+                    
+
+                    <path d="M711.69,-189C795.85,-189 940.98,-189 999.95,-189" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

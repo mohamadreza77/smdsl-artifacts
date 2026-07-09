@@ -1,0 +1,21 @@
+digraph EffortOverview {
+  graph [rankdir=TB, labelloc=t, label="SMDSL Effort Overview: JUnit4-to-JUnit5-SMDSL-v2", fontsize=18];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=10, fillcolor="#F3F3F3"];
+  summary [label="Automated steps: 94\nManual steps: 118\nManual ratio: 55.7%", fillcolor="#D9EAD3"];
+  e0 [label="Build Runtime and Gradual Migration\nManual: 5\nAutomated: 9\nManual ratio: 35.7%", fillcolor="#FFF2CC"];
+  summary -> e0;
+  e1 [label="Core Test Annotation and Lifecycle Migration\nManual: 7\nAutomated: 17\nManual ratio: 29.2%", fillcolor="#D9EAD3"];
+  summary -> e1;
+  e2 [label="Assertions and Assumptions Migration\nManual: 10\nAutomated: 18\nManual ratio: 35.7%", fillcolor="#FFF2CC"];
+  summary -> e2;
+  e3 [label="Exception and Timeout Migration\nManual: 15\nAutomated: 9\nManual ratio: 62.5%", fillcolor="#FCE5CD"];
+  summary -> e3;
+  e4 [label="Rules ClassRules and Extension Model Migration\nManual: 30\nAutomated: 9\nManual ratio: 76.9%", fillcolor="#F4CCCC"];
+  summary -> e4;
+  e5 [label="Runner Suite Category and Ordering Migration\nManual: 34\nAutomated: 18\nManual ratio: 65.4%", fillcolor="#FCE5CD"];
+  summary -> e5;
+  e6 [label="Parameterized Theories and Advanced Test Forms\nManual: 15\nAutomated: 9\nManual ratio: 62.5%", fillcolor="#FCE5CD"];
+  summary -> e6;
+  e7 [label="Legacy TestCase and Tool-Assisted Migration\nManual: 2\nAutomated: 5\nManual ratio: 28.6%", fillcolor="#D9EAD3"];
+  summary -> e7;
+}

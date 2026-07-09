@@ -1,0 +1,519 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Preservation: Node/Container Semantic Target Preservation</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Preservation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> GMF Workbench =&gt; Sirius Workbench
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Preservation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Preserved feature(s):</strong> Node Mapping, Node Reference, Node Mapping, Container Mapping
+
+            <br>
+
+            
+
+            <strong>Preservation kind:</strong> SEMANTICALLY_PRESERVED
+
+            <br>
+
+            
+
+            <strong>Reason:</strong> The domain concept represented by the GMF node mapping is preserved as the semantic target of the Si
+
+rius node or container mapping.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="543pt" viewBox="0.00 0.00 904.00 543.00" width="904pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 525)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="434" y="-491.8">Preservation: Node/Container Semantic Target Preservation</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M192.5,-8C192.5,-8 264.5,-8 264.5,-8 270.5,-8 276.5,-14 276.5,-20 276.5,-20 276.5,-272 276.5,-272 276.5,-278 270.5,-284 264.5,-284 264.5,-284 192.5,-284 192.5,-284 186.5,-284 180.5,-278 180.5,-272 180.5,-272 180.5,-20 180.5,-20 180.5,-14 186.5,-8 192.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="228.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M20,-292C20,-292 437,-292 437,-292 443,-292 449,-298 449,-304 449,-304 449,-355 449,-355 449,-361 443,-367 437,-367 437,-367 20,-367 20,-367 14,-367 8,-361 8,-355 8,-355 8,-304 8,-304 8,-298 14,-292 20,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="228.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M549,-182C549,-182 855,-182 855,-182 861,-182 867,-188 867,-194 867,-194 867,-313 867,-313 867,-319 861,-325 855,-325 855,-325 549,-325 549,-325 543,-325 537,-319 537,-313 537,-313 537,-194 537,-194 537,-188 543,-182 549,-182" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="702" y="-309.8">Target platform feature context: Sirius Workbench</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M549,-333C549,-333 856,-333 856,-333 862,-333 868,-339 868,-345 868,-345 868,-464 868,-464 868,-470 862,-476 856,-476 856,-476 549,-476 549,-476 543,-476 537,-470 537,-464 537,-464 537,-345 537,-345 537,-339 543,-333 549,-333" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="702.5" y="-460.8">Source platform feature context: GMF Workbench</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M254.5,-256C254.5,-256 202.5,-256 202.5,-256 196.5,-256 190.5,-250 190.5,-244 190.5,-244 190.5,-232 190.5,-232 190.5,-226 196.5,-220 202.5,-220 202.5,-220 254.5,-220 254.5,-220 260.5,-220 266.5,-226 266.5,-232 266.5,-232 266.5,-244 266.5,-244 266.5,-250 260.5,-256 254.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="228.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M249.5,-188C249.5,-188 207.5,-188 207.5,-188 201.5,-188 195.5,-182 195.5,-176 195.5,-176 195.5,-164 195.5,-164 195.5,-158 201.5,-152 207.5,-152 207.5,-152 249.5,-152 249.5,-152 255.5,-152 261.5,-158 261.5,-164 261.5,-164 261.5,-176 261.5,-176 261.5,-182 255.5,-188 249.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="228.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M243.5,-120C243.5,-120 213.5,-120 213.5,-120 207.5,-120 201.5,-114 201.5,-108 201.5,-108 201.5,-96 201.5,-96 201.5,-90 207.5,-84 213.5,-84 213.5,-84 243.5,-84 243.5,-84 249.5,-84 255.5,-90 255.5,-96 255.5,-96 255.5,-108 255.5,-108 255.5,-114 249.5,-120 243.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="228.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M256.5,-52C256.5,-52 200.5,-52 200.5,-52 194.5,-52 188.5,-46 188.5,-40 188.5,-40 188.5,-28 188.5,-28 188.5,-22 194.5,-16 200.5,-16 200.5,-16 256.5,-16 256.5,-16 262.5,-16 268.5,-22 268.5,-28 268.5,-28 268.5,-40 268.5,-40 268.5,-46 262.5,-52 256.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="228.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_594951743 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_594951743</title>
+
+                    
+
+                    <path d="M727.5,-445C727.5,-445 676.5,-445 676.5,-445 670.5,-445 664.5,-439 664.5,-433 664.5,-433 664.5,-421 664.5,-421 664.5,-415 670.5,-409 676.5,-409 676.5,-409 727.5,-409 727.5,-409 733.5,-409 739.5,-415 739.5,-421 739.5,-421 739.5,-433 739.5,-433 739.5,-439 733.5,-445 727.5,-445" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="702" y="-424.5">Node Mapping</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_931205082 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_931205082</title>
+
+                    
+
+                    <path d="M731,-377C731,-377 673,-377 673,-377 667,-377 661,-371 661,-365 661,-365 661,-353 661,-353 661,-347 667,-341 673,-341 673,-341 731,-341 731,-341 737,-341 743,-347 743,-353 743,-353 743,-365 743,-365 743,-371 737,-377 731,-377" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="702" y="-356.5">Node Reference</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_868240109 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_868240109</title>
+
+                    
+
+                    <path d="M429,-336C429,-336 28,-336 28,-336 22,-336 16,-330 16,-324 16,-324 16,-312 16,-312 16,-306 22,-300 28,-300 28,-300 429,-300 429,-300 435,-300 441,-306 441,-312 441,-312 441,-324 441,-324 441,-330 435,-336 429,-336" fill="#eaf7ea" stroke="#6aa84f" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="228.5" y="-315.5">Preservation * &nbsp;Node/Container Semantic Target Preservation * SEMANTICALLY_PRESERVED</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_868240109&#45;&gt;S_594951743 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>C_868240109-&gt;S_594951743</title>
+
+                    
+
+                    <path d="M300.48,-336.06C362.7,-351.7 455.66,-374.65 537,-393 577.44,-402.12 623.7,-411.63 656.76,-418.26" fill="none" stroke="#6aa84f"></path>
+
+                    
+
+                    <polygon fill="#6aa84f" points="656.58,-420.9 664.44,-419.8 657.61,-415.75 656.58,-420.9" stroke="#6aa84f"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="493" y="-389.8">preserves</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_868240109&#45;&gt;S_931205082 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_868240109-&gt;S_931205082</title>
+
+                    
+
+                    <path d="M436.65,-336.01C517.08,-343.01 602.02,-350.39 653.27,-354.85" fill="none" stroke="#6aa84f"></path>
+
+                    
+
+                    <polygon fill="#6aa84f" points="653.19,-357.48 660.89,-355.51 653.65,-352.25 653.19,-357.48" stroke="#6aa84f"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="493" y="-344.8">preserves</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1069434367 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1069434367</title>
+
+                    
+
+                    <path d="M727.5,-294C727.5,-294 676.5,-294 676.5,-294 670.5,-294 664.5,-288 664.5,-282 664.5,-282 664.5,-270 664.5,-270 664.5,-264 670.5,-258 676.5,-258 676.5,-258 727.5,-258 727.5,-258 733.5,-258 739.5,-264 739.5,-270 739.5,-270 739.5,-282 739.5,-282 739.5,-288 733.5,-294 727.5,-294" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="702" y="-273.5">Node Mapping</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_868240109&#45;&gt;T_1069434367 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_868240109-&gt;T_1069434367</title>
+
+                    
+
+                    <path d="M431.85,-299.97C515.48,-292.53 604.83,-284.57 656.65,-279.95" fill="none" stroke="#6aa84f"></path>
+
+                    
+
+                    <polygon fill="#6aa84f" points="657.1,-282.55 664.33,-279.27 656.63,-277.32 657.1,-282.55" stroke="#6aa84f"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="493" y="-297.8">preserves</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1563053161 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_1563053161</title>
+
+                    
+
+                    <path d="M737,-226C737,-226 667,-226 667,-226 661,-226 655,-220 655,-214 655,-214 655,-202 655,-202 655,-196 661,-190 667,-190 667,-190 737,-190 737,-190 743,-190 749,-196 749,-202 749,-202 749,-214 749,-214 749,-220 743,-226 737,-226" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="702" y="-205.5">Container Mapping</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_868240109&#45;&gt;T_1563053161 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>C_868240109-&gt;T_1563053161</title>
+
+                    
+
+                    <path d="M425.87,-300C433.77,-297.62 441.51,-294.97 449,-292 460.82,-287.32 461.18,-281.68 472,-275 499.57,-257.98 506.42,-252.72 537,-242 572.82,-229.45 614.75,-220.85 647.25,-215.45" fill="none" stroke="#6aa84f"></path>
+
+                    
+
+                    <polygon fill="#6aa84f" points="647.89,-218 654.87,-214.21 647.05,-212.82 647.89,-218" stroke="#6aa84f"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="493" y="-277.8">preserves</text>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

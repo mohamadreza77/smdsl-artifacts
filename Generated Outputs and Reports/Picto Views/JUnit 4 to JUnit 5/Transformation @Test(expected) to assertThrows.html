@@ -1,0 +1,681 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: @Test(expected) to assertThrows</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> JUnit 4 =&gt; JUnit 5 / JUnit Jupiter and JUnit Platform
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong>
+
+        </p>
+
+        
+
+        <ul>
+
+            
+
+            <li>
+
+                <strong>REQUIRED</strong> on @Test(expected), assertThrows: Applies when @Test declares expected = SomeException.class; target code must wrap the exact throwing
+
+statement or block.
+
+            </li>
+
+            
+
+        </ul>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> @Test(expected)
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> assertThrows, assertThrows block
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> OperatorHelp / MIX
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> JUnit 4 expected-exception tests declare only the exception type at annotation level. Jupiter assert
+
+Throws requires the operator or transformation to identify and wrap the specific executable statemen
+
+t or block expected to throw.
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Operators:</strong> Migration engineer / test developer
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] Detect @Test(expected = E.class) and remove the expected attribute from @Test.
+
+
+
+2. [M] Identify the minimal statement or expression that is expected to throw E. This information
+
+ is often implicit in the source test body.
+
+
+
+3. [M] Wrap that statement in assertThrows(E.class, () -&gt; { ... }).
+
+
+
+4. [M] If statements before the throwing line set up state, keep them before assertThrows.
+
+
+
+5. [M] If statements after the throwing line existed in JUnit 4, mark them unreachable under the 
+
+source semantics and inspect whether they should be removed or moved into target assertion
+
+s.
+
+
+
+6. [M] If the exception object is needed, assign the result of assertThrows to a variable and add
+
+ message/cause assertions.
+
+
+
+7. [A] Run the migrated test to ensure it fails if no exception is thrown and also fails for the 
+
+wrong exception type.
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="434pt" viewBox="0.00 0.00 910.00 434.00" width="910pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 416)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="437" y="-382.8">Transformation: @Test(expected) to assertThrows</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M25.5,-8C25.5,-8 97.5,-8 97.5,-8 103.5,-8 109.5,-14 109.5,-20 109.5,-20 109.5,-272 109.5,-272 109.5,-278 103.5,-284 97.5,-284 97.5,-284 25.5,-284 25.5,-284 19.5,-284 13.5,-278 13.5,-272 13.5,-272 13.5,-20 13.5,-20 13.5,-14 19.5,-8 25.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="61.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M352,-292C352,-292 671,-292 671,-292 677,-292 683,-298 683,-304 683,-304 683,-355 683,-355 683,-361 677,-367 671,-367 671,-367 352,-367 352,-367 346,-367 340,-361 340,-355 340,-355 340,-304 340,-304 340,-298 346,-292 352,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="511.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M16,-292C16,-292 258,-292 258,-292 264,-292 270,-298 270,-304 270,-304 270,-355 270,-355 270,-361 264,-367 258,-367 258,-367 16,-367 16,-367 10,-367 4,-361 4,-355 4,-355 4,-304 4,-304 4,-298 10,-292 16,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="137" y="-351.8">Source platform feature context: JUnit 4</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M413.5,-140C413.5,-140 859,-140 859,-140 865,-140 871,-146 871,-152 871,-152 871,-271 871,-271 871,-277 865,-283 859,-283 859,-283 413.5,-283 413.5,-283 407.5,-283 401.5,-277 401.5,-271 401.5,-271 401.5,-152 401.5,-152 401.5,-146 407.5,-140 413.5,-140" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="636.25" y="-267.8">Target platform feature context: JUnit 5 / JUnit Jupiter and JUnit Platform</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M87.5,-256C87.5,-256 35.5,-256 35.5,-256 29.5,-256 23.5,-250 23.5,-244 23.5,-244 23.5,-232 23.5,-232 23.5,-226 29.5,-220 35.5,-220 35.5,-220 87.5,-220 87.5,-220 93.5,-220 99.5,-226 99.5,-232 99.5,-232 99.5,-244 99.5,-244 99.5,-250 93.5,-256 87.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="61.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M82.5,-188C82.5,-188 40.5,-188 40.5,-188 34.5,-188 28.5,-182 28.5,-176 28.5,-176 28.5,-164 28.5,-164 28.5,-158 34.5,-152 40.5,-152 40.5,-152 82.5,-152 82.5,-152 88.5,-152 94.5,-158 94.5,-164 94.5,-164 94.5,-176 94.5,-176 94.5,-182 88.5,-188 82.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="61.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M76.5,-120C76.5,-120 46.5,-120 46.5,-120 40.5,-120 34.5,-114 34.5,-108 34.5,-108 34.5,-96 34.5,-96 34.5,-90 40.5,-84 46.5,-84 46.5,-84 76.5,-84 76.5,-84 82.5,-84 88.5,-90 88.5,-96 88.5,-96 88.5,-108 88.5,-108 88.5,-114 82.5,-120 76.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="61.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M89.5,-52C89.5,-52 33.5,-52 33.5,-52 27.5,-52 21.5,-46 21.5,-40 21.5,-40 21.5,-28 21.5,-28 21.5,-22 27.5,-16 33.5,-16 33.5,-16 89.5,-16 89.5,-16 95.5,-16 101.5,-22 101.5,-28 101.5,-28 101.5,-40 101.5,-40 101.5,-46 95.5,-52 89.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="61.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1100945310 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1100945310</title>
+
+                    
+
+                    <path d="M95,-336C95,-336 28,-336 28,-336 22,-336 16,-330 16,-324 16,-324 16,-312 16,-312 16,-306 22,-300 28,-300 28,-300 95,-300 95,-300 101,-300 107,-306 107,-312 107,-312 107,-324 107,-324 107,-330 101,-336 95,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="61.5" y="-315.5">Exception Testing</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1820244208 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1820244208</title>
+
+                    
+
+                    <path d="M245,-336C245,-336 182,-336 182,-336 176,-336 170,-330 170,-324 170,-324 170,-312 170,-312 170,-306 176,-300 182,-300 182,-300 245,-300 245,-300 251,-300 257,-306 257,-312 257,-312 257,-324 257,-324 257,-330 251,-336 245,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="213.5" y="-315.5">@Test(expected)</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1100945310&#45;&gt;S_1820244208 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>S_1100945310-&gt;S_1820244208</title>
+
+                    
+
+                    <path d="M107.1,-318C126.96,-318 150.25,-318 169.87,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_27066228 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_27066228</title>
+
+                    
+
+                    <path d="M663,-336C663,-336 360,-336 360,-336 354,-336 348,-330 348,-324 348,-324 348,-312 348,-312 348,-306 354,-300 360,-300 360,-300 663,-300 663,-300 669,-300 675,-306 675,-312 675,-312 675,-324 675,-324 675,-330 669,-336 663,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="511.5" y="-315.5">Transformation * &nbsp;@Test(expected) to assertThrows * OperatorHelp / MIX</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1820244208&#45;&gt;C_27066228 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_1820244208-&gt;C_27066228</title>
+
+                    
+
+                    <path d="M257.22,-318C279.81,-318 309.17,-318 339.86,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="340.19,-320.63 347.69,-318 340.19,-315.38 340.19,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="307.5" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_199345656 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_199345656</title>
+
+                    
+
+                    <path d="M832.5,-252C832.5,-252 786.5,-252 786.5,-252 780.5,-252 774.5,-246 774.5,-240 774.5,-240 774.5,-228 774.5,-228 774.5,-222 780.5,-216 786.5,-216 786.5,-216 832.5,-216 832.5,-216 838.5,-216 844.5,-222 844.5,-228 844.5,-228 844.5,-240 844.5,-240 844.5,-246 838.5,-252 832.5,-252" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="809.5" y="-231.5">assertThrows</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_27066228&#45;&gt;T_199345656 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_27066228-&gt;T_199345656</title>
+
+                    
+
+                    <path d="M669.33,-299.99C690.09,-295.31 710.81,-289.42 730,-282 746.52,-275.61 763.45,-265.76 777.34,-256.63" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="779.14,-258.59 783.9,-252.23 776.21,-254.23 779.14,-258.59" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="718" y="-291.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_781834691 -->
+
+                
+
+                <g class="node" id="node10">
+
+                    
+
+                    <title>T_781834691</title>
+
+                    
+
+                    <path d="M846,-184C846,-184 773,-184 773,-184 767,-184 761,-178 761,-172 761,-172 761,-160 761,-160 761,-154 767,-148 773,-148 773,-148 846,-148 846,-148 852,-148 858,-154 858,-160 858,-160 858,-172 858,-172 858,-178 852,-184 846,-184" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="809.5" y="-163.5">assertThrows block</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_27066228&#45;&gt;T_781834691 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_27066228-&gt;T_781834691</title>
+
+                    
+
+                    <path d="M664.17,-299.97C670.67,-297.34 676.98,-294.36 683,-291 706.25,-278.01 741.36,-217.99 761,-200 765.11,-196.23 769.65,-192.51 774.24,-189" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="776.05,-190.93 780.5,-184.34 772.91,-186.71 776.05,-190.93" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="718" y="-271.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1161961588 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1161961588</title>
+
+                    
+
+                    <path d="M545,-252C545,-252 478,-252 478,-252 472,-252 466,-246 466,-240 466,-240 466,-228 466,-228 466,-222 472,-216 478,-216 478,-216 545,-216 545,-216 551,-216 557,-222 557,-228 557,-228 557,-240 557,-240 557,-246 551,-252 545,-252" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="511.5" y="-231.5">Jupiter Assertions</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1161961588&#45;&gt;T_199345656 -->
+
+                
+
+                <g class="edge" id="edge5">
+
+                    
+
+                    <title>T_1161961588-&gt;T_199345656</title>
+
+                    
+
+                    <path d="M557.13,-234C616.57,-234 720.42,-234 774.14,-234" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1528916493 -->
+
+                
+
+                <g class="node" id="node11">
+
+                    
+
+                    <title>T_1528916493</title>
+
+                    
+
+                    <path d="M596.5,-184C596.5,-184 426.5,-184 426.5,-184 420.5,-184 414.5,-178 414.5,-172 414.5,-172 414.5,-160 414.5,-160 414.5,-154 420.5,-148 426.5,-148 426.5,-148 596.5,-148 596.5,-148 602.5,-148 608.5,-154 608.5,-160 608.5,-160 608.5,-172 608.5,-172 608.5,-178 602.5,-184 596.5,-184" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="511.5" y="-163.5">Jupiter Timeout and Exception Constructs</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1528916493&#45;&gt;T_781834691 -->
+
+                
+
+                <g class="edge" id="edge6">
+
+                    
+
+                    <title>T_1528916493-&gt;T_781834691</title>
+
+                    
+
+                    <path d="M608.6,-166C659.58,-166 719.97,-166 760.93,-166" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

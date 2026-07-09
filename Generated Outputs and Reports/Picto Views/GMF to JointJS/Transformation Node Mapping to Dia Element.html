@@ -1,0 +1,575 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: Node Mapping to Dia Element</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> GMF Workbench =&gt; JointJS
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong>
+
+        </p>
+
+        
+
+        <ul>
+
+            
+
+            <li>
+
+                <strong>REQUIRED</strong> on Node Mapping, Dia Element, namespace: Apply when a GMF Node Mapping identifies a semantic element type that should be represented as a Joi
+
+ntJS custom element/cell type.
+
+            </li>
+
+            
+
+        </ul>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> Node Mapping
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> Dia Element, namespace
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> FullAutomation / EASY
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> A GMF Node Mapping specifies how a semantic element is represented as a node in the diagram, includi
+
+ng its identity and containment context. In JointJS, this responsibility is realized by defining a D
+
+ia Element, whose type and uniqueness are determined through its namespace. Since both constructs se
+
+rve to introduce a concrete node type tied to a domain element, the mapping is direct and can be ful
+
+ly automated, with namespace composition systematically derived from the GMF mapping context.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] take the element property (A) of the node mapping
+
+
+
+2. [A] take the parent top node/child reference (B) of the node mapping
+
+
+
+3. [A] check if B has the compartment property (X)
+
+
+
+4. [NONE] if X is true
+
+    4.1. [A] take the compartment property (C) of B
+
+
+
+    4.2. [A] take the name property (D) of C
+
+
+
+    4.3. [A] if not already exist, create a dia element with the var name 'A_D' (E), else 'A_D_i' (E) w
+
+here i is a counter computed by the last i + 1
+
+
+
+    4.4. [A] paste 'custom.E' into the namespace of dia element
+
+
+
+
+
+5. [NONE] if X is false
+
+    5.1. [A] if not already exist, create a dia element with the var name 'A' (E), else 'A_i' (E) where
+
+ i is a counter computed by the last i + 1
+
+
+
+    5.2. [A] paste 'custom.E' into the namespace of dia element
+
+
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="464pt" viewBox="0.00 0.00 1123.50 464.00" width="1124pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 446)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="543.75" y="-412.8">Transformation: Node Mapping to Dia Element</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M129.5,-8C129.5,-8 201.5,-8 201.5,-8 207.5,-8 213.5,-14 213.5,-20 213.5,-20 213.5,-272 213.5,-272 213.5,-278 207.5,-284 201.5,-284 201.5,-284 129.5,-284 129.5,-284 123.5,-284 117.5,-278 117.5,-272 117.5,-272 117.5,-20 117.5,-20 117.5,-14 123.5,-8 129.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="165.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M417.5,-292C417.5,-292 739.5,-292 739.5,-292 745.5,-292 751.5,-298 751.5,-304 751.5,-304 751.5,-355 751.5,-355 751.5,-361 745.5,-367 739.5,-367 739.5,-367 417.5,-367 417.5,-367 411.5,-367 405.5,-361 405.5,-355 405.5,-355 405.5,-304 405.5,-304 405.5,-298 411.5,-292 417.5,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="578.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 319,-292 319,-292 325,-292 331,-298 331,-304 331,-304 331,-355 331,-355 331,-361 325,-367 319,-367 319,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="165.5" y="-351.8">Source platform feature context: GMF Workbench</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M833.5,-322C833.5,-322 1075.5,-322 1075.5,-322 1081.5,-322 1087.5,-328 1087.5,-334 1087.5,-334 1087.5,-385 1087.5,-385 1087.5,-391 1081.5,-397 1075.5,-397 1075.5,-397 833.5,-397 833.5,-397 827.5,-397 821.5,-391 821.5,-385 821.5,-385 821.5,-334 821.5,-334 821.5,-328 827.5,-322 833.5,-322" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="954.5" y="-381.8">Target platform feature context: JointJS</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M191.5,-256C191.5,-256 139.5,-256 139.5,-256 133.5,-256 127.5,-250 127.5,-244 127.5,-244 127.5,-232 127.5,-232 127.5,-226 133.5,-220 139.5,-220 139.5,-220 191.5,-220 191.5,-220 197.5,-220 203.5,-226 203.5,-232 203.5,-232 203.5,-244 203.5,-244 203.5,-250 197.5,-256 191.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M186.5,-188C186.5,-188 144.5,-188 144.5,-188 138.5,-188 132.5,-182 132.5,-176 132.5,-176 132.5,-164 132.5,-164 132.5,-158 138.5,-152 144.5,-152 144.5,-152 186.5,-152 186.5,-152 192.5,-152 198.5,-158 198.5,-164 198.5,-164 198.5,-176 198.5,-176 198.5,-182 192.5,-188 186.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M180.5,-120C180.5,-120 150.5,-120 150.5,-120 144.5,-120 138.5,-114 138.5,-108 138.5,-108 138.5,-96 138.5,-96 138.5,-90 144.5,-84 150.5,-84 150.5,-84 180.5,-84 180.5,-84 186.5,-84 192.5,-90 192.5,-96 192.5,-96 192.5,-108 192.5,-108 192.5,-114 186.5,-120 180.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M193.5,-52C193.5,-52 137.5,-52 137.5,-52 131.5,-52 125.5,-46 125.5,-40 125.5,-40 125.5,-28 125.5,-28 125.5,-22 131.5,-16 137.5,-16 137.5,-16 193.5,-16 193.5,-16 199.5,-16 205.5,-22 205.5,-28 205.5,-28 205.5,-40 205.5,-40 205.5,-46 199.5,-52 193.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_298046776 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_298046776</title>
+
+                    
+
+                    <path d="M191,-336C191,-336 140,-336 140,-336 134,-336 128,-330 128,-324 128,-324 128,-312 128,-312 128,-306 134,-300 140,-300 140,-300 191,-300 191,-300 197,-300 203,-306 203,-312 203,-312 203,-324 203,-324 203,-330 197,-336 191,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165.5" y="-315.5">Node Mapping</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_262530779 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>C_262530779</title>
+
+                    
+
+                    <path d="M731.5,-336C731.5,-336 425.5,-336 425.5,-336 419.5,-336 413.5,-330 413.5,-324 413.5,-324 413.5,-312 413.5,-312 413.5,-306 419.5,-300 425.5,-300 425.5,-300 731.5,-300 731.5,-300 737.5,-300 743.5,-306 743.5,-312 743.5,-312 743.5,-324 743.5,-324 743.5,-330 737.5,-336 731.5,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="578.5" y="-315.5">Transformation * &nbsp;Node Mapping to Dia Element * FullAutomation / EASY</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_298046776&#45;&gt;C_262530779 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_298046776-&gt;C_262530779</title>
+
+                    
+
+                    <path d="M203.34,-318C249.15,-318 330.52,-318 405.7,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="405.92,-320.63 413.42,-318 405.92,-315.38 405.92,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="368" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1507135037 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>T_1507135037</title>
+
+                    
+
+                    <path d="M912.5,-366C912.5,-366 870.5,-366 870.5,-366 864.5,-366 858.5,-360 858.5,-354 858.5,-354 858.5,-342 858.5,-342 858.5,-336 864.5,-330 870.5,-330 870.5,-330 912.5,-330 912.5,-330 918.5,-330 924.5,-336 924.5,-342 924.5,-342 924.5,-354 924.5,-354 924.5,-360 918.5,-366 912.5,-366" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="891.5" y="-345.5">Dia Element</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_262530779&#45;&gt;T_1507135037 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_262530779-&gt;T_1507135037</title>
+
+                    
+
+                    <path d="M743.65,-333.83C783.69,-337.7 822.97,-341.49 850.81,-344.17" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="850.63,-346.79 858.35,-344.9 851.14,-341.57 850.63,-346.79" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="786.5" y="-340.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_277460036 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_277460036</title>
+
+                    
+
+                    <path d="M1038.5,-366C1038.5,-366 999.5,-366 999.5,-366 993.5,-366 987.5,-360 987.5,-354 987.5,-354 987.5,-342 987.5,-342 987.5,-336 993.5,-330 999.5,-330 999.5,-330 1038.5,-330 1038.5,-330 1044.5,-330 1050.5,-336 1050.5,-342 1050.5,-342 1050.5,-354 1050.5,-354 1050.5,-360 1044.5,-366 1038.5,-366" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1019" y="-345.5">namespace</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_262530779&#45;&gt;T_277460036 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_262530779-&gt;T_277460036</title>
+
+                    
+
+                    <path d="M683.02,-299.98C752.2,-291.3 844.79,-286.18 924.5,-304 944.26,-308.42 964.77,-317.49 981.53,-326.26" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="980.62,-328.75 988.47,-329.99 983.11,-324.13 980.62,-328.75" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="891.5" y="-306.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1507135037&#45;&gt;T_277460036 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>T_1507135037-&gt;T_277460036</title>
+
+                    
+
+                    <path d="M924.82,-348C943.99,-348 968.17,-348 987.09,-348" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

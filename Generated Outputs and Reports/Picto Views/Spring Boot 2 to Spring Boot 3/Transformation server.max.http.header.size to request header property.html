@@ -1,0 +1,647 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: server.max.http.header.size to request header property</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> server.max.http.header.size property
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> server.max-http-request-header-size property, Request-only max header property and response customizer
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> OperatorHelp / MIX
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> The legacy header-size property was inconsistently interpreted. Spring Boot 3 uses server.max-http-r
+
+equest-header-size for request headers; response header limits need a WebServerFactoryCustomizer for
+
+Tomcat or Jetty.
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Operators:</strong> Application Developer 2
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] replace server.max.http.header.size with server.max-http-request-header-size for request h
+
+eaders
+
+
+
+2. [M] check whether response header size was intentionally controlled
+
+
+
+3. [NONE] if response header size is required
+
+    3.1. [M] add Tomcat or Jetty WebServerFactoryCustomizer
+
+
+
+
+
+4. [A] test requests and responses near configured limits
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="434pt" viewBox="0.00 0.00 1441.00 434.00" width="1441pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 416)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="702.5" y="-382.8">Transformation: server.max.http.header.size to request header property</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M111,-8C111,-8 183,-8 183,-8 189,-8 195,-14 195,-20 195,-20 195,-272 195,-272 195,-278 189,-284 183,-284 183,-284 111,-284 111,-284 105,-284 99,-278 99,-272 99,-272 99,-20 99,-20 99,-14 105,-8 111,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="147" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M615,-292C615,-292 1025,-292 1025,-292 1031,-292 1037,-298 1037,-304 1037,-304 1037,-355 1037,-355 1037,-361 1031,-367 1025,-367 1025,-367 615,-367 615,-367 609,-367 603,-361 603,-355 603,-355 603,-304 603,-304 603,-298 609,-292 615,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="820" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 516,-292 516,-292 522,-292 528,-298 528,-304 528,-304 528,-355 528,-355 528,-361 522,-367 516,-367 516,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="264" y="-351.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M728,-140C728,-140 1385,-140 1385,-140 1391,-140 1397,-146 1397,-152 1397,-152 1397,-271 1397,-271 1397,-277 1391,-283 1385,-283 1385,-283 728,-283 728,-283 722,-283 716,-277 716,-271 716,-271 716,-152 716,-152 716,-146 722,-140 728,-140" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="1056.5" y="-267.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M173,-256C173,-256 121,-256 121,-256 115,-256 109,-250 109,-244 109,-244 109,-232 109,-232 109,-226 115,-220 121,-220 121,-220 173,-220 173,-220 179,-220 185,-226 185,-232 185,-232 185,-244 185,-244 185,-250 179,-256 173,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="147" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M168,-188C168,-188 126,-188 126,-188 120,-188 114,-182 114,-176 114,-176 114,-164 114,-164 114,-158 120,-152 126,-152 126,-152 168,-152 168,-152 174,-152 180,-158 180,-164 180,-164 180,-176 180,-176 180,-182 174,-188 168,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="147" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M162,-120C162,-120 132,-120 132,-120 126,-120 120,-114 120,-108 120,-108 120,-96 120,-96 120,-90 126,-84 132,-84 132,-84 162,-84 162,-84 168,-84 174,-90 174,-96 174,-96 174,-108 174,-108 174,-114 168,-120 162,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="147" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M175,-52C175,-52 119,-52 119,-52 113,-52 107,-46 107,-40 107,-40 107,-28 107,-28 107,-22 113,-16 119,-16 119,-16 175,-16 175,-16 181,-16 187,-22 187,-28 187,-28 187,-40 187,-40 187,-46 181,-52 175,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="147" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1131557365</title>
+
+                    
+
+                    <path d="M227,-336C227,-336 67,-336 67,-336 61,-336 55,-330 55,-324 55,-324 55,-312 55,-312 55,-306 61,-300 67,-300 67,-300 227,-300 227,-300 233,-300 239,-306 239,-312 239,-312 239,-324 239,-324 239,-330 233,-336 227,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="147" y="-315.5">Core Spring Boot API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1919083070 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1919083070</title>
+
+                    
+
+                    <path d="M461,-336C461,-336 314,-336 314,-336 308,-336 302,-330 302,-324 302,-324 302,-312 302,-312 302,-306 308,-300 314,-300 314,-300 461,-300 461,-300 467,-300 473,-306 473,-312 473,-312 473,-324 473,-324 473,-330 467,-336 461,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="387.5" y="-315.5">server.max.http.header.size property</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365&#45;&gt;S_1919083070 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>S_1131557365-&gt;S_1919083070</title>
+
+                    
+
+                    <path d="M239.19,-318C259.7,-318 281.39,-318 301.63,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_2125101298 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_2125101298</title>
+
+                    
+
+                    <path d="M1017,-336C1017,-336 623,-336 623,-336 617,-336 611,-330 611,-324 611,-324 611,-312 611,-312 611,-306 617,-300 623,-300 623,-300 1017,-300 1017,-300 1023,-300 1029,-306 1029,-312 1029,-312 1029,-324 1029,-324 1029,-330 1023,-336 1017,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="820" y="-315.5">Transformation * &nbsp;server.max.http.header.size to request header property * OperatorHelp / MIX</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1919083070&#45;&gt;C_2125101298 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_1919083070-&gt;C_2125101298</title>
+
+                    
+
+                    <path d="M473.04,-318C510.62,-318 556.75,-318 602.93,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="603.14,-320.63 610.64,-318 603.14,-315.38 603.14,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="565.5" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_977990184 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_977990184</title>
+
+                    
+
+                    <path d="M1377,-252C1377,-252 1127,-252 1127,-252 1121,-252 1115,-246 1115,-240 1115,-240 1115,-228 1115,-228 1115,-222 1121,-216 1127,-216 1127,-216 1377,-216 1377,-216 1383,-216 1389,-222 1389,-228 1389,-228 1389,-240 1389,-240 1389,-246 1383,-252 1377,-252" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1252" y="-231.5">Request-only max header property and response customizer</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_2125101298&#45;&gt;T_977990184 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_2125101298-&gt;T_977990184</title>
+
+                    
+
+                    <path d="M989.58,-299.95C1021.16,-295.15 1053.74,-289.23 1084,-282 1117.82,-273.92 1155.04,-263.39 1185.74,-254.24" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1186.56,-256.74 1192.99,-252.08 1185.05,-251.71 1186.56,-256.74" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1072" y="-288.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_386349248 -->
+
+                
+
+                <g class="node" id="node10">
+
+                    
+
+                    <title>T_386349248</title>
+
+                    
+
+                    <path d="M1343,-184C1343,-184 1161,-184 1161,-184 1155,-184 1149,-178 1149,-172 1149,-172 1149,-160 1149,-160 1149,-154 1155,-148 1161,-148 1161,-148 1343,-148 1343,-148 1349,-148 1355,-154 1355,-160 1355,-160 1355,-172 1355,-172 1355,-178 1349,-184 1343,-184" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1252" y="-163.5">server.max-http-request-header-size property</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_2125101298&#45;&gt;T_386349248 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_2125101298-&gt;T_386349248</title>
+
+                    
+
+                    <path d="M1017.88,-299.95C1024.45,-297.28 1030.84,-294.31 1037,-291 1060.46,-278.39 1092.34,-214 1115,-200 1123.33,-194.85 1132.4,-190.48 1141.78,-186.77" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1142.9,-189.15 1149,-184.06 1141.06,-184.24 1142.9,-189.15" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1072" y="-268.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_543652802 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_543652802</title>
+
+                    
+
+                    <path d="M880.5,-252C880.5,-252 759.5,-252 759.5,-252 753.5,-252 747.5,-246 747.5,-240 747.5,-240 747.5,-228 747.5,-228 747.5,-222 753.5,-216 759.5,-216 759.5,-216 880.5,-216 880.5,-216 886.5,-216 892.5,-222 892.5,-228 892.5,-228 892.5,-240 892.5,-240 892.5,-246 886.5,-252 880.5,-252" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="820" y="-231.5">Web Runtime in Spring Boot 3</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_543652802&#45;&gt;T_977990184 -->
+
+                
+
+                <g class="edge" id="edge5">
+
+                    
+
+                    <title>T_543652802-&gt;T_977990184</title>
+
+                    
+
+                    <path d="M892.97,-234C953.34,-234 1041.24,-234 1114.84,-234" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294 -->
+
+                
+
+                <g class="node" id="node11">
+
+                    
+
+                    <title>T_937024294</title>
+
+                    
+
+                    <path d="M904,-184C904,-184 736,-184 736,-184 730,-184 724,-178 724,-172 724,-172 724,-160 724,-160 724,-154 730,-148 736,-148 736,-148 904,-148 904,-148 910,-148 916,-154 916,-160 916,-160 916,-172 916,-172 916,-178 910,-184 904,-184" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="820" y="-163.5">Core Spring Boot 3 API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294&#45;&gt;T_386349248 -->
+
+                
+
+                <g class="edge" id="edge6">
+
+                    
+
+                    <title>T_937024294-&gt;T_386349248</title>
+
+                    
+
+                    <path d="M916.16,-166C985.18,-166 1078.41,-166 1148.96,-166" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

@@ -1,0 +1,559 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: Spring Security 5.x to Spring Security 5.8 preparation state</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong>
+
+        </p>
+
+        
+
+        <ul>
+
+            
+
+            <li>
+
+                <strong>REQUIRED</strong> on Spring Security 5.x configuration: Applies when the application uses custom Spring Security 5.x configuration or deprecated Spring Secu
+
+rity APIs.
+
+            </li>
+
+            
+
+        </ul>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> Spring Security 5.x configuration
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> Spring Security 5.8 intermediate migration state
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> OperatorHelp / MIX
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> Spring Boot 3 uses Spring Security 6, but the recommended path is to first move a Spring Boot 2.7 ap
+
+plication to Spring Security 5.8 to surface deprecations before the final Spring Security 6 step.
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Operators:</strong> Domain/Security Specialist
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] override or upgrade Spring Security to 5.8 while staying on Spring Boot 2.7
+
+
+
+2. [A] compile with deprecation warnings enabled
+
+
+
+3. [M] rewrite deprecated security APIs before changing to Boot 3
+
+
+
+4. [M] validate endpoint authorization behavior before and after the intermediate state
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="517pt" viewBox="0.00 0.00 1406.00 517.00" width="1406pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 499)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="685" y="-465.8">Transformation: Spring Security 5.x to Spring Security 5.8 preparation state</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M119.5,-8C119.5,-8 191.5,-8 191.5,-8 197.5,-8 203.5,-14 203.5,-20 203.5,-20 203.5,-272 203.5,-272 203.5,-278 197.5,-284 191.5,-284 191.5,-284 119.5,-284 119.5,-284 113.5,-284 107.5,-278 107.5,-272 107.5,-272 107.5,-20 107.5,-20 107.5,-14 113.5,-8 119.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="155.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M615,-292C615,-292 1044,-292 1044,-292 1050,-292 1056,-298 1056,-304 1056,-304 1056,-355 1056,-355 1056,-361 1050,-367 1044,-367 1044,-367 615,-367 615,-367 609,-367 603,-361 603,-355 603,-355 603,-304 603,-304 603,-298 609,-292 615,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="829.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 516,-292 516,-292 522,-292 528,-298 528,-304 528,-304 528,-355 528,-355 528,-361 522,-367 516,-367 516,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="264" y="-351.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M735,-375C735,-375 1350,-375 1350,-375 1356,-375 1362,-381 1362,-387 1362,-387 1362,-438 1362,-438 1362,-444 1356,-450 1350,-450 1350,-450 735,-450 735,-450 729,-450 723,-444 723,-438 723,-438 723,-387 723,-387 723,-381 729,-375 735,-375" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="1042.5" y="-434.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M181.5,-256C181.5,-256 129.5,-256 129.5,-256 123.5,-256 117.5,-250 117.5,-244 117.5,-244 117.5,-232 117.5,-232 117.5,-226 123.5,-220 129.5,-220 129.5,-220 181.5,-220 181.5,-220 187.5,-220 193.5,-226 193.5,-232 193.5,-232 193.5,-244 193.5,-244 193.5,-250 187.5,-256 181.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="155.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M176.5,-188C176.5,-188 134.5,-188 134.5,-188 128.5,-188 122.5,-182 122.5,-176 122.5,-176 122.5,-164 122.5,-164 122.5,-158 128.5,-152 134.5,-152 134.5,-152 176.5,-152 176.5,-152 182.5,-152 188.5,-158 188.5,-164 188.5,-164 188.5,-176 188.5,-176 188.5,-182 182.5,-188 176.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="155.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M170.5,-120C170.5,-120 140.5,-120 140.5,-120 134.5,-120 128.5,-114 128.5,-108 128.5,-108 128.5,-96 128.5,-96 128.5,-90 134.5,-84 140.5,-84 140.5,-84 170.5,-84 170.5,-84 176.5,-84 182.5,-90 182.5,-96 182.5,-96 182.5,-108 182.5,-108 182.5,-114 176.5,-120 170.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="155.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M183.5,-52C183.5,-52 127.5,-52 127.5,-52 121.5,-52 115.5,-46 115.5,-40 115.5,-40 115.5,-28 115.5,-28 115.5,-22 121.5,-16 127.5,-16 127.5,-16 183.5,-16 183.5,-16 189.5,-16 195.5,-22 195.5,-28 195.5,-28 195.5,-40 195.5,-40 195.5,-46 189.5,-52 183.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="155.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1405534694 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1405534694</title>
+
+                    
+
+                    <path d="M416,-336C416,-336 286,-336 286,-336 280,-336 274,-330 274,-324 274,-324 274,-312 274,-312 274,-306 280,-300 286,-300 286,-300 416,-300 416,-300 422,-300 428,-306 428,-312 428,-312 428,-324 428,-324 428,-330 422,-336 416,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="351" y="-315.5">Spring Security 5.x configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_925956911 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_925956911</title>
+
+                    
+
+                    <path d="M1036,-336C1036,-336 623,-336 623,-336 617,-336 611,-330 611,-324 611,-324 611,-312 611,-312 611,-306 617,-300 623,-300 623,-300 1036,-300 1036,-300 1042,-300 1048,-306 1048,-312 1048,-312 1048,-324 1048,-324 1048,-330 1042,-336 1036,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="829.5" y="-315.5">Transformation * &nbsp;Spring Security 5.x to Spring Security 5.8 preparation state * OperatorHelp / MIX</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1405534694&#45;&gt;C_925956911 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_1405534694-&gt;C_925956911</title>
+
+                    
+
+                    <path d="M428.03,-318C475.75,-318 540.01,-318 603.06,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="603.24,-320.63 610.74,-318 603.24,-315.38 603.24,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="565.5" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_895230827 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_895230827</title>
+
+                    
+
+                    <path d="M199,-336C199,-336 112,-336 112,-336 106,-336 100,-330 100,-324 100,-324 100,-312 100,-312 100,-306 106,-300 112,-300 112,-300 199,-300 199,-300 205,-300 211,-306 211,-312 211,-312 211,-324 211,-324 211,-330 205,-336 199,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="155.5" y="-315.5">Pre-migration Baseline</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_895230827&#45;&gt;S_1405534694 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>S_895230827-&gt;S_1405534694</title>
+
+                    
+
+                    <path d="M211.17,-318C230.62,-318 252.88,-318 273.8,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_735876285 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_735876285</title>
+
+                    
+
+                    <path d="M1342,-419C1342,-419 1146,-419 1146,-419 1140,-419 1134,-413 1134,-407 1134,-407 1134,-395 1134,-395 1134,-389 1140,-383 1146,-383 1146,-383 1342,-383 1342,-383 1348,-383 1354,-389 1354,-395 1354,-395 1354,-407 1354,-407 1354,-413 1348,-419 1342,-419" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1244" y="-398.5">Spring Security 5.8 intermediate migration state</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_925956911&#45;&gt;T_735876285 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_925956911-&gt;T_735876285</title>
+
+                    
+
+                    <path d="M920.01,-336.01C986.65,-349.42 1077.54,-367.71 1145.93,-381.47" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1145.44,-384.05 1153.31,-382.95 1146.48,-378.9 1145.44,-384.05" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1091" y="-373.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1344545573 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1344545573</title>
+
+                    
+
+                    <path d="M916,-419C916,-419 743,-419 743,-419 737,-419 731,-413 731,-407 731,-407 731,-395 731,-395 731,-389 737,-383 743,-383 743,-383 916,-383 916,-383 922,-383 928,-389 928,-395 928,-395 928,-407 928,-407 928,-413 922,-419 916,-419" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="829.5" y="-398.5">Prepared Spring Boot 3 Migration Baseline</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1344545573&#45;&gt;T_735876285 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>T_1344545573-&gt;T_735876285</title>
+
+                    
+
+                    <path d="M928.26,-401C990.08,-401 1070.09,-401 1133.96,-401" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>

@@ -1,0 +1,22 @@
+digraph MappingRiskOverview {
+  graph [rankdir=LR, labelloc=t, label="SMDSL Mapping Risk Overview: JUnit4-to-JUnit5-SMDSL-v2", fontsize=18];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=10];
+  edge [color="#666666"];
+  migration [label="JUnit4-to-JUnit5-SMDSL-v2\nRisk: CRITICAL (111)", fillcolor="#E6E6E6"];
+  m0 [label="Build Runtime and Gradual Migration\nMEDIUM (5)\nManual: 35.7%", fillcolor="#FFF2CC"];
+  migration -> m0;
+  m1 [label="Core Test Annotation and Lifecycle Migration\nMEDIUM (5)\nManual: 29.2%", fillcolor="#FFF2CC"];
+  migration -> m1;
+  m2 [label="Assertions and Assumptions Migration\nHIGH (15)\nManual: 35.7%", fillcolor="#FCE5CD"];
+  migration -> m2;
+  m3 [label="Exception and Timeout Migration\nHIGH (12)\nManual: 62.5%", fillcolor="#FCE5CD"];
+  migration -> m3;
+  m4 [label="Rules ClassRules and Extension Model Migration\nHIGH (22)\nManual: 76.9%", fillcolor="#FCE5CD"];
+  migration -> m4;
+  m5 [label="Runner Suite Category and Ordering Migration\nCRITICAL (31)\nManual: 65.4%", fillcolor="#F4CCCC"];
+  migration -> m5;
+  m6 [label="Parameterized Theories and Advanced Test Forms\nHIGH (18)\nManual: 62.5%", fillcolor="#FCE5CD"];
+  migration -> m6;
+  m7 [label="Legacy TestCase and Tool-Assisted Migration\nLOW (3)\nManual: 28.6%", fillcolor="#D9EAD3"];
+  migration -> m7;
+}

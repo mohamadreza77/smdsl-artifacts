@@ -1,0 +1,739 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: @Test(timeout) to Timeout Constructs</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> JUnit 4 =&gt; JUnit 5 / JUnit Jupiter and JUnit Platform
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong>
+
+        </p>
+
+        
+
+        <ul>
+
+            
+
+            <li>
+
+                <strong>REQUIRED</strong> on @Test(timeout), @Timeout, assertTimeout: Applies when @Test declares timeout = milliseconds; choose @Timeout or assertTimeout based on desire
+
+d scope and semantics.
+
+            </li>
+
+            
+
+        </ul>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> @Test(timeout)
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> @Timeout, assertTimeout, assertTimeoutPreemptively
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> OperatorHelp / MIX
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> JUnit 4 timeout on @Test applies a method-level timeout. Jupiter offers annotation-level @Timeout an
+
+d assertion-level timeout blocks, with non-preemptive and preemptive variants.
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Operators:</strong> Migration engineer / test developer
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] Remove timeout attribute from @Test.
+
+
+
+2. [A] If the whole test method should be bounded, add @Timeout with the same duration and time u
+
+nit conversion.
+
+
+
+3. [M] If only a specific operation should be timed, wrap that operation with assertTimeout.
+
+
+
+4. [M] Use assertTimeoutPreemptively only when interrupting the executable is acceptable; warn op
+
+erator about thread-local and cleanup risks.
+
+
+
+5. [M] If both expected and timeout attributes exist, combine assertThrows with assertTimeout car
+
+efully and verify nesting semantics.
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="434pt" viewBox="0.00 0.00 963.00 434.00" width="963pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 416)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="463.5" y="-382.8">Transformation: @Test(timeout) to Timeout Constructs</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M26,-8C26,-8 98,-8 98,-8 104,-8 110,-14 110,-20 110,-20 110,-272 110,-272 110,-278 104,-284 98,-284 98,-284 26,-284 26,-284 20,-284 14,-278 14,-272 14,-272 14,-20 14,-20 14,-14 20,-8 26,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="62" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M353,-292C353,-292 691,-292 691,-292 697,-292 703,-298 703,-304 703,-304 703,-355 703,-355 703,-361 697,-367 691,-367 691,-367 353,-367 353,-367 347,-367 341,-361 341,-355 341,-355 341,-304 341,-304 341,-298 347,-292 353,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="522" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M429,-73C429,-73 907,-73 907,-73 913,-73 919,-79 919,-85 919,-85 919,-272 919,-272 919,-278 913,-284 907,-284 907,-284 429,-284 429,-284 423,-284 417,-278 417,-272 417,-272 417,-85 417,-85 417,-79 423,-73 429,-73" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="668" y="-268.8">Target platform feature context: JUnit 5 / JUnit Jupiter and JUnit Platform</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 254,-292 254,-292 260,-292 266,-298 266,-304 266,-304 266,-355 266,-355 266,-361 260,-367 254,-367 254,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="133" y="-351.8">Source platform feature context: JUnit 4</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M88,-256C88,-256 36,-256 36,-256 30,-256 24,-250 24,-244 24,-244 24,-232 24,-232 24,-226 30,-220 36,-220 36,-220 88,-220 88,-220 94,-220 100,-226 100,-232 100,-232 100,-244 100,-244 100,-250 94,-256 88,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="62" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M83,-188C83,-188 41,-188 41,-188 35,-188 29,-182 29,-176 29,-176 29,-164 29,-164 29,-158 35,-152 41,-152 41,-152 83,-152 83,-152 89,-152 95,-158 95,-164 95,-164 95,-176 95,-176 95,-182 89,-188 83,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="62" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M77,-120C77,-120 47,-120 47,-120 41,-120 35,-114 35,-108 35,-108 35,-96 35,-96 35,-90 41,-84 47,-84 47,-84 77,-84 77,-84 83,-84 89,-90 89,-96 89,-96 89,-108 89,-108 89,-114 83,-120 77,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="62" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M90,-52C90,-52 34,-52 34,-52 28,-52 22,-46 22,-40 22,-40 22,-28 22,-28 22,-22 28,-16 34,-16 34,-16 90,-16 90,-16 96,-16 102,-22 102,-28 102,-28 102,-40 102,-40 102,-46 96,-52 90,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="62" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_566191960 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_566191960</title>
+
+                    
+
+                    <path d="M91,-336C91,-336 33,-336 33,-336 27,-336 21,-330 21,-324 21,-324 21,-312 21,-312 21,-306 27,-300 33,-300 33,-300 91,-300 91,-300 97,-300 103,-306 103,-312 103,-312 103,-324 103,-324 103,-330 97,-336 91,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="62" y="-315.5">Timeout Testing</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1745483062 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1745483062</title>
+
+                    
+
+                    <path d="M233,-336C233,-336 178,-336 178,-336 172,-336 166,-330 166,-324 166,-324 166,-312 166,-312 166,-306 172,-300 178,-300 178,-300 233,-300 233,-300 239,-300 245,-306 245,-312 245,-312 245,-324 245,-324 245,-330 239,-336 233,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="205.5" y="-315.5">@Test(timeout)</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_566191960&#45;&gt;S_1745483062 -->
+
+                
+
+                <g class="edge" id="edge5">
+
+                    
+
+                    <title>S_566191960-&gt;S_1745483062</title>
+
+                    
+
+                    <path d="M103.17,-318C122.78,-318 146.27,-318 165.69,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_64889711 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_64889711</title>
+
+                    
+
+                    <path d="M683,-336C683,-336 361,-336 361,-336 355,-336 349,-330 349,-324 349,-324 349,-312 349,-312 349,-306 355,-300 361,-300 361,-300 683,-300 683,-300 689,-300 695,-306 695,-312 695,-312 695,-324 695,-324 695,-330 689,-336 683,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="522" y="-315.5">Transformation * &nbsp;@Test(timeout) to Timeout Constructs * OperatorHelp / MIX</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1745483062&#45;&gt;C_64889711 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_1745483062-&gt;C_64889711</title>
+
+                    
+
+                    <path d="M245.06,-318C270.1,-318 304.74,-318 341.02,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="341.28,-320.63 348.78,-318 341.28,-315.38 341.28,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="303.5" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1435506368 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1435506368</title>
+
+                    
+
+                    <path d="M871,-253C871,-253 821,-253 821,-253 815,-253 809,-247 809,-241 809,-241 809,-229 809,-229 809,-223 815,-217 821,-217 821,-217 871,-217 871,-217 877,-217 883,-223 883,-229 883,-229 883,-241 883,-241 883,-247 877,-253 871,-253" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="846" y="-232.5">assertTimeout</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_64889711&#45;&gt;T_1435506368 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_64889711-&gt;T_1435506368</title>
+
+                    
+
+                    <path d="M679.93,-299.96C703.77,-295.07 727.79,-288.87 750,-281 768.74,-274.36 788.66,-265.09 805.39,-256.6" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="806.89,-258.79 812.36,-253.03 804.49,-254.12 806.89,-258.79" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="738" y="-290.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_286314229 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_286314229</title>
+
+                    
+
+                    <path d="M862.5,-117C862.5,-117 829.5,-117 829.5,-117 823.5,-117 817.5,-111 817.5,-105 817.5,-105 817.5,-93 817.5,-93 817.5,-87 823.5,-81 829.5,-81 829.5,-81 862.5,-81 862.5,-81 868.5,-81 874.5,-87 874.5,-93 874.5,-93 874.5,-105 874.5,-105 874.5,-111 868.5,-117 862.5,-117" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="846" y="-96.5">@Timeout</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_64889711&#45;&gt;T_286314229 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_64889711-&gt;T_286314229</title>
+
+                    
+
+                    <path d="M692.38,-299.86C696.07,-297.46 699.62,-294.85 703,-292 728.36,-270.62 711.99,-251.07 726,-221 745.48,-179.19 747.26,-164.45 781,-133 789.52,-125.05 800.26,-118.41 810.49,-113.16" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="811.87,-115.4 817.46,-109.75 809.56,-110.69 811.87,-115.4" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="738" y="-223.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1813327048 -->
+
+                
+
+                <g class="node" id="node12">
+
+                    
+
+                    <title>T_1813327048</title>
+
+                    
+
+                    <path d="M899,-185C899,-185 793,-185 793,-185 787,-185 781,-179 781,-173 781,-173 781,-161 781,-161 781,-155 787,-149 793,-149 793,-149 899,-149 899,-149 905,-149 911,-155 911,-161 911,-161 911,-173 911,-173 911,-179 905,-185 899,-185" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="846" y="-164.5">assertTimeoutPreemptively</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_64889711&#45;&gt;T_1813327048 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>C_64889711-&gt;T_1813327048</title>
+
+                    
+
+                    <path d="M686.66,-299.84C692.28,-297.5 697.74,-294.89 703,-292 714.67,-285.58 770.61,-209.32 781,-201 786.41,-196.67 792.45,-192.63 798.61,-188.95" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="800.11,-191.12 805.31,-185.11 797.49,-186.56 800.11,-191.12" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="738" y="-268.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1161961588 -->
+
+                
+
+                <g class="node" id="node10">
+
+                    
+
+                    <title>T_1161961588</title>
+
+                    
+
+                    <path d="M555.5,-192C555.5,-192 488.5,-192 488.5,-192 482.5,-192 476.5,-186 476.5,-180 476.5,-180 476.5,-168 476.5,-168 476.5,-162 482.5,-156 488.5,-156 488.5,-156 555.5,-156 555.5,-156 561.5,-156 567.5,-162 567.5,-168 567.5,-168 567.5,-180 567.5,-180 567.5,-186 561.5,-192 555.5,-192" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="522" y="-171.5">Jupiter Assertions</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1161961588&#45;&gt;T_1435506368 -->
+
+                
+
+                <g class="edge" id="edge6">
+
+                    
+
+                    <title>T_1161961588-&gt;T_1435506368</title>
+
+                    
+
+                    <path d="M567.83,-170.53C614.27,-168.24 688.53,-168.22 750,-185 751.7,-185.46 784.44,-202.78 811.02,-216.9" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1161961588&#45;&gt;T_1813327048 -->
+
+                
+
+                <g class="edge" id="edge7">
+
+                    
+
+                    <title>T_1161961588-&gt;T_1813327048</title>
+
+                    
+
+                    <path d="M567.77,-173.03C623.16,-171.82 717.83,-169.76 780.91,-168.39" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1528916493 -->
+
+                
+
+                <g class="node" id="node11">
+
+                    
+
+                    <title>T_1528916493</title>
+
+                    
+
+                    <path d="M607,-117C607,-117 437,-117 437,-117 431,-117 425,-111 425,-105 425,-105 425,-93 425,-93 425,-87 431,-81 437,-81 437,-81 607,-81 607,-81 613,-81 619,-87 619,-93 619,-93 619,-105 619,-105 619,-111 613,-117 607,-117" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="522" y="-96.5">Jupiter Timeout and Exception Constructs</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1528916493&#45;&gt;T_286314229 -->
+
+                
+
+                <g class="edge" id="edge8">
+
+                    
+
+                    <title>T_1528916493-&gt;T_286314229</title>
+
+                    
+
+                    <path d="M619.17,-99C687.19,-99 773.73,-99 817.29,-99" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

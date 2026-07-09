@@ -1,0 +1,717 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: configuration properties migrator as temporary bridge</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> Legacy renamed or removed configuration properties
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> Spring Boot properties migrator temporary compatibility bridge, Updated configuration properties, Removed properties migrator after migration
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> OperatorHelp / MIX
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> The properties migrator is a temporary compatibility bridge: it reports renamed/removed properties a
+
+nd can temporarily migrate them at runtime, but it must be removed after the configuration has been
+
+updated.
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Operators:</strong> Application Developer 2
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] add spring-boot-properties-migrator as a runtime-only dependency
+
+
+
+2. [A] start the application and collect diagnostics for renamed/removed properties
+
+
+
+3. [M] edit application.properties or application.yml to use the new keys
+
+
+
+4. [A] restart and confirm no migrator diagnostics remain
+
+
+
+5. [A] remove the migrator dependency after migration
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="434pt" viewBox="0.00 0.00 1439.00 434.00" width="1439pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 416)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="701.5" y="-382.8">Transformation: configuration properties migrator as temporary bridge</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M77,-8C77,-8 149,-8 149,-8 155,-8 161,-14 161,-20 161,-20 161,-272 161,-272 161,-278 155,-284 149,-284 149,-284 77,-284 77,-284 71,-284 65,-278 65,-272 65,-272 65,-20 65,-20 65,-14 71,-8 77,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="113" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M615,-292C615,-292 1016,-292 1016,-292 1022,-292 1028,-298 1028,-304 1028,-304 1028,-355 1028,-355 1028,-361 1022,-367 1016,-367 1016,-367 615,-367 615,-367 609,-367 603,-361 603,-355 603,-355 603,-304 603,-304 603,-298 609,-292 615,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="815.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M721,-73C721,-73 1383,-73 1383,-73 1389,-73 1395,-79 1395,-85 1395,-85 1395,-272 1395,-272 1395,-278 1389,-284 1383,-284 1383,-284 721,-284 721,-284 715,-284 709,-278 709,-272 709,-272 709,-85 709,-85 709,-79 715,-73 721,-73" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="1052" y="-268.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 516,-292 516,-292 522,-292 528,-298 528,-304 528,-304 528,-355 528,-355 528,-361 522,-367 516,-367 516,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="264" y="-351.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M139,-256C139,-256 87,-256 87,-256 81,-256 75,-250 75,-244 75,-244 75,-232 75,-232 75,-226 81,-220 87,-220 87,-220 139,-220 139,-220 145,-220 151,-226 151,-232 151,-232 151,-244 151,-244 151,-250 145,-256 139,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="113" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M134,-188C134,-188 92,-188 92,-188 86,-188 80,-182 80,-176 80,-176 80,-164 80,-164 80,-158 86,-152 92,-152 92,-152 134,-152 134,-152 140,-152 146,-158 146,-164 146,-164 146,-176 146,-176 146,-182 140,-188 134,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="113" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M128,-120C128,-120 98,-120 98,-120 92,-120 86,-114 86,-108 86,-108 86,-96 86,-96 86,-90 92,-84 98,-84 98,-84 128,-84 128,-84 134,-84 140,-90 140,-96 140,-96 140,-108 140,-108 140,-114 134,-120 128,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="113" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M141,-52C141,-52 85,-52 85,-52 79,-52 73,-46 73,-40 73,-40 73,-28 73,-28 73,-22 79,-16 85,-16 85,-16 141,-16 141,-16 147,-16 153,-22 153,-28 153,-28 153,-40 153,-40 153,-46 147,-52 141,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="113" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1131557365</title>
+
+                    
+
+                    <path d="M193,-336C193,-336 33,-336 33,-336 27,-336 21,-330 21,-324 21,-324 21,-312 21,-312 21,-306 27,-300 33,-300 33,-300 193,-300 193,-300 199,-300 205,-306 205,-312 205,-312 205,-324 205,-324 205,-330 199,-336 193,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="113" y="-315.5">Core Spring Boot API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_860023929 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_860023929</title>
+
+                    
+
+                    <path d="M494,-336C494,-336 280,-336 280,-336 274,-336 268,-330 268,-324 268,-324 268,-312 268,-312 268,-306 274,-300 280,-300 280,-300 494,-300 494,-300 500,-300 506,-306 506,-312 506,-312 506,-324 506,-324 506,-330 500,-336 494,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="387" y="-315.5">Legacy renamed or removed configuration properties</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365&#45;&gt;S_860023929 -->
+
+                
+
+                <g class="edge" id="edge5">
+
+                    
+
+                    <title>S_1131557365-&gt;S_860023929</title>
+
+                    
+
+                    <path d="M205.33,-318C225.39,-318 246.91,-318 267.86,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1714575949 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_1714575949</title>
+
+                    
+
+                    <path d="M1008,-336C1008,-336 623,-336 623,-336 617,-336 611,-330 611,-324 611,-324 611,-312 611,-312 611,-306 617,-300 623,-300 623,-300 1008,-300 1008,-300 1014,-300 1020,-306 1020,-312 1020,-312 1020,-324 1020,-324 1020,-330 1014,-336 1008,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="815.5" y="-315.5">Transformation * &nbsp;configuration properties migrator as temporary bridge * OperatorHelp / MIX</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_860023929&#45;&gt;C_1714575949 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_860023929-&gt;C_1714575949</title>
+
+                    
+
+                    <path d="M506.24,-318C536.49,-318 569.95,-318 603.34,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="603.42,-320.63 610.92,-318 603.42,-315.38 603.42,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="565.5" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1691423523 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_1691423523</title>
+
+                    
+
+                    <path d="M1375,-253C1375,-253 1118,-253 1118,-253 1112,-253 1106,-247 1106,-241 1106,-241 1106,-229 1106,-229 1106,-223 1112,-217 1118,-217 1118,-217 1375,-217 1375,-217 1381,-217 1387,-223 1387,-229 1387,-229 1387,-241 1387,-241 1387,-247 1381,-253 1375,-253" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1246.5" y="-232.5">Spring Boot properties migrator temporary compatibility bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1714575949&#45;&gt;T_1691423523 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_1714575949-&gt;T_1691423523</title>
+
+                    
+
+                    <path d="M977.86,-299.99C994.83,-297.55 1011.79,-294.88 1028,-292 1049.12,-288.24 1054.2,-286.24 1075,-281 1107.2,-272.89 1142.68,-263.41 1172.9,-255.17" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1173.92,-257.61 1180.46,-253.1 1172.53,-252.54 1173.92,-257.61" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1063" y="-289.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1772242390 -->
+
+                
+
+                <g class="node" id="node10">
+
+                    
+
+                    <title>T_1772242390</title>
+
+                    
+
+                    <path d="M1310.5,-117C1310.5,-117 1182.5,-117 1182.5,-117 1176.5,-117 1170.5,-111 1170.5,-105 1170.5,-105 1170.5,-93 1170.5,-93 1170.5,-87 1176.5,-81 1182.5,-81 1182.5,-81 1310.5,-81 1310.5,-81 1316.5,-81 1322.5,-87 1322.5,-93 1322.5,-93 1322.5,-105 1322.5,-105 1322.5,-111 1316.5,-117 1310.5,-117" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1246.5" y="-96.5">Updated configuration properties</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1714575949&#45;&gt;T_1772242390 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_1714575949-&gt;T_1772242390</title>
+
+                    
+
+                    <path d="M1017.32,-299.87C1021.01,-297.44 1024.58,-294.83 1028,-292 1053.58,-270.89 1036.99,-251.07 1051,-221 1070.48,-179.19 1068.61,-160.01 1106,-133 1122.65,-120.97 1143.03,-113.17 1163.01,-108.11" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1163.66,-110.65 1170.35,-106.37 1162.45,-105.55 1163.66,-110.65" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1063" y="-223.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_736565880 -->
+
+                
+
+                <g class="node" id="node12">
+
+                    
+
+                    <title>T_736565880</title>
+
+                    
+
+                    <path d="M1335,-185C1335,-185 1158,-185 1158,-185 1152,-185 1146,-179 1146,-173 1146,-173 1146,-161 1146,-161 1146,-155 1152,-149 1158,-149 1158,-149 1335,-149 1335,-149 1341,-149 1347,-155 1347,-161 1347,-161 1347,-173 1347,-173 1347,-179 1341,-185 1335,-185" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1246.5" y="-164.5">Removed properties migrator after migration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1714575949&#45;&gt;T_736565880 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>C_1714575949-&gt;T_736565880</title>
+
+                    
+
+                    <path d="M1011.09,-299.99C1016.89,-297.59 1022.54,-294.93 1028,-292 1039.74,-285.71 1094.65,-207.97 1106,-201 1116.12,-194.79 1127.29,-189.71 1138.79,-185.56" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1139.74,-188.01 1145.98,-183.1 1138.04,-183.05 1139.74,-188.01" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1063" y="-268.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1344545573 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1344545573</title>
+
+                    
+
+                    <path d="M902,-192C902,-192 729,-192 729,-192 723,-192 717,-186 717,-180 717,-180 717,-168 717,-168 717,-162 723,-156 729,-156 729,-156 902,-156 902,-156 908,-156 914,-162 914,-168 914,-168 914,-180 914,-180 914,-186 908,-192 902,-192" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="815.5" y="-171.5">Prepared Spring Boot 3 Migration Baseline</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1344545573&#45;&gt;T_1691423523 -->
+
+                
+
+                <g class="edge" id="edge6">
+
+                    
+
+                    <title>T_1344545573-&gt;T_1691423523</title>
+
+                    
+
+                    <path d="M914.05,-168.3C963.1,-167.9 1023.01,-171.2 1075,-185 1089.99,-188.98 1091.48,-195.57 1106,-201 1122.34,-207.11 1140.18,-212.42 1157.47,-216.91" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1344545573&#45;&gt;T_736565880 -->
+
+                
+
+                <g class="edge" id="edge7">
+
+                    
+
+                    <title>T_1344545573-&gt;T_736565880</title>
+
+                    
+
+                    <path d="M914.12,-172.41C983.35,-171.28 1075.96,-169.77 1145.68,-168.63" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294 -->
+
+                
+
+                <g class="node" id="node11">
+
+                    
+
+                    <title>T_937024294</title>
+
+                    
+
+                    <path d="M899.5,-117C899.5,-117 731.5,-117 731.5,-117 725.5,-117 719.5,-111 719.5,-105 719.5,-105 719.5,-93 719.5,-93 719.5,-87 725.5,-81 731.5,-81 731.5,-81 899.5,-81 899.5,-81 905.5,-81 911.5,-87 911.5,-93 911.5,-93 911.5,-105 911.5,-105 911.5,-111 905.5,-117 899.5,-117" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="815.5" y="-96.5">Core Spring Boot 3 API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294&#45;&gt;T_1772242390 -->
+
+                
+
+                <g class="edge" id="edge8">
+
+                    
+
+                    <title>T_937024294-&gt;T_1772242390</title>
+
+                    
+
+                    <path d="M911.71,-99C989.71,-99 1098.58,-99 1170.5,-99" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

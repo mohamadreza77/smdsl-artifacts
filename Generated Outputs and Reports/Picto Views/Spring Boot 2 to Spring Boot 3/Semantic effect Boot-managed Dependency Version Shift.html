@@ -1,0 +1,651 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Semantic effect: Boot-managed Dependency Version Shift</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>SemanticEffect</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Semantic effect</h2>
+
+        
+
+        <p>
+
+            <strong>Effect kind:</strong> RISK_INTRODUCED
+
+            <br>
+
+            
+
+            <strong>Affected source feature(s):</strong> Spring Boot 2 parent, plugin, and dependency-management coordinates, Unmanaged third-party dependencies
+
+            <br>
+
+            
+
+            <strong>Affected target feature(s):</strong> Spring Boot 3.0.x parent, plugin, and dependency management, Updated third-party dependency compatibility set
+
+            <br>
+
+            
+
+            <strong>Rationale:</strong> The Boot 3 dependency set upgrades many transitive libraries, so unmanaged or explicitly pinned depe
+
+ndencies can become incompatible even when application source code compiles.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="621pt" viewBox="0.00 0.00 1454.00 621.00" width="1454pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 603)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="709" y="-569.8">Semantic effect: Boot-managed Dependency Version Shift</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M64.5,-8C64.5,-8 136.5,-8 136.5,-8 142.5,-8 148.5,-14 148.5,-20 148.5,-20 148.5,-272 148.5,-272 148.5,-278 142.5,-284 136.5,-284 136.5,-284 64.5,-284 64.5,-284 58.5,-284 52.5,-278 52.5,-272 52.5,-272 52.5,-20 52.5,-20 52.5,-14 58.5,-8 64.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="100.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M665,-328C665,-328 1028,-328 1028,-328 1034,-328 1040,-334 1040,-340 1040,-340 1040,-391 1040,-391 1040,-397 1034,-403 1028,-403 1028,-403 665,-403 665,-403 659,-403 653,-397 653,-391 653,-391 653,-340 653,-340 653,-334 659,-328 665,-328" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="846.5" y="-387.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M775,-411C775,-411 1398,-411 1398,-411 1404,-411 1410,-417 1410,-423 1410,-423 1410,-542 1410,-542 1410,-548 1404,-554 1398,-554 1398,-554 775,-554 775,-554 769,-554 763,-548 763,-542 763,-542 763,-423 763,-423 763,-417 769,-411 775,-411" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="1086.5" y="-538.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M20,-292C20,-292 567,-292 567,-292 573,-292 579,-298 579,-304 579,-304 579,-423 579,-423 579,-429 573,-435 567,-435 567,-435 20,-435 20,-435 14,-435 8,-429 8,-423 8,-423 8,-304 8,-304 8,-298 14,-292 20,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="293.5" y="-419.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M126.5,-256C126.5,-256 74.5,-256 74.5,-256 68.5,-256 62.5,-250 62.5,-244 62.5,-244 62.5,-232 62.5,-232 62.5,-226 68.5,-220 74.5,-220 74.5,-220 126.5,-220 126.5,-220 132.5,-220 138.5,-226 138.5,-232 138.5,-232 138.5,-244 138.5,-244 138.5,-250 132.5,-256 126.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="100.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M121.5,-188C121.5,-188 79.5,-188 79.5,-188 73.5,-188 67.5,-182 67.5,-176 67.5,-176 67.5,-164 67.5,-164 67.5,-158 73.5,-152 79.5,-152 79.5,-152 121.5,-152 121.5,-152 127.5,-152 133.5,-158 133.5,-164 133.5,-164 133.5,-176 133.5,-176 133.5,-182 127.5,-188 121.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="100.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M115.5,-120C115.5,-120 85.5,-120 85.5,-120 79.5,-120 73.5,-114 73.5,-108 73.5,-108 73.5,-96 73.5,-96 73.5,-90 79.5,-84 85.5,-84 85.5,-84 115.5,-84 115.5,-84 121.5,-84 127.5,-90 127.5,-96 127.5,-96 127.5,-108 127.5,-108 127.5,-114 121.5,-120 115.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="100.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M128.5,-52C128.5,-52 72.5,-52 72.5,-52 66.5,-52 60.5,-46 60.5,-40 60.5,-40 60.5,-28 60.5,-28 60.5,-22 66.5,-16 72.5,-16 72.5,-16 128.5,-16 128.5,-16 134.5,-16 140.5,-22 140.5,-28 140.5,-28 140.5,-40 140.5,-40 140.5,-46 134.5,-52 128.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="100.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_295548207 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_295548207</title>
+
+                    
+
+                    <path d="M559,-404C559,-404 260,-404 260,-404 254,-404 248,-398 248,-392 248,-392 248,-380 248,-380 248,-374 254,-368 260,-368 260,-368 559,-368 559,-368 565,-368 571,-374 571,-380 571,-380 571,-392 571,-392 571,-398 565,-404 559,-404" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="409.5" y="-383.5">Spring Boot 2 parent, plugin, and dependency-management coordinates</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_678156546 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>C_678156546</title>
+
+                    
+
+                    <path d="M1020,-372C1020,-372 673,-372 673,-372 667,-372 661,-366 661,-360 661,-360 661,-348 661,-348 661,-342 667,-336 673,-336 673,-336 1020,-336 1020,-336 1026,-336 1032,-342 1032,-348 1032,-348 1032,-360 1032,-360 1032,-366 1026,-372 1020,-372" fill="#fce5e5" stroke="#cc0000" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="846.5" y="-351.5">Semantic effect * &nbsp;Boot-managed Dependency Version Shift * RISK_INTRODUCED</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_295548207&#45;&gt;C_678156546 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_295548207-&gt;C_678156546</title>
+
+                    
+
+                    <path d="M571.24,-374.18C597.9,-372.21 625.78,-370.16 653.12,-368.15" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="653.53,-370.75 660.82,-367.59 653.15,-365.52 653.53,-370.75" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="616" y="-372.8">affects</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_366378255 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_366378255</title>
+
+                    
+
+                    <path d="M484.5,-336C484.5,-336 334.5,-336 334.5,-336 328.5,-336 322.5,-330 322.5,-324 322.5,-324 322.5,-312 322.5,-312 322.5,-306 328.5,-300 334.5,-300 334.5,-300 484.5,-300 484.5,-300 490.5,-300 496.5,-306 496.5,-312 496.5,-312 496.5,-324 496.5,-324 496.5,-330 490.5,-336 484.5,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="409.5" y="-315.5">Unmanaged third-party dependencies</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_366378255&#45;&gt;C_678156546 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>S_366378255-&gt;C_678156546</title>
+
+                    
+
+                    <path d="M496.7,-325.13C541.65,-328.85 598.55,-333.56 653.28,-338.09" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="653.3,-340.73 660.99,-338.73 653.73,-335.5 653.3,-340.73" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="616" y="-338.8">affects</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_307749117 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>S_307749117</title>
+
+                    
+
+                    <path d="M173,-370C173,-370 28,-370 28,-370 22,-370 16,-364 16,-358 16,-358 16,-346 16,-346 16,-340 22,-334 28,-334 28,-334 173,-334 173,-334 179,-334 185,-340 185,-346 185,-346 185,-358 185,-358 185,-364 179,-370 173,-370" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="100.5" y="-349.5">Build and Dependency Management</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_307749117&#45;&gt;S_295548207 -->
+
+                
+
+                <g class="edge" id="edge5">
+
+                    
+
+                    <title>S_307749117-&gt;S_295548207</title>
+
+                    
+
+                    <path d="M185.39,-361.29C204.92,-363.45 226.35,-365.83 247.98,-368.22" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_307749117&#45;&gt;S_366378255 -->
+
+                
+
+                <g class="edge" id="edge6">
+
+                    
+
+                    <title>S_307749117-&gt;S_366378255</title>
+
+                    
+
+                    <path d="M185.39,-342.71C227.91,-338 279.47,-332.29 322.31,-327.55" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1631699569 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_1631699569</title>
+
+                    
+
+                    <path d="M1390,-523C1390,-523 1128,-523 1128,-523 1122,-523 1116,-517 1116,-511 1116,-511 1116,-499 1116,-499 1116,-493 1122,-487 1128,-487 1128,-487 1390,-487 1390,-487 1396,-487 1402,-493 1402,-499 1402,-499 1402,-511 1402,-511 1402,-517 1396,-523 1390,-523" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1259" y="-502.5">Spring Boot 3.0.x parent, plugin, and dependency management</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_678156546&#45;&gt;T_1631699569 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_678156546-&gt;T_1631699569</title>
+
+                    
+
+                    <path d="M956.3,-372.06C984.57,-379.3 1014.28,-389.3 1040,-403 1080,-424.31 1075.85,-449.97 1116,-471 1126.13,-476.31 1137.1,-480.8 1148.3,-484.6" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="1147.74,-487.18 1155.69,-487 1149.37,-482.18 1147.74,-487.18" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1074" y="-447.8">effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1058951948 -->
+
+                
+
+                <g class="node" id="node10">
+
+                    
+
+                    <title>T_1058951948</title>
+
+                    
+
+                    <path d="M1359.5,-455C1359.5,-455 1158.5,-455 1158.5,-455 1152.5,-455 1146.5,-449 1146.5,-443 1146.5,-443 1146.5,-431 1146.5,-431 1146.5,-425 1152.5,-419 1158.5,-419 1158.5,-419 1359.5,-419 1359.5,-419 1365.5,-419 1371.5,-425 1371.5,-431 1371.5,-431 1371.5,-443 1371.5,-443 1371.5,-449 1365.5,-455 1359.5,-455" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1259" y="-434.5">Updated third-party dependency compatibility set</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_678156546&#45;&gt;T_1058951948 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>C_678156546-&gt;T_1058951948</title>
+
+                    
+
+                    <path d="M1032.13,-357.17C1050.1,-359.32 1067.98,-362.19 1085,-366 1132.03,-376.52 1182.69,-398.71 1216.95,-415.5" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="1216.12,-418.02 1224.01,-419 1218.45,-413.31 1216.12,-418.02" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1074" y="-368.8">effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1956071195 -->
+
+                
+
+                <g class="node" id="node11">
+
+                    
+
+                    <title>T_1956071195</title>
+
+                    
+
+                    <path d="M910,-489C910,-489 783,-489 783,-489 777,-489 771,-483 771,-477 771,-477 771,-465 771,-465 771,-459 777,-453 783,-453 783,-453 910,-453 910,-453 916,-453 922,-459 922,-465 922,-465 922,-477 922,-477 922,-483 916,-489 910,-489" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="846.5" y="-468.5">Spring Boot 3 Platform Baseline</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1956071195&#45;&gt;T_1631699569 -->
+
+                
+
+                <g class="edge" id="edge7">
+
+                    
+
+                    <title>T_1956071195-&gt;T_1631699569</title>
+
+                    
+
+                    <path d="M922.31,-477.2C976.2,-481.66 1050.56,-487.82 1115.6,-493.21" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1956071195&#45;&gt;T_1058951948 -->
+
+                
+
+                <g class="edge" id="edge8">
+
+                    
+
+                    <title>T_1956071195-&gt;T_1058951948</title>
+
+                    
+
+                    <path d="M922.31,-464.8C984.87,-459.62 1075.02,-452.16 1146.15,-446.26" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>

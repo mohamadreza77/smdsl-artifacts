@@ -1,0 +1,1297 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: JUnit 4 Suite Runner to JUnit Platform Suite</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> JUnit 4 =&gt; JUnit 5 / JUnit Jupiter and JUnit Platform
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> @RunWith(Suite.class)
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> @Suite, @SelectClasses, @SelectPackages, @SuiteDisplayName, junit-platform-suite-engine
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> OperatorHelp / MIX
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> JUnit 4 explicit suite classes are migrated to the JUnit Platform suite API. Several target states a
+
+re possible: direct selected classes, package selectors, tag filters, engine filters, or temporary V
+
+intage execution.
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Operators:</strong> Migration engineer / test developer
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] Detect suite class annotated with @RunWith(Suite.class).
+
+
+
+2. [A] Extract classes from @Suite.SuiteClasses.
+
+
+
+3. [A] State 1 - direct class suite: create a suite class annotated with @Suite and @SelectClasse
+
+s({ ... }).
+
+
+
+4. [M] State 2 - package-based suite: if selected classes share stable packages and the source in
+
+tent is package aggregation, use @SelectPackages instead of listing classes.
+
+
+
+5. [M] State 3 - filtered platform suite: if the old suite was used to simulate categories/groups
+
+, combine @Suite with @IncludeTags/@ExcludeTags or class-name patterns.
+
+
+
+6. [M] State 4 - mixed-engine suite: if both Jupiter and Vintage tests remain, keep Vintage on ru
+
+ntime path and optionally use @IncludeEngines/@ExcludeEngines.
+
+
+
+7. [M] State 5 - transitional JUnitPlatform runner: when a JUnit 4 environment must run JUnit Pla
+
+tform suites, use @RunWith(JUnitPlatform.class) only as a temporary compatibility state.
+
+
+
+8. [A] Add junit-platform-suite or suite-api and suite-engine dependencies.
+
+
+
+9. [M] Run the suite and compare discovered test count with the original JUnit 4 suite.
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Strategies of nested transformations</h2>
+
+        
+
+        <h3>@Suite.SuiteClasses to @SelectClasses</h3>
+
+        
+
+        <pre>
+
+1. [A] Copy the class list from @Suite.SuiteClasses into @SelectClasses.
+
+
+
+2. [A] Remove org.junit.runners.Suite imports.
+
+
+
+3. [M] Check nested suite classes recursively.
+
+
+
+</pre>
+
+        
+
+        <h3>Suite Selected Classes to SelectPackages</h3>
+
+        
+
+        <pre>
+
+1. [M] Inspect whether the explicit class list represents all tests in one or more packages.
+
+
+
+2. [M] Replace with @SelectPackages only if package-level discovery will not add unintended tests
+
+.
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Nested migration relations</h2>
+
+        
+
+        <table>
+
+            
+
+            <thead>
+
+                
+
+                <tr>
+
+                    
+
+                    <th>Name</th>
+
+<th>Type</th>
+
+<th>Summary</th>
+
+
+
+                </tr>
+
+                
+
+            </thead>
+
+            
+
+            <tbody>
+
+                
+
+                <tr>
+
+                    
+
+                    <td>@Suite.SuiteClasses to @SelectClasses</td>
+
+<td><code>Transformation</code></td>
+
+<td>maps @Suite.SuiteClasses to @SelectClasses</td>
+
+
+
+                </tr>
+
+                
+
+                <tr>
+
+                    
+
+                    <td>Suite Selected Classes to SelectPackages</td>
+
+<td><code>Transformation</code></td>
+
+<td>maps suite selected classes to @SelectPackages</td>
+
+
+
+                </tr>
+
+                
+
+            </tbody>
+
+            
+
+        </table>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="928pt" viewBox="0.00 0.00 1066.00 928.00" width="1066pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 910)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="515" y="-876.8">Transformation: JUnit 4 Suite Runner to JUnit Platform Suite</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M37,-8C37,-8 109,-8 109,-8 115,-8 121,-14 121,-20 121,-20 121,-272 121,-272 121,-278 115,-284 109,-284 109,-284 37,-284 37,-284 31,-284 25,-278 25,-272 25,-272 25,-20 25,-20 25,-14 31,-8 37,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="73" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M421,-263C421,-263 793,-263 793,-263 799,-263 805,-269 805,-275 805,-275 805,-494 805,-494 805,-500 799,-506 793,-506 793,-506 421,-506 421,-506 415,-506 409,-500 409,-494 409,-494 409,-275 409,-275 409,-269 415,-263 421,-263" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="607" y="-490.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M20,-292C20,-292 304,-292 304,-292 310,-292 316,-298 316,-304 316,-304 316,-491 316,-491 316,-497 310,-503 304,-503 304,-503 20,-503 20,-503 14,-503 8,-497 8,-491 8,-491 8,-304 8,-304 8,-298 14,-292 20,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="162" y="-487.8">Source platform feature context: JUnit 4</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M564.5,-514C564.5,-514 1010,-514 1010,-514 1016,-514 1022,-520 1022,-526 1022,-526 1022,-849 1022,-849 1022,-855 1016,-861 1010,-861 1010,-861 564.5,-861 564.5,-861 558.5,-861 552.5,-855 552.5,-849 552.5,-849 552.5,-526 552.5,-526 552.5,-520 558.5,-514 564.5,-514" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="787.25" y="-845.8">Target platform feature context: JUnit 5 / JUnit Jupiter and JUnit Platform</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M99,-256C99,-256 47,-256 47,-256 41,-256 35,-250 35,-244 35,-244 35,-232 35,-232 35,-226 41,-220 47,-220 47,-220 99,-220 99,-220 105,-220 111,-226 111,-232 111,-232 111,-244 111,-244 111,-250 105,-256 99,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="73" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M94,-188C94,-188 52,-188 52,-188 46,-188 40,-182 40,-176 40,-176 40,-164 40,-164 40,-158 46,-152 52,-152 52,-152 94,-152 94,-152 100,-152 106,-158 106,-164 106,-164 106,-176 106,-176 106,-182 100,-188 94,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="73" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M88,-120C88,-120 58,-120 58,-120 52,-120 46,-114 46,-108 46,-108 46,-96 46,-96 46,-90 52,-84 58,-84 58,-84 88,-84 88,-84 94,-84 100,-90 100,-96 100,-96 100,-108 100,-108 100,-114 94,-120 88,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="73" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M101,-52C101,-52 45,-52 45,-52 39,-52 33,-46 33,-40 33,-40 33,-28 33,-28 33,-22 39,-16 45,-16 45,-16 101,-16 101,-16 107,-16 113,-22 113,-28 113,-28 113,-40 113,-40 113,-46 107,-52 101,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="73" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_760547734 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_760547734</title>
+
+                    
+
+                    <path d="M296,-472C296,-472 205,-472 205,-472 199,-472 193,-466 193,-460 193,-460 193,-448 193,-448 193,-442 199,-436 205,-436 205,-436 296,-436 296,-436 302,-436 308,-442 308,-448 308,-448 308,-460 308,-460 308,-466 302,-472 296,-472" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="250.5" y="-451.5">@RunWith(Suite.class)</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1923171143 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>C_1923171143</title>
+
+                    
+
+                    <path d="M780,-475C780,-475 434,-475 434,-475 428,-475 422,-469 422,-463 422,-463 422,-451 422,-451 422,-445 428,-439 434,-439 434,-439 780,-439 780,-439 786,-439 792,-445 792,-451 792,-451 792,-463 792,-463 792,-469 786,-475 780,-475" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="607" y="-454.5">Transformation * &nbsp;JUnit 4 Suite Runner to JUnit Platform Suite * OperatorHelp / MIX</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_760547734&#45;&gt;C_1923171143 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>S_760547734-&gt;C_1923171143</title>
+
+                    
+
+                    <path d="M308.06,-454.48C337.48,-454.73 375.33,-455.05 414.13,-455.38" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="414.38,-458 421.9,-455.44 414.42,-452.75 414.38,-458" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="362.5" y="-457.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1593925959 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1593925959</title>
+
+                    
+
+                    <path d="M293.5,-336C293.5,-336 207.5,-336 207.5,-336 201.5,-336 195.5,-330 195.5,-324 195.5,-324 195.5,-312 195.5,-312 195.5,-306 201.5,-300 207.5,-300 207.5,-300 293.5,-300 293.5,-300 299.5,-300 305.5,-306 305.5,-312 305.5,-312 305.5,-324 305.5,-324 305.5,-330 299.5,-336 293.5,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="250.5" y="-315.5">suite selected classes</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_667710203 -->
+
+                
+
+                <g class="node" id="node11">
+
+                    
+
+                    <title>C_667710203</title>
+
+                    
+
+                    <path d="M779,-307C779,-307 435,-307 435,-307 429,-307 423,-301 423,-295 423,-295 423,-283 423,-283 423,-277 429,-271 435,-271 435,-271 779,-271 779,-271 785,-271 791,-277 791,-283 791,-283 791,-295 791,-295 791,-301 785,-307 779,-307" fill="#e8f0fe" stroke="#3c78d8" stroke-width="1.7"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="607" y="-286.5">Transformation * &nbsp;Suite Selected Classes to SelectPackages * OperatorHelp / MIX</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1593925959&#45;&gt;C_667710203 -->
+
+                
+
+                <g class="edge" id="edge11">
+
+                    
+
+                    <title>S_1593925959-&gt;C_667710203</title>
+
+                    
+
+                    <path d="M305.73,-313.56C335.76,-311.11 375.1,-307.89 415.36,-304.6" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="415.63,-307.21 422.89,-303.98 415.2,-301.97 415.63,-307.21" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="362.5" y="-313.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1747971122 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>S_1747971122</title>
+
+                    
+
+                    <path d="M291.5,-404C291.5,-404 209.5,-404 209.5,-404 203.5,-404 197.5,-398 197.5,-392 197.5,-392 197.5,-380 197.5,-380 197.5,-374 203.5,-368 209.5,-368 209.5,-368 291.5,-368 291.5,-368 297.5,-368 303.5,-374 303.5,-380 303.5,-380 303.5,-392 303.5,-392 303.5,-398 297.5,-404 291.5,-404" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="250.5" y="-383.5">@Suite.SuiteClasses</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1677025976 -->
+
+                
+
+                <g class="node" id="node10">
+
+                    
+
+                    <title>C_1677025976</title>
+
+                    
+
+                    <path d="M785,-375C785,-375 429,-375 429,-375 423,-375 417,-369 417,-363 417,-363 417,-351 417,-351 417,-345 423,-339 429,-339 429,-339 785,-339 785,-339 791,-339 797,-345 797,-351 797,-351 797,-363 797,-363 797,-369 791,-375 785,-375" fill="#e8f0fe" stroke="#3c78d8" stroke-width="1.7"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="607" y="-354.5">Transformation * &nbsp;@Suite.SuiteClasses to @SelectClasses * FullAutomation / EASY</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1747971122&#45;&gt;C_1677025976 -->
+
+                
+
+                <g class="edge" id="edge9">
+
+                    
+
+                    <title>S_1747971122-&gt;C_1677025976</title>
+
+                    
+
+                    <path d="M303.81,-381.72C332.52,-379.37 370.12,-376.3 409.01,-373.11" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="409.55,-375.7 416.81,-372.48 409.12,-370.47 409.55,-375.7" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="362.5" y="-380.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_315555632 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>S_315555632</title>
+
+                    
+
+                    <path d="M118,-404C118,-404 28,-404 28,-404 22,-404 16,-398 16,-392 16,-392 16,-380 16,-380 16,-374 22,-368 28,-368 28,-368 118,-368 118,-368 124,-368 130,-374 130,-380 130,-380 130,-392 130,-392 130,-398 124,-404 118,-404" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="73" y="-383.5">Suites and Aggregation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_315555632&#45;&gt;S_760547734 -->
+
+                
+
+                <g class="edge" id="edge13">
+
+                    
+
+                    <title>S_315555632-&gt;S_760547734</title>
+
+                    
+
+                    <path d="M120.57,-404.04C146.06,-413.92 177.54,-426.12 203.02,-435.99" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_315555632&#45;&gt;S_1593925959 -->
+
+                
+
+                <g class="edge" id="edge15">
+
+                    
+
+                    <title>S_315555632-&gt;S_1593925959</title>
+
+                    
+
+                    <path d="M120.57,-367.96C146.06,-358.08 177.54,-345.88 203.02,-336.01" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_315555632&#45;&gt;S_1747971122 -->
+
+                
+
+                <g class="edge" id="edge14">
+
+                    
+
+                    <title>S_315555632-&gt;S_1747971122</title>
+
+                    
+
+                    <path d="M130.01,-386C151.58,-386 176.1,-386 197.3,-386" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1923171143&#45;&gt;C_1677025976 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>C_1923171143-&gt;C_1677025976</title>
+
+                    
+
+                    <path d="M607,-438.77C607,-423.16 607,-400.49 607,-382.98" fill="none" stroke="#777777" stroke-dasharray="1,5"></path>
+
+                    
+
+                    <polygon fill="#777777" points="607,-375.34 610.38,-382.84 607,-379.09 607,-382.84 607,-382.84 607,-382.84 607,-379.09 603.63,-382.84 607,-375.34 607,-375.34" stroke="#777777"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="599" y="-404.8">subrelation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1923171143&#45;&gt;C_667710203 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_1923171143-&gt;C_667710203</title>
+
+                    
+
+                    <path d="M488.07,-438.97C417.33,-422.46 347.07,-392.22 379,-339 388.22,-323.63 401.06,-312.08 415.99,-303.49" fill="none" stroke="#777777" stroke-dasharray="1,5"></path>
+
+                    
+
+                    <polygon fill="#777777" points="423,-299.74 417.97,-306.26 419.69,-301.51 416.38,-303.28 416.38,-303.28 416.38,-303.28 419.69,-301.51 414.79,-300.3 423,-299.74 423,-299.74" stroke="#777777"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="362.5" y="-341.8">subrelation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1819747590 -->
+
+                
+
+                <g class="node" id="node12">
+
+                    
+
+                    <title>T_1819747590</title>
+
+                    
+
+                    <path d="M984.5,-762C984.5,-762 905.5,-762 905.5,-762 899.5,-762 893.5,-756 893.5,-750 893.5,-750 893.5,-738 893.5,-738 893.5,-732 899.5,-726 905.5,-726 905.5,-726 984.5,-726 984.5,-726 990.5,-726 996.5,-732 996.5,-738 996.5,-738 996.5,-750 996.5,-750 996.5,-756 990.5,-762 984.5,-762" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="945" y="-741.5">@SuiteDisplayName</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1923171143&#45;&gt;T_1819747590 -->
+
+                
+
+                <g class="edge" id="edge7">
+
+                    
+
+                    <title>C_1923171143-&gt;T_1819747590</title>
+
+                    
+
+                    <path d="M750.3,-475.07C770.22,-482.32 789.24,-492.3 805,-506 825.62,-523.92 815.25,-538.84 828,-563 836.98,-580.01 843.98,-581.52 852,-599 873.36,-645.55 851.3,-669.77 883,-710 886.35,-714.26 890.39,-718.06 894.78,-721.45" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="893.31,-723.62 900.95,-725.8 896.33,-719.33 893.31,-723.62" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="840" y="-601.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1146701034 -->
+
+                
+
+                <g class="node" id="node13">
+
+                    
+
+                    <title>T_1146701034</title>
+
+                    
+
+                    <path d="M975.5,-626C975.5,-626 914.5,-626 914.5,-626 908.5,-626 902.5,-620 902.5,-614 902.5,-614 902.5,-602 902.5,-602 902.5,-596 908.5,-590 914.5,-590 914.5,-590 975.5,-590 975.5,-590 981.5,-590 987.5,-596 987.5,-602 987.5,-602 987.5,-614 987.5,-614 987.5,-620 981.5,-626 975.5,-626" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="945" y="-605.5">@SelectClasses</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1923171143&#45;&gt;T_1146701034 -->
+
+                
+
+                <g class="edge" id="edge5">
+
+                    
+
+                    <title>C_1923171143-&gt;T_1146701034</title>
+
+                    
+
+                    <path d="M792.09,-473.15C813.72,-480.66 834.34,-490.97 852,-505 878.32,-525.91 860.27,-549.22 883,-574 886.98,-578.33 891.64,-582.25 896.58,-585.74" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="895.25,-588.01 902.96,-589.95 898.14,-583.63 895.25,-588.01" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="840" y="-507.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_250293772 -->
+
+                
+
+                <g class="node" id="node14">
+
+                    
+
+                    <title>T_250293772</title>
+
+                    
+
+                    <path d="M980,-558C980,-558 910,-558 910,-558 904,-558 898,-552 898,-546 898,-546 898,-534 898,-534 898,-528 904,-522 910,-522 910,-522 980,-522 980,-522 986,-522 992,-528 992,-534 992,-534 992,-546 992,-546 992,-552 986,-558 980,-558" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="945" y="-537.5">@SelectPackages</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1923171143&#45;&gt;T_250293772 -->
+
+                
+
+                <g class="edge" id="edge6">
+
+                    
+
+                    <title>C_1923171143-&gt;T_250293772</title>
+
+                    
+
+                    <path d="M792.22,-442.59C812.79,-445.19 833.12,-449.74 852,-457 882.57,-468.75 909.32,-495.88 925.98,-515.94" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="924.06,-517.74 930.82,-521.92 928.14,-514.44 924.06,-517.74" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="840" y="-459.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_38043182 -->
+
+                
+
+                <g class="node" id="node15">
+
+                    
+
+                    <title>T_38043182</title>
+
+                    
+
+                    <path d="M960,-830C960,-830 930,-830 930,-830 924,-830 918,-824 918,-818 918,-818 918,-806 918,-806 918,-800 924,-794 930,-794 930,-794 960,-794 960,-794 966,-794 972,-800 972,-806 972,-806 972,-818 972,-818 972,-824 966,-830 960,-830" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="945" y="-809.5">@Suite</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1923171143&#45;&gt;T_38043182 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>C_1923171143-&gt;T_38043182</title>
+
+                    
+
+                    <path d="M758.09,-475.12C775.58,-482.49 791.84,-492.49 805,-506 838.03,-539.91 815.51,-564.34 828,-610 848.73,-685.78 833.03,-717.37 883,-778 890.39,-786.97 900.8,-793.99 910.94,-799.26" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="909.97,-801.71 917.87,-802.64 912.27,-796.99 909.97,-801.71" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="840" y="-728.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_22227741 -->
+
+                
+
+                <g class="node" id="node17">
+
+                    
+
+                    <title>T_22227741</title>
+
+                    
+
+                    <path d="M995,-694C995,-694 895,-694 895,-694 889,-694 883,-688 883,-682 883,-682 883,-670 883,-670 883,-664 889,-658 895,-658 895,-658 995,-658 995,-658 1001,-658 1007,-664 1007,-670 1007,-670 1007,-682 1007,-682 1007,-688 1001,-694 995,-694" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="945" y="-673.5">junit-platform-suite-engine</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1923171143&#45;&gt;T_22227741 -->
+
+                
+
+                <g class="edge" id="edge8">
+
+                    
+
+                    <title>C_1923171143-&gt;T_22227741</title>
+
+                    
+
+                    <path d="M723.89,-475.01C751.56,-482.19 780.23,-492.17 805,-506 830.52,-520.25 836.38,-527.3 852,-552 874.61,-587.76 855.84,-609.56 883,-642 886.58,-646.28 890.85,-650.12 895.45,-653.55" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="894.2,-655.88 901.87,-657.95 897.17,-651.55 894.2,-655.88" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="840" y="-554.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1677025976&#45;&gt;T_1146701034 -->
+
+                
+
+                <g class="edge" id="edge10">
+
+                    
+
+                    <title>C_1677025976-&gt;T_1146701034</title>
+
+                    
+
+                    <path d="M753.44,-375.09C789.98,-386.18 826.12,-403.87 852,-432 895.74,-479.54 844.49,-522.13 883,-574 886.56,-578.79 891,-583 895.86,-586.67" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="894.53,-588.94 902.2,-591.03 897.51,-584.61 894.53,-588.94" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="840" y="-434.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_667710203&#45;&gt;T_250293772 -->
+
+                
+
+                <g class="edge" id="edge12">
+
+                    
+
+                    <title>C_667710203-&gt;T_250293772</title>
+
+                    
+
+                    <path d="M774.24,-307.13C785.05,-311.47 795.43,-316.71 805,-323 876.53,-370.04 918.79,-467.99 935.57,-514.47" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="933.16,-515.54 938.13,-521.74 938.11,-513.79 933.16,-515.54" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="840" y="-366.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_74701741 -->
+
+                
+
+                <g class="node" id="node16">
+
+                    
+
+                    <title>T_74701741</title>
+
+                    
+
+                    <path d="M634.5,-694C634.5,-694 579.5,-694 579.5,-694 573.5,-694 567.5,-688 567.5,-682 567.5,-682 567.5,-670 567.5,-670 567.5,-664 573.5,-658 579.5,-658 579.5,-658 634.5,-658 634.5,-658 640.5,-658 646.5,-664 646.5,-670 646.5,-670 646.5,-682 646.5,-682 646.5,-688 640.5,-694 634.5,-694" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="607" y="-673.5">Platform Suites</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_74701741&#45;&gt;T_1819747590 -->
+
+                
+
+                <g class="edge" id="edge19">
+
+                    
+
+                    <title>T_74701741-&gt;T_1819747590</title>
+
+                    
+
+                    <path d="M646.54,-683.8C707.39,-696.12 825.73,-720.06 893.36,-733.75" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_74701741&#45;&gt;T_1146701034 -->
+
+                
+
+                <g class="edge" id="edge17">
+
+                    
+
+                    <title>T_74701741-&gt;T_1146701034</title>
+
+                    
+
+                    <path d="M646.88,-680.64C696.11,-685.06 782.86,-687.93 852,-664 867.97,-658.47 868.71,-651.01 883,-642 891.61,-636.57 901.14,-631.04 910.06,-626.06" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_74701741&#45;&gt;T_250293772 -->
+
+                
+
+                <g class="edge" id="edge18">
+
+                    
+
+                    <title>T_74701741-&gt;T_250293772</title>
+
+                    
+
+                    <path d="M646.61,-675.25C711.27,-673.65 836.01,-669.05 852,-657 883.45,-633.31 857.34,-603.87 883,-574 888.29,-567.84 895,-562.57 902,-558.16" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_74701741&#45;&gt;T_38043182 -->
+
+                
+
+                <g class="edge" id="edge16">
+
+                    
+
+                    <title>T_74701741-&gt;T_38043182</title>
+
+                    
+
+                    <path d="M646.54,-691.6C715.67,-719.58 858.98,-777.59 917.87,-801.42" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_74701741&#45;&gt;T_22227741 -->
+
+                
+
+                <g class="edge" id="edge20">
+
+                    
+
+                    <title>T_74701741-&gt;T_22227741</title>
+
+                    
+
+                    <path d="M646.54,-676C704.38,-676 814.14,-676 882.94,-676" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

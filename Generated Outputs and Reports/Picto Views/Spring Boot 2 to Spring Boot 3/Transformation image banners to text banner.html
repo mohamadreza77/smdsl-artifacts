@@ -1,0 +1,531 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: image banners to text banner</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> Image banner resources
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> Text-based banner.txt
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> FullAutomation / EASY
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> Image-based banners are ignored in Spring Boot 3; banner.gif, banner.jpg, and banner.png should be r
+
+eplaced by text-based banner.txt if banner behavior is still desired.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] detect banner.gif/banner.jpg/banner.png
+
+
+
+2. [A] create equivalent banner.txt or remove image banner
+
+
+
+3. [M] inspect startup output if branding matters
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="517pt" viewBox="0.00 0.00 1175.00 517.00" width="1175pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 499)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="569.5" y="-465.8">Transformation: image banners to text banner</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M138,-8C138,-8 210,-8 210,-8 216,-8 222,-14 222,-20 222,-20 222,-272 222,-272 222,-278 216,-284 210,-284 210,-284 138,-284 138,-284 132,-284 126,-278 126,-272 126,-272 126,-20 126,-20 126,-14 132,-8 138,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="174" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M601,-292C601,-292 920,-292 920,-292 926,-292 932,-298 932,-304 932,-304 932,-355 932,-355 932,-361 926,-367 920,-367 920,-367 601,-367 601,-367 595,-367 589,-361 589,-355 589,-355 589,-304 589,-304 589,-298 595,-292 601,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="760.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M654.5,-375C654.5,-375 1127,-375 1127,-375 1133,-375 1139,-381 1139,-387 1139,-387 1139,-438 1139,-438 1139,-444 1133,-450 1127,-450 1127,-450 654.5,-450 654.5,-450 648.5,-450 642.5,-444 642.5,-438 642.5,-438 642.5,-387 642.5,-387 642.5,-381 648.5,-375 654.5,-375" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="890.75" y="-434.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 516,-292 516,-292 522,-292 528,-298 528,-304 528,-304 528,-355 528,-355 528,-361 522,-367 516,-367 516,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="264" y="-351.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M200,-256C200,-256 148,-256 148,-256 142,-256 136,-250 136,-244 136,-244 136,-232 136,-232 136,-226 142,-220 148,-220 148,-220 200,-220 200,-220 206,-220 212,-226 212,-232 212,-232 212,-244 212,-244 212,-250 206,-256 200,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="174" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M195,-188C195,-188 153,-188 153,-188 147,-188 141,-182 141,-176 141,-176 141,-164 141,-164 141,-158 147,-152 153,-152 153,-152 195,-152 195,-152 201,-152 207,-158 207,-164 207,-164 207,-176 207,-176 207,-182 201,-188 195,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="174" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M189,-120C189,-120 159,-120 159,-120 153,-120 147,-114 147,-108 147,-108 147,-96 147,-96 147,-90 153,-84 159,-84 159,-84 189,-84 189,-84 195,-84 201,-90 201,-96 201,-96 201,-108 201,-108 201,-114 195,-120 189,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="174" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M202,-52C202,-52 146,-52 146,-52 140,-52 134,-46 134,-40 134,-40 134,-28 134,-28 134,-22 140,-16 146,-16 146,-16 202,-16 202,-16 208,-16 214,-22 214,-28 214,-28 214,-40 214,-40 214,-46 208,-52 202,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="174" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1875586605 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1875586605</title>
+
+                    
+
+                    <path d="M434,-336C434,-336 341,-336 341,-336 335,-336 329,-330 329,-324 329,-324 329,-312 329,-312 329,-306 335,-300 341,-300 341,-300 434,-300 434,-300 440,-300 446,-306 446,-312 446,-312 446,-324 446,-324 446,-330 440,-336 434,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="387.5" y="-315.5">Image banner resources</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1049951350 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_1049951350</title>
+
+                    
+
+                    <path d="M912,-336C912,-336 609,-336 609,-336 603,-336 597,-330 597,-324 597,-324 597,-312 597,-312 597,-306 603,-300 609,-300 609,-300 912,-300 912,-300 918,-300 924,-306 924,-312 924,-312 924,-324 924,-324 924,-330 918,-336 912,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="760.5" y="-315.5">Transformation * &nbsp;image banners to text banner * FullAutomation / EASY</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1875586605&#45;&gt;C_1049951350 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_1875586605-&gt;C_1049951350</title>
+
+                    
+
+                    <path d="M446.06,-318C484.67,-318 537.68,-318 589.14,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="589.21,-320.63 596.71,-318 589.21,-315.38 589.21,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="565.5" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1131557365</title>
+
+                    
+
+                    <path d="M254,-336C254,-336 94,-336 94,-336 88,-336 82,-330 82,-324 82,-324 82,-312 82,-312 82,-306 88,-300 94,-300 94,-300 254,-300 254,-300 260,-300 266,-306 266,-312 266,-312 266,-324 266,-324 266,-330 260,-336 254,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="174" y="-315.5">Core Spring Boot API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365&#45;&gt;S_1875586605 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>S_1131557365-&gt;S_1875586605</title>
+
+                    
+
+                    <path d="M266.23,-318C287.47,-318 309.51,-318 328.83,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1283992783 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1283992783</title>
+
+                    
+
+                    <path d="M1105,-419C1105,-419 1022,-419 1022,-419 1016,-419 1010,-413 1010,-407 1010,-407 1010,-395 1010,-395 1010,-389 1016,-383 1022,-383 1022,-383 1105,-383 1105,-383 1111,-383 1117,-389 1117,-395 1117,-395 1117,-407 1117,-407 1117,-413 1111,-419 1105,-419" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1063.5" y="-398.5">Text-based banner.txt</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1049951350&#45;&gt;T_1283992783 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_1049951350-&gt;T_1283992783</title>
+
+                    
+
+                    <path d="M826.81,-336.01C879.05,-350.42 951.71,-370.45 1002.5,-384.46" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1001.9,-387.01 1009.83,-386.48 1003.3,-381.95 1001.9,-387.01" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="967" y="-378.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_937024294</title>
+
+                    
+
+                    <path d="M844.5,-419C844.5,-419 676.5,-419 676.5,-419 670.5,-419 664.5,-413 664.5,-407 664.5,-407 664.5,-395 664.5,-395 664.5,-389 670.5,-383 676.5,-383 676.5,-383 844.5,-383 844.5,-383 850.5,-383 856.5,-389 856.5,-395 856.5,-395 856.5,-407 856.5,-407 856.5,-413 850.5,-419 844.5,-419" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="760.5" y="-398.5">Core Spring Boot 3 API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294&#45;&gt;T_1283992783 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>T_937024294-&gt;T_1283992783</title>
+
+                    
+
+                    <path d="M856.74,-401C907.37,-401 967.7,-401 1009.9,-401" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

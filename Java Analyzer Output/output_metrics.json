@@ -1,0 +1,701 @@
+# SMDSL Analysis Report
+
+**Migration:** JUnit4-to-JUnit5-SMDSL-v2  
+**Source platform:** JUnit 4  
+**Target platform:** JUnit 5 / JUnit Jupiter and JUnit Platform  
+**Overall risk level:** CRITICAL (score: 111)
+
+## 1. Executive Summary
+
+| Metric | Value |
+|---|---:|
+| Source features | 94 |
+| Target features | 111 |
+| Mappings | 8 |
+| All correspondences | 76 |
+| Transformations | 54 |
+| Preservations | 6 |
+| Bridges | 2 |
+| Semantic effects | 14 |
+| Pre-migration requirements | 7 |
+| Strategy steps | 212 |
+| Overall risk score | 111 (CRITICAL) |
+| Warnings | 5 |
+| Hints | 0 |
+
+## 2. Coverage Analysis
+
+| Coverage item | Value |
+|---|---:|
+| Source features directly covered by Transformations | 50 / 94 (53.2%) |
+| Source features mentioned anywhere | 78 / 94 (83.0%) |
+| Target features used by Transformations or SemanticEffects | 84 / 111 (75.7%) |
+| Target features mentioned anywhere | 88 / 111 (79.3%) |
+| Features mentioned by Preservations | 12 |
+| Features mentioned by Bridges | 9 |
+| Features mentioned by SemanticEffects | 81 |
+| Features mentioned by ApplicabilityConditions | 32 |
+| Features mentioned by PreMigrationRequirements | 24 |
+
+### Source features not directly covered by Transformations
+
+- Build and Runtime Configuration
+- Gradle JUnit 4 execution
+- JUnitCore / IDE runner execution
+- JUnit 4 regression test baseline
+- legacy rules runners categories and parameterized inventory
+- Test Declaration and Visibility
+- public test class
+- test method body
+- Lifecycle Callbacks
+- static class-level lifecycle method
+- Assertions
+- assertThat with Hamcrest
+- third-party assertion library usage
+- Assumptions
+- Exception Testing
+- exception message expectation
+- exception cause expectation
+- Timeout Testing
+- Rules and ClassRules
+- @Rule
+- Custom MethodRule
+- Runners
+- BlockJUnit4ClassRunner
+- Parameterized Runner
+- Suite Runner
+- Categories Runner
+- Theories Runner
+- Enclosed Runner
+- Suites and Aggregation
+- JUnit 4 suite class body
+- Categories and Filtering
+- category marker interface
+- included/excluded categories
+- Method Ordering
+- implicit source order dependency
+- Parameterized and Data-Driven Tests
+- constructor parameter injection
+- parameterized test display name
+- @UseParametersRunnerFactory
+- Theories
+- ... and 4 more.
+
+### Source features not mentioned anywhere
+
+- Build and Runtime Configuration
+- JUnitCore / IDE runner execution
+- Test Declaration and Visibility
+- Assumptions
+- Exception Testing
+- Timeout Testing
+- Parameterized Runner
+- Suite Runner
+- Categories Runner
+- Theories Runner
+- Enclosed Runner
+- Suites and Aggregation
+- JUnit 4 suite class body
+- Method Ordering
+- Theories
+- Legacy JUnit 3/4 TestCase Style
+
+### Target features not used by Transformations or SemanticEffects
+
+- JUnit Platform Build and Runtime
+- junit-jupiter-migrationsupport
+- junit-platform-suite
+- JUnit Jupiter dependency set
+- Jupiter Test Declaration
+- execution conditions
+- @TestInstance(PER_CLASS)
+- Jupiter Assumptions
+- org.junit.jupiter.api.Assumptions
+- Jupiter Timeout and Exception Constructs
+- assertTimeout block
+- assertTimeoutPreemptively block
+- TestReporter parameter
+- JUnit 4 Migration Support
+- Platform Suites
+- @IncludeTags
+- @ExcludeTags
+- @IncludeClassNamePatterns
+- @IncludeEngines
+- @ExcludeEngines
+- Tags and Filtering
+- Method Ordering in Jupiter
+- MethodOrderer.DisplayName
+- @CsvFileSource
+- @EnumSource
+- Jupiter Dynamic and Nested Tests
+- Jupiter TestCase Migration Style
+
+### Target features not mentioned anywhere
+
+- junit-platform-suite
+- Jupiter Test Declaration
+- execution conditions
+- Jupiter Assumptions
+- org.junit.jupiter.api.Assumptions
+- Jupiter Timeout and Exception Constructs
+- assertTimeout block
+- assertTimeoutPreemptively block
+- TestReporter parameter
+- JUnit 4 Migration Support
+- Platform Suites
+- @IncludeTags
+- @ExcludeTags
+- @IncludeClassNamePatterns
+- @IncludeEngines
+- @ExcludeEngines
+- Tags and Filtering
+- Method Ordering in Jupiter
+- MethodOrderer.DisplayName
+- @CsvFileSource
+- @EnumSource
+- Jupiter Dynamic and Nested Tests
+- Jupiter TestCase Migration Style
+
+## 3. Effort Analysis
+
+### Automation degree counts
+
+| Automation degree | Count |
+|---|---:|
+| OperatorHelp | 35 |
+| FullAutomation | 12 |
+| NoDirectMapping | 7 |
+
+### Strategy step counts
+
+| Step type | Count |
+|---|---:|
+| Automated steps (A) | 94 |
+| Manual steps (M) | 118 |
+| Neutral/unspecified steps (NONE) | 0 |
+| Manual step ratio | 55.7% |
+
+### Manual/risk indicators
+
+| Indicator | Count |
+|---|---:|
+| Operator-assisted transformations | 35 |
+| No-direct mappings | 7 |
+| Cleanup-required bridges | 2 |
+| Risk/validation semantic effects | 7 |
+| Transformations without strategy | 3 |
+
+## 4. Mapping-Level Analysis
+
+| Mapping | Corr. | Trans. | NoDirect | OpHelp | Manual steps | Auto steps | Manual % | Risk |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Build Runtime and Gradual Migration | 6 | 3 | 0 | 3 | 5 | 9 | 35.7% | 5 (MEDIUM) |
+| Core Test Annotation and Lifecycle Migration | 10 | 7 | 0 | 3 | 7 | 17 | 29.2% | 5 (MEDIUM) |
+| Assertions and Assumptions Migration | 10 | 7 | 3 | 2 | 10 | 18 | 35.7% | 15 (HIGH) |
+| Exception and Timeout Migration | 7 | 4 | 0 | 4 | 15 | 9 | 62.5% | 12 (HIGH) |
+| Rules ClassRules and Extension Model Migration | 12 | 8 | 1 | 7 | 30 | 9 | 76.9% | 22 (HIGH) |
+| Runner Suite Category and Ordering Migration | 18 | 15 | 2 | 11 | 34 | 18 | 65.4% | 31 (CRITICAL) |
+| Parameterized Theories and Advanced Test Forms | 10 | 8 | 1 | 4 | 15 | 9 | 62.5% | 18 (HIGH) |
+| Legacy TestCase and Tool-Assisted Migration | 3 | 2 | 0 | 1 | 2 | 5 | 28.6% | 3 (LOW) |
+
+### Highest-risk mappings
+
+- **Runner Suite Category and Ordering Migration**: 31 (CRITICAL) — Transformation 'General @RunWith to @ExtendWith': OperatorHelp (+1); Transformation 'General @RunWith to @ExtendWith': Manual-heavy strategy (+1); Transformation 'MockitoJUnitRunner to MockitoExtension': OperatorHelp ...
+- **Rules ClassRules and Extension Model Migration**: 22 (HIGH) — Transformation 'TemporaryFolder Rule to @TempDir': OperatorHelp (+1); Transformation 'ExternalResource Rule to Extension Callbacks': OperatorHelp (+1); Transformation 'ExternalResource Rule to Extension Callbacks': Ma...
+- **Parameterized Theories and Advanced Test Forms**: 18 (HIGH) — Transformation 'JUnit 4 Parameterized Runner to Jupiter @ParameterizedTest': OperatorHelp (+1); Transformation 'JUnit 4 Parameterized Runner to Jupiter @ParameterizedTest': Manual-heavy strategy (+1); Transformation '...
+- **Assertions and Assumptions Migration**: 15 (HIGH) — Transformation 'JUnit 4 Assert Imports to Jupiter Assertions': OperatorHelp (+1); Transformation 'Message-first Assertion Arguments to Message-last Assertion Arguments': OperatorHelp (+1); Transformation 'Assume.assum...
+- **Exception and Timeout Migration**: 12 (HIGH) — Transformation '@Test(expected) to assertThrows': OperatorHelp (+1); Transformation '@Test(expected) to assertThrows': Manual-heavy strategy (+1); Transformation 'ExpectedException Rule to assertThrows or Migration Su...
+- **Build Runtime and Gradual Migration**: 5 (MEDIUM) — Transformation 'JUnit 4 Runtime to JUnit Vintage Engine': OperatorHelp (+1); Transformation 'JUnit 4 Build Dependencies to Jupiter Dependencies': OperatorHelp (+1); Bridge 'JUnit Vintage Engine Coexistence Bridge': Cl...
+- **Core Test Annotation and Lifecycle Migration**: 5 (MEDIUM) — Transformation '@Test Annotation to Jupiter @Test': OperatorHelp (+1); Transformation '@BeforeClass and @AfterClass to @BeforeAll and @AfterAll': OperatorHelp (+1); Transformation '@Ignore to @Disabled or Migration-Su...
+- **Legacy TestCase and Tool-Assisted Migration**: 3 (LOW) — Transformation 'JUnit 4 TestCase Inheritance to Annotation-Based Jupiter Tests': OperatorHelp (+1); SemanticEffect 'Automated Tooling Has Partial Coverage': Validation required (+2)
+
+## 5. Risk Hotspots
+
+### NoDirectMapping transformations
+
+- Assume.assumeNoException Approximation (`Transformation`)
+- Assume.assumeNotNull Approximation (`Transformation`)
+- Assume.assumeThat and Hamcrest Assumptions (`Transformation`)
+- Custom @Rule to @RegisterExtension or @ExtendWith (`Transformation`)
+- Custom Runner to Jupiter Extension Redesign (`Transformation`)
+- MethodSorters.JVM Approximation (`Transformation`)
+- JUnit 4 Theories to Jupiter Parameterized or Dynamic Tests (`Transformation`)
+
+### Risk/validation semantic effects
+
+- Matcher-Based Assumption Requires Validation (`SemanticEffect`)
+- Timeout Annotation Semantics Need Selection (`SemanticEffect`)
+- Custom Rule Redesign Risk (`SemanticEffect`)
+- Category Marker Interfaces Become String Tags (`SemanticEffect`)
+- Method Orderer Approximation Requires Validation (`SemanticEffect`)
+- Parameterized Runner Migration May Restructure Test Shape (`SemanticEffect`)
+- Automated Tooling Has Partial Coverage (`SemanticEffect`)
+
+### Cleanup-required bridges
+
+- JUnit Vintage Engine Coexistence Bridge (`Bridge`)
+- JUnit Jupiter Migration Support Bridge for Selected Rules (`Bridge`)
+
+### Transformations without strategy
+
+- @BeforeParam to @BeforeParameterizedClassInvocation (`Transformation`)
+- @AfterParam to @AfterParameterizedClassInvocation (`Transformation`)
+- @Parameter to Jupiter Parameter (`Transformation`)
+
+## 6. Risk Scoring Model
+
+The risk score is a lightweight, configurable heuristic. It is not intended to be a universal risk model; it helps locate migration knowledge that may require more attention.
+
+| Risk factor | Weight |
+|---|---:|
+| NoDirectMapping | 3 |
+| OperatorHelpManual | 2 |
+| OperatorHelp | 1 |
+| FullAutomationComplex | 1 |
+| MissingStrategy | 1 |
+| ManualHeavyStrategy | 1 |
+| CleanupRequiredBridge | 1 |
+| SyntacticPreservation | 1 |
+| RiskIntroduced | 3 |
+| ValidationRequired | 2 |
+| BehaviorChange | 2 |
+| SupportRemoved | 2 |
+| SupportExternalized | 1 |
+| SupportDeprecated | 1 |
+| ConfigurationSemanticsChanged | 1 |
+| DefaultValueChanged | 1 |
+
+| Risk level | Threshold |
+|---|---:|
+| MEDIUM | 5+ |
+| HIGH | 12+ |
+| CRITICAL | 25+ |
+
+## 7. Correspondence Type Summary
+
+| Correspondence type | Count |
+|---|---:|
+| Transformation | 54 |
+| Bridge | 2 |
+| Preservation | 6 |
+| SemanticEffect | 14 |
+
+### Preservation kinds
+
+| Preservation kind | Count |
+|---|---:|
+| TEMPORARILY_RETAINED | 2 |
+| SEMANTICALLY_PRESERVED | 2 |
+| UNCHANGED | 2 |
+
+### Bridge scopes
+
+| Bridge scope | Count |
+|---|---:|
+| WHOLE_MIGRATION | 1 |
+| CORRESPONDENCE | 1 |
+
+### Semantic effect kinds
+
+| Effect kind | Count |
+|---|---:|
+| SUPPORT_DEPRECATED | 1 |
+| DEFAULT_VALUE_CHANGED | 1 |
+| CONFIGURATION_SEMANTICS_CHANGED | 1 |
+| VALIDATION_REQUIRED | 4 |
+| SUPPORT_REMOVED | 4 |
+| RISK_INTRODUCED | 1 |
+| BEHAVIOR_CHANGE | 2 |
+
+### Applicability condition polarities
+
+| Condition polarity | Count |
+|---|---:|
+| OPTIONAL | 9 |
+| ABSENT | 4 |
+| REQUIRED | 4 |
+
+## 8. Pre-Migration Requirements
+
+| Requirement kind | Count |
+|---|---:|
+| RUNTIME_BASELINE | 1 |
+| DEPENDENCY_UPDATE | 3 |
+| TEST_BASELINE | 1 |
+| CONFIGURATION_REVIEW | 1 |
+| OTHER | 1 |
+
+| Kind | Mandatory | Note | Affected features |
+|---|---:|---|---|
+| RUNTIME_BASELINE | yes | Ensure the project runtime and build are compatible with JUnit Jupiter requirements before migrating tests. JUnit 5 requires at least Jav... | JUnit Platform Build and Runtime |
+| DEPENDENCY_UPDATE | yes | Add the Jupiter dependency set and platform runtime dependencies before rewriting imports or annotations. | junit:junit dependency, junit-jupiter-api, junit-jupiter-engine, JUnit Platform Build and Runtime, JUnit Jupiter dependency set |
+| DEPENDENCY_UPDATE | yes | Update Maven Surefire/Failsafe or Gradle test execution so that the JUnit Platform discovers and executes Jupiter tests. | Maven Surefire / Failsafe JUnit 4 provider, Gradle JUnit 4 execution, Maven Surefire / Failsafe JUnit Platform provider, Gradle useJUnitPlatform() |
+| DEPENDENCY_UPDATE | no | Add junit-vintage-engine only when incremental migration requires temporary execution of unchanged JUnit 4 tests on the JUnit Platform. R... | Coexisting JUnit 4 tests during migration, junit-vintage-engine |
+| TEST_BASELINE | yes | Run and record the current JUnit 4 test baseline before migration so behavioral regressions can be detected after each converted group. | JUnit 4 regression test baseline |
+| CONFIGURATION_REVIEW | yes | Inventory JUnit 4-specific constructs such as Rules, ClassRules, Runners, Categories, parameterized tests, theories, and custom extension... | Rules and ClassRules, Runners, Categories and Filtering, Parameterized and Data-Driven Tests, legacy rules runners categories and parameterized inventory |
+| OTHER | no | Choose an automation path such as OpenRewrite or IDE migration for simple annotations/imports, but plan manual review for custom rules, c... | @Before, @After, @BeforeClass, @AfterClass, @Ignore, @Test annotation, org.junit.Assert imports |
+
+## 9. Predefined Query Results
+
+### Operator-assisted transformations
+
+- JUnit 4 Runtime to JUnit Vintage Engine (`Transformation`)
+- JUnit 4 Build Dependencies to Jupiter Dependencies (`Transformation`)
+- JUnit 4 Build Execution to JUnit Platform Execution (`Transformation`)
+- @Test Annotation to Jupiter @Test (`Transformation`)
+- @BeforeClass and @AfterClass to @BeforeAll and @AfterAll (`Transformation`)
+- @Ignore to @Disabled or Migration-Support IgnoreCondition (`Transformation`)
+- JUnit 4 Assert Imports to Jupiter Assertions (`Transformation`)
+- Message-first Assertion Arguments to Message-last Assertion Arguments (`Transformation`)
+- @Test(expected) to assertThrows (`Transformation`)
+- ExpectedException Rule to assertThrows or Migration Support (`Transformation`)
+- @Test(timeout) to Timeout Constructs (`Transformation`)
+- Timeout Rule to @Timeout or Timeout Assertions (`Transformation`)
+- TemporaryFolder Rule to @TempDir (`Transformation`)
+- ExternalResource Rule to Extension Callbacks (`Transformation`)
+- Verifier and ErrorCollector Rules (`Transformation`)
+- ErrorCollector Rule to assertAll (`Transformation`)
+- TestName Rule to TestInfo Parameter (`Transformation`)
+- TestWatcher Rule to Jupiter TestWatcher Extension (`Transformation`)
+- @ClassRule to Static @RegisterExtension or Class-Level Extension (`Transformation`)
+- General @RunWith to @ExtendWith (`Transformation`)
+- MockitoJUnitRunner to MockitoExtension (`Transformation`)
+- SpringRunner to SpringExtension (`Transformation`)
+- JUnit 4 Suite Runner to JUnit Platform Suite (`Transformation`)
+- Suite Selected Classes to SelectPackages (`Transformation`)
+- Categories to Tags (`Transformation`)
+- Method-level Category to Method-level Tag (`Transformation`)
+- @FixMethodOrder to @TestMethodOrder (`Transformation`)
+- MethodSorters.DEFAULT Approximation (`Transformation`)
+- SpringRunner to SpringExtension (`Transformation`)
+- MockitoJUnitRunner to MockitoExtension (`Transformation`)
+- JUnit 4 Parameterized Runner to Jupiter @ParameterizedTest (`Transformation`)
+- @Parameters factory to @MethodSource (`Transformation`)
+- @Parameter field injection to method parameters (`Transformation`)
+- JUnit 4 Parameterized Class to Jupiter @ParameterizedClass (`Transformation`)
+- JUnit 4 TestCase Inheritance to Annotation-Based Jupiter Tests (`Transformation`)
+
+### Correspondences with applicability conditions
+
+- JUnit Vintage Engine Coexistence Bridge (`Bridge`)
+- Preserve Unchanged JUnit 4 Tests During Incremental Migration (`Preservation`)
+- @Test Annotation to Jupiter @Test (`Transformation`)
+- @BeforeClass and @AfterClass to @BeforeAll and @AfterAll (`Transformation`)
+- @Ignore to @Disabled or Migration-Support IgnoreCondition (`Transformation`)
+- Preserve Test Method Bodies When Migrating Simple Tests (`Preservation`)
+- Optional Preservation of Public Visibility (`Preservation`)
+- JUnit 4 Assert Imports to Jupiter Assertions (`Transformation`)
+- Preserve Third-Party Assertion Libraries (`Preservation`)
+- @Test(expected) to assertThrows (`Transformation`)
+- @Test(timeout) to Timeout Constructs (`Transformation`)
+- JUnit Jupiter Migration Support Bridge for Selected Rules (`Bridge`)
+- Temporarily Preserve Selected Rule Fields and Imports (`Preservation`)
+- General @RunWith to @ExtendWith (`Transformation`)
+- @FixMethodOrder to @TestMethodOrder (`Transformation`)
+- JUnit 4 Parameterized Runner to Jupiter @ParameterizedTest (`Transformation`)
+- JUnit 4 Parameterized Class to Jupiter @ParameterizedClass (`Transformation`)
+
+## 10. Model Quality Warnings and Hints
+
+### Warnings
+
+- Bridge 'JUnit Vintage Engine Coexistence Bridge': Bridge requires cleanup after migration.
+- Bridge 'JUnit Jupiter Migration Support Bridge for Selected Rules': Bridge requires cleanup after migration.
+- Transformation '@BeforeParam to @BeforeParameterizedClassInvocation': Transformation has no strategy.
+- Transformation '@AfterParam to @AfterParameterizedClassInvocation': Transformation has no strategy.
+- Transformation '@Parameter to Jupiter Parameter': Transformation has no strategy.
+
+## 11. Correspondence Index
+
+### Mapping: Build Runtime and Gradual Migration
+
+- **Transformation:** JUnit 4 Runtime to JUnit Vintage Engine
+  - Source: Coexisting JUnit 4 tests during migration
+  - Target(s): junit-vintage-engine
+  - Automation: OperatorHelp
+- **Transformation:** JUnit 4 Build Dependencies to Jupiter Dependencies
+  - Source: junit:junit dependency
+  - Target(s): JUnit BOM, junit-jupiter-api, junit-jupiter-engine, junit-platform-launcher
+  - Automation: OperatorHelp
+- **Bridge:** JUnit Vintage Engine Coexistence Bridge
+  - Scope: WHOLE_MIGRATION
+  - Cleanup required: true
+- **Preservation:** Preserve Unchanged JUnit 4 Tests During Incremental Migration
+  - Kind: TEMPORARILY_RETAINED
+  - Preserved feature(s): Coexisting JUnit 4 tests during migration
+- **SemanticEffect:** Vintage Engine Temporary and Deprecated Support
+  - Kind: SUPPORT_DEPRECATED
+- **Transformation:** JUnit 4 Build Execution to JUnit Platform Execution
+  - Source: Maven Surefire / Failsafe JUnit 4 provider
+  - Target(s): Maven Surefire / Failsafe JUnit Platform provider, Gradle useJUnitPlatform()
+  - Automation: OperatorHelp
+
+### Mapping: Core Test Annotation and Lifecycle Migration
+
+- **Transformation:** @Test Annotation to Jupiter @Test
+  - Source: @Test annotation
+  - Target(s): org.junit.jupiter.api.Test
+  - Automation: OperatorHelp
+- **Transformation:** Public Test Members to Package-Private Jupiter Members
+  - Source: public test method
+  - Target(s): package-private test method
+  - Automation: FullAutomation
+- **Transformation:** @Before and @After to @BeforeEach and @AfterEach
+  - Source: @Before
+  - Target(s): @BeforeEach
+  - Automation: FullAutomation
+  - **Transformation:** @After to @AfterEach
+    - Source: @After
+    - Target(s): @AfterEach
+    - Automation: FullAutomation
+- **Transformation:** @BeforeClass and @AfterClass to @BeforeAll and @AfterAll
+  - Source: @BeforeClass
+  - Target(s): @BeforeAll
+  - Automation: OperatorHelp
+  - **Transformation:** @AfterClass to @AfterAll
+    - Source: @AfterClass
+    - Target(s): @AfterAll
+    - Automation: FullAutomation
+- **Transformation:** @Ignore to @Disabled or Migration-Support IgnoreCondition
+  - Source: @Ignore
+  - Target(s): @Disabled, IgnoreCondition, @EnableJUnit4MigrationSupport
+  - Automation: OperatorHelp
+- **Preservation:** Preserve Test Method Bodies When Migrating Simple Tests
+  - Kind: SEMANTICALLY_PRESERVED
+  - Preserved feature(s): test method body
+- **Preservation:** Optional Preservation of Public Visibility
+  - Kind: UNCHANGED
+  - Preserved feature(s): public test class, public test method
+- **SemanticEffect:** Test Member Visibility Requirement Relaxed
+  - Kind: DEFAULT_VALUE_CHANGED
+
+### Mapping: Assertions and Assumptions Migration
+
+- **Transformation:** JUnit 4 Assert Imports to Jupiter Assertions
+  - Source: org.junit.Assert imports
+  - Target(s): org.junit.jupiter.api.Assertions
+  - Automation: OperatorHelp
+  - **Transformation:** Message-first Assertion Arguments to Message-last Assertion Arguments
+    - Source: message-first assertion arguments
+    - Target(s): message-last assertion arguments, lazy failure message Supplier
+    - Automation: OperatorHelp
+- **Transformation:** Assume.assumeTrue / assumeFalse to Jupiter assumeTrue / assumeFalse
+  - Source: Assume.assumeTrue
+  - Target(s): assumeTrue
+  - Automation: FullAutomation
+  - **Transformation:** Assume.assumeFalse to Jupiter assumeFalse
+    - Source: Assume.assumeFalse
+    - Target(s): assumeFalse
+    - Automation: FullAutomation
+- **Transformation:** Assume.assumeNoException Approximation
+  - Source: Assume.assumeNoException
+  - Target(s): assumeTrue, assumeFalse
+  - Automation: NoDirectMapping
+- **Transformation:** Assume.assumeNotNull Approximation
+  - Source: Assume.assumeNotNull
+  - Target(s): assumeTrue, assumeFalse
+  - Automation: NoDirectMapping
+- **Transformation:** Assume.assumeThat and Hamcrest Assumptions
+  - Source: Assume.assumeThat
+  - Target(s): assumeTrue, assumingThat
+  - Automation: NoDirectMapping
+- **Preservation:** Preserve Third-Party Assertion Libraries
+  - Kind: UNCHANGED
+  - Preserved feature(s): assertThat with Hamcrest, third-party assertion library usage
+- **SemanticEffect:** Failure Message Argument Order Changed
+  - Kind: CONFIGURATION_SEMANTICS_CHANGED
+- **SemanticEffect:** Matcher-Based Assumption Requires Validation
+  - Kind: VALIDATION_REQUIRED
+
+### Mapping: Exception and Timeout Migration
+
+- **Transformation:** @Test(expected) to assertThrows
+  - Source: @Test(expected)
+  - Target(s): assertThrows, assertThrows block
+  - Automation: OperatorHelp
+- **Transformation:** ExpectedException Rule to assertThrows or Migration Support
+  - Source: ExpectedException Rule
+  - Target(s): assertThrows, ExpectedExceptionSupport, @EnableRuleMigrationSupport
+  - Automation: OperatorHelp
+- **Transformation:** @Test(timeout) to Timeout Constructs
+  - Source: @Test(timeout)
+  - Target(s): @Timeout, assertTimeout, assertTimeoutPreemptively
+  - Automation: OperatorHelp
+- **Transformation:** Timeout Rule to @Timeout or Timeout Assertions
+  - Source: Timeout Rule
+  - Target(s): @Timeout, assertTimeout, assertTimeoutPreemptively
+  - Automation: OperatorHelp
+- **SemanticEffect:** Expected Exception Attribute Removed From @Test
+  - Kind: SUPPORT_REMOVED
+- **SemanticEffect:** Timeout Annotation Semantics Need Selection
+  - Kind: VALIDATION_REQUIRED
+- **Preservation:** Preserve Exception Type Intent
+  - Kind: SEMANTICALLY_PRESERVED
+  - Preserved feature(s): @Test(expected), ExpectedException Rule
+
+### Mapping: Rules ClassRules and Extension Model Migration
+
+- **Transformation:** TemporaryFolder Rule to @TempDir
+  - Source: TemporaryFolder Rule
+  - Target(s): TempDirectory / @TempDir
+  - Automation: OperatorHelp
+- **Transformation:** ExternalResource Rule to Extension Callbacks
+  - Source: ExternalResource Rule
+  - Target(s): BeforeEachCallback, AfterEachCallback, BeforeAllCallback, AfterAllCallback, ExternalResourceSupport
+  - Automation: OperatorHelp
+- **Transformation:** Verifier and ErrorCollector Rules
+  - Source: Verifier Rule
+  - Target(s): VerifierSupport, assertAll, AfterEachCallback
+  - Automation: OperatorHelp
+  - **Transformation:** ErrorCollector Rule to assertAll
+    - Source: ErrorCollector Rule
+    - Target(s): assertAll
+    - Automation: OperatorHelp
+- **Transformation:** TestName Rule to TestInfo Parameter
+  - Source: TestName Rule
+  - Target(s): TestInfo parameter
+  - Automation: OperatorHelp
+- **Transformation:** TestWatcher Rule to Jupiter TestWatcher Extension
+  - Source: TestWatcher Rule
+  - Target(s): TestWatcher extension, @RegisterExtension, @ExtendWith
+  - Automation: OperatorHelp
+- **Transformation:** Custom @Rule to @RegisterExtension or @ExtendWith
+  - Source: Custom TestRule
+  - Target(s): @RegisterExtension, @ExtendWith, BeforeEachCallback, AfterEachCallback, ExecutionCondition, ParameterResolver
+  - Automation: NoDirectMapping
+- **Transformation:** @ClassRule to Static @RegisterExtension or Class-Level Extension
+  - Source: @ClassRule
+  - Target(s): static @RegisterExtension, @ExtendWith, BeforeAllCallback, AfterAllCallback
+  - Automation: OperatorHelp
+- **Bridge:** JUnit Jupiter Migration Support Bridge for Selected Rules
+  - Scope: CORRESPONDENCE
+  - Cleanup required: true
+- **Preservation:** Temporarily Preserve Selected Rule Fields and Imports
+  - Kind: TEMPORARILY_RETAINED
+  - Preserved feature(s): ExternalResource Rule, TemporaryFolder Rule, Verifier Rule, ErrorCollector Rule, ExpectedException Rule
+- **SemanticEffect:** JUnit 4 Rules Not Natively Supported By Jupiter
+  - Kind: SUPPORT_REMOVED
+- **SemanticEffect:** Custom Rule Redesign Risk
+  - Kind: RISK_INTRODUCED
+
+### Mapping: Runner Suite Category and Ordering Migration
+
+- **Transformation:** General @RunWith to @ExtendWith
+  - Source: @RunWith
+  - Target(s): @ExtendWith
+  - Automation: OperatorHelp
+  - **Transformation:** MockitoJUnitRunner to MockitoExtension
+    - Source: MockitoJUnitRunner
+    - Target(s): @ExtendWith
+    - Automation: OperatorHelp
+  - **Transformation:** SpringRunner to SpringExtension
+    - Source: SpringRunner / SpringJUnit4ClassRunner
+    - Target(s): @ExtendWith
+    - Automation: OperatorHelp
+- **Transformation:** Custom Runner to Jupiter Extension Redesign
+  - Source: Custom Runner
+  - Target(s): @ExtendWith, BeforeEachCallback, AfterEachCallback, ParameterResolver, ExecutionCondition
+  - Automation: NoDirectMapping
+- **Transformation:** JUnit 4 Suite Runner to JUnit Platform Suite
+  - Source: @RunWith(Suite.class)
+  - Target(s): @Suite, @SelectClasses, @SelectPackages, @SuiteDisplayName, junit-platform-suite-engine
+  - Automation: OperatorHelp
+  - **Transformation:** @Suite.SuiteClasses to @SelectClasses
+    - Source: @Suite.SuiteClasses
+    - Target(s): @SelectClasses
+    - Automation: FullAutomation
+  - **Transformation:** Suite Selected Classes to SelectPackages
+    - Source: suite selected classes
+    - Target(s): @SelectPackages
+    - Automation: OperatorHelp
+- **Transformation:** Categories to Tags
+  - Source: @Category on class
+  - Target(s): @Tag, Vintage category tag exposure
+  - Automation: OperatorHelp
+  - **Transformation:** Method-level Category to Method-level Tag
+    - Source: @Category on method
+    - Target(s): @Tag
+    - Automation: OperatorHelp
+- **Transformation:** @FixMethodOrder to @TestMethodOrder
+  - Source: @FixMethodOrder
+  - Target(s): @TestMethodOrder, MethodOrderer.MethodName, MethodOrderer.OrderAnnotation, MethodOrderer.Random, custom MethodOrderer, @Order, junit.jupiter.testmethod.order.default
+  - Automation: OperatorHelp
+  - **Transformation:** MethodSorters.NAME_ASCENDING to MethodOrderer.MethodName
+    - Source: MethodSorters.NAME_ASCENDING
+    - Target(s): MethodOrderer.MethodName
+    - Automation: FullAutomation
+  - **Transformation:** MethodSorters.DEFAULT Approximation
+    - Source: MethodSorters.DEFAULT
+    - Target(s): @TestMethodOrder, custom MethodOrderer
+    - Automation: OperatorHelp
+  - **Transformation:** MethodSorters.JVM Approximation
+    - Source: MethodSorters.JVM
+    - Target(s): MethodOrderer.Random, custom MethodOrderer
+    - Automation: NoDirectMapping
+- **Transformation:** SpringRunner to SpringExtension
+  - Source: SpringRunner / SpringJUnit4ClassRunner
+  - Target(s): @ExtendWith, SpringExtension
+  - Automation: OperatorHelp
+- **Transformation:** MockitoJUnitRunner to MockitoExtension
+  - Source: MockitoJUnitRunner
+  - Target(s): @ExtendWith, MockitoExtension
+  - Automation: OperatorHelp
+- **SemanticEffect:** JUnit 4 Runners Not Natively Supported By Jupiter
+  - Kind: SUPPORT_REMOVED
+- **SemanticEffect:** Category Marker Interfaces Become String Tags
+  - Kind: BEHAVIOR_CHANGE
+- **SemanticEffect:** Method Orderer Approximation Requires Validation
+  - Kind: VALIDATION_REQUIRED
+
+### Mapping: Parameterized Theories and Advanced Test Forms
+
+- **Transformation:** JUnit 4 Parameterized Runner to Jupiter @ParameterizedTest
+  - Source: @RunWith(Parameterized.class)
+  - Target(s): @ParameterizedTest, @MethodSource, @CsvSource, @ValueSource, @ArgumentsSource, ArgumentsAccessor, ArgumentsAggregator, parameterized display name
+  - Automation: OperatorHelp
+  - **Transformation:** @Parameters factory to @MethodSource
+    - Source: @Parameters factory
+    - Target(s): @MethodSource
+    - Automation: OperatorHelp
+  - **Transformation:** @Parameter field injection to method parameters
+    - Source: @Parameter field injection
+    - Target(s): ArgumentsAccessor, ArgumentsAggregator
+    - Automation: OperatorHelp
+- **Transformation:** JUnit 4 Theories to Jupiter Parameterized or Dynamic Tests
+  - Source: @RunWith(Theories.class)
+  - Target(s): @ParameterizedTest, @MethodSource, @TestFactory, DynamicTest
+  - Automation: NoDirectMapping
+- **Transformation:** JUnit 4 Parameterized Class to Jupiter @ParameterizedClass
+  - Source: @RunWith(Parameterized.class)
+  - Target(s): @ParameterizedClass, @MethodSource, org.junit.jupiter.params.Parameter, @BeforeParameterizedClassInvocation, @AfterParameterizedClassInvocation
+  - Automation: OperatorHelp
+  - **Transformation:** @BeforeParam to @BeforeParameterizedClassInvocation
+    - Source: @BeforeParam
+    - Target(s): @BeforeParameterizedClassInvocation
+    - Automation: FullAutomation
+  - **Transformation:** @AfterParam to @AfterParameterizedClassInvocation
+    - Source: @AfterParam
+    - Target(s): @AfterParameterizedClassInvocation
+    - Automation: FullAutomation
+  - **Transformation:** @Parameter to Jupiter Parameter
+    - Source: @Parameter field injection
+    - Target(s): org.junit.jupiter.params.Parameter
+    - Automation: FullAutomation
+- **SemanticEffect:** Parameterized Runner Migration May Restructure Test Shape
+  - Kind: BEHAVIOR_CHANGE
+- **SemanticEffect:** Theories Have No Direct Jupiter Equivalent
+  - Kind: SUPPORT_REMOVED
+
+### Mapping: Legacy TestCase and Tool-Assisted Migration
+
+- **Transformation:** JUnit 4 TestCase Inheritance to Annotation-Based Jupiter Tests
+  - Source: junit.framework.TestCase inheritance
+  - Target(s): annotation-based Jupiter replacement for TestCase, org.junit.jupiter.api.Test, org.junit.jupiter.api.Assertions
+  - Automation: OperatorHelp
+- **Transformation:** setUp and tearDown to @BeforeEach and @AfterEach
+  - Source: setUp / tearDown methods
+  - Target(s): BeforeEach / AfterEach replacement for setUp / tearDown, @BeforeEach, @AfterEach
+  - Automation: FullAutomation
+- **SemanticEffect:** Automated Tooling Has Partial Coverage
+  - Kind: VALIDATION_REQUIRED
+

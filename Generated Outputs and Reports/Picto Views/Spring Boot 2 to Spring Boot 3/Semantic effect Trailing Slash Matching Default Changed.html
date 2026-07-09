@@ -1,0 +1,581 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Semantic effect: Trailing Slash Matching Default Changed</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>SemanticEffect</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Semantic effect</h2>
+
+        
+
+        <p>
+
+            <strong>Effect kind:</strong> DEFAULT_VALUE_CHANGED
+
+            <br>
+
+            
+
+            <strong>Affected source feature(s):</strong> Implicit trailing slash URL matching
+
+            <br>
+
+            
+
+            <strong>Affected target feature(s):</strong> Explicit URL mappings or redirect/rewrite strategy for trailing slash, Temporary global trailing-slash compatibility configuration
+
+            <br>
+
+            
+
+            <strong>Rationale:</strong> Spring Framework 6 disables trailing slash matching by default; routes that previously matched /path
+
+/ may now return 404 unless handled explicitly.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="585pt" viewBox="0.00 0.00 1457.00 585.00" width="1457pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 567)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="710.5" y="-533.8">Semantic effect: Trailing Slash Matching Default Changed</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M113.5,-8C113.5,-8 185.5,-8 185.5,-8 191.5,-8 197.5,-14 197.5,-20 197.5,-20 197.5,-272 197.5,-272 197.5,-278 191.5,-284 185.5,-284 185.5,-284 113.5,-284 113.5,-284 107.5,-284 101.5,-278 101.5,-272 101.5,-272 101.5,-20 101.5,-20 101.5,-14 107.5,-8 113.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="149.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M747.5,-375C747.5,-375 1401,-375 1401,-375 1407,-375 1413,-381 1413,-387 1413,-387 1413,-506 1413,-506 1413,-512 1407,-518 1401,-518 1401,-518 747.5,-518 747.5,-518 741.5,-518 735.5,-512 735.5,-506 735.5,-506 735.5,-387 735.5,-387 735.5,-381 741.5,-375 747.5,-375" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="1074.25" y="-502.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 516,-292 516,-292 522,-292 528,-298 528,-304 528,-304 528,-355 528,-355 528,-361 522,-367 516,-367 516,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="264" y="-351.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M614,-292C614,-292 1018,-292 1018,-292 1024,-292 1030,-298 1030,-304 1030,-304 1030,-355 1030,-355 1030,-361 1024,-367 1018,-367 1018,-367 614,-367 614,-367 608,-367 602,-361 602,-355 602,-355 602,-304 602,-304 602,-298 608,-292 614,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="816" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M175.5,-256C175.5,-256 123.5,-256 123.5,-256 117.5,-256 111.5,-250 111.5,-244 111.5,-244 111.5,-232 111.5,-232 111.5,-226 117.5,-220 123.5,-220 123.5,-220 175.5,-220 175.5,-220 181.5,-220 187.5,-226 187.5,-232 187.5,-232 187.5,-244 187.5,-244 187.5,-250 181.5,-256 175.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="149.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M170.5,-188C170.5,-188 128.5,-188 128.5,-188 122.5,-188 116.5,-182 116.5,-176 116.5,-176 116.5,-164 116.5,-164 116.5,-158 122.5,-152 128.5,-152 128.5,-152 170.5,-152 170.5,-152 176.5,-152 182.5,-158 182.5,-164 182.5,-164 182.5,-176 182.5,-176 182.5,-182 176.5,-188 170.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="149.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M164.5,-120C164.5,-120 134.5,-120 134.5,-120 128.5,-120 122.5,-114 122.5,-108 122.5,-108 122.5,-96 122.5,-96 122.5,-90 128.5,-84 134.5,-84 134.5,-84 164.5,-84 164.5,-84 170.5,-84 176.5,-90 176.5,-96 176.5,-96 176.5,-108 176.5,-108 176.5,-114 170.5,-120 164.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="149.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M177.5,-52C177.5,-52 121.5,-52 121.5,-52 115.5,-52 109.5,-46 109.5,-40 109.5,-40 109.5,-28 109.5,-28 109.5,-22 115.5,-16 121.5,-16 121.5,-16 177.5,-16 177.5,-16 183.5,-16 189.5,-22 189.5,-28 189.5,-28 189.5,-40 189.5,-40 189.5,-46 183.5,-52 177.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="149.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_921696479 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_921696479</title>
+
+                    
+
+                    <path d="M428,-336C428,-336 286,-336 286,-336 280,-336 274,-330 274,-324 274,-324 274,-312 274,-312 274,-306 280,-300 286,-300 286,-300 428,-300 428,-300 434,-300 440,-306 440,-312 440,-312 440,-324 440,-324 440,-330 434,-336 428,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="357" y="-315.5">Implicit trailing slash URL matching</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1923171143 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_1923171143</title>
+
+                    
+
+                    <path d="M1010,-336C1010,-336 622,-336 622,-336 616,-336 610,-330 610,-324 610,-324 610,-312 610,-312 610,-306 616,-300 622,-300 622,-300 1010,-300 1010,-300 1016,-300 1022,-306 1022,-312 1022,-312 1022,-324 1022,-324 1022,-330 1016,-336 1010,-336" fill="#fce5e5" stroke="#cc0000" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="816" y="-315.5">Semantic effect * &nbsp;Trailing Slash Matching Default Changed * DEFAULT_VALUE_CHANGED</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_921696479&#45;&gt;C_1923171143 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_921696479-&gt;C_1923171143</title>
+
+                    
+
+                    <path d="M440.23,-318C485.73,-318 544.57,-318 602.1,-318" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="602.34,-320.63 609.84,-318 602.34,-315.38 602.34,-320.63" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="565" y="-320.8">affects</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1400472476 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1400472476</title>
+
+                    
+
+                    <path d="M199,-336C199,-336 100,-336 100,-336 94,-336 88,-330 88,-324 88,-324 88,-312 88,-312 88,-306 94,-300 100,-300 100,-300 199,-300 199,-300 205,-300 211,-306 211,-312 211,-312 211,-324 211,-324 211,-330 205,-336 199,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="149.5" y="-315.5">Web Application Runtime</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1400472476&#45;&gt;S_921696479 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>S_1400472476-&gt;S_921696479</title>
+
+                    
+
+                    <path d="M211.05,-318C230.7,-318 252.85,-318 273.8,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1619932351 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1619932351</title>
+
+                    
+
+                    <path d="M1373.5,-487C1373.5,-487 1137.5,-487 1137.5,-487 1131.5,-487 1125.5,-481 1125.5,-475 1125.5,-475 1125.5,-463 1125.5,-463 1125.5,-457 1131.5,-451 1137.5,-451 1137.5,-451 1373.5,-451 1373.5,-451 1379.5,-451 1385.5,-457 1385.5,-463 1385.5,-463 1385.5,-475 1385.5,-475 1385.5,-481 1379.5,-487 1373.5,-487" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1255.5" y="-466.5">Temporary global trailing-slash compatibility configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1923171143&#45;&gt;T_1619932351 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_1923171143-&gt;T_1619932351</title>
+
+                    
+
+                    <path d="M943.22,-336.04C972.72,-343.2 1003.3,-353.17 1030,-367 1070.24,-387.85 1065.74,-414.17 1106,-435 1116.21,-440.28 1127.24,-444.75 1138.51,-448.53" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="1138,-451.13 1145.94,-450.92 1139.61,-446.13 1138,-451.13" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1064" y="-411.8">effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_243828278 -->
+
+                
+
+                <g class="node" id="node10">
+
+                    
+
+                    <title>T_243828278</title>
+
+                    
+
+                    <path d="M1393,-419C1393,-419 1118,-419 1118,-419 1112,-419 1106,-413 1106,-407 1106,-407 1106,-395 1106,-395 1106,-389 1112,-383 1118,-383 1118,-383 1393,-383 1393,-383 1399,-383 1405,-389 1405,-395 1405,-395 1405,-407 1405,-407 1405,-413 1399,-419 1393,-419" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1255.5" y="-398.5">Explicit URL mappings or redirect/rewrite strategy for trailing slash</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1923171143&#45;&gt;T_243828278 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_1923171143-&gt;T_243828278</title>
+
+                    
+
+                    <path d="M1022.01,-321.33C1040.03,-323.5 1057.9,-326.33 1075,-330 1123.84,-340.49 1176.66,-362.84 1212.27,-379.67" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="1211.26,-382.1 1219.16,-382.96 1213.52,-377.36 1211.26,-382.1" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1064" y="-332.8">effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_543652802 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_543652802</title>
+
+                    
+
+                    <path d="M876.5,-453C876.5,-453 755.5,-453 755.5,-453 749.5,-453 743.5,-447 743.5,-441 743.5,-441 743.5,-429 743.5,-429 743.5,-423 749.5,-417 755.5,-417 755.5,-417 876.5,-417 876.5,-417 882.5,-417 888.5,-423 888.5,-429 888.5,-429 888.5,-441 888.5,-441 888.5,-447 882.5,-453 876.5,-453" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="816" y="-432.5">Web Runtime in Spring Boot 3</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_543652802&#45;&gt;T_1619932351 -->
+
+                
+
+                <g class="edge" id="edge6">
+
+                    
+
+                    <title>T_543652802-&gt;T_1619932351</title>
+
+                    
+
+                    <path d="M888.75,-440.58C952.75,-445.55 1047.99,-452.95 1125.24,-458.95" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_543652802&#45;&gt;T_243828278 -->
+
+                
+
+                <g class="edge" id="edge5">
+
+                    
+
+                    <title>T_543652802-&gt;T_243828278</title>
+
+                    
+
+                    <path d="M888.75,-429.42C947.42,-424.86 1032.34,-418.27 1105.58,-412.57" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

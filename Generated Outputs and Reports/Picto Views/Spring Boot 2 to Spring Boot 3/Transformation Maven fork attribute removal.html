@@ -1,0 +1,529 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: Maven fork attribute removal</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> Maven spring-boot run/start fork attribute
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> Maven plugin configuration compatible with Boot 3
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> FullAutomation / EASY
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> The fork attribute of spring-boot:run and spring-boot:start was deprecated in 2.7 and removed in Spr
+
+ing Boot 3.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] find fork attribute in spring-boot-maven-plugin run/start configuration
+
+
+
+2. [A] remove the attribute
+
+
+
+3. [A] run mvn spring-boot:run or start to validate
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="434pt" viewBox="0.00 0.00 1299.00 434.00" width="1299pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 416)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="631.5" y="-382.8">Transformation: Maven fork attribute removal</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M102.5,-8C102.5,-8 174.5,-8 174.5,-8 180.5,-8 186.5,-14 186.5,-20 186.5,-20 186.5,-272 186.5,-272 186.5,-278 180.5,-284 174.5,-284 174.5,-284 102.5,-284 102.5,-284 96.5,-284 90.5,-278 90.5,-272 90.5,-272 90.5,-20 90.5,-20 90.5,-14 96.5,-8 102.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="138.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M615,-292C615,-292 928,-292 928,-292 934,-292 940,-298 940,-304 940,-304 940,-355 940,-355 940,-361 934,-367 928,-367 928,-367 615,-367 615,-367 609,-367 603,-361 603,-355 603,-355 603,-304 603,-304 603,-298 609,-292 615,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="771.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M700,-209C700,-209 1243,-209 1243,-209 1249,-209 1255,-215 1255,-221 1255,-221 1255,-272 1255,-272 1255,-278 1249,-284 1243,-284 1243,-284 700,-284 700,-284 694,-284 688,-278 688,-272 688,-272 688,-221 688,-221 688,-215 694,-209 700,-209" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="971.5" y="-268.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 516,-292 516,-292 522,-292 528,-298 528,-304 528,-304 528,-355 528,-355 528,-361 522,-367 516,-367 516,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="264" y="-351.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M164.5,-256C164.5,-256 112.5,-256 112.5,-256 106.5,-256 100.5,-250 100.5,-244 100.5,-244 100.5,-232 100.5,-232 100.5,-226 106.5,-220 112.5,-220 112.5,-220 164.5,-220 164.5,-220 170.5,-220 176.5,-226 176.5,-232 176.5,-232 176.5,-244 176.5,-244 176.5,-250 170.5,-256 164.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="138.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M159.5,-188C159.5,-188 117.5,-188 117.5,-188 111.5,-188 105.5,-182 105.5,-176 105.5,-176 105.5,-164 105.5,-164 105.5,-158 111.5,-152 117.5,-152 117.5,-152 159.5,-152 159.5,-152 165.5,-152 171.5,-158 171.5,-164 171.5,-164 171.5,-176 171.5,-176 171.5,-182 165.5,-188 159.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="138.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M153.5,-120C153.5,-120 123.5,-120 123.5,-120 117.5,-120 111.5,-114 111.5,-108 111.5,-108 111.5,-96 111.5,-96 111.5,-90 117.5,-84 123.5,-84 123.5,-84 153.5,-84 153.5,-84 159.5,-84 165.5,-90 165.5,-96 165.5,-96 165.5,-108 165.5,-108 165.5,-114 159.5,-120 153.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="138.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M166.5,-52C166.5,-52 110.5,-52 110.5,-52 104.5,-52 98.5,-46 98.5,-40 98.5,-40 98.5,-28 98.5,-28 98.5,-22 104.5,-16 110.5,-16 110.5,-16 166.5,-16 166.5,-16 172.5,-16 178.5,-22 178.5,-28 178.5,-28 178.5,-40 178.5,-40 178.5,-46 172.5,-52 166.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="138.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_307749117 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_307749117</title>
+
+                    
+
+                    <path d="M211,-336C211,-336 66,-336 66,-336 60,-336 54,-330 54,-324 54,-324 54,-312 54,-312 54,-306 60,-300 66,-300 66,-300 211,-300 211,-300 217,-300 223,-306 223,-312 223,-312 223,-324 223,-324 223,-330 217,-336 211,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="138.5" y="-315.5">Build and Dependency Management</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_2046899599 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_2046899599</title>
+
+                    
+
+                    <path d="M461,-336C461,-336 298,-336 298,-336 292,-336 286,-330 286,-324 286,-324 286,-312 286,-312 286,-306 292,-300 298,-300 298,-300 461,-300 461,-300 467,-300 473,-306 473,-312 473,-312 473,-324 473,-324 473,-330 467,-336 461,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="379.5" y="-315.5">Maven spring-boot run/start fork attribute</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_307749117&#45;&gt;S_2046899599 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>S_307749117-&gt;S_2046899599</title>
+
+                    
+
+                    <path d="M223.09,-318C243.42,-318 265.27,-318 285.98,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1312006665 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_1312006665</title>
+
+                    
+
+                    <path d="M920,-336C920,-336 623,-336 623,-336 617,-336 611,-330 611,-324 611,-324 611,-312 611,-312 611,-306 617,-300 623,-300 623,-300 920,-300 920,-300 926,-300 932,-306 932,-312 932,-312 932,-324 932,-324 932,-330 926,-336 920,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="771.5" y="-315.5">Transformation * &nbsp;Maven fork attribute removal * FullAutomation / EASY</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_2046899599&#45;&gt;C_1312006665 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_2046899599-&gt;C_1312006665</title>
+
+                    
+
+                    <path d="M473.42,-318C512.29,-318 558.69,-318 603.14,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="603.33,-320.63 610.83,-318 603.33,-315.38 603.33,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="565.5" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1344491827 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1344491827</title>
+
+                    
+
+                    <path d="M1235,-253C1235,-253 1030,-253 1030,-253 1024,-253 1018,-247 1018,-241 1018,-241 1018,-229 1018,-229 1018,-223 1024,-217 1030,-217 1030,-217 1235,-217 1235,-217 1241,-217 1247,-223 1247,-229 1247,-229 1247,-241 1247,-241 1247,-247 1241,-253 1235,-253" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1132.5" y="-232.5">Maven plugin configuration compatible with Boot 3</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1312006665&#45;&gt;T_1344491827 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_1312006665-&gt;T_1344491827</title>
+
+                    
+
+                    <path d="M900.42,-299.98C913.83,-297.54 927.22,-294.88 940,-292 984.26,-282.03 1033.27,-267.37 1070.64,-255.41" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1071.61,-257.86 1077.95,-253.06 1070,-252.86 1071.61,-257.86" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="975" y="-287.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1956071195 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_1956071195</title>
+
+                    
+
+                    <path d="M835,-253C835,-253 708,-253 708,-253 702,-253 696,-247 696,-241 696,-241 696,-229 696,-229 696,-223 702,-217 708,-217 708,-217 835,-217 835,-217 841,-217 847,-223 847,-229 847,-229 847,-241 847,-241 847,-247 841,-253 835,-253" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="771.5" y="-232.5">Spring Boot 3 Platform Baseline</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1956071195&#45;&gt;T_1344491827 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>T_1956071195-&gt;T_1344491827</title>
+
+                    
+
+                    <path d="M847.32,-235C896.64,-235 962.16,-235 1017.86,-235" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>

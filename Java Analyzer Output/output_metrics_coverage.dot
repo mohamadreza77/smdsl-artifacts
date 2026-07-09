@@ -1,0 +1,14 @@
+digraph CoverageOverview {
+  graph [rankdir=LR, labelloc=t, label="SMDSL Coverage Overview: JUnit4-to-JUnit5-SMDSL-v2", fontsize=18];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=10];
+  source [label="Source features\n94", fillcolor="#D9EAD3"];
+  target [label="Target features\n111", fillcolor="#D9EAD3"];
+  stc [label="Source transformation coverage\n50 / 94 (53.2%)", fillcolor="#FFF2CC"];
+  smc [label="Source mentioned coverage\n78 / 94 (83.0%)", fillcolor="#FFF2CC"];
+  tuc [label="Target used coverage\n84 / 111 (75.7%)", fillcolor="#FCE5CD"];
+  tmc [label="Target mentioned coverage\n88 / 111 (79.3%)", fillcolor="#FCE5CD"];
+  source -> stc;
+  source -> smc;
+  target -> tuc;
+  target -> tmc;
+}

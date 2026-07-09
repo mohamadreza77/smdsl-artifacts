@@ -1,0 +1,531 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: Canvas Mapping to Graph/Paper</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> GMF Workbench =&gt; JointJS
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong>
+
+        </p>
+
+        
+
+        <ul>
+
+            
+
+            <li>
+
+                <strong>REQUIRED</strong> on Canvas Mapping, Graph, Paper: Apply when the GMF Canvas Mapping provides the diagram entry point/root; in JointJS this becomes a G
+
+raph data model and a Paper view bound to an HTML/SVG rendering surface.
+
+            </li>
+
+            
+
+        </ul>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> Canvas Mapping
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> Graph, Paper
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> OperatorHelp / MIX
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> Canvas Mapping in GMF defines the diagram-level entry point, combining both the semantic root of the
+
+diagram and its global visual configuration. In JointJS, these responsibilities are intentionally s
+
+eparated: Graph manages the diagram&rsquo;s underlying model, while Paper manages rendering, layout, and i
+
+nteraction. Therefore, a single Canvas Mapping can be realized by coordinating Graph and Paper, maki
+
+ng the correspondence valid despite the structural decomposition.
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Operators:</strong> Mr. X
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] take the element property (A) of the canvas mapping
+
+
+
+2. [A] create one JavaScript file (name it A.js) with instantiating Graph and Paper, and another 
+
+JavaScript file (name it A+Elements.js)
+
+
+
+3. [A] supervisors should set the desired Paper's properties such as width, height, drawGrid, gri
+
+dSize, binding to the HTML element, etc.
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="466pt" viewBox="0.00 0.00 1115.00 466.00" width="1115pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 448)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="539.5" y="-414.8">Transformation: Canvas Mapping to Graph/Paper</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M129,-8C129,-8 201,-8 201,-8 207,-8 213,-14 213,-20 213,-20 213,-272 213,-272 213,-278 207,-284 201,-284 201,-284 129,-284 129,-284 123,-284 117,-278 117,-272 117,-272 117,-20 117,-20 117,-14 123,-8 129,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="165" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M418,-292C418,-292 731,-292 731,-292 737,-292 743,-298 743,-304 743,-304 743,-355 743,-355 743,-361 737,-367 731,-367 731,-367 418,-367 418,-367 412,-367 406,-361 406,-355 406,-355 406,-304 406,-304 406,-298 412,-292 418,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="574.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M825,-256C825,-256 1067,-256 1067,-256 1073,-256 1079,-262 1079,-268 1079,-268 1079,-387 1079,-387 1079,-393 1073,-399 1067,-399 1067,-399 825,-399 825,-399 819,-399 813,-393 813,-387 813,-387 813,-268 813,-268 813,-262 819,-256 825,-256" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="946" y="-383.8">Target platform feature context: JointJS</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 319,-292 319,-292 325,-292 331,-298 331,-304 331,-304 331,-355 331,-355 331,-361 325,-367 319,-367 319,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="165.5" y="-351.8">Source platform feature context: GMF Workbench</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M191,-256C191,-256 139,-256 139,-256 133,-256 127,-250 127,-244 127,-244 127,-232 127,-232 127,-226 133,-220 139,-220 139,-220 191,-220 191,-220 197,-220 203,-226 203,-232 203,-232 203,-244 203,-244 203,-250 197,-256 191,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M186,-188C186,-188 144,-188 144,-188 138,-188 132,-182 132,-176 132,-176 132,-164 132,-164 132,-158 138,-152 144,-152 144,-152 186,-152 186,-152 192,-152 198,-158 198,-164 198,-164 198,-176 198,-176 198,-182 192,-188 186,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M180,-120C180,-120 150,-120 150,-120 144,-120 138,-114 138,-108 138,-108 138,-96 138,-96 138,-90 144,-84 150,-84 150,-84 180,-84 180,-84 186,-84 192,-90 192,-96 192,-96 192,-108 192,-108 192,-114 186,-120 180,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M193,-52C193,-52 137,-52 137,-52 131,-52 125,-46 125,-40 125,-40 125,-28 125,-28 125,-22 131,-16 137,-16 137,-16 193,-16 193,-16 199,-16 205,-22 205,-28 205,-28 205,-40 205,-40 205,-46 199,-52 193,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_919870685 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_919870685</title>
+
+                    
+
+                    <path d="M195,-336C195,-336 135,-336 135,-336 129,-336 123,-330 123,-324 123,-324 123,-312 123,-312 123,-306 129,-300 135,-300 135,-300 195,-300 195,-300 201,-300 207,-306 207,-312 207,-312 207,-324 207,-324 207,-330 201,-336 195,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165" y="-315.5">Canvas Mapping</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_72703546 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>C_72703546</title>
+
+                    
+
+                    <path d="M723,-336C723,-336 426,-336 426,-336 420,-336 414,-330 414,-324 414,-324 414,-312 414,-312 414,-306 420,-300 426,-300 426,-300 723,-300 723,-300 729,-300 735,-306 735,-312 735,-312 735,-324 735,-324 735,-330 729,-336 723,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="574.5" y="-315.5">Transformation * &nbsp;Canvas Mapping to Graph/Paper * OperatorHelp / MIX</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_919870685&#45;&gt;C_72703546 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_919870685-&gt;C_72703546</title>
+
+                    
+
+                    <path d="M207.32,-318C254.07,-318 333.21,-318 405.99,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="406.41,-320.63 413.91,-318 406.41,-315.38 406.41,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="368.5" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1310523292 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>T_1310523292</title>
+
+                    
+
+                    <path d="M961,-368C961,-368 931,-368 931,-368 925,-368 919,-362 919,-356 919,-356 919,-344 919,-344 919,-338 925,-332 931,-332 931,-332 961,-332 961,-332 967,-332 973,-338 973,-344 973,-344 973,-356 973,-356 973,-362 967,-368 961,-368" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="946" y="-347.5">Graph</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_72703546&#45;&gt;T_1310523292 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_72703546-&gt;T_1310523292</title>
+
+                    
+
+                    <path d="M735.15,-331.83C800.84,-337.52 870.85,-343.58 911.11,-347.06" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="911.06,-349.69 918.75,-347.73 911.51,-344.46 911.06,-349.69" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="778" y="-337.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1873335165 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1873335165</title>
+
+                    
+
+                    <path d="M961,-300C961,-300 931,-300 931,-300 925,-300 919,-294 919,-288 919,-288 919,-276 919,-276 919,-270 925,-264 931,-264 931,-264 961,-264 961,-264 967,-264 973,-270 973,-276 973,-276 973,-288 973,-288 973,-294 967,-300 961,-300" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="946" y="-279.5">Paper</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_72703546&#45;&gt;T_1873335165 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>C_72703546-&gt;T_1873335165</title>
+
+                    
+
+                    <path d="M735.15,-302.45C800.84,-296.05 870.85,-289.22 911.11,-285.3" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="911.54,-287.9 918.75,-284.56 911.03,-282.67 911.54,-287.9" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="778" y="-300.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

@@ -1,0 +1,569 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: Multiple Label Mappings to Label</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> GMF Workbench =&gt; Sirius Workbench
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong>
+
+        </p>
+
+        
+
+        <ul>
+
+            
+
+            <li>
+
+                <strong>REQUIRED</strong> on Feature Label Mapping: Apply when one Sirius graphical element would need to display one or more GMF Feature Label Mappings
+
+as a single style-level label expression.
+
+            </li>
+
+            
+
+        </ul>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> Feature Label Mapping
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> Label Expression
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> NoDirectMapping / COMPLEX, MANUAL
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> GMF Feature Label Mappings and Sirius Label Expressions both serve the same fundamental purpose: def
+
+ining how semantic attributes are transformed into textual labels on diagram elements. However, GMF
+
+supports multiple independent label mappings per node, while Sirius enforces a single label expressi
+
+on per graphical element. This structural mismatch necessitates an approximation rather than a direc
+
+t mapping.
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Operators:</strong> Mr. X
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>No-direct-mapping rationale:</strong> Because Sirius supports only one style - and consequently one label expression - per diagram element
+
+, all GMF Feature Label Mappings associated with the same node are merged into a single AQL expressi
+
+on. Line breaks are used to preserve label separation and readability.
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Possible approximation feature(s):</strong> Label Expression
+
+            <br>
+
+            
+
+            <strong>Approximation profile:</strong> COMPLEX, MANUAL
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] take all the label mapping siblings (A)
+
+
+
+2. [A] take the immediate top node/child reference (B) of A
+
+
+
+3. [A] take B's equivalent container/node mapping
+
+
+
+4. [A] take or create a new (if not already exist) style (C) for B and write: "aql:" in the label
+
+ expression property (D) of C
+
+
+
+5. [A] for every label mapping (E) in A
+
+    5.1. [A] take the features to display property (F) of E
+
+
+
+    5.2. [A] append self.F + '\n' to D
+
+
+
+
+
+6. [M] operators should inspect whether it matches the structural and visual expectation. if not,
+
+ they can follow Figure to Style Correspondence
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="434pt" viewBox="0.00 0.00 1058.00 434.00" width="1058pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 416)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="511" y="-382.8">Transformation: Multiple Label Mappings to Label</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M129,-8C129,-8 201,-8 201,-8 207,-8 213,-14 213,-20 213,-20 213,-272 213,-272 213,-278 207,-284 201,-284 201,-284 129,-284 129,-284 123,-284 117,-278 117,-272 117,-272 117,-20 117,-20 117,-14 123,-8 129,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="165" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M418,-292C418,-292 828,-292 828,-292 834,-292 840,-298 840,-304 840,-304 840,-355 840,-355 840,-361 834,-367 828,-367 828,-367 418,-367 418,-367 412,-367 406,-361 406,-355 406,-355 406,-304 406,-304 406,-298 412,-292 418,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="623" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 319,-292 319,-292 325,-292 331,-298 331,-304 331,-304 331,-355 331,-355 331,-361 325,-367 319,-367 319,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="165.5" y="-351.8">Source platform feature context: GMF Workbench</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M600,-209C600,-209 1002,-209 1002,-209 1008,-209 1014,-215 1014,-221 1014,-221 1014,-272 1014,-272 1014,-278 1008,-284 1002,-284 1002,-284 600,-284 600,-284 594,-284 588,-278 588,-272 588,-272 588,-221 588,-221 588,-215 594,-209 600,-209" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="801" y="-268.8">Target platform feature context: Sirius Workbench</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M191,-256C191,-256 139,-256 139,-256 133,-256 127,-250 127,-244 127,-244 127,-232 127,-232 127,-226 133,-220 139,-220 139,-220 191,-220 191,-220 197,-220 203,-226 203,-232 203,-232 203,-244 203,-244 203,-250 197,-256 191,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M186,-188C186,-188 144,-188 144,-188 138,-188 132,-182 132,-176 132,-176 132,-164 132,-164 132,-158 138,-152 144,-152 144,-152 186,-152 186,-152 192,-152 198,-158 198,-164 198,-164 198,-176 198,-176 198,-182 192,-188 186,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M180,-120C180,-120 150,-120 150,-120 144,-120 138,-114 138,-108 138,-108 138,-96 138,-96 138,-90 144,-84 150,-84 150,-84 180,-84 180,-84 186,-84 192,-90 192,-96 192,-96 192,-108 192,-108 192,-114 186,-120 180,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M193,-52C193,-52 137,-52 137,-52 131,-52 125,-46 125,-40 125,-40 125,-28 125,-28 125,-22 131,-16 137,-16 137,-16 193,-16 193,-16 199,-16 205,-22 205,-28 205,-28 205,-40 205,-40 205,-46 199,-52 193,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1010295332 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1010295332</title>
+
+                    
+
+                    <path d="M209,-336C209,-336 121,-336 121,-336 115,-336 109,-330 109,-324 109,-324 109,-312 109,-312 109,-306 115,-300 121,-300 121,-300 209,-300 209,-300 215,-300 221,-306 221,-312 221,-312 221,-324 221,-324 221,-330 215,-336 209,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="165" y="-315.5">Feature Label Mapping</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_392822285 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>C_392822285</title>
+
+                    
+
+                    <path d="M820,-336C820,-336 426,-336 426,-336 420,-336 414,-330 414,-324 414,-324 414,-312 414,-312 414,-306 420,-300 426,-300 426,-300 820,-300 820,-300 826,-300 832,-306 832,-312 832,-312 832,-324 832,-324 832,-330 826,-336 820,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="623" y="-315.5">Transformation * &nbsp;Multiple Label Mappings to Label * NoDirectMapping / COMPLEX, MANUAL</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1010295332&#45;&gt;C_392822285 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_1010295332-&gt;C_392822285</title>
+
+                    
+
+                    <path d="M221,-318C267.59,-318 337.55,-318 406.06,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="406.48,-320.63 413.98,-318 406.48,-315.38 406.48,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="368.5" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1546295190 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1546295190</title>
+
+                    
+
+                    <path d="M994,-253C994,-253 930,-253 930,-253 924,-253 918,-247 918,-241 918,-241 918,-229 918,-229 918,-223 924,-217 930,-217 930,-217 994,-217 994,-217 1000,-217 1006,-223 1006,-229 1006,-229 1006,-241 1006,-241 1006,-247 1000,-253 994,-253" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="962" y="-232.5">Label Expression</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_392822285&#45;&gt;T_1546295190 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_392822285-&gt;T_1546295190</title>
+
+                    
+
+                    <path d="M808.05,-299.94C818.94,-297.61 829.65,-294.98 840,-292 869.15,-283.62 900.05,-268.95 923.33,-256.6" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="924.63,-258.88 929.99,-253.01 922.14,-254.25 924.63,-258.88" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="875" y="-285.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1458012002 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>T_1458012002</title>
+
+                    
+
+                    <path d="M638,-253C638,-253 608,-253 608,-253 602,-253 596,-247 596,-241 596,-241 596,-229 596,-229 596,-223 602,-217 608,-217 608,-217 638,-217 638,-217 644,-217 650,-223 650,-229 650,-229 650,-241 650,-241 650,-247 644,-253 638,-253" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="623" y="-232.5">Style</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1458012002&#45;&gt;T_1546295190 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>T_1458012002-&gt;T_1546295190</title>
+
+                    
+
+                    <path d="M650.16,-235C707.92,-235 846.83,-235 917.75,-235" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

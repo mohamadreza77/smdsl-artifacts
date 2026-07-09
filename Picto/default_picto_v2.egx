@@ -1,0 +1,86 @@
+rule Transformation2DetailV2
+  transform c : smdsl_updated_updated_package::Transformation {
+  guard : c.eContainer().isDefined() and c.eContainer().eClass().name = "Mapping"
+
+  template : "default_correspondenceDetail_v2.egl"
+
+  parameters : Map{
+    "path"  = Sequence{"Correspondences", c.eContainer().name, "Transformations", c.name},
+    "icon"   = "source",
+    "format" = "markdown",
+    "correspondence" = c,
+    "migration"      = c.eContainer().eContainer()
+  }
+}
+
+rule Preservation2DetailV2
+  transform c : smdsl_updated_updated_package::Preservation {
+  guard : c.eContainer().isDefined() and c.eContainer().eClass().name = "Mapping"
+
+  template : "default_correspondenceDetail_v2.egl"
+
+  parameters : Map{
+    "path"  = Sequence{"Correspondences", c.eContainer().name, "Preservations", c.name},
+    "icon"   = "diagram-00aa00",
+    "format" = "markdown",
+    "correspondence" = c,
+    "migration"      = c.eContainer().eContainer()
+  }
+}
+
+rule Bridge2DetailV2
+  transform c : smdsl_updated_updated_package::Bridge {
+  guard : c.eContainer().isDefined() and c.eContainer().eClass().name = "Mapping"
+
+  template : "default_correspondenceDetail_v2.egl"
+
+  parameters : Map{
+    "path"  = Sequence{"Correspondences", c.eContainer().name, "Bridges", c.name},
+    "icon"   = "diagram-ffaa00",
+    "format" = "markdown",
+    "correspondence" = c,
+    "migration"      = c.eContainer().eContainer()
+  }
+}
+
+rule SemanticEffect2DetailV2
+  transform c : smdsl_updated_updated_package::SemanticEffect {
+  guard : c.eContainer().isDefined() and c.eContainer().eClass().name = "Mapping"
+
+  template : "default_correspondenceDetail_v2.egl"
+
+  parameters : Map{
+    "path"  = Sequence{"Correspondences", c.eContainer().name, "Semantic Effects", c.name},
+    "icon"   = "diagram-aa0000",
+    "format" = "markdown",
+    "correspondence" = c,
+    "migration"      = c.eContainer().eContainer()
+  }
+}
+
+rule Platform2FeatureHierarchyV2
+  transform p : smdsl_updated_updated_package::Platform {
+
+  template  : "featureHierarchy_v2.egl"
+
+  parameters : Map{
+    "path"     = Sequence{"Platforms", p.name, "Feature Hierarchy"},
+    "icon"     = "diagram-aaaaaa",
+    "format"   = "graphviz-dot",
+    "platform" = p
+  }
+}
+
+//rule Migration2PreMigrationRequirements
+//  transform m : smdsl_updated_updated_package::Migration {
+//  guard : m.preMigrationRequirements.isDefined() and not m.preMigrationRequirements.isEmpty()
+//
+//  template : "preMigrationRequirements.egl"
+//
+//  parameters : Map{
+//    "path"      = Sequence{"Pre-Migration Requirements", m.name},
+//    "icon"      = "diagram-aaaaaa",
+//    "format"    = "graphviz-dot",
+//    "migration" = m
+//  }
+//}

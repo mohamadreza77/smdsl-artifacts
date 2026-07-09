@@ -1,0 +1,509 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Semantic effect: Logging Timestamp Default Changed to ISO-8601</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>SemanticEffect</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Semantic effect</h2>
+
+        
+
+        <p>
+
+            <strong>Effect kind:</strong> DEFAULT_VALUE_CHANGED
+
+            <br>
+
+            
+
+            <strong>Affected source feature(s):</strong> Spring Boot 2 log date format
+
+            <br>
+
+            
+
+            <strong>Affected target feature(s):</strong> ISO-8601 log date/time format
+
+            <br>
+
+            
+
+            <strong>Rationale:</strong> The default Logback/Log4j2 date-time component now follows ISO-8601 style with timezone offset, whic
+
+h may affect log parsers and snapshot tests.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="434pt" viewBox="0.00 0.00 1339.00 434.00" width="1339pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 416)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="651.5" y="-382.8">Semantic effect: Logging Timestamp Default Changed to ISO-8601</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M127,-8C127,-8 199,-8 199,-8 205,-8 211,-14 211,-20 211,-20 211,-272 211,-272 211,-278 205,-284 199,-284 199,-284 127,-284 127,-284 121,-284 115,-278 115,-272 115,-272 115,-20 115,-20 115,-14 121,-8 127,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="163" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M614,-292C614,-292 1057,-292 1057,-292 1063,-292 1069,-298 1069,-304 1069,-304 1069,-355 1069,-355 1069,-361 1063,-367 1057,-367 1057,-367 614,-367 614,-367 608,-367 602,-361 602,-355 602,-355 602,-304 602,-304 602,-298 608,-292 614,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="835.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M743.5,-209C743.5,-209 1283,-209 1283,-209 1289,-209 1295,-215 1295,-221 1295,-221 1295,-272 1295,-272 1295,-278 1289,-284 1283,-284 1283,-284 743.5,-284 743.5,-284 737.5,-284 731.5,-278 731.5,-272 731.5,-272 731.5,-221 731.5,-221 731.5,-215 737.5,-209 743.5,-209" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="1013.25" y="-268.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 516,-292 516,-292 522,-292 528,-298 528,-304 528,-304 528,-355 528,-355 528,-361 522,-367 516,-367 516,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="264" y="-351.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M189,-256C189,-256 137,-256 137,-256 131,-256 125,-250 125,-244 125,-244 125,-232 125,-232 125,-226 131,-220 137,-220 137,-220 189,-220 189,-220 195,-220 201,-226 201,-232 201,-232 201,-244 201,-244 201,-250 195,-256 189,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="163" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M184,-188C184,-188 142,-188 142,-188 136,-188 130,-182 130,-176 130,-176 130,-164 130,-164 130,-158 136,-152 142,-152 142,-152 184,-152 184,-152 190,-152 196,-158 196,-164 196,-164 196,-176 196,-176 196,-182 190,-188 184,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="163" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M178,-120C178,-120 148,-120 148,-120 142,-120 136,-114 136,-108 136,-108 136,-96 136,-96 136,-90 142,-84 148,-84 148,-84 178,-84 178,-84 184,-84 190,-90 190,-96 190,-96 190,-108 190,-108 190,-114 184,-120 178,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="163" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M191,-52C191,-52 135,-52 135,-52 129,-52 123,-46 123,-40 123,-40 123,-28 123,-28 123,-22 129,-16 135,-16 135,-16 191,-16 191,-16 197,-16 203,-22 203,-28 203,-28 203,-40 203,-40 203,-46 197,-52 191,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="163" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1131557365</title>
+
+                    
+
+                    <path d="M243,-336C243,-336 83,-336 83,-336 77,-336 71,-330 71,-324 71,-324 71,-312 71,-312 71,-306 77,-300 83,-300 83,-300 243,-300 243,-300 249,-300 255,-306 255,-312 255,-312 255,-324 255,-324 255,-330 249,-336 243,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="163" y="-315.5">Core Spring Boot API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1727731239 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1727731239</title>
+
+                    
+
+                    <path d="M445,-336C445,-336 330,-336 330,-336 324,-336 318,-330 318,-324 318,-324 318,-312 318,-312 318,-306 324,-300 330,-300 330,-300 445,-300 445,-300 451,-300 457,-306 457,-312 457,-312 457,-324 457,-324 457,-330 451,-336 445,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="387.5" y="-315.5">Spring Boot 2 log date format</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365&#45;&gt;S_1727731239 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>S_1131557365-&gt;S_1727731239</title>
+
+                    
+
+                    <path d="M255.14,-318C276.14,-318 298.13,-318 317.99,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1396602053 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_1396602053</title>
+
+                    
+
+                    <path d="M1049,-336C1049,-336 622,-336 622,-336 616,-336 610,-330 610,-324 610,-324 610,-312 610,-312 610,-306 616,-300 622,-300 622,-300 1049,-300 1049,-300 1055,-300 1061,-306 1061,-312 1061,-312 1061,-324 1061,-324 1061,-330 1055,-336 1049,-336" fill="#fce5e5" stroke="#cc0000" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="835.5" y="-315.5">Semantic effect * &nbsp;Logging Timestamp Default Changed to ISO-8601 * DEFAULT_VALUE_CHANGED</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1727731239&#45;&gt;C_1396602053 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_1727731239-&gt;C_1396602053</title>
+
+                    
+
+                    <path d="M457.21,-318C496.88,-318 549.34,-318 602.47,-318" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="602.47,-320.63 609.97,-318 602.47,-315.38 602.47,-320.63" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="565" y="-320.8">affects</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1952093466 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1952093466</title>
+
+                    
+
+                    <path d="M1275,-253C1275,-253 1157,-253 1157,-253 1151,-253 1145,-247 1145,-241 1145,-241 1145,-229 1145,-229 1145,-223 1151,-217 1157,-217 1157,-217 1275,-217 1275,-217 1281,-217 1287,-223 1287,-229 1287,-229 1287,-241 1287,-241 1287,-247 1281,-253 1275,-253" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1216" y="-232.5">ISO-8601 log date/time format</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1396602053&#45;&gt;T_1952093466 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_1396602053-&gt;T_1952093466</title>
+
+                    
+
+                    <path d="M1031.58,-299.98C1044.31,-297.64 1056.87,-294.99 1069,-292 1103.83,-283.41 1141.5,-268.55 1169.86,-256.16" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="1171.06,-258.5 1176.86,-253.07 1168.93,-253.7 1171.06,-258.5" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1103" y="-287.8">effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_937024294</title>
+
+                    
+
+                    <path d="M919.5,-253C919.5,-253 751.5,-253 751.5,-253 745.5,-253 739.5,-247 739.5,-241 739.5,-241 739.5,-229 739.5,-229 739.5,-223 745.5,-217 751.5,-217 751.5,-217 919.5,-217 919.5,-217 925.5,-217 931.5,-223 931.5,-229 931.5,-229 931.5,-241 931.5,-241 931.5,-247 925.5,-253 919.5,-253" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="835.5" y="-232.5">Core Spring Boot 3 API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294&#45;&gt;T_1952093466 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>T_937024294-&gt;T_1952093466</title>
+
+                    
+
+                    <path d="M931.52,-235C997.77,-235 1084.69,-235 1144.73,-235" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

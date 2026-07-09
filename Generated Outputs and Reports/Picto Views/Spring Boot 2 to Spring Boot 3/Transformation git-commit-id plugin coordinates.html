@@ -1,0 +1,529 @@
+ <!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: git-commit-id plugin coordinates</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> Git Commit ID Maven Plugin old coordinates
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> Maven plugin configuration compatible with Boot 3
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> FullAutomation / EASY
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> The Git Commit ID Maven Plugin coordinates changed from pl.project13.maven:git-commit-id-plugin to i
+
+o.github.git-commit-id:git-commit-id-maven-plugin.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] detect old plugin coordinates
+
+
+
+2. [A] replace groupId and artifactId with new coordinates
+
+
+
+3. [A] run Maven validate/package
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="517pt" viewBox="0.00 0.00 1316.00 517.00" width="1316pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 499)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="640" y="-465.8">Transformation: git-commit-id plugin coordinates</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M94.5,-8C94.5,-8 166.5,-8 166.5,-8 172.5,-8 178.5,-14 178.5,-20 178.5,-20 178.5,-272 178.5,-272 178.5,-278 172.5,-284 166.5,-284 166.5,-284 94.5,-284 94.5,-284 88.5,-284 82.5,-278 82.5,-272 82.5,-272 82.5,-20 82.5,-20 82.5,-14 88.5,-8 94.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="130.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M615,-292C615,-292 945,-292 945,-292 951,-292 957,-298 957,-304 957,-304 957,-355 957,-355 957,-361 951,-367 945,-367 945,-367 615,-367 615,-367 609,-367 603,-361 603,-355 603,-355 603,-304 603,-304 603,-298 609,-292 615,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="780" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 516,-292 516,-292 522,-292 528,-298 528,-304 528,-304 528,-355 528,-355 528,-361 522,-367 516,-367 516,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="264" y="-351.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M708.5,-375C708.5,-375 1260,-375 1260,-375 1266,-375 1272,-381 1272,-387 1272,-387 1272,-438 1272,-438 1272,-444 1266,-450 1260,-450 1260,-450 708.5,-450 708.5,-450 702.5,-450 696.5,-444 696.5,-438 696.5,-438 696.5,-387 696.5,-387 696.5,-381 702.5,-375 708.5,-375" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="984.25" y="-434.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M156.5,-256C156.5,-256 104.5,-256 104.5,-256 98.5,-256 92.5,-250 92.5,-244 92.5,-244 92.5,-232 92.5,-232 92.5,-226 98.5,-220 104.5,-220 104.5,-220 156.5,-220 156.5,-220 162.5,-220 168.5,-226 168.5,-232 168.5,-232 168.5,-244 168.5,-244 168.5,-250 162.5,-256 156.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="130.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M151.5,-188C151.5,-188 109.5,-188 109.5,-188 103.5,-188 97.5,-182 97.5,-176 97.5,-176 97.5,-164 97.5,-164 97.5,-158 103.5,-152 109.5,-152 109.5,-152 151.5,-152 151.5,-152 157.5,-152 163.5,-158 163.5,-164 163.5,-164 163.5,-176 163.5,-176 163.5,-182 157.5,-188 151.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="130.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M145.5,-120C145.5,-120 115.5,-120 115.5,-120 109.5,-120 103.5,-114 103.5,-108 103.5,-108 103.5,-96 103.5,-96 103.5,-90 109.5,-84 115.5,-84 115.5,-84 145.5,-84 145.5,-84 151.5,-84 157.5,-90 157.5,-96 157.5,-96 157.5,-108 157.5,-108 157.5,-114 151.5,-120 145.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="130.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M158.5,-52C158.5,-52 102.5,-52 102.5,-52 96.5,-52 90.5,-46 90.5,-40 90.5,-40 90.5,-28 90.5,-28 90.5,-22 96.5,-16 102.5,-16 102.5,-16 158.5,-16 158.5,-16 164.5,-16 170.5,-22 170.5,-28 170.5,-28 170.5,-40 170.5,-40 170.5,-46 164.5,-52 158.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="130.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_468815016 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_468815016</title>
+
+                    
+
+                    <path d="M470,-336C470,-336 290,-336 290,-336 284,-336 278,-330 278,-324 278,-324 278,-312 278,-312 278,-306 284,-300 290,-300 290,-300 470,-300 470,-300 476,-300 482,-306 482,-312 482,-312 482,-324 482,-324 482,-330 476,-336 470,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="380" y="-315.5">Git Commit ID Maven Plugin old coordinates</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_2019787942 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_2019787942</title>
+
+                    
+
+                    <path d="M937,-336C937,-336 623,-336 623,-336 617,-336 611,-330 611,-324 611,-324 611,-312 611,-312 611,-306 617,-300 623,-300 623,-300 937,-300 937,-300 943,-300 949,-306 949,-312 949,-312 949,-324 949,-324 949,-330 943,-336 937,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="780" y="-315.5">Transformation * &nbsp;git-commit-id plugin coordinates * FullAutomation / EASY</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_468815016&#45;&gt;C_2019787942 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_468815016-&gt;C_2019787942</title>
+
+                    
+
+                    <path d="M482.2,-318C518.95,-318 561.62,-318 602.96,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="603.16,-320.63 610.66,-318 603.16,-315.38 603.16,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="565.5" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_307749117 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_307749117</title>
+
+                    
+
+                    <path d="M203,-336C203,-336 58,-336 58,-336 52,-336 46,-330 46,-324 46,-324 46,-312 46,-312 46,-306 52,-300 58,-300 58,-300 203,-300 203,-300 209,-300 215,-306 215,-312 215,-312 215,-324 215,-324 215,-330 209,-336 203,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="130.5" y="-315.5">Build and Dependency Management</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_307749117&#45;&gt;S_468815016 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>S_307749117-&gt;S_468815016</title>
+
+                    
+
+                    <path d="M215.29,-318C235.35,-318 256.97,-318 277.72,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1344491827 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1344491827</title>
+
+                    
+
+                    <path d="M1252,-419C1252,-419 1047,-419 1047,-419 1041,-419 1035,-413 1035,-407 1035,-407 1035,-395 1035,-395 1035,-389 1041,-383 1047,-383 1047,-383 1252,-383 1252,-383 1258,-383 1264,-389 1264,-395 1264,-395 1264,-407 1264,-407 1264,-413 1258,-419 1252,-419" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1149.5" y="-398.5">Maven plugin configuration compatible with Boot 3</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_2019787942&#45;&gt;T_1344491827 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_2019787942-&gt;T_1344491827</title>
+
+                    
+
+                    <path d="M860.74,-336.01C919.87,-349.36 1000.43,-367.56 1061.28,-381.3" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1060.7,-383.86 1068.6,-382.95 1061.86,-378.74 1060.7,-383.86" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="992" y="-368.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1956071195 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_1956071195</title>
+
+                    
+
+                    <path d="M843.5,-419C843.5,-419 716.5,-419 716.5,-419 710.5,-419 704.5,-413 704.5,-407 704.5,-407 704.5,-395 704.5,-395 704.5,-389 710.5,-383 716.5,-383 716.5,-383 843.5,-383 843.5,-383 849.5,-383 855.5,-389 855.5,-395 855.5,-395 855.5,-407 855.5,-407 855.5,-413 849.5,-419 843.5,-419" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="780" y="-398.5">Spring Boot 3 Platform Baseline</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1956071195&#45;&gt;T_1344491827 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>T_1956071195-&gt;T_1344491827</title>
+
+                    
+
+                    <path d="M855.81,-401C907.23,-401 976.46,-401 1034.68,-401" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>

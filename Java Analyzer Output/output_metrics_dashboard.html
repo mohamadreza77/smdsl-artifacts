@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SMDSL Dashboard - JUnit4-to-JUnit5-SMDSL-v2</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1f2937;--muted:#64748b;--line:#e5e7eb;--shadow:0 12px 30px rgba(15,23,42,.08);--green:#d9ead3;--yellow:#fff2cc;--orange:#fce5cd;--red:#f4cccc;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}a{color:#1d4ed8;text-decoration:none}.hero{display:flex;justify-content:space-between;gap:24px;align-items:center;padding:40px 56px;background:linear-gradient(135deg,#111827,#334155);color:white}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12px;color:#cbd5e1;margin:0 0 8px}.hero h1{font-size:36px;margin:0}.subtitle{color:#dbeafe}.hero-risk{min-width:180px;border-radius:18px;padding:18px;text-align:center;color:#111827;box-shadow:var(--shadow)}.hero-risk span,.hero-risk em{display:block}.hero-risk strong{display:block;font-size:28px}.nav{position:sticky;top:0;z-index:10;background:white;border-bottom:1px solid var(--line);padding:10px 56px;display:flex;gap:18px;flex-wrap:wrap}.section{margin:28px 56px;padding:28px;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}.section h2{margin-top:0;font-size:26px}.section-note{color:var(--muted);max-width:1050px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}.card{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff}.card span{color:var(--muted);font-size:13px}.card strong{display:block;font-size:28px;margin:8px 0}.grid.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}.metric{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff}.metric-head{display:flex;justify-content:space-between;gap:12px;margin-bottom:12px}.bar{height:12px;background:#e5e7eb;border-radius:999px;overflow:hidden}.bar i{display:block;height:100%;background:#2563eb;border-radius:999px}.panel{border:1px solid var(--line);border-radius:18px;background:white;padding:18px;margin-top:16px}.panel summary{cursor:pointer;font-weight:700;display:flex;justify-content:space-between;gap:16px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:18px;background:#fff}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}thead th{position:sticky;top:0;background:#f8fafc;z-index:1}.badge,.type-pill{display:inline-block;border-radius:999px;padding:4px 10px;font-weight:700;font-size:12px}.risk-low{background:var(--green)}.risk-medium{background:var(--yellow)}.risk-high{background:var(--orange)}.risk-critical{background:var(--red)}.type-pill{background:#e0f2fe;color:#075985}.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}.small-metric{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:12px}.small-metric span{display:block;color:var(--muted);font-size:12px}.small-metric strong{font-size:20px}.compact-list{margin:10px 0 0;padding-left:20px}.compact-list li{margin:6px 0}.mini-row{display:grid;grid-template-columns:minmax(220px,1fr) 2fr 70px;gap:12px;align-items:center;margin:12px 0}.search{width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:14px;font-size:15px;margin:0 0 14px}.success{background:var(--green)}.footer{text-align:center;color:var(--muted);padding:30px}@media(max-width:760px){.hero{display:block;padding:28px}.nav{padding:10px 24px}.section{margin:18px 18px;padding:20px}.mini-row{grid-template-columns:1fr}.hero-risk{margin-top:18px}}
+</style>
+<script>
+function filterTable(inputId,tableId){var q=document.getElementById(inputId).value.toLowerCase();var rows=document.querySelectorAll('#'+tableId+' tbody tr');rows.forEach(function(r){r.style.display=r.innerText.toLowerCase().indexOf(q)>=0?'':'none';});}
+</script>
+</head>
+<body>
+<header class="hero">
+  <div>
+    <p class="eyebrow">SMDSL Analyzer Dashboard</p>
+    <h1>JUnit4-to-JUnit5-SMDSL-v2</h1>
+    <p class="subtitle"><strong>JUnit 4</strong> &rarr; <strong>JUnit 5 / JUnit Jupiter and JUnit Platform</strong></p>
+  </div>
+  <div class="hero-risk risk-critical">
+    <span>Overall risk</span>
+    <strong>CRITICAL</strong>
+    <em>score 111</em>
+  </div>
+</header>
+<nav class="nav">
+  <a href="#summary">Summary</a>
+  <a href="#coverage">Coverage</a>
+  <a href="#effort">Effort</a>
+  <a href="#mapping-risk">Mapping risk</a>
+  <a href="#warnings">Warnings</a>
+  <a href="#correspondences">Correspondences</a>
+</nav>
+<section id="summary" class="section">
+<h2>Executive summary</h2>
+<div class="cards">
+<div class="card"><span>Source features</span><strong>94</strong><small>Platform concepts captured for the source side.</small></div>
+<div class="card"><span>Target features</span><strong>111</strong><small>Platform concepts captured for the target side.</small></div>
+<div class="card"><span>Mappings</span><strong>8</strong><small>Top-level migration knowledge groups.</small></div>
+<div class="card"><span>Correspondences</span><strong>76</strong><small>Transformations, preservations, bridges, and semantic effects.</small></div>
+<div class="card"><span>Transformations</span><strong>54</strong><small>Source-to-target migration relations.</small></div>
+<div class="card"><span>Strategy steps</span><strong>212</strong><small>Automated and manual migration steps.</small></div>
+<div class="card"><span>Manual step ratio</span><strong>55.7%</strong><small>Manual effort among all strategy steps.</small></div>
+<div class="card"><span>Warnings</span><strong>5</strong><small>Model-quality warnings detected by the analyzer.</small></div>
+</div>
+</section>
+<section id="coverage" class="section">
+<h2>Coverage analysis</h2>
+<p class="section-note">Transformation coverage only counts source features that directly participate as transformation sources. Mentioned coverage also considers preservation, bridges, semantic effects, applicability conditions, and pre-migration requirements.</p>
+<div class="grid two">
+<div class="metric"><div class="metric-head"><strong>Source transformation coverage</strong><span>50 / 94 (53.2%)</span></div><div class="bar"><i style="width:53.2%"></i></div></div>
+<div class="metric"><div class="metric-head"><strong>Source mentioned coverage</strong><span>78 / 94 (83.0%)</span></div><div class="bar"><i style="width:83.0%"></i></div></div>
+<div class="metric"><div class="metric-head"><strong>Target used coverage</strong><span>84 / 111 (75.7%)</span></div><div class="bar"><i style="width:75.7%"></i></div></div>
+<div class="metric"><div class="metric-head"><strong>Target mentioned coverage</strong><span>88 / 111 (79.3%)</span></div><div class="bar"><i style="width:79.3%"></i></div></div>
+</div>
+<details class="panel"><summary>Unmentioned source features (16)</summary><ul class="compact-list">
+<li>Build and Runtime Configuration</li>
+<li>JUnitCore / IDE runner execution</li>
+<li>Test Declaration and Visibility</li>
+<li>Assumptions</li>
+<li>Exception Testing</li>
+<li>Timeout Testing</li>
+<li>Parameterized Runner</li>
+<li>Suite Runner</li>
+<li>Categories Runner</li>
+<li>Theories Runner</li>
+<li>Enclosed Runner</li>
+<li>Suites and Aggregation</li>
+<li>JUnit 4 suite class body</li>
+<li>Method Ordering</li>
+<li>Theories</li>
+<li>Legacy JUnit 3/4 TestCase Style</li>
+</ul>
+</details>
+<details class="panel"><summary>Unmentioned target features (23)</summary><ul class="compact-list">
+<li>junit-platform-suite</li>
+<li>Jupiter Test Declaration</li>
+<li>execution conditions</li>
+<li>Jupiter Assumptions</li>
+<li>org.junit.jupiter.api.Assumptions</li>
+<li>Jupiter Timeout and Exception Constructs</li>
+<li>assertTimeout block</li>
+<li>assertTimeoutPreemptively block</li>
+<li>TestReporter parameter</li>
+<li>JUnit 4 Migration Support</li>
+<li>Platform Suites</li>
+<li>@IncludeTags</li>
+<li>@ExcludeTags</li>
+<li>@IncludeClassNamePatterns</li>
+<li>@IncludeEngines</li>
+<li>@ExcludeEngines</li>
+<li>Tags and Filtering</li>
+<li>Method Ordering in Jupiter</li>
+<li>MethodOrderer.DisplayName</li>
+<li>@CsvFileSource</li>
+<li>@EnumSource</li>
+<li>Jupiter Dynamic and Nested Tests</li>
+<li>Jupiter TestCase Migration Style</li>
+</ul>
+</details>
+</section>
+<section id="effort" class="section">
+<h2>Effort analysis</h2>
+<div class="cards">
+<div class="card"><span>Automated steps</span><strong>94</strong><small>Strategy steps marked as A.</small></div>
+<div class="card"><span>Manual steps</span><strong>118</strong><small>Strategy steps marked as M.</small></div>
+<div class="card"><span>NoDirectMappings</span><strong>7</strong><small>Transformations without direct target equivalence.</small></div>
+<div class="card"><span>OperatorHelp</span><strong>35</strong><small>Transformations requiring operator involvement.</small></div>
+</div>
+<div class="panel">
+<h3>Manual effort by mapping</h3>
+<div class="mini-row">
+<span>Build Runtime and Gradual Migration</span>
+<div class="bar"><i style="width:35.7%"></i></div>
+<strong>35.7%</strong>
+</div>
+<div class="mini-row">
+<span>Core Test Annotation and Lifecycle Migration</span>
+<div class="bar"><i style="width:29.2%"></i></div>
+<strong>29.2%</strong>
+</div>
+<div class="mini-row">
+<span>Assertions and Assumptions Migration</span>
+<div class="bar"><i style="width:35.7%"></i></div>
+<strong>35.7%</strong>
+</div>
+<div class="mini-row">
+<span>Exception and Timeout Migration</span>
+<div class="bar"><i style="width:62.5%"></i></div>
+<strong>62.5%</strong>
+</div>
+<div class="mini-row">
+<span>Rules ClassRules and Extension Model Migration</span>
+<div class="bar"><i style="width:76.9%"></i></div>
+<strong>76.9%</strong>
+</div>
+<div class="mini-row">
+<span>Runner Suite Category and Ordering Migration</span>
+<div class="bar"><i style="width:65.4%"></i></div>
+<strong>65.4%</strong>
+</div>
+<div class="mini-row">
+<span>Parameterized Theories and Advanced Test Forms</span>
+<div class="bar"><i style="width:62.5%"></i></div>
+<strong>62.5%</strong>
+</div>
+<div class="mini-row">
+<span>Legacy TestCase and Tool-Assisted Migration</span>
+<div class="bar"><i style="width:28.6%"></i></div>
+<strong>28.6%</strong>
+</div>
+</div>
+</section>
+<section id="mapping-risk" class="section">
+<h2>Mapping-level risk</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Mapping</th><th>Corr.</th><th>Trans.</th><th>NoDirect</th><th>OpHelp</th><th>Manual steps</th><th>Automated steps</th><th>Manual %</th><th>Risk</th></tr></thead>
+<tbody>
+<tr>
+<td>Build Runtime and Gradual Migration</td><td>6</td><td>3</td><td>0</td><td>3</td><td>5</td><td>9</td><td>35.7%</td><td><span class="badge risk-medium">MEDIUM 5</span></td></tr>
+<tr>
+<td>Core Test Annotation and Lifecycle Migration</td><td>10</td><td>7</td><td>0</td><td>3</td><td>7</td><td>17</td><td>29.2%</td><td><span class="badge risk-medium">MEDIUM 5</span></td></tr>
+<tr>
+<td>Assertions and Assumptions Migration</td><td>10</td><td>7</td><td>3</td><td>2</td><td>10</td><td>18</td><td>35.7%</td><td><span class="badge risk-high">HIGH 15</span></td></tr>
+<tr>
+<td>Exception and Timeout Migration</td><td>7</td><td>4</td><td>0</td><td>4</td><td>15</td><td>9</td><td>62.5%</td><td><span class="badge risk-high">HIGH 12</span></td></tr>
+<tr>
+<td>Rules ClassRules and Extension Model Migration</td><td>12</td><td>8</td><td>1</td><td>7</td><td>30</td><td>9</td><td>76.9%</td><td><span class="badge risk-high">HIGH 22</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td>18</td><td>15</td><td>2</td><td>11</td><td>34</td><td>18</td><td>65.4%</td><td><span class="badge risk-critical">CRITICAL 31</span></td></tr>
+<tr>
+<td>Parameterized Theories and Advanced Test Forms</td><td>10</td><td>8</td><td>1</td><td>4</td><td>15</td><td>9</td><td>62.5%</td><td><span class="badge risk-high">HIGH 18</span></td></tr>
+<tr>
+<td>Legacy TestCase and Tool-Assisted Migration</td><td>3</td><td>2</td><td>0</td><td>1</td><td>2</td><td>5</td><td>28.6%</td><td><span class="badge risk-low">LOW 3</span></td></tr>
+</tbody></table></div>
+</section>
+<section id="risk-explanation" class="section">
+<h2>Risk explanation</h2>
+<p class="section-note">Risk scores are lightweight configurable heuristics. They are intended to identify migration knowledge that may require additional attention, not to provide a universal risk model.</p>
+<details class="panel risk-detail"><summary><span>Runner Suite Category and Ordering Migration</span><span class="badge risk-critical">CRITICAL 31</span></summary>
+<div class="detail-grid">
+<div class="small-metric"><span>Manual ratio</span><strong>65.4%</strong></div>
+<div class="small-metric"><span>NoDirectMappings</span><strong>2</strong></div>
+<div class="small-metric"><span>OperatorHelp</span><strong>11</strong></div>
+<div class="small-metric"><span>Cleanup bridges</span><strong>0</strong></div>
+<div class="small-metric"><span>Risky effects</span><strong>2</strong></div>
+<div class="small-metric"><span>Missing strategies</span><strong>0</strong></div>
+</div>
+<ul class="compact-list">
+<li>Transformation &#39;General @RunWith to @ExtendWith&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;General @RunWith to @ExtendWith&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;MockitoJUnitRunner to MockitoExtension&#39;: OperatorHelp (+1) <strong>x 2</strong></li>
+<li>Transformation &#39;SpringRunner to SpringExtension&#39;: OperatorHelp (+1) <strong>x 2</strong></li>
+<li>Transformation &#39;Custom Runner to Jupiter Extension Redesign&#39;: NoDirectMapping (+3)</li>
+<li>Transformation &#39;Custom Runner to Jupiter Extension Redesign&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;JUnit 4 Suite Runner to JUnit Platform Suite&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;JUnit 4 Suite Runner to JUnit Platform Suite&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;Suite Selected Classes to SelectPackages&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;Suite Selected Classes to SelectPackages&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;Categories to Tags&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;Categories to Tags&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;Method-level Category to Method-level Tag&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;@FixMethodOrder to @TestMethodOrder&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;@FixMethodOrder to @TestMethodOrder&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;MethodSorters.DEFAULT Approximation&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;MethodSorters.DEFAULT Approximation&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;MethodSorters.JVM Approximation&#39;: NoDirectMapping (+3)</li>
+<li>Transformation &#39;MethodSorters.JVM Approximation&#39;: Manual-heavy strategy (+1)</li>
+<li>SemanticEffect &#39;JUnit 4 Runners Not Natively Supported By Jupiter&#39;: Support removed (+2)</li>
+<li>SemanticEffect &#39;Category Marker Interfaces Become String Tags&#39;: Behavior change (+2)</li>
+<li>SemanticEffect &#39;Method Orderer Approximation Requires Validation&#39;: Validation required (+2)</li>
+</ul>
+</details>
+<details class="panel risk-detail"><summary><span>Rules ClassRules and Extension Model Migration</span><span class="badge risk-high">HIGH 22</span></summary>
+<div class="detail-grid">
+<div class="small-metric"><span>Manual ratio</span><strong>76.9%</strong></div>
+<div class="small-metric"><span>NoDirectMappings</span><strong>1</strong></div>
+<div class="small-metric"><span>OperatorHelp</span><strong>7</strong></div>
+<div class="small-metric"><span>Cleanup bridges</span><strong>1</strong></div>
+<div class="small-metric"><span>Risky effects</span><strong>1</strong></div>
+<div class="small-metric"><span>Missing strategies</span><strong>0</strong></div>
+</div>
+<ul class="compact-list">
+<li>Transformation &#39;TemporaryFolder Rule to @TempDir&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;ExternalResource Rule to Extension Callbacks&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;ExternalResource Rule to Extension Callbacks&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;Verifier and ErrorCollector Rules&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;Verifier and ErrorCollector Rules&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;ErrorCollector Rule to assertAll&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;ErrorCollector Rule to assertAll&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;TestName Rule to TestInfo Parameter&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;TestWatcher Rule to Jupiter TestWatcher Extension&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;TestWatcher Rule to Jupiter TestWatcher Extension&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;Custom @Rule to @RegisterExtension or @ExtendWith&#39;: NoDirectMapping (+3)</li>
+<li>Transformation &#39;Custom @Rule to @RegisterExtension or @ExtendWith&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;@ClassRule to Static @RegisterExtension or Class-Level Extension&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;@ClassRule to Static @RegisterExtension or Class-Level Extension&#39;: Manual-heavy strategy (+1)</li>
+<li>Bridge &#39;JUnit Jupiter Migration Support Bridge for Selected Rules&#39;: Cleanup-required bridge (+1)</li>
+<li>SemanticEffect &#39;JUnit 4 Rules Not Natively Supported By Jupiter&#39;: Support removed (+2)</li>
+<li>SemanticEffect &#39;Custom Rule Redesign Risk&#39;: Risk introduced (+3)</li>
+</ul>
+</details>
+<details class="panel risk-detail"><summary><span>Parameterized Theories and Advanced Test Forms</span><span class="badge risk-high">HIGH 18</span></summary>
+<div class="detail-grid">
+<div class="small-metric"><span>Manual ratio</span><strong>62.5%</strong></div>
+<div class="small-metric"><span>NoDirectMappings</span><strong>1</strong></div>
+<div class="small-metric"><span>OperatorHelp</span><strong>4</strong></div>
+<div class="small-metric"><span>Cleanup bridges</span><strong>0</strong></div>
+<div class="small-metric"><span>Risky effects</span><strong>1</strong></div>
+<div class="small-metric"><span>Missing strategies</span><strong>3</strong></div>
+</div>
+<ul class="compact-list">
+<li>Transformation &#39;JUnit 4 Parameterized Runner to Jupiter @ParameterizedTest&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;JUnit 4 Parameterized Runner to Jupiter @ParameterizedTest&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;@Parameters factory to @MethodSource&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;@Parameters factory to @MethodSource&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;@Parameter field injection to method parameters&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;@Parameter field injection to method parameters&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;JUnit 4 Theories to Jupiter Parameterized or Dynamic Tests&#39;: NoDirectMapping (+3)</li>
+<li>Transformation &#39;JUnit 4 Theories to Jupiter Parameterized or Dynamic Tests&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;JUnit 4 Parameterized Class to Jupiter @ParameterizedClass&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;@BeforeParam to @BeforeParameterizedClassInvocation&#39;: Missing strategy (+1)</li>
+<li>Transformation &#39;@AfterParam to @AfterParameterizedClassInvocation&#39;: Missing strategy (+1)</li>
+<li>Transformation &#39;@Parameter to Jupiter Parameter&#39;: Missing strategy (+1)</li>
+<li>SemanticEffect &#39;Parameterized Runner Migration May Restructure Test Shape&#39;: Behavior change (+2)</li>
+<li>SemanticEffect &#39;Theories Have No Direct Jupiter Equivalent&#39;: Support removed (+2)</li>
+</ul>
+</details>
+<details class="panel risk-detail"><summary><span>Assertions and Assumptions Migration</span><span class="badge risk-high">HIGH 15</span></summary>
+<div class="detail-grid">
+<div class="small-metric"><span>Manual ratio</span><strong>35.7%</strong></div>
+<div class="small-metric"><span>NoDirectMappings</span><strong>3</strong></div>
+<div class="small-metric"><span>OperatorHelp</span><strong>2</strong></div>
+<div class="small-metric"><span>Cleanup bridges</span><strong>0</strong></div>
+<div class="small-metric"><span>Risky effects</span><strong>1</strong></div>
+<div class="small-metric"><span>Missing strategies</span><strong>0</strong></div>
+</div>
+<ul class="compact-list">
+<li>Transformation &#39;JUnit 4 Assert Imports to Jupiter Assertions&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;Message-first Assertion Arguments to Message-last Assertion Arguments&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;Assume.assumeNoException Approximation&#39;: NoDirectMapping (+3)</li>
+<li>Transformation &#39;Assume.assumeNotNull Approximation&#39;: NoDirectMapping (+3)</li>
+<li>Transformation &#39;Assume.assumeThat and Hamcrest Assumptions&#39;: NoDirectMapping (+3)</li>
+<li>Transformation &#39;Assume.assumeThat and Hamcrest Assumptions&#39;: Manual-heavy strategy (+1)</li>
+<li>SemanticEffect &#39;Failure Message Argument Order Changed&#39;: Configuration semantics changed (+1)</li>
+<li>SemanticEffect &#39;Matcher-Based Assumption Requires Validation&#39;: Validation required (+2)</li>
+</ul>
+</details>
+<details class="panel risk-detail"><summary><span>Exception and Timeout Migration</span><span class="badge risk-high">HIGH 12</span></summary>
+<div class="detail-grid">
+<div class="small-metric"><span>Manual ratio</span><strong>62.5%</strong></div>
+<div class="small-metric"><span>NoDirectMappings</span><strong>0</strong></div>
+<div class="small-metric"><span>OperatorHelp</span><strong>4</strong></div>
+<div class="small-metric"><span>Cleanup bridges</span><strong>0</strong></div>
+<div class="small-metric"><span>Risky effects</span><strong>1</strong></div>
+<div class="small-metric"><span>Missing strategies</span><strong>0</strong></div>
+</div>
+<ul class="compact-list">
+<li>Transformation &#39;@Test(expected) to assertThrows&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;@Test(expected) to assertThrows&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;ExpectedException Rule to assertThrows or Migration Support&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;ExpectedException Rule to assertThrows or Migration Support&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;@Test(timeout) to Timeout Constructs&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;@Test(timeout) to Timeout Constructs&#39;: Manual-heavy strategy (+1)</li>
+<li>Transformation &#39;Timeout Rule to @Timeout or Timeout Assertions&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;Timeout Rule to @Timeout or Timeout Assertions&#39;: Manual-heavy strategy (+1)</li>
+<li>SemanticEffect &#39;Expected Exception Attribute Removed From @Test&#39;: Support removed (+2)</li>
+<li>SemanticEffect &#39;Timeout Annotation Semantics Need Selection&#39;: Validation required (+2)</li>
+</ul>
+</details>
+<details class="panel risk-detail"><summary><span>Build Runtime and Gradual Migration</span><span class="badge risk-medium">MEDIUM 5</span></summary>
+<div class="detail-grid">
+<div class="small-metric"><span>Manual ratio</span><strong>35.7%</strong></div>
+<div class="small-metric"><span>NoDirectMappings</span><strong>0</strong></div>
+<div class="small-metric"><span>OperatorHelp</span><strong>3</strong></div>
+<div class="small-metric"><span>Cleanup bridges</span><strong>1</strong></div>
+<div class="small-metric"><span>Risky effects</span><strong>0</strong></div>
+<div class="small-metric"><span>Missing strategies</span><strong>0</strong></div>
+</div>
+<ul class="compact-list">
+<li>Transformation &#39;JUnit 4 Runtime to JUnit Vintage Engine&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;JUnit 4 Build Dependencies to Jupiter Dependencies&#39;: OperatorHelp (+1)</li>
+<li>Bridge &#39;JUnit Vintage Engine Coexistence Bridge&#39;: Cleanup-required bridge (+1)</li>
+<li>SemanticEffect &#39;Vintage Engine Temporary and Deprecated Support&#39;: Support deprecated (+1)</li>
+<li>Transformation &#39;JUnit 4 Build Execution to JUnit Platform Execution&#39;: OperatorHelp (+1)</li>
+</ul>
+</details>
+<details class="panel risk-detail"><summary><span>Core Test Annotation and Lifecycle Migration</span><span class="badge risk-medium">MEDIUM 5</span></summary>
+<div class="detail-grid">
+<div class="small-metric"><span>Manual ratio</span><strong>29.2%</strong></div>
+<div class="small-metric"><span>NoDirectMappings</span><strong>0</strong></div>
+<div class="small-metric"><span>OperatorHelp</span><strong>3</strong></div>
+<div class="small-metric"><span>Cleanup bridges</span><strong>0</strong></div>
+<div class="small-metric"><span>Risky effects</span><strong>0</strong></div>
+<div class="small-metric"><span>Missing strategies</span><strong>0</strong></div>
+</div>
+<ul class="compact-list">
+<li>Transformation &#39;@Test Annotation to Jupiter @Test&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;@BeforeClass and @AfterClass to @BeforeAll and @AfterAll&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;@Ignore to @Disabled or Migration-Support IgnoreCondition&#39;: OperatorHelp (+1)</li>
+<li>Transformation &#39;@Ignore to @Disabled or Migration-Support IgnoreCondition&#39;: Manual-heavy strategy (+1)</li>
+<li>SemanticEffect &#39;Test Member Visibility Requirement Relaxed&#39;: Default value changed (+1)</li>
+</ul>
+</details>
+<details class="panel risk-detail"><summary><span>Legacy TestCase and Tool-Assisted Migration</span><span class="badge risk-low">LOW 3</span></summary>
+<div class="detail-grid">
+<div class="small-metric"><span>Manual ratio</span><strong>28.6%</strong></div>
+<div class="small-metric"><span>NoDirectMappings</span><strong>0</strong></div>
+<div class="small-metric"><span>OperatorHelp</span><strong>1</strong></div>
+<div class="small-metric"><span>Cleanup bridges</span><strong>0</strong></div>
+<div class="small-metric"><span>Risky effects</span><strong>1</strong></div>
+<div class="small-metric"><span>Missing strategies</span><strong>0</strong></div>
+</div>
+<ul class="compact-list">
+<li>Transformation &#39;JUnit 4 TestCase Inheritance to Annotation-Based Jupiter Tests&#39;: OperatorHelp (+1)</li>
+<li>SemanticEffect &#39;Automated Tooling Has Partial Coverage&#39;: Validation required (+2)</li>
+</ul>
+</details>
+</section>
+<section id="warnings" class="section">
+<h2>Warnings and model-improvement suggestions</h2>
+<div class="panel"><h3>Warnings</h3><ul class="compact-list">
+<li>Bridge &#39;JUnit Vintage Engine Coexistence Bridge&#39;: Bridge requires cleanup after migration.</li>
+<li>Bridge &#39;JUnit Jupiter Migration Support Bridge for Selected Rules&#39;: Bridge requires cleanup after migration.</li>
+<li>Transformation &#39;@BeforeParam to @BeforeParameterizedClassInvocation&#39;: Transformation has no strategy.</li>
+<li>Transformation &#39;@AfterParam to @AfterParameterizedClassInvocation&#39;: Transformation has no strategy.</li>
+<li>Transformation &#39;@Parameter to Jupiter Parameter&#39;: Transformation has no strategy.</li>
+</ul></div>
+</section>
+<section id="correspondences" class="section">
+<h2>Correspondence explorer</h2>
+<p class="section-note">Use the search box to filter by mapping, correspondence name, type, source/target feature, automation degree, or risk reason.</p>
+<input id="correspondenceSearch" class="search" type="search" placeholder="Search correspondences..." oninput="filterTable('correspondenceSearch','correspondenceTable')">
+<div class="table-wrap">
+<table id="correspondenceTable">
+<thead><tr><th>Mapping</th><th>Type</th><th>Name</th><th>Source / affected feature</th><th>Target feature(s)</th><th>Automation</th><th>Risk</th></tr></thead>
+<tbody>
+<tr>
+<td>Build Runtime and Gradual Migration</td><td><span class="type-pill">Transformation</span></td><td>JUnit 4 Runtime to JUnit Vintage Engine</td><td>Coexisting JUnit 4 tests during migration</td><td>junit-vintage-engine</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Build Runtime and Gradual Migration</td><td><span class="type-pill">Transformation</span></td><td>JUnit 4 Build Dependencies to Jupiter Dependencies</td><td>junit:junit dependency</td><td>JUnit BOM, junit-jupiter-api, junit-jupiter-engine, junit-platform-launcher</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Build Runtime and Gradual Migration</td><td><span class="type-pill">Bridge</span></td><td>JUnit Vintage Engine Coexistence Bridge</td><td>Coexisting JUnit 4 tests during migration, junit-vintage-engine, junit-platform-launcher</td><td></td><td>WHOLE_MIGRATION</td><td><span title="Cleanup-required bridge (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Build Runtime and Gradual Migration</td><td><span class="type-pill">Preservation</span></td><td>Preserve Unchanged JUnit 4 Tests During Incremental Migration</td><td>Coexisting JUnit 4 tests during migration</td><td></td><td>TEMPORARILY_RETAINED</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Build Runtime and Gradual Migration</td><td><span class="type-pill">SemanticEffect</span></td><td>Vintage Engine Temporary and Deprecated Support</td><td>Coexisting JUnit 4 tests during migration</td><td>junit-vintage-engine</td><td>SUPPORT_DEPRECATED</td><td><span title="Support deprecated (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Build Runtime and Gradual Migration</td><td><span class="type-pill">Transformation</span></td><td>JUnit 4 Build Execution to JUnit Platform Execution</td><td>Maven Surefire / Failsafe JUnit 4 provider</td><td>Maven Surefire / Failsafe JUnit Platform provider, Gradle useJUnitPlatform()</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Core Test Annotation and Lifecycle Migration</td><td><span class="type-pill">Transformation</span></td><td>@Test Annotation to Jupiter @Test</td><td>@Test annotation</td><td>org.junit.jupiter.api.Test</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Core Test Annotation and Lifecycle Migration</td><td><span class="type-pill">Transformation</span></td><td>Public Test Members to Package-Private Jupiter Members</td><td>public test method</td><td>package-private test method</td><td>FullAutomation</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Core Test Annotation and Lifecycle Migration</td><td><span class="type-pill">Transformation</span></td><td>@Before and @After to @BeforeEach and @AfterEach</td><td>@Before</td><td>@BeforeEach</td><td>FullAutomation</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Core Test Annotation and Lifecycle Migration</td><td><span class="type-pill">Transformation</span></td><td>@After to @AfterEach</td><td>@After</td><td>@AfterEach</td><td>FullAutomation</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Core Test Annotation and Lifecycle Migration</td><td><span class="type-pill">Transformation</span></td><td>@BeforeClass and @AfterClass to @BeforeAll and @AfterAll</td><td>@BeforeClass</td><td>@BeforeAll</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Core Test Annotation and Lifecycle Migration</td><td><span class="type-pill">Transformation</span></td><td>@AfterClass to @AfterAll</td><td>@AfterClass</td><td>@AfterAll</td><td>FullAutomation</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Core Test Annotation and Lifecycle Migration</td><td><span class="type-pill">Transformation</span></td><td>@Ignore to @Disabled or Migration-Support IgnoreCondition</td><td>@Ignore</td><td>@Disabled, IgnoreCondition, @EnableJUnit4MigrationSupport</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Core Test Annotation and Lifecycle Migration</td><td><span class="type-pill">Preservation</span></td><td>Preserve Test Method Bodies When Migrating Simple Tests</td><td>test method body</td><td></td><td>SEMANTICALLY_PRESERVED</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Core Test Annotation and Lifecycle Migration</td><td><span class="type-pill">Preservation</span></td><td>Optional Preservation of Public Visibility</td><td>public test class, public test method</td><td></td><td>UNCHANGED</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Core Test Annotation and Lifecycle Migration</td><td><span class="type-pill">SemanticEffect</span></td><td>Test Member Visibility Requirement Relaxed</td><td>public test class, public test method</td><td>package-private test class, package-private test method</td><td>DEFAULT_VALUE_CHANGED</td><td><span title="Default value changed (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Assertions and Assumptions Migration</td><td><span class="type-pill">Transformation</span></td><td>JUnit 4 Assert Imports to Jupiter Assertions</td><td>org.junit.Assert imports</td><td>org.junit.jupiter.api.Assertions</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Assertions and Assumptions Migration</td><td><span class="type-pill">Transformation</span></td><td>Message-first Assertion Arguments to Message-last Assertion Arguments</td><td>message-first assertion arguments</td><td>message-last assertion arguments, lazy failure message Supplier</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Assertions and Assumptions Migration</td><td><span class="type-pill">Transformation</span></td><td>Assume.assumeTrue / assumeFalse to Jupiter assumeTrue / assumeFalse</td><td>Assume.assumeTrue</td><td>assumeTrue</td><td>FullAutomation</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Assertions and Assumptions Migration</td><td><span class="type-pill">Transformation</span></td><td>Assume.assumeFalse to Jupiter assumeFalse</td><td>Assume.assumeFalse</td><td>assumeFalse</td><td>FullAutomation</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Assertions and Assumptions Migration</td><td><span class="type-pill">Transformation</span></td><td>Assume.assumeNoException Approximation</td><td>Assume.assumeNoException</td><td>assumeTrue, assumeFalse</td><td>NoDirectMapping</td><td><span title="NoDirectMapping (+3)" class="badge risk-low">3</span></td></tr>
+<tr>
+<td>Assertions and Assumptions Migration</td><td><span class="type-pill">Transformation</span></td><td>Assume.assumeNotNull Approximation</td><td>Assume.assumeNotNull</td><td>assumeTrue, assumeFalse</td><td>NoDirectMapping</td><td><span title="NoDirectMapping (+3)" class="badge risk-low">3</span></td></tr>
+<tr>
+<td>Assertions and Assumptions Migration</td><td><span class="type-pill">Transformation</span></td><td>Assume.assumeThat and Hamcrest Assumptions</td><td>Assume.assumeThat</td><td>assumeTrue, assumingThat</td><td>NoDirectMapping</td><td><span title="NoDirectMapping (+3); Manual-heavy strategy (+1)" class="badge risk-low">4</span></td></tr>
+<tr>
+<td>Assertions and Assumptions Migration</td><td><span class="type-pill">Preservation</span></td><td>Preserve Third-Party Assertion Libraries</td><td>assertThat with Hamcrest, third-party assertion library usage</td><td></td><td>UNCHANGED</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Assertions and Assumptions Migration</td><td><span class="type-pill">SemanticEffect</span></td><td>Failure Message Argument Order Changed</td><td>message-first assertion arguments, Assume.assumeTrue, Assume.assumeFalse</td><td>message-last assertion arguments, lazy failure message Supplier</td><td>CONFIGURATION_SEMANTICS_CHANGED</td><td><span title="Configuration semantics changed (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Assertions and Assumptions Migration</td><td><span class="type-pill">SemanticEffect</span></td><td>Matcher-Based Assumption Requires Validation</td><td>Assume.assumeThat</td><td>assumeTrue, assumeFalse, assumingThat</td><td>VALIDATION_REQUIRED</td><td><span title="Validation required (+2)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Exception and Timeout Migration</td><td><span class="type-pill">Transformation</span></td><td>@Test(expected) to assertThrows</td><td>@Test(expected)</td><td>assertThrows, assertThrows block</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Exception and Timeout Migration</td><td><span class="type-pill">Transformation</span></td><td>ExpectedException Rule to assertThrows or Migration Support</td><td>ExpectedException Rule</td><td>assertThrows, ExpectedExceptionSupport, @EnableRuleMigrationSupport</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Exception and Timeout Migration</td><td><span class="type-pill">Transformation</span></td><td>@Test(timeout) to Timeout Constructs</td><td>@Test(timeout)</td><td>@Timeout, assertTimeout, assertTimeoutPreemptively</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Exception and Timeout Migration</td><td><span class="type-pill">Transformation</span></td><td>Timeout Rule to @Timeout or Timeout Assertions</td><td>Timeout Rule</td><td>@Timeout, assertTimeout, assertTimeoutPreemptively</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Exception and Timeout Migration</td><td><span class="type-pill">SemanticEffect</span></td><td>Expected Exception Attribute Removed From @Test</td><td>@Test(expected), exception message expectation, exception cause expectation</td><td>assertThrows, assertThrowsExactly, assertThrows block</td><td>SUPPORT_REMOVED</td><td><span title="Support removed (+2)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Exception and Timeout Migration</td><td><span class="type-pill">SemanticEffect</span></td><td>Timeout Annotation Semantics Need Selection</td><td>@Test(timeout), Timeout Rule</td><td>@Timeout, assertTimeout, assertTimeoutPreemptively</td><td>VALIDATION_REQUIRED</td><td><span title="Validation required (+2)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Exception and Timeout Migration</td><td><span class="type-pill">Preservation</span></td><td>Preserve Exception Type Intent</td><td>@Test(expected), ExpectedException Rule</td><td></td><td>SEMANTICALLY_PRESERVED</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Rules ClassRules and Extension Model Migration</td><td><span class="type-pill">Transformation</span></td><td>TemporaryFolder Rule to @TempDir</td><td>TemporaryFolder Rule</td><td>TempDirectory / @TempDir</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Rules ClassRules and Extension Model Migration</td><td><span class="type-pill">Transformation</span></td><td>ExternalResource Rule to Extension Callbacks</td><td>ExternalResource Rule</td><td>BeforeEachCallback, AfterEachCallback, BeforeAllCallback, AfterAllCallback, ExternalResourceSupport</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Rules ClassRules and Extension Model Migration</td><td><span class="type-pill">Transformation</span></td><td>Verifier and ErrorCollector Rules</td><td>Verifier Rule</td><td>VerifierSupport, assertAll, AfterEachCallback</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Rules ClassRules and Extension Model Migration</td><td><span class="type-pill">Transformation</span></td><td>ErrorCollector Rule to assertAll</td><td>ErrorCollector Rule</td><td>assertAll</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Rules ClassRules and Extension Model Migration</td><td><span class="type-pill">Transformation</span></td><td>TestName Rule to TestInfo Parameter</td><td>TestName Rule</td><td>TestInfo parameter</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Rules ClassRules and Extension Model Migration</td><td><span class="type-pill">Transformation</span></td><td>TestWatcher Rule to Jupiter TestWatcher Extension</td><td>TestWatcher Rule</td><td>TestWatcher extension, @RegisterExtension, @ExtendWith</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Rules ClassRules and Extension Model Migration</td><td><span class="type-pill">Transformation</span></td><td>Custom @Rule to @RegisterExtension or @ExtendWith</td><td>Custom TestRule</td><td>@RegisterExtension, @ExtendWith, BeforeEachCallback, AfterEachCallback, ExecutionCondition, ParameterResolver</td><td>NoDirectMapping</td><td><span title="NoDirectMapping (+3); Manual-heavy strategy (+1)" class="badge risk-low">4</span></td></tr>
+<tr>
+<td>Rules ClassRules and Extension Model Migration</td><td><span class="type-pill">Transformation</span></td><td>@ClassRule to Static @RegisterExtension or Class-Level Extension</td><td>@ClassRule</td><td>static @RegisterExtension, @ExtendWith, BeforeAllCallback, AfterAllCallback</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Rules ClassRules and Extension Model Migration</td><td><span class="type-pill">Bridge</span></td><td>JUnit Jupiter Migration Support Bridge for Selected Rules</td><td>junit-jupiter-migrationsupport, @EnableRuleMigrationSupport, @EnableJUnit4MigrationSupport, ExternalResourceSupport, VerifierSupport, ExpectedExceptionSupport</td><td></td><td>CORRESPONDENCE</td><td><span title="Cleanup-required bridge (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Rules ClassRules and Extension Model Migration</td><td><span class="type-pill">Preservation</span></td><td>Temporarily Preserve Selected Rule Fields and Imports</td><td>ExternalResource Rule, TemporaryFolder Rule, Verifier Rule, ErrorCollector Rule, ExpectedException Rule</td><td></td><td>TEMPORARILY_RETAINED</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Rules ClassRules and Extension Model Migration</td><td><span class="type-pill">SemanticEffect</span></td><td>JUnit 4 Rules Not Natively Supported By Jupiter</td><td>@Rule, @ClassRule, Custom TestRule, Custom MethodRule</td><td>@ExtendWith, @RegisterExtension, static @RegisterExtension</td><td>SUPPORT_REMOVED</td><td><span title="Support removed (+2)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Rules ClassRules and Extension Model Migration</td><td><span class="type-pill">SemanticEffect</span></td><td>Custom Rule Redesign Risk</td><td>Custom TestRule, Custom MethodRule</td><td>@ExtendWith, @RegisterExtension, BeforeEachCallback, AfterEachCallback, ParameterResolver, ExecutionCondition</td><td>RISK_INTRODUCED</td><td><span title="Risk introduced (+3)" class="badge risk-low">3</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>General @RunWith to @ExtendWith</td><td>@RunWith</td><td>@ExtendWith</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>MockitoJUnitRunner to MockitoExtension</td><td>MockitoJUnitRunner</td><td>@ExtendWith</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>SpringRunner to SpringExtension</td><td>SpringRunner / SpringJUnit4ClassRunner</td><td>@ExtendWith</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>Custom Runner to Jupiter Extension Redesign</td><td>Custom Runner</td><td>@ExtendWith, BeforeEachCallback, AfterEachCallback, ParameterResolver, ExecutionCondition</td><td>NoDirectMapping</td><td><span title="NoDirectMapping (+3); Manual-heavy strategy (+1)" class="badge risk-low">4</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>JUnit 4 Suite Runner to JUnit Platform Suite</td><td>@RunWith(Suite.class)</td><td>@Suite, @SelectClasses, @SelectPackages, @SuiteDisplayName, junit-platform-suite-engine</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>@Suite.SuiteClasses to @SelectClasses</td><td>@Suite.SuiteClasses</td><td>@SelectClasses</td><td>FullAutomation</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>Suite Selected Classes to SelectPackages</td><td>suite selected classes</td><td>@SelectPackages</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>Categories to Tags</td><td>@Category on class</td><td>@Tag, Vintage category tag exposure</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>Method-level Category to Method-level Tag</td><td>@Category on method</td><td>@Tag</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>@FixMethodOrder to @TestMethodOrder</td><td>@FixMethodOrder</td><td>@TestMethodOrder, MethodOrderer.MethodName, MethodOrderer.OrderAnnotation, MethodOrderer.Random, custom MethodOrderer, @Order, junit.jupiter.testmethod.order.default</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>MethodSorters.NAME_ASCENDING to MethodOrderer.MethodName</td><td>MethodSorters.NAME_ASCENDING</td><td>MethodOrderer.MethodName</td><td>FullAutomation</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>MethodSorters.DEFAULT Approximation</td><td>MethodSorters.DEFAULT</td><td>@TestMethodOrder, custom MethodOrderer</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>MethodSorters.JVM Approximation</td><td>MethodSorters.JVM</td><td>MethodOrderer.Random, custom MethodOrderer</td><td>NoDirectMapping</td><td><span title="NoDirectMapping (+3); Manual-heavy strategy (+1)" class="badge risk-low">4</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>SpringRunner to SpringExtension</td><td>SpringRunner / SpringJUnit4ClassRunner</td><td>@ExtendWith, SpringExtension</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">Transformation</span></td><td>MockitoJUnitRunner to MockitoExtension</td><td>MockitoJUnitRunner</td><td>@ExtendWith, MockitoExtension</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">SemanticEffect</span></td><td>JUnit 4 Runners Not Natively Supported By Jupiter</td><td>@RunWith, Custom Runner, BlockJUnit4ClassRunner</td><td>@ExtendWith, @Nested, @ParameterizedTest, @ParameterizedClass</td><td>SUPPORT_REMOVED</td><td><span title="Support removed (+2)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">SemanticEffect</span></td><td>Category Marker Interfaces Become String Tags</td><td>@Category on class, @Category on method, category marker interface, included/excluded categories</td><td>@Tag, tag expression, Vintage category tag exposure</td><td>BEHAVIOR_CHANGE</td><td><span title="Behavior change (+2)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Runner Suite Category and Ordering Migration</td><td><span class="type-pill">SemanticEffect</span></td><td>Method Orderer Approximation Requires Validation</td><td>MethodSorters.DEFAULT, MethodSorters.JVM, implicit source order dependency</td><td>MethodOrderer.Random, custom MethodOrderer, junit.jupiter.testmethod.order.default</td><td>VALIDATION_REQUIRED</td><td><span title="Validation required (+2)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Parameterized Theories and Advanced Test Forms</td><td><span class="type-pill">Transformation</span></td><td>JUnit 4 Parameterized Runner to Jupiter @ParameterizedTest</td><td>@RunWith(Parameterized.class)</td><td>@ParameterizedTest, @MethodSource, @CsvSource, @ValueSource, @ArgumentsSource, ArgumentsAccessor, ArgumentsAggregator, parameterized display name</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Parameterized Theories and Advanced Test Forms</td><td><span class="type-pill">Transformation</span></td><td>@Parameters factory to @MethodSource</td><td>@Parameters factory</td><td>@MethodSource</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Parameterized Theories and Advanced Test Forms</td><td><span class="type-pill">Transformation</span></td><td>@Parameter field injection to method parameters</td><td>@Parameter field injection</td><td>ArgumentsAccessor, ArgumentsAggregator</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1); Manual-heavy strategy (+1)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Parameterized Theories and Advanced Test Forms</td><td><span class="type-pill">Transformation</span></td><td>JUnit 4 Theories to Jupiter Parameterized or Dynamic Tests</td><td>@RunWith(Theories.class)</td><td>@ParameterizedTest, @MethodSource, @TestFactory, DynamicTest</td><td>NoDirectMapping</td><td><span title="NoDirectMapping (+3); Manual-heavy strategy (+1)" class="badge risk-low">4</span></td></tr>
+<tr>
+<td>Parameterized Theories and Advanced Test Forms</td><td><span class="type-pill">Transformation</span></td><td>JUnit 4 Parameterized Class to Jupiter @ParameterizedClass</td><td>@RunWith(Parameterized.class)</td><td>@ParameterizedClass, @MethodSource, org.junit.jupiter.params.Parameter, @BeforeParameterizedClassInvocation, @AfterParameterizedClassInvocation</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Parameterized Theories and Advanced Test Forms</td><td><span class="type-pill">Transformation</span></td><td>@BeforeParam to @BeforeParameterizedClassInvocation</td><td>@BeforeParam</td><td>@BeforeParameterizedClassInvocation</td><td>FullAutomation</td><td><span title="Missing strategy (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Parameterized Theories and Advanced Test Forms</td><td><span class="type-pill">Transformation</span></td><td>@AfterParam to @AfterParameterizedClassInvocation</td><td>@AfterParam</td><td>@AfterParameterizedClassInvocation</td><td>FullAutomation</td><td><span title="Missing strategy (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Parameterized Theories and Advanced Test Forms</td><td><span class="type-pill">Transformation</span></td><td>@Parameter to Jupiter Parameter</td><td>@Parameter field injection</td><td>org.junit.jupiter.params.Parameter</td><td>FullAutomation</td><td><span title="Missing strategy (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Parameterized Theories and Advanced Test Forms</td><td><span class="type-pill">SemanticEffect</span></td><td>Parameterized Runner Migration May Restructure Test Shape</td><td>@RunWith(Parameterized.class), constructor parameter injection, @Parameter field injection, parameterized test display name</td><td>@ParameterizedTest, @ParameterizedClass, @MethodSource, ArgumentsAccessor, ArgumentsAggregator, parameterized display name</td><td>BEHAVIOR_CHANGE</td><td><span title="Behavior change (+2)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Parameterized Theories and Advanced Test Forms</td><td><span class="type-pill">SemanticEffect</span></td><td>Theories Have No Direct Jupiter Equivalent</td><td>@RunWith(Theories.class), @Theory, @DataPoint, @DataPoints</td><td>@ParameterizedTest, @MethodSource, @TestFactory, DynamicTest</td><td>SUPPORT_REMOVED</td><td><span title="Support removed (+2)" class="badge risk-low">2</span></td></tr>
+<tr>
+<td>Legacy TestCase and Tool-Assisted Migration</td><td><span class="type-pill">Transformation</span></td><td>JUnit 4 TestCase Inheritance to Annotation-Based Jupiter Tests</td><td>junit.framework.TestCase inheritance</td><td>annotation-based Jupiter replacement for TestCase, org.junit.jupiter.api.Test, org.junit.jupiter.api.Assertions</td><td>OperatorHelp</td><td><span title="OperatorHelp (+1)" class="badge risk-low">1</span></td></tr>
+<tr>
+<td>Legacy TestCase and Tool-Assisted Migration</td><td><span class="type-pill">Transformation</span></td><td>setUp and tearDown to @BeforeEach and @AfterEach</td><td>setUp / tearDown methods</td><td>BeforeEach / AfterEach replacement for setUp / tearDown, @BeforeEach, @AfterEach</td><td>FullAutomation</td><td><span title="" class="badge risk-low">0</span></td></tr>
+<tr>
+<td>Legacy TestCase and Tool-Assisted Migration</td><td><span class="type-pill">SemanticEffect</span></td><td>Automated Tooling Has Partial Coverage</td><td>@Test annotation, Lifecycle Callbacks, Assertions, Rules and ClassRules, Runners, Parameterized and Data-Driven Tests</td><td>org.junit.jupiter.api.Test, Jupiter Lifecycle Callbacks, Jupiter Assertions, Jupiter Extension Model, Jupiter Parameterized Tests</td><td>VALIDATION_REQUIRED</td><td><span title="Validation required (+2)" class="badge risk-low">2</span></td></tr>
+</tbody></table></div>
+</section>
+<footer class="footer">Generated by SMDSL Analyzer V5. This dashboard is self-contained and does not require external CSS or JavaScript.</footer>
+</body>
+</html>

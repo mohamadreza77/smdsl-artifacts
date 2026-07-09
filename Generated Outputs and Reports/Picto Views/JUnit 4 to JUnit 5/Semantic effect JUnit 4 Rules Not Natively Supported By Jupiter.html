@@ -1,0 +1,869 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Semantic effect: JUnit 4 Rules Not Natively Supported By Jupiter</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>SemanticEffect</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> JUnit 4 =&gt; JUnit 5 / JUnit Jupiter and JUnit Platform
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Semantic effect</h2>
+
+        
+
+        <p>
+
+            <strong>Effect kind:</strong> SUPPORT_REMOVED
+
+            <br>
+
+            
+
+            <strong>Affected source feature(s):</strong> @Rule, @ClassRule, Custom TestRule, Custom MethodRule
+
+            <br>
+
+            
+
+            <strong>Affected target feature(s):</strong> @ExtendWith, @RegisterExtension, static @RegisterExtension
+
+            <br>
+
+            
+
+            <strong>Rationale:</strong> JUnit Jupiter does not natively support JUnit 4 Rules/ClassRules; selected rules have adapter suppor
+
+t, while custom or execution-flow-changing rules require redesign as extensions.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="754pt" viewBox="0.00 0.00 1054.00 754.00" width="1054pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 736)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="509" y="-702.8">Semantic effect: JUnit 4 Rules Not Natively Supported By Jupiter</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M34.5,-8C34.5,-8 106.5,-8 106.5,-8 112.5,-8 118.5,-14 118.5,-20 118.5,-20 118.5,-272 118.5,-272 118.5,-278 112.5,-284 106.5,-284 106.5,-284 34.5,-284 34.5,-284 28.5,-284 22.5,-278 22.5,-272 22.5,-272 22.5,-20 22.5,-20 22.5,-14 28.5,-8 34.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="70.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M383,-393C383,-393 785,-393 785,-393 791,-393 797,-399 797,-405 797,-405 797,-456 797,-456 797,-462 791,-468 785,-468 785,-468 383,-468 383,-468 377,-468 371,-462 371,-456 371,-456 371,-405 371,-405 371,-399 377,-393 383,-393" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="584" y="-452.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M20,-292C20,-292 285,-292 285,-292 291,-292 297,-298 297,-304 297,-304 297,-559 297,-559 297,-565 291,-571 285,-571 285,-571 20,-571 20,-571 14,-571 8,-565 8,-559 8,-559 8,-304 8,-304 8,-298 14,-292 20,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="152.5" y="-555.8">Source platform feature context: JUnit 4</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M529.5,-476C529.5,-476 998,-476 998,-476 1004,-476 1010,-482 1010,-488 1010,-488 1010,-675 1010,-675 1010,-681 1004,-687 998,-687 998,-687 529.5,-687 529.5,-687 523.5,-687 517.5,-681 517.5,-675 517.5,-675 517.5,-488 517.5,-488 517.5,-482 523.5,-476 529.5,-476" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="763.75" y="-671.8">Target platform feature context: JUnit 5 / JUnit Jupiter and JUnit Platform</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M96.5,-256C96.5,-256 44.5,-256 44.5,-256 38.5,-256 32.5,-250 32.5,-244 32.5,-244 32.5,-232 32.5,-232 32.5,-226 38.5,-220 44.5,-220 44.5,-220 96.5,-220 96.5,-220 102.5,-220 108.5,-226 108.5,-232 108.5,-232 108.5,-244 108.5,-244 108.5,-250 102.5,-256 96.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="70.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M91.5,-188C91.5,-188 49.5,-188 49.5,-188 43.5,-188 37.5,-182 37.5,-176 37.5,-176 37.5,-164 37.5,-164 37.5,-158 43.5,-152 49.5,-152 49.5,-152 91.5,-152 91.5,-152 97.5,-152 103.5,-158 103.5,-164 103.5,-164 103.5,-176 103.5,-176 103.5,-182 97.5,-188 91.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="70.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M85.5,-120C85.5,-120 55.5,-120 55.5,-120 49.5,-120 43.5,-114 43.5,-108 43.5,-108 43.5,-96 43.5,-96 43.5,-90 49.5,-84 55.5,-84 55.5,-84 85.5,-84 85.5,-84 91.5,-84 97.5,-90 97.5,-96 97.5,-96 97.5,-108 97.5,-108 97.5,-114 91.5,-120 85.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="70.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M98.5,-52C98.5,-52 42.5,-52 42.5,-52 36.5,-52 30.5,-46 30.5,-40 30.5,-40 30.5,-28 30.5,-28 30.5,-22 36.5,-16 42.5,-16 42.5,-16 98.5,-16 98.5,-16 104.5,-16 110.5,-22 110.5,-28 110.5,-28 110.5,-40 110.5,-40 110.5,-46 104.5,-52 98.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="70.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_2047215652 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_2047215652</title>
+
+                    
+
+                    <path d="M260,-540C260,-540 217,-540 217,-540 211,-540 205,-534 205,-528 205,-528 205,-516 205,-516 205,-510 211,-504 217,-504 217,-504 260,-504 260,-504 266,-504 272,-510 272,-516 272,-516 272,-528 272,-528 272,-534 266,-540 260,-540" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="238.5" y="-519.5">@ClassRule</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_539683914 -->
+
+                
+
+                <g class="node" id="node10">
+
+                    
+
+                    <title>C_539683914</title>
+
+                    
+
+                    <path d="M777,-437C777,-437 391,-437 391,-437 385,-437 379,-431 379,-425 379,-425 379,-413 379,-413 379,-407 385,-401 391,-401 391,-401 777,-401 777,-401 783,-401 789,-407 789,-413 789,-413 789,-425 789,-425 789,-431 783,-437 777,-437" fill="#fce5e5" stroke="#cc0000" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="584" y="-416.5">Semantic effect * &nbsp;JUnit 4 Rules Not Natively Supported By Jupiter * SUPPORT_REMOVED</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_2047215652&#45;&gt;C_539683914 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>S_2047215652-&gt;C_539683914</title>
+
+                    
+
+                    <path d="M272.19,-506.84C298.46,-495.07 336.55,-478.97 371,-468 406.96,-456.55 447.13,-446.57 482.76,-438.66" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="483.53,-441.18 490.29,-437.01 482.4,-436.05 483.53,-441.18" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="334" y="-487.8">affects</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_388639727 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_388639727</title>
+
+                    
+
+                    <path d="M277,-472C277,-472 200,-472 200,-472 194,-472 188,-466 188,-460 188,-460 188,-448 188,-448 188,-442 194,-436 200,-436 200,-436 277,-436 277,-436 283,-436 289,-442 289,-448 289,-448 289,-460 289,-460 289,-466 283,-472 277,-472" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="238.5" y="-451.5">Custom MethodRule</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_388639727&#45;&gt;C_539683914 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>S_388639727-&gt;C_539683914</title>
+
+                    
+
+                    <path d="M289.08,-448.95C318.64,-445.94 358.21,-441.9 398.71,-437.78" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="399.09,-440.38 406.28,-437.01 398.56,-435.15 399.09,-440.38" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="334" y="-447.8">affects</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1560409847 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>S_1560409847</title>
+
+                    
+
+                    <path d="M253.5,-404C253.5,-404 223.5,-404 223.5,-404 217.5,-404 211.5,-398 211.5,-392 211.5,-392 211.5,-380 211.5,-380 211.5,-374 217.5,-368 223.5,-368 223.5,-368 253.5,-368 253.5,-368 259.5,-368 265.5,-374 265.5,-380 265.5,-380 265.5,-392 265.5,-392 265.5,-398 259.5,-404 253.5,-404" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="238.5" y="-383.5">@Rule</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1560409847&#45;&gt;C_539683914 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_1560409847-&gt;C_539683914</title>
+
+                    
+
+                    <path d="M265.6,-388.51C293.15,-391.15 339.25,-395.58 387.9,-400.26" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="387.7,-402.87 395.42,-400.98 388.2,-397.65 387.7,-402.87" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="334" y="-397.8">affects</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1987460654 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>S_1987460654</title>
+
+                    
+
+                    <path d="M270.5,-336C270.5,-336 206.5,-336 206.5,-336 200.5,-336 194.5,-330 194.5,-324 194.5,-324 194.5,-312 194.5,-312 194.5,-306 200.5,-300 206.5,-300 206.5,-300 270.5,-300 270.5,-300 276.5,-300 282.5,-306 282.5,-312 282.5,-312 282.5,-324 282.5,-324 282.5,-330 276.5,-336 270.5,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="238.5" y="-315.5">Custom TestRule</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1987460654&#45;&gt;C_539683914 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>S_1987460654-&gt;C_539683914</title>
+
+                    
+
+                    <path d="M282.66,-330.69C340.9,-347.81 445.3,-378.51 514.37,-398.82" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="513.84,-401.4 521.78,-401 515.32,-396.36 513.84,-401.4" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="334" y="-349.8">affects</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_132039923 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>S_132039923</title>
+
+                    
+
+                    <path d="M113,-438C113,-438 28,-438 28,-438 22,-438 16,-432 16,-426 16,-426 16,-414 16,-414 16,-408 22,-402 28,-402 28,-402 113,-402 113,-402 119,-402 125,-408 125,-414 125,-414 125,-426 125,-426 125,-432 119,-438 113,-438" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="70.5" y="-417.5">Rules and ClassRules</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_132039923&#45;&gt;S_2047215652 -->
+
+                
+
+                <g class="edge" id="edge9">
+
+                    
+
+                    <title>S_132039923-&gt;S_2047215652</title>
+
+                    
+
+                    <path d="M100.8,-438C130.95,-456.53 177.69,-485.25 207.94,-503.84" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_132039923&#45;&gt;S_388639727 -->
+
+                
+
+                <g class="edge" id="edge11">
+
+                    
+
+                    <title>S_132039923-&gt;S_388639727</title>
+
+                    
+
+                    <path d="M125.4,-431.04C145.47,-435.15 168.14,-439.79 187.81,-443.82" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_132039923&#45;&gt;S_1560409847 -->
+
+                
+
+                <g class="edge" id="edge8">
+
+                    
+
+                    <title>S_132039923-&gt;S_1560409847</title>
+
+                    
+
+                    <path d="M125.4,-408.96C154.18,-403.07 188.3,-396.08 211.28,-391.37" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_132039923&#45;&gt;S_1987460654 -->
+
+                
+
+                <g class="edge" id="edge10">
+
+                    
+
+                    <title>S_132039923-&gt;S_1987460654</title>
+
+                    
+
+                    <path d="M100.8,-402C130.95,-383.47 177.69,-354.75 207.94,-336.16" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1294318373 -->
+
+                
+
+                <g class="node" id="node11">
+
+                    
+
+                    <title>T_1294318373</title>
+
+                    
+
+                    <path d="M976.5,-656C976.5,-656 898.5,-656 898.5,-656 892.5,-656 886.5,-650 886.5,-644 886.5,-644 886.5,-632 886.5,-632 886.5,-626 892.5,-620 898.5,-620 898.5,-620 976.5,-620 976.5,-620 982.5,-620 988.5,-626 988.5,-632 988.5,-632 988.5,-644 988.5,-644 988.5,-650 982.5,-656 976.5,-656" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="937.5" y="-635.5">@RegisterExtension</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_539683914&#45;&gt;T_1294318373 -->
+
+                
+
+                <g class="edge" id="edge6">
+
+                    
+
+                    <title>C_539683914-&gt;T_1294318373</title>
+
+                    
+
+                    <path d="M735.1,-437.07C757.25,-444.3 778.73,-454.28 797,-468 810.84,-478.4 860.65,-591.87 873,-604 877.49,-608.41 882.67,-612.4 888.09,-615.96" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="886.78,-618.24 894.54,-619.95 889.54,-613.77 886.78,-618.24" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="831" y="-548.8">effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_47952730 -->
+
+                
+
+                <g class="node" id="node12">
+
+                    
+
+                    <title>T_47952730</title>
+
+                    
+
+                    <path d="M962,-588C962,-588 913,-588 913,-588 907,-588 901,-582 901,-576 901,-576 901,-564 901,-564 901,-558 907,-552 913,-552 913,-552 962,-552 962,-552 968,-552 974,-558 974,-564 974,-564 974,-576 974,-576 974,-582 968,-588 962,-588" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="937.5" y="-567.5">@ExtendWith</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_539683914&#45;&gt;T_47952730 -->
+
+                
+
+                <g class="edge" id="edge5">
+
+                    
+
+                    <title>C_539683914-&gt;T_47952730</title>
+
+                    
+
+                    <path d="M733.84,-437.04C772.53,-447.68 811.78,-464.49 842,-491 860.26,-507.01 854.9,-519.81 873,-536 879.28,-541.62 886.65,-546.63 894.11,-550.97" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="893.12,-553.42 900.95,-554.77 895.67,-548.83 893.12,-553.42" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="831" y="-493.8">effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1503428906 -->
+
+                
+
+                <g class="node" id="node13">
+
+                    
+
+                    <title>T_1503428906</title>
+
+                    
+
+                    <path d="M990,-520C990,-520 885,-520 885,-520 879,-520 873,-514 873,-508 873,-508 873,-496 873,-496 873,-490 879,-484 885,-484 885,-484 990,-484 990,-484 996,-484 1002,-490 1002,-496 1002,-496 1002,-508 1002,-508 1002,-514 996,-520 990,-520" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="937.5" y="-499.5">static @RegisterExtension</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_539683914&#45;&gt;T_1503428906 -->
+
+                
+
+                <g class="edge" id="edge7">
+
+                    
+
+                    <title>C_539683914-&gt;T_1503428906</title>
+
+                    
+
+                    <path d="M789.1,-422.22C807.25,-425.58 825.12,-430.07 842,-436 868.12,-445.18 893.61,-463.71 911.52,-478.81" fill="none" stroke="#cc0000"></path>
+
+                    
+
+                    <polygon fill="#cc0000" points="909.9,-480.88 917.3,-483.78 913.32,-476.9 909.9,-480.88" stroke="#cc0000"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="831" y="-438.8">effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1659644165 -->
+
+                
+
+                <g class="node" id="node14">
+
+                    
+
+                    <title>T_1659644165</title>
+
+                    
+
+                    <path d="M630.5,-588C630.5,-588 537.5,-588 537.5,-588 531.5,-588 525.5,-582 525.5,-576 525.5,-576 525.5,-564 525.5,-564 525.5,-558 531.5,-552 537.5,-552 537.5,-552 630.5,-552 630.5,-552 636.5,-552 642.5,-558 642.5,-564 642.5,-564 642.5,-576 642.5,-576 642.5,-582 636.5,-588 630.5,-588" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="584" y="-567.5">Jupiter Extension Model</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1659644165&#45;&gt;T_1294318373 -->
+
+                
+
+                <g class="edge" id="edge13">
+
+                    
+
+                    <title>T_1659644165-&gt;T_1294318373</title>
+
+                    
+
+                    <path d="M642.65,-581.15C710.43,-594.26 821.82,-615.81 886.23,-628.27" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1659644165&#45;&gt;T_47952730 -->
+
+                
+
+                <g class="edge" id="edge12">
+
+                    
+
+                    <title>T_1659644165-&gt;T_47952730</title>
+
+                    
+
+                    <path d="M642.65,-570C715.88,-570 840.03,-570 900.82,-570" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1659644165&#45;&gt;T_1503428906 -->
+
+                
+
+                <g class="edge" id="edge14">
+
+                    
+
+                    <title>T_1659644165-&gt;T_1503428906</title>
+
+                    
+
+                    <path d="M642.68,-575.16C695.8,-578 776.12,-577.37 842,-556 857.6,-550.94 858.87,-544.32 873,-536 882.16,-530.61 892.24,-525.05 901.61,-520.02" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

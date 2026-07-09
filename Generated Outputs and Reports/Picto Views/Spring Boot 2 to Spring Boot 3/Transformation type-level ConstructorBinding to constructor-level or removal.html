@@ -1,0 +1,539 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: type-level ConstructorBinding to constructor-level or removal</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> Type-level @ConstructorBinding
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> Constructor-level @ConstructorBinding only when needed
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> FullAutomation / EASY
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> @ConstructorBinding is no longer needed at the type level; it should be removed, except that it may
+
+still be used on a selected constructor when multiple constructors exist.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] find type-level @ConstructorBinding on @ConfigurationProperties classes
+
+
+
+2. [A] remove it when the type has one constructor or is a record
+
+
+
+3. [NONE] if multiple constructors exist
+
+    3.1. [A] move @ConstructorBinding to the intended constructor
+
+
+
+
+
+4. [A] run configuration binding tests
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="434pt" viewBox="0.00 0.00 1468.00 434.00" width="1468pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 416)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="716" y="-382.8">Transformation: type-level ConstructorBinding to constructor-level or removal</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M121,-8C121,-8 193,-8 193,-8 199,-8 205,-14 205,-20 205,-20 205,-272 205,-272 205,-278 199,-284 193,-284 193,-284 121,-284 121,-284 115,-284 109,-278 109,-272 109,-272 109,-20 109,-20 109,-14 115,-8 121,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="157" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M615,-292C615,-292 1065,-292 1065,-292 1071,-292 1077,-298 1077,-304 1077,-304 1077,-355 1077,-355 1077,-361 1071,-367 1065,-367 1065,-367 615,-367 615,-367 609,-367 603,-361 603,-355 603,-355 603,-304 603,-304 603,-298 609,-292 615,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="840" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M12,-292C12,-292 516,-292 516,-292 522,-292 528,-298 528,-304 528,-304 528,-355 528,-355 528,-361 522,-367 516,-367 516,-367 12,-367 12,-367 6,-367 0,-361 0,-355 0,-355 0,-304 0,-304 0,-298 6,-292 12,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="264" y="-351.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M748,-209C748,-209 1412,-209 1412,-209 1418,-209 1424,-215 1424,-221 1424,-221 1424,-272 1424,-272 1424,-278 1418,-284 1412,-284 1412,-284 748,-284 748,-284 742,-284 736,-278 736,-272 736,-272 736,-221 736,-221 736,-215 742,-209 748,-209" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="1080" y="-268.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M183,-256C183,-256 131,-256 131,-256 125,-256 119,-250 119,-244 119,-244 119,-232 119,-232 119,-226 125,-220 131,-220 131,-220 183,-220 183,-220 189,-220 195,-226 195,-232 195,-232 195,-244 195,-244 195,-250 189,-256 183,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="157" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M178,-188C178,-188 136,-188 136,-188 130,-188 124,-182 124,-176 124,-176 124,-164 124,-164 124,-158 130,-152 136,-152 136,-152 178,-152 178,-152 184,-152 190,-158 190,-164 190,-164 190,-176 190,-176 190,-182 184,-188 178,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="157" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M172,-120C172,-120 142,-120 142,-120 136,-120 130,-114 130,-108 130,-108 130,-96 130,-96 130,-90 136,-84 142,-84 142,-84 172,-84 172,-84 178,-84 184,-90 184,-96 184,-96 184,-108 184,-108 184,-114 178,-120 172,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="157" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M185,-52C185,-52 129,-52 129,-52 123,-52 117,-46 117,-40 117,-40 117,-28 117,-28 117,-22 123,-16 129,-16 129,-16 185,-16 185,-16 191,-16 197,-22 197,-28 197,-28 197,-40 197,-40 197,-46 191,-52 185,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="157" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1131557365</title>
+
+                    
+
+                    <path d="M237,-336C237,-336 77,-336 77,-336 71,-336 65,-330 65,-324 65,-324 65,-312 65,-312 65,-306 71,-300 77,-300 77,-300 237,-300 237,-300 243,-300 249,-306 249,-312 249,-312 249,-324 249,-324 249,-330 243,-336 237,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="157" y="-315.5">Core Spring Boot API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_482159642 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_482159642</title>
+
+                    
+
+                    <path d="M451,-336C451,-336 324,-336 324,-336 318,-336 312,-330 312,-324 312,-324 312,-312 312,-312 312,-306 318,-300 324,-300 324,-300 451,-300 451,-300 457,-300 463,-306 463,-312 463,-312 463,-324 463,-324 463,-330 457,-336 451,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="387.5" y="-315.5">Type-level @ConstructorBinding</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1131557365&#45;&gt;S_482159642 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>S_1131557365-&gt;S_482159642</title>
+
+                    
+
+                    <path d="M249.29,-318C270.05,-318 291.87,-318 311.84,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_556630323 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_556630323</title>
+
+                    
+
+                    <path d="M1057,-336C1057,-336 623,-336 623,-336 617,-336 611,-330 611,-324 611,-324 611,-312 611,-312 611,-306 617,-300 623,-300 623,-300 1057,-300 1057,-300 1063,-300 1069,-306 1069,-312 1069,-312 1069,-324 1069,-324 1069,-330 1063,-336 1057,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="840" y="-315.5">Transformation * &nbsp;type-level ConstructorBinding to constructor-level or removal * FullAutomation / EASY</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_482159642&#45;&gt;C_556630323 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_482159642-&gt;C_556630323</title>
+
+                    
+
+                    <path d="M463.14,-318C502.23,-318 552.48,-318 603.44,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="603.46,-320.63 610.96,-318 603.46,-315.38 603.46,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="565.5" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1089970921 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1089970921</title>
+
+                    
+
+                    <path d="M1404,-253C1404,-253 1167,-253 1167,-253 1161,-253 1155,-247 1155,-241 1155,-241 1155,-229 1155,-229 1155,-223 1161,-217 1167,-217 1167,-217 1404,-217 1404,-217 1410,-217 1416,-223 1416,-229 1416,-229 1416,-241 1416,-241 1416,-247 1410,-253 1404,-253" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1285.5" y="-232.5">Constructor-level @ConstructorBinding only when needed</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_556630323&#45;&gt;T_1089970921 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_556630323-&gt;T_1089970921</title>
+
+                    
+
+                    <path d="M1029.16,-299.99C1045.39,-297.62 1061.51,-294.96 1077,-292 1125.98,-282.64 1180.3,-267.54 1221.07,-255.23" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1221.85,-257.74 1228.26,-253.05 1220.32,-252.72 1221.85,-257.74" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1112" y="-288.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_937024294</title>
+
+                    
+
+                    <path d="M924,-253C924,-253 756,-253 756,-253 750,-253 744,-247 744,-241 744,-241 744,-229 744,-229 744,-223 750,-217 756,-217 756,-217 924,-217 924,-217 930,-217 936,-223 936,-229 936,-229 936,-241 936,-241 936,-247 930,-253 924,-253" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="840" y="-232.5">Core Spring Boot 3 API and Configuration</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_937024294&#45;&gt;T_1089970921 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>T_937024294-&gt;T_1089970921</title>
+
+                    
+
+                    <path d="M936.14,-235C999.9,-235 1084.66,-235 1154.6,-235" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

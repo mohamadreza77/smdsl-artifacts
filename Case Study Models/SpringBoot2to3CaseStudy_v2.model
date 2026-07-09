@@ -1,0 +1,930 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<smdsl_updated_updated_prefix:Migration xmlns:smdsl_updated_updated_prefix="smdsl_updated_updated_uri" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:version="2.0" xmi:id="_m0190" name="SpringBoot2-to-SpringBoot3-SMDSL-v2">
+  <source xmi:id="_p0191" name="Spring Boot 2.7.x / late Spring Boot 2 application">
+    <features xmi:id="_f0001" name="Pre-migration Baseline">
+      <nestedFeatures xmi:id="_f0002" name="Earlier Spring Boot 2.x baseline"/>
+      <nestedFeatures xmi:id="_f0003" name="Latest Spring Boot 2.7.x baseline"/>
+      <nestedFeatures xmi:id="_f0004" name="Spring Boot 2.x deprecated APIs, classes, methods, and properties"/>
+      <nestedFeatures xmi:id="_f0005" name="Spring Security 5.x configuration">
+        <nestedFeatures xmi:id="_f0006" name="Spring Security 5.8 preparation state"/>
+        <nestedFeatures xmi:id="_f0007" name="Servlet security filter dispatch type assumptions"/>
+      </nestedFeatures>
+      <nestedFeatures xmi:id="_f0008" name="Java 8 or Java 11 runtime baseline"/>
+      <nestedFeatures xmi:id="_f0009" name="Manual dependency compatibility inventory"/>
+    </features>
+    <features xmi:id="_f0010" name="Build and Dependency Management">
+      <nestedFeatures xmi:id="_f0011" name="Spring Boot 2 parent, plugin, and dependency-management coordinates"/>
+      <nestedFeatures xmi:id="_f0012" name="Spring Framework 5 dependencies"/>
+      <nestedFeatures xmi:id="_f0013" name="Unmanaged third-party dependencies"/>
+      <nestedFeatures xmi:id="_f0014" name="Gradle task configuration using direct properties"/>
+      <nestedFeatures xmi:id="_f0015" name="Gradle bootJar layering isEnabled syntax"/>
+      <nestedFeatures xmi:id="_f0016" name="Gradle build-info null-based exclusions"/>
+      <nestedFeatures xmi:id="_f0017" name="Maven spring-boot run/start fork attribute"/>
+      <nestedFeatures xmi:id="_f0018" name="Git Commit ID Maven Plugin old coordinates"/>
+      <nestedFeatures xmi:id="_f0019" name="Old dependency coordinates and managed versions"/>
+    </features>
+    <features xmi:id="_f0020" name="Java EE and Jakarta EE Usage">
+      <nestedFeatures xmi:id="_f0021" name="javax.* import namespace"/>
+      <nestedFeatures xmi:id="_f0022" name="javax.servlet API dependency"/>
+      <nestedFeatures xmi:id="_f0023" name="javax.persistence JPA API dependency"/>
+      <nestedFeatures xmi:id="_f0024" name="javax.validation Bean Validation dependency"/>
+      <nestedFeatures xmi:id="_f0025" name="javax.annotation, javax.transaction, javax.mail, and related Java EE APIs"/>
+      <nestedFeatures xmi:id="_f0026" name="Java EE based third-party library variants"/>
+    </features>
+    <features xmi:id="_f0027" name="Core Spring Boot API and Configuration">
+      <nestedFeatures xmi:id="_f0028" name="Image banner resources"/>
+      <nestedFeatures xmi:id="_f0029" name="Spring Boot 2 log date format"/>
+      <nestedFeatures xmi:id="_f0030" name="Type-level @ConstructorBinding"/>
+      <nestedFeatures xmi:id="_f0031" name="Constructor dependency injection in @ConfigurationProperties without @Autowired"/>
+      <nestedFeatures xmi:id="_f0032" name="YamlJsonParser direct usage"/>
+      <nestedFeatures xmi:id="_f0033" name="spring.factories EnableAutoConfiguration registration"/>
+      <nestedFeatures xmi:id="_f0034" name="Legacy renamed or removed configuration properties"/>
+      <nestedFeatures xmi:id="_f0035" name="spring.redis property prefix"/>
+      <nestedFeatures xmi:id="_f0036" name="spring.data.cassandra property prefix"/>
+      <nestedFeatures xmi:id="_f0037" name="server.max.http.header.size property"/>
+      <nestedFeatures xmi:id="_f0038" name="spring.jpa.hibernate.use-new-id-generator-mappings property"/>
+      <nestedFeatures xmi:id="_f0039" name="SAML2 identity-provider property hierarchy"/>
+    </features>
+    <features xmi:id="_f0040" name="Web Application Runtime">
+      <nestedFeatures xmi:id="_f0041" name="Implicit trailing slash URL matching"/>
+      <nestedFeatures xmi:id="_f0042" name="Legacy max HTTP header size behavior"/>
+      <nestedFeatures xmi:id="_f0043" name="SmartLifecycle graceful shutdown phase assumptions"/>
+      <nestedFeatures xmi:id="_f0044" name="Jetty with Servlet API 6 expectation"/>
+      <nestedFeatures xmi:id="_f0045" name="RestTemplate Apache HttpClient 4 integration"/>
+    </features>
+    <features xmi:id="_f0046" name="Actuator and Observability">
+      <nestedFeatures xmi:id="_f0047" name="JMX exposure assumptions for actuator endpoints"/>
+      <nestedFeatures xmi:id="_f0048" name="httptrace endpoint and HttpTraceRepository infrastructure"/>
+      <nestedFeatures xmi:id="_f0049" name="Actuator JSON using application ObjectMapper"/>
+      <nestedFeatures xmi:id="_f0050" name="Key-based actuator endpoint sanitization"/>
+      <nestedFeatures xmi:id="_f0051" name="Spring Boot 2.x metrics tag providers and contributors"/>
+      <nestedFeatures xmi:id="_f0052" name="management.metrics.export.&lt;product&gt; properties"/>
+      <nestedFeatures xmi:id="_f0053" name="Mongo health check buildInfo/version assumptions"/>
+    </features>
+    <features xmi:id="_f0054" name="Spring Security">
+      <nestedFeatures xmi:id="_f0055" name="WebSecurityConfigurerAdapter based configuration"/>
+      <nestedFeatures xmi:id="_f0056" name="authorizeRequests and antMatchers/mvcMatchers style"/>
+      <nestedFeatures xmi:id="_f0057" name="Security filter dispatch type configuration assumptions"/>
+      <nestedFeatures xmi:id="_f0058" name="ReactiveUserDetailsService auto-configuration with AuthenticationManagerResolver"/>
+      <nestedFeatures xmi:id="_f0059" name="SAML2 relying party identity-provider properties"/>
+    </features>
+    <features xmi:id="_f0060" name="Data and Persistence">
+      <nestedFeatures xmi:id="_f0061" name="Spring Data 2 repository interfaces and behavior assumptions"/>
+      <nestedFeatures xmi:id="_f0062" name="Spring Data Redis properties under spring.redis"/>
+      <nestedFeatures xmi:id="_f0063" name="Cassandra properties under spring.data.cassandra"/>
+      <nestedFeatures xmi:id="_f0064" name="Flyway 8 customization ordering assumptions"/>
+      <nestedFeatures xmi:id="_f0065" name="Liquibase pre-4.17 managed version assumptions"/>
+      <nestedFeatures xmi:id="_f0066" name="Hibernate 5.x dependencies and group IDs"/>
+      <nestedFeatures xmi:id="_f0067" name="Hibernate old ID generator mapping fallback"/>
+      <nestedFeatures xmi:id="_f0068" name="Flapdoodle embedded Mongo auto-configuration"/>
+      <nestedFeatures xmi:id="_f0069" name="R2DBC BOM version override"/>
+      <nestedFeatures xmi:id="_f0070" name="Elasticsearch old client/template auto-configuration exclusions"/>
+      <nestedFeatures xmi:id="_f0071" name="MySQL mysql:mysql-connector-java coordinate"/>
+    </features>
+    <features xmi:id="_f0072" name="Batch and Session" >
+      <nestedFeatures xmi:id="_f0073" name="@EnableBatchProcessing used for Boot auto-configuration"/>
+      <nestedFeatures xmi:id="_f0074" name="Multiple batch jobs started automatically"/>
+      <nestedFeatures xmi:id="_f0075" name="spring.session.store-type explicit property"/>
+    </features>
+    <features xmi:id="_f0076" name="Removed or Externalized Support" >
+      <nestedFeatures xmi:id="_f0077" name="Apache ActiveMQ managed support"/>
+      <nestedFeatures xmi:id="_f0078" name="Atomikos managed support"/>
+      <nestedFeatures xmi:id="_f0079" name="EhCache 2 managed support"/>
+      <nestedFeatures xmi:id="_f0080" name="Hazelcast 3 managed support"/>
+      <nestedFeatures xmi:id="_f0081" name="Apache Solr auto-configuration/support"/>
+      <nestedFeatures xmi:id="_f0082" name="Apache Johnzon managed JSON-B implementation"/>
+      <nestedFeatures xmi:id="_f0083" name="ANTLR 2 dependency management"/>
+      <nestedFeatures xmi:id="_f0084" name="RxJava 1.x and 2.x dependency management"/>
+      <nestedFeatures xmi:id="_f0085" name="Hazelcast Hibernate dependency management"/>
+      <nestedFeatures xmi:id="_f0086" name="Ehcache3 non-jakarta dependency declarations"/>
+    </features>
+    <features xmi:id="_f0087" name="Testing and Auxiliary Libraries" >
+      <nestedFeatures xmi:id="_f0088" name="JUnit Jupiter and Mockito older test dependencies"/>
+      <nestedFeatures xmi:id="_f0089" name="Embedded Mongo tests using Boot-managed Flapdoodle"/>
+      <nestedFeatures xmi:id="_f0090" name="javax-based test imports and fixtures"/>
+      <nestedFeatures xmi:id="_f0091" name="Commons FileUpload 1.x javax variant"/>
+      <nestedFeatures xmi:id="_f0092" name="Spring Security SAML extension dependency"/>
+    </features>
+    <features xmi:id="_f0093" name="Migration Tool Support" >
+      <nestedFeatures xmi:id="_f0094" name="Manual code and configuration inspection"/>
+      <nestedFeatures xmi:id="_f0095" name="Manual IDE compile-error driven migration"/>
+      <nestedFeatures xmi:id="_f0096" name="No explicit OpenRewrite automation"/>
+    </features>
+  </source>
+  <target xmi:id="_p0192" name="Spring Boot 3.0 application / migration target">
+    <features xmi:id="_f0097" name="Prepared Spring Boot 3 Migration Baseline" >
+      <nestedFeatures xmi:id="_f0098" name="Latest Spring Boot 2.7.x intermediate baseline"/>
+      <nestedFeatures xmi:id="_f0099" name="Reviewed managed and unmanaged dependency inventory"/>
+      <nestedFeatures xmi:id="_f0100" name="Spring Security 5.8 intermediate migration state"/>
+      <nestedFeatures xmi:id="_f0101" name="Deprecated API/property free source baseline"/>
+      <nestedFeatures xmi:id="_f0102" name="Java 17 runtime and toolchain baseline"/>
+      <nestedFeatures xmi:id="_f0103" name="Spring Boot properties migrator temporary compatibility bridge"/>
+      <nestedFeatures xmi:id="_f0104" name="Removed properties migrator after migration"/>
+    </features>
+    <features xmi:id="_f0105" name="Spring Boot 3 Platform Baseline" >
+      <nestedFeatures xmi:id="_f0106" name="Spring Boot 3.0.x parent, plugin, and dependency management"/>
+      <nestedFeatures xmi:id="_f0107" name="Spring Framework 6.0 baseline"/>
+      <nestedFeatures xmi:id="_f0108" name="Gradle 7.4+ compatible build"/>
+      <nestedFeatures xmi:id="_f0109" name="Maven plugin configuration compatible with Boot 3"/>
+      <nestedFeatures xmi:id="_f0110" name="Updated third-party dependency compatibility set"/>
+      <nestedFeatures xmi:id="_f0111" name="Java 17 language and runtime compatibility"/>
+    </features>
+    <features xmi:id="_f0112" name="Jakarta EE 10 Stack" >
+      <nestedFeatures xmi:id="_f0113" name="jakarta.* import namespace"/>
+      <nestedFeatures xmi:id="_f0114" name="jakarta.servlet Servlet 6.0 API"/>
+      <nestedFeatures xmi:id="_f0115" name="jakarta.persistence JPA 3.1 API"/>
+      <nestedFeatures xmi:id="_f0116" name="jakarta.validation Bean Validation API"/>
+      <nestedFeatures xmi:id="_f0117" name="jakarta.annotation, jakarta.transaction, jakarta.mail, and related APIs"/>
+      <nestedFeatures xmi:id="_f0118" name="Jakarta-compatible third-party library variants"/>
+    </features>
+    <features xmi:id="_f0119" name="Core Spring Boot 3 API and Configuration" >
+      <nestedFeatures xmi:id="_f0120" name="Text-based banner.txt"/>
+      <nestedFeatures xmi:id="_f0121" name="ISO-8601 log date/time format"/>
+      <nestedFeatures xmi:id="_f0122" name="Constructor-level @ConstructorBinding only when needed"/>
+      <nestedFeatures xmi:id="_f0123" name="@Autowired for dependency-injected configuration property constructors"/>
+      <nestedFeatures xmi:id="_f0124" name="Alternative JsonParser implementation"/>
+      <nestedFeatures xmi:id="_f0125" name="AutoConfiguration.imports registration"/>
+      <nestedFeatures xmi:id="_f0126" name="Updated configuration properties"/>
+      <nestedFeatures xmi:id="_f0127" name="spring.data.redis property prefix"/>
+      <nestedFeatures xmi:id="_f0128" name="spring.cassandra property prefix"/>
+      <nestedFeatures xmi:id="_f0129" name="server.max-http-request-header-size property"/>
+      <nestedFeatures xmi:id="_f0130" name="Removed old ID generator fallback property"/>
+      <nestedFeatures xmi:id="_f0131" name="SAML2 asserting-party property hierarchy"/>
+    </features>
+    <features xmi:id="_f0132" name="Web Runtime in Spring Boot 3" >
+      <nestedFeatures xmi:id="_f0133" name="Explicit URL mappings or redirect/rewrite strategy for trailing slash"/>
+      <nestedFeatures xmi:id="_f0134" name="Temporary global trailing-slash compatibility configuration"/>
+      <nestedFeatures xmi:id="_f0135" name="Request-only max header property and response customizer"/>
+      <nestedFeatures xmi:id="_f0136" name="Updated SmartLifecycle graceful shutdown phases"/>
+      <nestedFeatures xmi:id="_f0137" name="Jetty with jakarta-servlet.version downgraded to 5.0 when needed"/>
+      <nestedFeatures xmi:id="_f0138" name="Apache HttpClient 5 integration for RestTemplate"/>
+    </features>
+    <features xmi:id="_f0139" name="Actuator and Micrometer Observation" >
+      <nestedFeatures xmi:id="_f0140" name="JMX health-only default exposure or explicit exposure settings"/>
+      <nestedFeatures xmi:id="_f0141" name="httpexchanges endpoint and HttpExchangeRepository infrastructure"/>
+      <nestedFeatures xmi:id="_f0142" name="Isolated actuator ObjectMapper behavior"/>
+      <nestedFeatures xmi:id="_f0143" name="Role-based actuator show-values sanitization"/>
+      <nestedFeatures xmi:id="_f0144" name="ObservationConvention and ObservationFilter based customization"/>
+      <nestedFeatures xmi:id="_f0145" name="management.&lt;product&gt;.metrics.export property schema"/>
+      <nestedFeatures xmi:id="_f0146" name="Mongo health check using maxWireVersion"/>
+    </features>
+    <features xmi:id="_f0147" name="Spring Security 6 Configuration" >
+      <nestedFeatures xmi:id="_f0148" name="SecurityFilterChain bean configuration"/>
+      <nestedFeatures xmi:id="_f0149" name="authorizeHttpRequests and requestMatchers/securityMatchers style"/>
+      <nestedFeatures xmi:id="_f0150" name="Dispatcher type aware security filter configuration"/>
+      <nestedFeatures xmi:id="_f0151" name="Explicit ReactiveUserDetailsService bean when needed"/>
+      <nestedFeatures xmi:id="_f0152" name="SAML2 asserting-party configuration"/>
+    </features>
+    <features xmi:id="_f0153" name="Data and Persistence in Spring Boot 3" >
+      <nestedFeatures xmi:id="_f0154" name="Spring Data 2022 repository behavior"/>
+      <nestedFeatures xmi:id="_f0155" name="spring.data.redis properties"/>
+      <nestedFeatures xmi:id="_f0156" name="spring.cassandra properties"/>
+      <nestedFeatures xmi:id="_f0157" name="Flyway 9 customization ordering"/>
+      <nestedFeatures xmi:id="_f0158" name="Liquibase 4.17.x or explicit override"/>
+      <nestedFeatures xmi:id="_f0159" name="Hibernate 6.1 and org.hibernate.orm group IDs"/>
+      <nestedFeatures xmi:id="_f0160" name="Hibernate 6 identifier generation behavior"/>
+      <nestedFeatures xmi:id="_f0161" name="Flapdoodle external auto-configuration or Testcontainers"/>
+      <nestedFeatures xmi:id="_f0162" name="R2DBC module-specific version properties"/>
+      <nestedFeatures xmi:id="_f0163" name="Updated Elasticsearch clients/templates and auto-configuration exclusions"/>
+      <nestedFeatures xmi:id="_f0164" name="com.mysql:mysql-connector-j coordinate"/>
+    </features>
+    <features xmi:id="_f0165" name="Batch and Session in Spring Boot 3" >
+      <nestedFeatures xmi:id="_f0166" name="Spring Batch 5 auto-configuration without @EnableBatchProcessing"/>
+      <nestedFeatures xmi:id="_f0167" name="Single startup job or spring.batch.job.name selection"/>
+      <nestedFeatures xmi:id="_f0168" name="SessionRepository bean or classpath-based store selection"/>
+    </features>
+    <features xmi:id="_f0169" name="Externalized or Removed Support Handling">
+      <nestedFeatures xmi:id="_f0170" name="Operator-selected replacement library or explicit version"/>
+      <nestedFeatures xmi:id="_f0171" name="Eclipse Yasson JSON-B or explicit Johnzon version"/>
+      <nestedFeatures xmi:id="_f0172" name="RxJava 3 dependency management"/>
+      <nestedFeatures xmi:id="_f0173" name="Hibernate JCache alternative for Hazelcast Hibernate"/>
+      <nestedFeatures xmi:id="_f0174" name="Ehcache3 jakarta classifier declarations"/>
+      <nestedFeatures xmi:id="_f0175" name="No direct Boot-managed support retained"/>
+    </features>
+    <features xmi:id="_f0176" name="Testing and Library Updates" >
+      <nestedFeatures xmi:id="_f0177" name="Updated JUnit Jupiter and Mockito dependencies"/>
+      <nestedFeatures xmi:id="_f0178" name="Testcontainers or external embedded Mongo auto-configuration"/>
+      <nestedFeatures xmi:id="_f0179" name="jakarta-based test imports and fixtures"/>
+      <nestedFeatures xmi:id="_f0180" name="commons-fileupload2-jakarta variant"/>
+      <nestedFeatures xmi:id="_f0181" name="spring-security-saml2-service-provider dependency"/>
+    </features>
+    <features xmi:id="_f0182" name="Migration Tool Evidence" >
+      <nestedFeatures xmi:id="_f0183" name="OpenRewrite Spring Boot 3 composite recipe"/>
+      <nestedFeatures xmi:id="_f0184" name="Spring Boot Migrator or IntelliJ migration support"/>
+      <nestedFeatures xmi:id="_f0185" name="Compiler and test feedback as validation evidence"/>
+      <nestedFeatures xmi:id="_f0186" name="Manual operator validation after automated rewrites"/>
+    </features>
+  </target>
+  <operators xmi:id="_op0187" name="Application Developer 1"/>
+  <operators xmi:id="_op0188" name="Application Developer 2"/>
+  <operators xmi:id="_op0189" name="Domain/Security Specialist"/>
+  <preMigrationRequirements xmi:id="_pmr1000" affectedFeatures="_f0002 _f0003 _f0098" mandatory="true" note="Upgrade first to the latest Spring Boot 2.7.x maintenance release before attempting Spring Boot 3 so that dependency management, deprecations, and diagnostics are aligned with the recommended starting point." kind="BASELINE_VERSION"/><preMigrationRequirements xmi:id="_pmr1001" affectedFeatures="_f0008 _f0102 _f0111" mandatory="true" note="Move the build, runtime, CI images, IDE configuration, and deployment environment to Java 17 or later." kind="RUNTIME_BASELINE"/><preMigrationRequirements xmi:id="_pmr1002" affectedFeatures="_f0009 _f0013 _f0099 _f0110" mandatory="true" note="Review Spring Boot-managed and unmanaged dependencies, especially Spring Cloud, security, Jakarta-related libraries, database drivers, and custom starters." kind="DEPENDENCY_UPDATE"/><preMigrationRequirements xmi:id="_pmr1003" affectedFeatures="_f0004 _f0101" mandatory="true" note="Remove use of Spring Boot 2.x APIs, classes, methods, and properties that were deprecated before upgrading because they may be removed in Boot 3." kind="DEPRECATION_CLEANUP"/><preMigrationRequirements xmi:id="_pmr1004" affectedFeatures="_f0005 _f0006 _f0100 _f0147" mandatory="false" note="For security-heavy applications, move the Spring Boot 2.7 application to Spring Security 5.8 first, then follow the Spring Security 6 migration path." kind="DEPRECATION_CLEANUP"/><preMigrationRequirements xmi:id="_pmr1005" affectedFeatures="_f0034 _f0103 _f0104" mandatory="false" note="Add the properties migrator only as temporary runtime assistance to report and temporarily migrate renamed or removed properties, then remove it after fixing configuration." kind="CONFIGURATION_REVIEW"/><preMigrationRequirements xmi:id="_pmr1006" affectedFeatures="_f0021 _f0026 _f0113 _f0118" mandatory="true" note="Inventory all direct and transitive javax-based APIs and third-party libraries and update them to Jakarta-compatible variants." kind="DEPENDENCY_UPDATE"/><preMigrationRequirements xmi:id="_pmr1007" affectedFeatures="_f0087 _f0176" mandatory="true" note="Run the existing unit, integration, web, security, data, and smoke tests before and after migration to distinguish pre-existing failures from migration failures." kind="TEST_BASELINE"/><preMigrationRequirements xmi:id="_pmr1008" affectedFeatures="_f0040 _f0046 _f0132 _f0139" mandatory="false" note="Review runtime behavior changes such as trailing slash matching, actuator exposure/sanitization, isolated actuator JSON serialization, and metrics-to-observation changes." kind="CONFIGURATION_REVIEW"/><preMigrationRequirements xmi:id="_pmr1009" affectedFeatures="_f0060 _f0153" mandatory="false" note="Review database, migration, and persistence dependencies, especially Hibernate 6, Flyway 9, Liquibase 4.17, R2DBC 1.0, Elasticsearch clients, and MySQL connector coordinates." kind="DEPENDENCY_UPDATE"/><preMigrationRequirements xmi:id="_pmr1010" affectedFeatures="_f0093 _f0183 _f0185" mandatory="false" note="Decide whether to use OpenRewrite, Spring Boot Migrator, IDE support, or a manual compile/test loop; tool output still requires review and project-specific validation." kind="OTHER"/><mappings xmi:id="_map0235" name="Pre-migration Baseline and Gradual Upgrade">
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0236" name="earlier Spring Boot 2.x to latest 2.7.x intermediate baseline" sourceFeature="_f0002" targetFeature="_f0098" relation="The official migration process assumes the application starts from the latest Spring Boot 2.7.x line. Earlier 2.x applications should first move through a 2.7.x intermediate state so that dependency versions, deprecations, and migration diagnostics are closer to the Spring Boot 3 baseline.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0237" difficulty="COMPLEX"/>
+      <strategy xmi:id="_st0238">
+        <steps xmi:id="_step0239" description="update Spring Boot parent/plugin/dependencies to latest 2.7.x" order="1" type="A"/>
+        <steps xmi:id="_step0240" description="run the existing test suite on 2.7.x" order="2" type="A"/>
+        <steps xmi:id="_step0241" description="inspect failures caused by skipped intermediate 2.x changes" order="3" type="M"/>
+        <steps xmi:id="_step0242" description="if failures are present" order="4" type="NONE">
+          <nestedSteps xmi:id="_step0243" description="resolve them before attempting the Spring Boot 3 upgrade" order="1" type="M"/>
+        </steps>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0244" name="manual dependency compatibility inventory" sourceFeature="_f0009" targetFeature="_f0099" relation="The migration guide explicitly requires comparing Boot-managed dependency sets and checking unmanaged libraries such as Spring Cloud before upgrading. The correspondence is operator-assisted because compatibility decisions depend on the concrete dependency graph.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0245" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0246">
+        <steps xmi:id="_step0247" description="extract direct and transitive dependencies from Maven or Gradle" order="1" type="A"/>
+        <steps xmi:id="_step0248" description="identify dependencies with explicit versions not managed by Spring Boot" order="2" type="M"/>
+        <steps xmi:id="_step0249" description="check each library for Spring Boot 3 / Spring Framework 6 / Jakarta compatibility" order="3" type="M"/>
+        <steps xmi:id="_step0250" description="if a compatible version does not exist" order="4" type="NONE">
+          <nestedSteps xmi:id="_step0251" description="mark the library as a redesign or replacement risk" order="1" type="M"/>
+        </steps>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0252" name="Spring Security 5.x to Spring Security 5.8 preparation state" sourceFeature="_f0005" targetFeature="_f0100" relation="Spring Boot 3 uses Spring Security 6, but the recommended path is to first move a Spring Boot 2.7 application to Spring Security 5.8 to surface deprecations before the final Spring Security 6 step.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0253" kind="MIX" operators="_op0189"/>
+      <strategy xmi:id="_st0254">
+        <steps xmi:id="_step0255" description="override or upgrade Spring Security to 5.8 while staying on Spring Boot 2.7" order="1" type="A"/>
+        <steps xmi:id="_step0256" description="compile with deprecation warnings enabled" order="2" type="A"/>
+        <steps xmi:id="_step0257" description="rewrite deprecated security APIs before changing to Boot 3" order="3" type="M"/>
+        <steps xmi:id="_step0258" description="validate endpoint authorization behavior before and after the intermediate state" order="4" type="M"/>
+      </strategy>
+    <conditions xmi:id="_c0252_guard1" polarity="REQUIRED" expression="Applies when the application uses custom Spring Security 5.x configuration or deprecated Spring Security APIs." subjectFeatures="_f0005"/></correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0259" name="Java 8/11 runtime to Java 17 baseline" sourceFeature="_f0008" targetFeature="_f0102 _f0111" relation="Spring Boot 3 requires Java 17 or later. This is a platform baseline migration rather than a simple library rename because CI, IDE, compiler source/target settings, container images, and runtime environments must all agree.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0260" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0261">
+        <steps xmi:id="_step0262" description="update Maven or Gradle toolchain/source/target settings to Java 17" order="1" type="A"/>
+        <steps xmi:id="_step0263" description="update CI and container images to a Java 17 runtime" order="2" type="A"/>
+        <steps xmi:id="_step0264" description="inspect reflective-access, illegal-access, or removed-JDK-module issues" order="3" type="M"/>
+        <steps xmi:id="_step0265" description="run tests under Java 17 before upgrading Boot" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0266" name="deprecated Boot 2.x APIs and properties to clean migration baseline" sourceFeature="_f0004" targetFeature="_f0101" relation="Spring Boot 3 removes classes, methods, and properties deprecated in the 2.x line. The correspondence is operator-assisted because the model can point to deprecated usage, but the replacement often depends on the surrounding application intent.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0267" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0268">
+        <steps xmi:id="_step0269" description="run compiler, IDE inspections, and deprecation reports on 2.7.x" order="1" type="A"/>
+        <steps xmi:id="_step0270" description="run OpenRewrite or equivalent deprecation recipes where available" order="2" type="A"/>
+        <steps xmi:id="_step0271" description="replace remaining deprecated APIs manually" order="3" type="M"/>
+        <steps xmi:id="_step0272" description="document deprecated elements that have no direct replacement" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0273" name="configuration properties migrator as temporary bridge" sourceFeature="_f0034" targetFeature="_f0103 _f0126 _f0104" relation="The properties migrator is a temporary compatibility bridge: it reports renamed/removed properties and can temporarily migrate them at runtime, but it must be removed after the configuration has been updated.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0274" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0275">
+        <steps xmi:id="_step0276" description="add spring-boot-properties-migrator as a runtime-only dependency" order="1" type="A"/>
+        <steps xmi:id="_step0277" description="start the application and collect diagnostics for renamed/removed properties" order="2" type="A"/>
+        <steps xmi:id="_step0278" description="edit application.properties or application.yml to use the new keys" order="3" type="M"/>
+        <steps xmi:id="_step0279" description="restart and confirm no migrator diagnostics remain" order="4" type="A"/>
+        <steps xmi:id="_step0280" description="remove the migrator dependency after migration" order="5" type="A"/>
+      </strategy>
+    </correspondences>
+  <correspondences xmi:id="_b1000" xsi:type="smdsl_updated_updated_prefix:Bridge" name="Latest Spring Boot 2.7 Intermediate Upgrade Bridge" bridgeFeatures="_f0002 _f0003 _f0098" scope="WHOLE_MIGRATION" rationale="The latest 2.7.x line is an intermediate state that reduces migration shock by aligning the application with the final Spring Boot 2 generation before Boot 3." cleanupRequired="false"><conditions xmi:id="_b1000_cond1" polarity="REQUIRED" expression="Required when the application is earlier than the latest Spring Boot 2.7.x maintenance release." subjectFeatures="_f0002"/></correspondences><correspondences xmi:id="_b1001" xsi:type="smdsl_updated_updated_prefix:Bridge" name="Spring Security 5.8 Transitional Bridge" bridgeFeatures="_f0005 _f0006 _f0100 _f0147" scope="CORRESPONDENCE" rationale="Spring Security 5.8 exposes and prepares many of the changes needed for Spring Security 6, enabling a staged security migration before the full Boot 3 upgrade." cleanupRequired="false"><conditions xmi:id="_b1001_cond1" polarity="OPTIONAL" expression="Recommended for applications with non-trivial Spring Security configuration." subjectFeatures="_f0005"/></correspondences><correspondences xmi:id="_p1000" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Running Application During Staged Baseline Upgrade" preservedFeatures="_f0003 _f0098" kind="TEMPORARILY_RETAINED" reason="The application remains on the Boot 2 line while dependency, deprecation, and security preconditions are prepared before the Boot 3 switch."/><correspondences xmi:id="_e1000" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Java 17 Minimum Runtime Requirement" kind="VALIDATION_REQUIRED" rationale="Spring Boot 3 requires Java 17 or later; applications on Java 8 or 11 cannot be migrated without updating runtime, build, CI, and deployment baselines." affectedSourceFeatures="_f0008" affectedTargetFeatures="_f0102 _f0111"/><correspondences xmi:id="_e1001" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Deprecated Spring Boot 2.x API Removal Risk" kind="SUPPORT_REMOVED" rationale="Classes, methods, and properties deprecated in Spring Boot 2.x may be removed in Spring Boot 3, so usage must be cleaned before upgrade." affectedSourceFeatures="_f0004" affectedTargetFeatures="_f0101"/></mappings>
+  <mappings xmi:id="_map0281" name="Build, Plugin, and Dependency Coordinates">
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0282" name="Boot 2 dependency management to Boot 3 dependency management" sourceFeature="_f0011" targetFeature="_f0106" relation="The build must move from Spring Boot 2 coordinates to Spring Boot 3 coordinates, including the parent, plugin, BOM, and managed Spring artifacts.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0283" difficulty="EASY"/>
+      <strategy xmi:id="_st0284">
+        <steps xmi:id="_step0285" description="replace Spring Boot parent/plugin/BOM version with 3.0.x" order="1" type="A"/>
+        <steps xmi:id="_step0286" description="upgrade org.springframework.boot artifacts to 3.0.x" order="2" type="A"/>
+        <steps xmi:id="_step0287" description="run dependency resolution to detect conflicts" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0288" name="Spring Framework 5 dependencies to Spring Framework 6" sourceFeature="_f0012" targetFeature="_f0107" relation="Spring Boot 3 is based on Spring Framework 6, so explicitly declared Spring Framework 5 dependencies must align with Framework 6 rather than overriding Boot 3 management.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0289" difficulty="COMPLEX"/>
+      <strategy xmi:id="_st0290">
+        <steps xmi:id="_step0291" description="find explicit org.springframework dependencies" order="1" type="A"/>
+        <steps xmi:id="_step0292" description="update versions to Spring Framework 6.0.x or remove versions to use Boot management" order="2" type="A"/>
+        <steps xmi:id="_step0293" description="inspect Framework 6 API changes that are not pure version bumps" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0294" name="unmanaged dependencies to compatible dependency set" sourceFeature="_f0013" targetFeature="_f0110" relation="Libraries outside Spring Boot dependency management must be reviewed individually for Java 17, Spring Framework 6, and Jakarta EE compatibility.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0295" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0296">
+        <steps xmi:id="_step0297" description="list dependencies with explicit versions" order="1" type="A"/>
+        <steps xmi:id="_step0298" description="check compatibility matrix or release notes for each dependency" order="2" type="M"/>
+        <steps xmi:id="_step0299" description="select compatible versions or replacement libraries" order="3" type="M"/>
+        <steps xmi:id="_step0300" description="update build declarations" order="4" type="A"/>
+        <steps xmi:id="_step0301" description="compile and run integration tests" order="5" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0302" name="Gradle direct property access to Provider API access" sourceFeature="_f0014" targetFeature="_f0108" relation="Spring Boot 3 Gradle tasks consistently use Gradle Property support, so direct property access must become provider-style get/set access in affected task configuration.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0303" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0304">
+        <steps xmi:id="_step0305" description="detect Boot Gradle task configuration using direct property access" order="1" type="A"/>
+        <steps xmi:id="_step0306" description="replace reads with .get() and writes with .set(...) where applicable" order="2" type="A"/>
+        <steps xmi:id="_step0307" description="inspect Kotlin DSL differences" order="3" type="M"/>
+        <steps xmi:id="_step0308" description="run Gradle tasks" order="4" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0309" name="bootJar layering isEnabled to enabled.set" sourceFeature="_f0015" targetFeature="_f0108" relation="Layering configuration in Boot Gradle tasks moved from isEnabled assignment to enabled.set(...) style.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0310" difficulty="EASY"/>
+      <strategy xmi:id="_st0311">
+        <steps xmi:id="_step0312" description="find layered { isEnabled = ... } in bootJar or bootWar configuration" order="1" type="A"/>
+        <steps xmi:id="_step0313" description="replace it with layered { enabled.set(...) }" order="2" type="A"/>
+        <steps xmi:id="_step0314" description="run Gradle configuration phase" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0315" name="build-info null exclusions to name-based exclusions" sourceFeature="_f0016" targetFeature="_f0108" relation="Null-based exclusion of build-info properties is replaced by explicit name-based excludes in the Spring Boot Gradle DSL.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0316" difficulty="EASY"/>
+      <strategy xmi:id="_st0317">
+        <steps xmi:id="_step0318" description="find buildInfo property entries assigned to null" order="1" type="A"/>
+        <steps xmi:id="_step0319" description="replace with excludes = [...] or excludes.set(...)" order="2" type="A"/>
+        <steps xmi:id="_step0320" description="regenerate build-info.properties" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0321" name="Maven fork attribute removal" sourceFeature="_f0017" targetFeature="_f0109" relation="The fork attribute of spring-boot:run and spring-boot:start was deprecated in 2.7 and removed in Spring Boot 3.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0322" difficulty="EASY"/>
+      <strategy xmi:id="_st0323">
+        <steps xmi:id="_step0324" description="find fork attribute in spring-boot-maven-plugin run/start configuration" order="1" type="A"/>
+        <steps xmi:id="_step0325" description="remove the attribute" order="2" type="A"/>
+        <steps xmi:id="_step0326" description="run mvn spring-boot:run or start to validate" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0327" name="git-commit-id plugin coordinates" sourceFeature="_f0018" targetFeature="_f0109" relation="The Git Commit ID Maven Plugin coordinates changed from pl.project13.maven:git-commit-id-plugin to io.github.git-commit-id:git-commit-id-maven-plugin.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0328" difficulty="EASY"/>
+      <strategy xmi:id="_st0329">
+        <steps xmi:id="_step0330" description="detect old plugin coordinates" order="1" type="A"/>
+        <steps xmi:id="_step0331" description="replace groupId and artifactId with new coordinates" order="2" type="A"/>
+        <steps xmi:id="_step0332" description="run Maven validate/package" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+  <correspondences xmi:id="_e1002" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Boot-managed Dependency Version Shift" kind="RISK_INTRODUCED" rationale="The Boot 3 dependency set upgrades many transitive libraries, so unmanaged or explicitly pinned dependencies can become incompatible even when application source code compiles." affectedSourceFeatures="_f0011 _f0013" affectedTargetFeatures="_f0106 _f0110"/><correspondences xmi:id="_e1003" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Gradle Property API Configuration Shift" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="Spring Boot Gradle task configuration moves to Gradle Property-style access and assignment, changing syntax such as isEnabled to enabled.set(false)." affectedSourceFeatures="_f0014 _f0015" affectedTargetFeatures="_f0108"/></mappings>
+  <mappings xmi:id="_map0333" name="Jakarta EE Namespace and Specification Migration">
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0334" name="javax import namespace to jakarta import namespace" sourceFeature="_f0021" targetFeature="_f0113" relation="Spring Boot 3 upgrades to Jakarta EE 10 and the Jakarta namespace. Source imports under javax must be rewritten to jakarta where the specification moved.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0335" difficulty="COMPLEX"/>
+      <strategy xmi:id="_st0336">
+        <steps xmi:id="_step0337" description="scan Java sources for javax imports" order="1" type="A"/>
+        <steps xmi:id="_step0338" description="replace supported javax packages with corresponding jakarta packages" order="2" type="A"/>
+        <steps xmi:id="_step0339" description="inspect packages that are still part of Java SE or have no Jakarta equivalent" order="3" type="M"/>
+        <steps xmi:id="_step0340" description="compile to expose missed type changes" order="4" type="A"/>
+      </strategy>
+    <conditions xmi:id="_c0334_guard1" polarity="REQUIRED" expression="Applies when source code or generated code imports Java EE javax packages that moved to Jakarta packages." subjectFeatures="_f0021"/></correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0341" name="javax.servlet API to jakarta.servlet Servlet 6" sourceFeature="_f0022" targetFeature="_f0114" relation="Servlet dependencies and imports move from javax.servlet to jakarta.servlet, with Servlet 6.0 used by Spring Boot 3 except special Jetty cases.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0342" difficulty="COMPLEX"/>
+      <strategy xmi:id="_st0343">
+        <steps xmi:id="_step0344" description="replace javax.servlet dependency coordinates with jakarta.servlet-api" order="1" type="A"/>
+        <steps xmi:id="_step0345" description="update servlet imports" order="2" type="A"/>
+        <steps xmi:id="_step0346" description="inspect custom filters, listeners, and servlet containers for signature changes" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0347" name="javax.persistence API to jakarta.persistence JPA 3.1" sourceFeature="_f0023" targetFeature="_f0115" relation="JPA dependencies and imports move from javax.persistence to jakarta.persistence and are coupled with Hibernate 6 behavior changes.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0348" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0349">
+        <steps xmi:id="_step0350" description="replace JPA API dependency with jakarta.persistence-api" order="1" type="A"/>
+        <steps xmi:id="_step0351" description="rewrite imports and annotations" order="2" type="A"/>
+        <steps xmi:id="_step0352" description="validate entity mapping and query behavior under Hibernate 6" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0353" name="javax.validation to jakarta.validation" sourceFeature="_f0024" targetFeature="_f0116" relation="Bean Validation APIs move into the jakarta.validation namespace and are normally supplied through Spring Boot 3 starters or compatible validation libraries.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0354" difficulty="EASY"/>
+      <strategy xmi:id="_st0355">
+        <steps xmi:id="_step0356" description="rewrite javax.validation imports to jakarta.validation" order="1" type="A"/>
+        <steps xmi:id="_step0357" description="ensure hibernate-validator is Boot-3 compatible" order="2" type="A"/>
+        <steps xmi:id="_step0358" description="run validation tests" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0359" name="other Java EE APIs to Jakarta APIs" sourceFeature="_f0025" targetFeature="_f0117" relation="Several specification APIs used by applications or libraries move from javax to jakarta packages. The exact replacement is guarded by which specification is used.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0360" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0361">
+        <steps xmi:id="_step0362" description="scan for javax.annotation, javax.transaction, javax.mail, and related APIs" order="1" type="A"/>
+        <steps xmi:id="_step0363" description="classify each as Jakarta EE migration, Java SE API, or removed API" order="2" type="M"/>
+        <steps xmi:id="_step0364" description="update dependencies and imports for Jakarta EE cases" order="3" type="A"/>
+        <steps xmi:id="_step0365" description="test integration behavior" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0366" name="javax-based third-party libraries to Jakarta variants" sourceFeature="_f0026" targetFeature="_f0118" relation="Some libraries embed Java EE APIs in their public types. These cannot be fixed only by import rewriting; the library itself must have a Jakarta-compatible artifact or version.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0367" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0368">
+        <steps xmi:id="_step0369" description="detect third-party libraries exposing javax types" order="1" type="A"/>
+        <steps xmi:id="_step0370" description="find Jakarta-compatible version or artifact" order="2" type="M"/>
+        <steps xmi:id="_step0371" description="if no compatible artifact exists" order="3" type="NONE">
+          <nestedSteps xmi:id="_step0372" description="replace the library or isolate it behind an adapter" order="1" type="M"/>
+        </steps>
+        <steps xmi:id="_step0373" description="update dependency declaration and compile" order="4" type="A"/>
+      </strategy>
+    </correspondences>
+  <correspondences xmi:id="_p1001" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Java EE API Intent Through Jakarta Namespace Migration" preservedFeatures="_f0021 _f0113 _f0023 _f0115 _f0024 _f0116" kind="SEMANTICALLY_PRESERVED" reason="Many API usages preserve their domain intent while package names and dependency coordinates change from javax to jakarta."/><correspondences xmi:id="_e1004" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="javax to jakarta Namespace Breaking Change" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="Jakarta EE APIs use jakarta packages rather than javax packages, requiring import changes, dependency coordinate updates, and compatible third-party libraries." affectedSourceFeatures="_f0021 _f0026" affectedTargetFeatures="_f0113 _f0118"/></mappings>
+  <mappings xmi:id="_map0374" name="Core Spring Boot API, Auto-configuration, and Properties">
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0375" name="image banners to text banner" sourceFeature="_f0028" targetFeature="_f0120" relation="Image-based banners are ignored in Spring Boot 3; banner.gif, banner.jpg, and banner.png should be replaced by text-based banner.txt if banner behavior is still desired.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0376" difficulty="EASY"/>
+      <strategy xmi:id="_st0377">
+        <steps xmi:id="_step0378" description="detect banner.gif/banner.jpg/banner.png" order="1" type="A"/>
+        <steps xmi:id="_step0379" description="create equivalent banner.txt or remove image banner" order="2" type="A"/>
+        <steps xmi:id="_step0380" description="inspect startup output if branding matters" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0381" name="old log date format to ISO-8601 default or override" sourceFeature="_f0029" targetFeature="_f0121" relation="Spring Boot 3 changes the default Logback/Log4j2 date format to ISO-8601 style. Applications depending on log parsing may either accept the new format or restore the old pattern.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0382" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0383">
+        <steps xmi:id="_step0384" description="check whether log aggregation/parsing expects the old date format" order="1" type="M"/>
+        <steps xmi:id="_step0385" description="if old format must be preserved" order="2" type="NONE">
+          <nestedSteps xmi:id="_step0386" description="set LOG_DATEFORMAT_PATTERN or logging.pattern.dateformat to the old pattern" order="1" type="A"/>
+        </steps>
+        <steps xmi:id="_step0387" description="validate log parser behavior" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0388" name="type-level ConstructorBinding to constructor-level or removal" sourceFeature="_f0030" targetFeature="_f0122" relation="@ConstructorBinding is no longer needed at the type level; it should be removed, except that it may still be used on a selected constructor when multiple constructors exist.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0389" difficulty="EASY"/>
+      <strategy xmi:id="_st0390">
+        <steps xmi:id="_step0391" description="find type-level @ConstructorBinding on @ConfigurationProperties classes" order="1" type="A"/>
+        <steps xmi:id="_step0392" description="remove it when the type has one constructor or is a record" order="2" type="A"/>
+        <steps xmi:id="_step0393" description="if multiple constructors exist" order="3" type="NONE">
+          <nestedSteps xmi:id="_step0394" description="move @ConstructorBinding to the intended constructor" order="1" type="A"/>
+        </steps>
+        <steps xmi:id="_step0395" description="run configuration binding tests" order="4" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0396" name="configuration property constructor injection to explicit @Autowired" sourceFeature="_f0031" targetFeature="_f0123" relation="If a @ConfigurationProperties constructor is meant for dependency injection rather than property binding, it must be annotated with @Autowired to avoid being treated as a binding constructor.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0397" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0398">
+        <steps xmi:id="_step0399" description="find @ConfigurationProperties classes with constructor parameters that look like beans" order="1" type="A"/>
+        <steps xmi:id="_step0400" description="decide whether each constructor is binding or dependency injection" order="2" type="M"/>
+        <steps xmi:id="_step0401" description="add @Autowired for dependency-injection constructors" order="3" type="A"/>
+        <steps xmi:id="_step0402" description="run application context startup tests" order="4" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0403" name="YamlJsonParser usage to alternative JsonParser" sourceFeature="_f0032" targetFeature="_f0124" relation="YamlJsonParser has been removed, so direct usage must move to another JsonParser implementation or to application-specific parsing logic.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0404" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0405">
+        <steps xmi:id="_step0406" description="find YamlJsonParser references" order="1" type="A"/>
+        <steps xmi:id="_step0407" description="select JsonParser replacement or YAML parser behavior" order="2" type="M"/>
+        <steps xmi:id="_step0408" description="rewrite the construction and tests" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0409" name="spring.factories auto-configuration to AutoConfiguration.imports" sourceFeature="_f0033" targetFeature="_f0125" relation="Spring Boot 2.7 introduced AutoConfiguration.imports while retaining compatibility with spring.factories. Spring Boot 3 removes EnableAutoConfiguration registration through spring.factories, so library auto-configurations must move to the imports file.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0410" difficulty="EASY"/>
+      <strategy xmi:id="_st0411">
+        <steps xmi:id="_step0412" description="read META-INF/spring.factories EnableAutoConfiguration entries" order="1" type="A"/>
+        <steps xmi:id="_step0413" description="write the same auto-configuration class names to META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports" order="2" type="A"/>
+        <steps xmi:id="_step0414" description="keep other spring.factories keys unchanged" order="3" type="A"/>
+        <steps xmi:id="_step0415" description="run auto-configuration metadata tests" order="4" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0416" name="spring.redis to spring.data.redis" sourceFeature="_f0035" targetFeature="_f0127" relation="Redis configuration properties move from spring.redis to spring.data.redis.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0417" difficulty="EASY"/>
+      <strategy xmi:id="_st0418">
+        <steps xmi:id="_step0419" description="find spring.redis.* properties" order="1" type="A"/>
+        <steps xmi:id="_step0420" description="rewrite to spring.data.redis.*" order="2" type="A"/>
+        <steps xmi:id="_step0421" description="start application and verify no migrator warning remains" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0422" name="spring.data.cassandra to spring.cassandra" sourceFeature="_f0036" targetFeature="_f0128" relation="Cassandra configuration properties move from spring.data.cassandra to spring.cassandra.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0423" difficulty="EASY"/>
+      <strategy xmi:id="_st0424">
+        <steps xmi:id="_step0425" description="find spring.data.cassandra.* properties" order="1" type="A"/>
+        <steps xmi:id="_step0426" description="rewrite to spring.cassandra.*" order="2" type="A"/>
+        <steps xmi:id="_step0427" description="validate Cassandra connection configuration" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0428" name="server.max.http.header.size to request header property" sourceFeature="_f0037" targetFeature="_f0129 _f0135" relation="The legacy header-size property was inconsistently interpreted. Spring Boot 3 uses server.max-http-request-header-size for request headers; response header limits need a WebServerFactoryCustomizer for Tomcat or Jetty.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0429" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0430">
+        <steps xmi:id="_step0431" description="replace server.max.http.header.size with server.max-http-request-header-size for request headers" order="1" type="A"/>
+        <steps xmi:id="_step0432" description="check whether response header size was intentionally controlled" order="2" type="M"/>
+        <steps xmi:id="_step0433" description="if response header size is required" order="3" type="NONE">
+          <nestedSteps xmi:id="_step0434" description="add Tomcat or Jetty WebServerFactoryCustomizer" order="1" type="M"/>
+        </steps>
+        <steps xmi:id="_step0435" description="test requests and responses near configured limits" order="4" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0436" name="old ID generator fallback property removed" sourceFeature="_f0038" targetFeature="_f0130 _f0160" relation="The old Hibernate ID generator fallback property is removed because Hibernate no longer supports switching back to the legacy generator mappings.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" xmi:id="_comp0437" rationale="The property has no target equivalent in Spring Boot 3/Hibernate 6. The replacement is behavioral validation and, where needed, manual entity or sequence redesign." possibleApproximation="_f0160" operators="_op0188" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st0438">
+        <steps xmi:id="_step0439" description="remove spring.jpa.hibernate.use-new-id-generator-mappings" order="1" type="A"/>
+        <steps xmi:id="_step0440" description="inspect entity identifiers and sequence/table generators" order="2" type="M"/>
+        <steps xmi:id="_step0441" description="run schema migration and persistence tests" order="3" type="M"/>
+        <steps xmi:id="_step0442" description="adjust generator annotations or database sequences if behavior changes" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0443" name="SAML2 identity-provider properties to asserting-party hierarchy" sourceFeature="_f0039" targetFeature="_f0131" relation="SAML2 relying-party properties under identity-provider are removed and replaced with the asserting-party hierarchy.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0444" difficulty="EASY"/>
+      <strategy xmi:id="_st0445">
+        <steps xmi:id="_step0446" description="find spring.security.saml2.relyingparty.registration.*.identity-provider.* properties" order="1" type="A"/>
+        <steps xmi:id="_step0447" description="rewrite them under asserting-party" order="2" type="A"/>
+        <steps xmi:id="_step0448" description="validate SAML metadata and login flow" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+  <correspondences xmi:id="_b1002" xsi:type="smdsl_updated_updated_prefix:Bridge" name="Spring Boot Properties Migrator Temporary Compatibility Bridge" bridgeFeatures="_f0034 _f0103 _f0104" scope="RUNTIME" rationale="The properties migrator diagnoses renamed/removed properties and temporarily adapts them at runtime, but it is not a final target-state feature." cleanupRequired="true"><conditions xmi:id="_b1002_cond1" polarity="OPTIONAL" expression="Use only while renamed/removed Boot 2 configuration properties still exist." subjectFeatures="_f0034"/></correspondences><correspondences xmi:id="_b1003" xsi:type="smdsl_updated_updated_prefix:Bridge" name="Dual Auto-configuration Registration Bridge for Libraries" bridgeFeatures="_f0033 _f0125" scope="BUILD" rationale="Libraries targeting both Boot 2.7 and Boot 3 can temporarily list auto-configurations in both spring.factories and AutoConfiguration.imports; Boot 2.7 deduplicates duplicate entries." cleanupRequired="false"><conditions xmi:id="_b1003_cond1" polarity="OPTIONAL" expression="Applies to library/starter projects that must support both Spring Boot 2.7 and 3.x." subjectFeatures="_f0033 _f0125"/></correspondences><correspondences xmi:id="_p1002" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Old Log Date Format When Required" preservedFeatures="_f0029 _f0121" kind="SYNTACTICALLY_PRESERVED" reason="The old log timestamp format can be restored with logging.pattern.dateformat or LOG_DATEFORMAT_PATTERN when log parsers require the previous syntax."><conditions xmi:id="_p1002_cond1" polarity="OPTIONAL" expression="Use only when downstream log parsing, monitoring, or tests depend on the old timestamp layout." subjectFeatures="_f0029"/></correspondences><correspondences xmi:id="_p1003" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Non-AutoConfiguration spring.factories Entries" preservedFeatures="_f0033 _f0125" kind="UNCHANGED" reason="Only EnableAutoConfiguration registration in spring.factories is removed; other spring.factories keys remain unaffected."/><correspondences xmi:id="_e1005" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Image Banner Support Removed" kind="SUPPORT_REMOVED" rationale="Spring Boot 3 ignores image-based banners such as banner.gif, banner.jpg, and banner.png; a text banner is the target equivalent." affectedSourceFeatures="_f0028" affectedTargetFeatures="_f0120"/><correspondences xmi:id="_e1006" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Logging Timestamp Default Changed to ISO-8601" kind="DEFAULT_VALUE_CHANGED" rationale="The default Logback/Log4j2 date-time component now follows ISO-8601 style with timezone offset, which may affect log parsers and snapshot tests." affectedSourceFeatures="_f0029" affectedTargetFeatures="_f0121"/><correspondences xmi:id="_e1007" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Type-level ConstructorBinding No Longer Needed" kind="SUPPORT_DEPRECATED" rationale="Type-level @ConstructorBinding should be removed; constructor-level use remains only for selecting a constructor when needed." affectedSourceFeatures="_f0030" affectedTargetFeatures="_f0122"/><correspondences xmi:id="_e1008" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="ConfigurationProperties Constructor Injection Requires Explicit Autowired" kind="VALIDATION_REQUIRED" rationale="A constructor in a @ConfigurationProperties class may be treated as a binding constructor unless dependency injection is marked explicitly with @Autowired." affectedSourceFeatures="_f0031" affectedTargetFeatures="_f0123"/><correspondences xmi:id="_e1009" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="YamlJsonParser Removed" kind="SUPPORT_REMOVED" rationale="YamlJsonParser has been removed; direct usages must migrate to another JsonParser implementation." affectedSourceFeatures="_f0032" affectedTargetFeatures="_f0124"/><correspondences xmi:id="_e1010" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="spring.factories EnableAutoConfiguration Registration Removed" kind="SUPPORT_REMOVED" rationale="Boot 3 removes EnableAutoConfiguration registration through spring.factories in favor of AutoConfiguration.imports." affectedSourceFeatures="_f0033" affectedTargetFeatures="_f0125"/><correspondences xmi:id="_e1011" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Configuration Property Names and Meanings Changed" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="Several configuration properties are renamed or removed, and some old names are only temporarily handled by the properties migrator." affectedSourceFeatures="_f0034" affectedTargetFeatures="_f0126"/></mappings>
+  <mappings xmi:id="_map0449" name="Web Runtime Behavior">
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0450" name="implicit trailing-slash matching to explicit URL handling" sourceFeature="_f0041" targetFeature="_f0133 _f0134" relation="Spring Framework 6 sets trailing slash matching to false by default. A controller mapping that previously matched both /path and /path/ may now return 404 for the slash variant unless the application adds explicit mappings, redirects/rewrites, or a temporary compatibility configuration.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0451" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0452">
+        <steps xmi:id="_step0453" description="identify controller mappings and external clients that use trailing slashes" order="1" type="A"/>
+        <steps xmi:id="_step0454" description="choose target behavior: canonical redirect, duplicate mapping, filter, proxy rewrite, or temporary global setting" order="2" type="M"/>
+        <steps xmi:id="_step0455" description="implement chosen route policy" order="3" type="A"/>
+        <steps xmi:id="_step0456" description="run endpoint compatibility tests for slash and non-slash URLs" order="4" type="M"/>
+      </strategy>
+    <conditions xmi:id="_c0450_guard1" polarity="REQUIRED" expression="Applies when clients rely on /path and /path/ matching the same controller route." subjectFeatures="_f0041"/></correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0457" name="legacy max HTTP header size behavior to explicit request/response configuration" sourceFeature="_f0042" targetFeature="_f0135" relation="The old header-size behavior differed across embedded servers. Spring Boot 3 separates request header property behavior from server-specific response header customization.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0458" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0459">
+        <steps xmi:id="_step0460" description="identify current embedded server and header-size setting" order="1" type="A"/>
+        <steps xmi:id="_step0461" description="map request limit to server.max-http-request-header-size" order="2" type="A"/>
+        <steps xmi:id="_step0462" description="add server-specific response header customizer when response limit matters" order="3" type="M"/>
+        <steps xmi:id="_step0463" description="test with chosen server" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0464" name="graceful shutdown phase assumptions" sourceFeature="_f0043" targetFeature="_f0136" relation="Spring Boot 3 updates the phases used for graceful shutdown. Custom SmartLifecycle implementations that participate in shutdown may need phase changes.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0465" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0466">
+        <steps xmi:id="_step0467" description="find SmartLifecycle implementations and explicit phase values" order="1" type="A"/>
+        <steps xmi:id="_step0468" description="determine whether they participate in web-server graceful shutdown" order="2" type="M"/>
+        <steps xmi:id="_step0469" description="adjust phases relative to DEFAULT_PHASE - 2048 and DEFAULT_PHASE - 1024" order="3" type="M"/>
+        <steps xmi:id="_step0470" description="run shutdown/integration tests" order="4" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0471" name="Jetty Servlet 6 expectation to Servlet 5 compatibility downgrade" sourceFeature="_f0044" targetFeature="_f0137" relation="At Spring Boot 3.0 migration time, Jetty did not support Servlet 6.0; applications that use Jetty must set the jakarta-servlet.version property to 5.0 or choose another server.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" xmi:id="_comp0472" rationale="The target platform baseline is Servlet 6.0, but Jetty support requires a compatibility downgrade rather than a direct Servlet 6 Jetty correspondence." possibleApproximation="_f0137" operators="_op0188" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st0473">
+        <steps xmi:id="_step0474" description="detect spring-boot-starter-jetty or Jetty server customization" order="1" type="A"/>
+        <steps xmi:id="_step0475" description="choose between using Jetty with jakarta-servlet.version=5.0 or moving to another embedded server" order="2" type="M"/>
+        <steps xmi:id="_step0476" description="apply the selected build configuration" order="3" type="A"/>
+        <steps xmi:id="_step0477" description="run servlet integration tests" order="4" type="M"/>
+      </strategy>
+    <conditions xmi:id="_c0471_guard1" polarity="OPTIONAL" expression="Applies only when the application uses Jetty with Spring Boot 3.0 and must account for Servlet API compatibility." subjectFeatures="_f0044"/></correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0478" name="Apache HttpClient 4 RestTemplate integration to HttpClient 5" sourceFeature="_f0045" targetFeature="_f0138" relation="Spring Framework 6 removes Apache HttpClient 4 support for RestTemplate and immediately replaces it with HttpClient 5 using different coordinates.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0479" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0480">
+        <steps xmi:id="_step0481" description="search for org.apache.httpcomponents:httpclient or HttpComponentsClientHttpRequestFactory usage" order="1" type="A"/>
+        <steps xmi:id="_step0482" description="add org.apache.httpcomponents.client5:httpclient5 when Apache client behavior is required" order="2" type="A"/>
+        <steps xmi:id="_step0483" description="update custom request factory configuration for HttpClient 5 APIs" order="3" type="M"/>
+        <steps xmi:id="_step0484" description="test timeouts, TLS, proxy, and connection-pool behavior" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+  <correspondences xmi:id="_b1004" xsi:type="smdsl_updated_updated_prefix:Bridge" name="Temporary Trailing Slash Compatibility Bridge" bridgeFeatures="_f0041 _f0134 _f0133" scope="RUNTIME" rationale="A global trailing-slash configuration can temporarily preserve legacy routing behavior while the application moves to explicit redirects, rewrites, or route declarations." cleanupRequired="true"><conditions xmi:id="_b1004_cond1" polarity="OPTIONAL" expression="Use only while clients still depend on implicit trailing slash matching." subjectFeatures="_f0041"/></correspondences><correspondences xmi:id="_b1005" xsi:type="smdsl_updated_updated_prefix:Bridge" name="Jetty Servlet API 5 Compatibility Bridge" bridgeFeatures="_f0044 _f0137" scope="RUNTIME" rationale="For Spring Boot 3.0 with Jetty, the Servlet API version may have to be downgraded to 5.0 as a compatibility bridge." cleanupRequired="false"><conditions xmi:id="_b1005_cond1" polarity="REQUIRED" expression="Applies only to applications using Jetty with Spring Boot 3.0 where Servlet 6.0 support is unavailable." subjectFeatures="_f0044"/></correspondences><correspondences xmi:id="_p1004" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Public URL Contract with Explicit Trailing Slash Handling" preservedFeatures="_f0041 _f0133" kind="SEMANTICALLY_PRESERVED" reason="The source routing contract can be preserved by declaring both routes or introducing redirects/rewrites rather than relying on the old default."><conditions xmi:id="_p1004_cond1" polarity="REQUIRED" expression="Needed when external clients use both slash and non-slash URL variants." subjectFeatures="_f0041"/></correspondences><correspondences xmi:id="_e1012" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Trailing Slash Matching Default Changed" kind="DEFAULT_VALUE_CHANGED" rationale="Spring Framework 6 disables trailing slash matching by default; routes that previously matched /path/ may now return 404 unless handled explicitly." affectedSourceFeatures="_f0041" affectedTargetFeatures="_f0133 _f0134"/><correspondences xmi:id="_e1013" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="HTTP Header Size Property Semantics Changed" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="The old server.max-http-header-size behavior differed between servers; Boot 3 uses request-only configuration and requires customizers for response limits." affectedSourceFeatures="_f0042" affectedTargetFeatures="_f0135"/><correspondences xmi:id="_e1014" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Graceful Shutdown Lifecycle Phases Changed" kind="BEHAVIOR_CHANGE" rationale="SmartLifecycle phase values used for graceful shutdown have changed, so components participating in shutdown may need phase updates." affectedSourceFeatures="_f0043" affectedTargetFeatures="_f0136"/><correspondences xmi:id="_e1015" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Apache HttpClient 4 RestTemplate Support Removed" kind="SUPPORT_REMOVED" rationale="Spring Framework 6 removes Apache HttpClient 4 support for RestTemplate; HttpClient 5 is the replacement." affectedSourceFeatures="_f0045" affectedTargetFeatures="_f0138"/></mappings>
+  <mappings xmi:id="_map0485" name="Actuator, Metrics, and Observability">
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0486" name="JMX actuator exposure to health-only default" sourceFeature="_f0047" targetFeature="_f0140" relation="Spring Boot 3 exposes only the health actuator endpoint over JMX by default, aligning it with web endpoint exposure. Applications expecting additional JMX endpoints must configure include/exclude properties.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0487" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0488">
+        <steps xmi:id="_step0489" description="determine whether operations or monitoring depend on non-health JMX endpoints" order="1" type="M"/>
+        <steps xmi:id="_step0490" description="if additional endpoints are required" order="2" type="NONE">
+          <nestedSteps xmi:id="_step0491" description="set management.endpoints.jmx.exposure.include/exclude explicitly" order="1" type="A"/>
+        </steps>
+        <steps xmi:id="_step0492" description="validate monitoring integration" order="3" type="M"/>
+      </strategy>
+    <conditions xmi:id="_c0486_guard1" polarity="REQUIRED" expression="Applies when operators expect non-health actuator endpoints to remain exposed over JMX by default." subjectFeatures="_f0047"/></correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0493" name="httptrace to httpexchanges" sourceFeature="_f0048" targetFeature="_f0141" relation="The httptrace endpoint and supporting classes are renamed to httpexchanges and HttpExchangeRepository infrastructure.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0494" difficulty="EASY"/>
+      <strategy xmi:id="_st0495">
+        <steps xmi:id="_step0496" description="replace /actuator/httptrace references with /actuator/httpexchanges" order="1" type="A"/>
+        <steps xmi:id="_step0497" description="replace HttpTraceRepository imports/usages with HttpExchangeRepository" order="2" type="A"/>
+        <steps xmi:id="_step0498" description="update tests and monitoring dashboards" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0499" name="actuator ObjectMapper behavior to isolated ObjectMapper" sourceFeature="_f0049" targetFeature="_f0142" relation="Actuator endpoints now use an isolated ObjectMapper by default to make endpoint JSON consistent. Applications that relied on the application ObjectMapper must either adapt or turn the setting off.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0500" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0501">
+        <steps xmi:id="_step0502" description="check if custom ObjectMapper modules affect actuator endpoint output" order="1" type="M"/>
+        <steps xmi:id="_step0503" description="if old behavior is required" order="2" type="NONE">
+          <nestedSteps xmi:id="_step0504" description="set management.endpoints.jackson.isolated-object-mapper=false" order="1" type="A"/>
+        </steps>
+        <steps xmi:id="_step0505" description="validate actuator JSON consumed by clients" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0506" name="key-based sanitization to role-based show-values" sourceFeature="_f0050" targetFeature="_f0143" relation="The env and configprops endpoints now sanitize all values by default, replacing the old key-based sensitive-values approach with show-values settings that are role-aware.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0507" kind="MIX" operators="_op0189"/>
+      <strategy xmi:id="_st0508">
+        <steps xmi:id="_step0509" description="identify operational needs for unsanitized env/configprops output" order="1" type="M"/>
+        <steps xmi:id="_step0510" description="configure management.endpoint.env.show-values and configprops.show-values" order="2" type="A"/>
+        <steps xmi:id="_step0511" description="validate roles and access control before exposing sensitive values" order="3" type="M"/>
+      </strategy>
+    <conditions xmi:id="_c0506_guard1" polarity="REQUIRED" expression="Applies when the application relies on key-based env/configprops sanitization rules or custom sanitization assumptions." subjectFeatures="_f0050"/></correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0512" name="metrics tag providers to observation conventions" sourceFeature="_f0051" targetFeature="_f0144" relation="Spring Boot 3 moves HTTP metrics customization from WebMvcTagsProvider, WebFluxTagsProvider, TagContributor, and related tags classes toward Micrometer ObservationConvention and ObservationFilter customization.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0513" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0514">
+        <steps xmi:id="_step0515" description="find MetricsRestTemplateCustomizer, WebMvcTagsProvider, TagContributor, Tags classes, and related beans" order="1" type="A"/>
+        <steps xmi:id="_step0516" description="decide whether the customization extends default tags or replaces them" order="2" type="M"/>
+        <steps xmi:id="_step0517" description="implement DefaultServerRequestObservationConvention extension, custom ServerRequestObservationConvention, or ObservationFilter" order="3" type="M"/>
+        <steps xmi:id="_step0518" description="verify metrics and traces contain expected key values" order="4" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0519" name="metrics export property schema" sourceFeature="_f0052" targetFeature="_f0145" relation="Metrics export properties move from management.metrics.export.&lt;product&gt; to management.&lt;product&gt;.metrics.export.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0520" difficulty="EASY"/>
+      <strategy xmi:id="_st0521">
+        <steps xmi:id="_step0522" description="find management.metrics.export.* properties" order="1" type="A"/>
+        <steps xmi:id="_step0523" description="rewrite to management.&lt;product&gt;.metrics.export" order="2" type="A"/>
+        <steps xmi:id="_step0524" description="start with properties migrator to confirm no stale keys remain" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0525" name="Mongo health buildInfo/version to maxWireVersion" sourceFeature="_f0053" targetFeature="_f0146" relation="MongoDB HealthIndicator now uses a Stable API-oriented response where buildInfo/version assumptions are replaced by isMaster/maxWireVersion behavior.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0526" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0527">
+        <steps xmi:id="_step0528" description="check monitoring scripts/tests that parse Mongo health details" order="1" type="M"/>
+        <steps xmi:id="_step0529" description="update assertions from version to maxWireVersion where needed" order="2" type="A"/>
+        <steps xmi:id="_step0530" description="validate compatibility reporting" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+  <correspondences xmi:id="_p1005" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Previous JMX Exposure Policy Explicitly" preservedFeatures="_f0047 _f0140" kind="SEMANTICALLY_PRESERVED" reason="If operators require the previous JMX exposure surface, it can be preserved through explicit actuator JMX exposure include/exclude configuration."/><correspondences xmi:id="_p1006" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Application ObjectMapper for Actuator When Needed" preservedFeatures="_f0049 _f0142" kind="SEMANTICALLY_PRESERVED" reason="The old actuator serialization behavior can be restored by disabling the isolated actuator ObjectMapper when custom serialization is required."><conditions xmi:id="_p1006_cond1" polarity="OPTIONAL" expression="Use when custom endpoints or tests depend on the application ObjectMapper." subjectFeatures="_f0049"/></correspondences><correspondences xmi:id="_e1016" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="JMX Actuator Exposure Default Reduced" kind="DEFAULT_VALUE_CHANGED" rationale="Only the health endpoint is exposed over JMX by default, reducing the default actuator JMX surface." affectedSourceFeatures="_f0047" affectedTargetFeatures="_f0140"/><correspondences xmi:id="_e1017" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="httptrace Renamed to httpexchanges" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="The httptrace endpoint and infrastructure are renamed to httpexchanges/HttpExchangeRepository, and the response content is affected." affectedSourceFeatures="_f0048" affectedTargetFeatures="_f0141"/><correspondences xmi:id="_e1018" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Actuator JSON Uses Isolated ObjectMapper by Default" kind="DEFAULT_VALUE_CHANGED" rationale="Actuator endpoints now use an isolated ObjectMapper by default, which can change serialization compared with the application ObjectMapper." affectedSourceFeatures="_f0049" affectedTargetFeatures="_f0142"/><correspondences xmi:id="_e1019" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Actuator Sanitization Becomes Role-based and More Secure by Default" kind="DEFAULT_VALUE_CHANGED" rationale="Values in env/configprops are masked by default, replacing key-based sanitization with role-based show-values control." affectedSourceFeatures="_f0050" affectedTargetFeatures="_f0143"/><correspondences xmi:id="_e1020" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Metrics Instrumentation Replaced by Observation Model" kind="BEHAVIOR_CHANGE" rationale="Spring Boot 2.x metrics filters, tag providers, tag contributors, and customizers are replaced by ObservationConvention, ObservationFilter, and related observation APIs." affectedSourceFeatures="_f0051" affectedTargetFeatures="_f0144"/><correspondences xmi:id="_e1021" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Metrics Export Property Schema Moved" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="Exporter properties move from management.metrics.export.&lt;product&gt; to management.&lt;product&gt;.metrics.export." affectedSourceFeatures="_f0052" affectedTargetFeatures="_f0145"/><correspondences xmi:id="_e1022" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Mongo Health Indicator Response Semantics Changed" kind="BEHAVIOR_CHANGE" rationale="MongoDB health no longer reports the old buildInfo/version response shape and now uses maxWireVersion." affectedSourceFeatures="_f0053" affectedTargetFeatures="_f0146"/></mappings>
+  <mappings xmi:id="_map0531" name="Spring Security 6 Migration">
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0532" name="WebSecurityConfigurerAdapter to SecurityFilterChain bean" sourceFeature="_f0055" targetFeature="_f0148" relation="Spring Security moved away from WebSecurityConfigurerAdapter toward component-based SecurityFilterChain bean configuration. This is automatable in simple cases but often needs operator validation because security semantics are high risk.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0533" kind="MIX" operators="_op0189"/>
+      <strategy xmi:id="_st0534">
+        <steps xmi:id="_step0535" description="detect classes extending WebSecurityConfigurerAdapter" order="1" type="A"/>
+        <steps xmi:id="_step0536" description="create SecurityFilterChain @Bean using HttpSecurity" order="2" type="A"/>
+        <steps xmi:id="_step0537" description="preserve ordering and multiple filter-chain behavior" order="3" type="M"/>
+        <steps xmi:id="_step0538" description="run endpoint authorization tests" order="4" type="M"/>
+      </strategy>
+    <conditions xmi:id="_c0532_guard1" polarity="REQUIRED" expression="Applies when security configuration extends WebSecurityConfigurerAdapter or overrides configure(HttpSecurity)." subjectFeatures="_f0055"/></correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0539" name="authorizeRequests/antMatchers to authorizeHttpRequests/requestMatchers" sourceFeature="_f0056" targetFeature="_f0149" relation="Old authorization DSL methods such as authorizeRequests and antMatchers/mvcMatchers should be migrated to authorizeHttpRequests with requestMatchers/securityMatchers, preserving match specificity and authorization order.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0540" kind="MIX" operators="_op0189"/>
+      <strategy xmi:id="_st0541">
+        <steps xmi:id="_step0542" description="replace authorizeRequests with authorizeHttpRequests" order="1" type="A"/>
+        <steps xmi:id="_step0543" description="replace antMatchers/mvcMatchers with requestMatchers or securityMatchers" order="2" type="A"/>
+        <steps xmi:id="_step0544" description="inspect matcher semantics and ordering" order="3" type="M"/>
+        <steps xmi:id="_step0545" description="test public, protected, and denied routes" order="4" type="M"/>
+      </strategy>
+    <conditions xmi:id="_c0539_guard1" polarity="REQUIRED" expression="Applies when the source uses authorizeRequests, antMatchers, mvcMatchers, or old request matcher APIs." subjectFeatures="_f0056"/></correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0546" name="security filter dispatch types" sourceFeature="_f0057" targetFeature="_f0150" relation="Spring Security 6 applies authorization to every dispatch type, and Spring Boot configures the security filter accordingly. Applications depending on previous dispatch behavior must configure spring.security.filter.dispatcher-types.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0547" kind="MIX" operators="_op0189"/>
+      <strategy xmi:id="_st0548">
+        <steps xmi:id="_step0549" description="identify use of FORWARD, ERROR, ASYNC, REQUEST dispatch behavior" order="1" type="M"/>
+        <steps xmi:id="_step0550" description="decide intended dispatch types for security filtering" order="2" type="M"/>
+        <steps xmi:id="_step0551" description="configure spring.security.filter.dispatcher-types if needed" order="3" type="A"/>
+        <steps xmi:id="_step0552" description="test error pages, forwards, and async requests" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0553" name="ReactiveUserDetailsService auto-configuration behavior" sourceFeature="_f0058" targetFeature="_f0151" relation="A ReactiveUserDetailsService is no longer auto-configured when an AuthenticationManagerResolver is present. Applications relying on both must define the bean explicitly.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0554" kind="MIX" operators="_op0189"/>
+      <strategy xmi:id="_st0555">
+        <steps xmi:id="_step0556" description="detect AuthenticationManagerResolver bean in reactive security applications" order="1" type="A"/>
+        <steps xmi:id="_step0557" description="check whether authentication still requires ReactiveUserDetailsService" order="2" type="M"/>
+        <steps xmi:id="_step0558" description="define explicit ReactiveUserDetailsService bean if required" order="3" type="A"/>
+        <steps xmi:id="_step0559" description="test reactive authentication flows" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0560" name="SAML2 security extension to Boot/Security 6 service provider" sourceFeature="_f0092" targetFeature="_f0181 _f0152" relation="Older Spring Security SAML extension usage should move to Spring Security's SAML2 service provider support and the new Spring Boot 3 property hierarchy.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0561" kind="MIX" operators="_op0189"/>
+      <strategy xmi:id="_st0562">
+        <steps xmi:id="_step0563" description="detect org.springframework.security.extensions:spring-security-saml2-core" order="1" type="A"/>
+        <steps xmi:id="_step0564" description="replace with spring-security-saml2-service-provider" order="2" type="A"/>
+        <steps xmi:id="_step0565" description="rewrite SAML properties to asserting-party hierarchy" order="3" type="A"/>
+        <steps xmi:id="_step0566" description="validate metadata, signatures, login, and logout flow" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+  <correspondences xmi:id="_p1007" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Security Authorization Intent in Bean-based Configuration" preservedFeatures="_f0055 _f0148 _f0056 _f0149" kind="SEMANTICALLY_PRESERVED" reason="Although the configuration style changes, the authorization intent can be preserved by reconstructing matchers, authorization rules, CSRF/CORS, sessions, and ignored paths in SecurityFilterChain/WebSecurityCustomizer beans."/><correspondences xmi:id="_e1023" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="WebSecurityConfigurerAdapter Configuration Style Removed" kind="SUPPORT_REMOVED" rationale="Legacy adapter-based security configuration must move to component/bean-based SecurityFilterChain and WebSecurityCustomizer definitions." affectedSourceFeatures="_f0055" affectedTargetFeatures="_f0148"/><correspondences xmi:id="_e1024" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Authorization Matcher API Changed" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="authorizeRequests and antMatchers/mvcMatchers style is replaced by authorizeHttpRequests and requestMatchers/securityMatchers APIs." affectedSourceFeatures="_f0056" affectedTargetFeatures="_f0149"/><correspondences xmi:id="_e1025" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Security Filter Applies to More Dispatch Types" kind="BEHAVIOR_CHANGE" rationale="Spring Security 6 applies authorization to every Servlet dispatch type, and Boot configures its filter accordingly unless dispatcher types are configured." affectedSourceFeatures="_f0057" affectedTargetFeatures="_f0150"/><correspondences xmi:id="_e1026" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="ReactiveUserDetailsService Auto-configuration Narrowed" kind="BEHAVIOR_CHANGE" rationale="ReactiveUserDetailsService is no longer auto-configured in the presence of AuthenticationManagerResolver; an explicit bean may be required." affectedSourceFeatures="_f0058" affectedTargetFeatures="_f0151"/><correspondences xmi:id="_e1027" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="SAML2 Identity Provider Property Hierarchy Removed" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="spring.security.saml2.relyingparty.registration.{id}.identity-provider properties are replaced by asserting-party properties." affectedSourceFeatures="_f0059" affectedTargetFeatures="_f0152"/></mappings>
+  <mappings xmi:id="_map0567" name="Data and Persistence Migration">
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0568" name="Spring Data 2 repository assumptions to Spring Data 2022 behavior" sourceFeature="_f0061" targetFeature="_f0154" relation="Spring Boot 3 brings a new Spring Data generation. Repository interface and behavior changes must be reviewed using Spring Data release notes.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0569" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0570">
+        <steps xmi:id="_step0571" description="compile repositories against Spring Data 2022" order="1" type="A"/>
+        <steps xmi:id="_step0572" description="inspect method signatures, query derivation, and custom repository fragments" order="2" type="M"/>
+        <steps xmi:id="_step0573" description="run repository integration tests" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0574" name="Redis property rename" sourceFeature="_f0062" targetFeature="_f0155" relation="Redis properties move under spring.data.redis because Redis auto-configuration requires Spring Data on the classpath.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0575" difficulty="EASY"/>
+      <strategy xmi:id="_st0576">
+        <steps xmi:id="_step0577" description="rewrite spring.redis.* to spring.data.redis.*" order="1" type="A"/>
+        <steps xmi:id="_step0578" description="validate Redis connection and serialization settings" order="2" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0579" name="Cassandra property rename" sourceFeature="_f0063" targetFeature="_f0156" relation="Cassandra properties move from spring.data.cassandra to spring.cassandra.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0580" difficulty="EASY"/>
+      <strategy xmi:id="_st0581">
+        <steps xmi:id="_step0582" description="rewrite spring.data.cassandra.* to spring.cassandra.*" order="1" type="A"/>
+        <steps xmi:id="_step0583" description="validate session/keyspace configuration" order="2" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0584" name="Flyway customizer ordering" sourceFeature="_f0064" targetFeature="_f0157" relation="Spring Boot 3 uses Flyway 9 and calls FlywayConfigurationCustomizer after Callback and JavaMigration beans are added. Customizers that previously added callbacks/migrations may need adjustment.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0585" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0586">
+        <steps xmi:id="_step0587" description="detect FlywayConfigurationCustomizer plus Callback or JavaMigration beans" order="1" type="A"/>
+        <steps xmi:id="_step0588" description="verify intended callback/migration ordering" order="2" type="M"/>
+        <steps xmi:id="_step0589" description="adjust customizer or bean definitions" order="3" type="M"/>
+        <steps xmi:id="_step0590" description="run database migration tests" order="4" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0591" name="Liquibase version assumptions" sourceFeature="_f0065" targetFeature="_f0158" relation="Spring Boot 3 manages Liquibase 4.17.x. If an application is affected by version-specific problems, it should override the Liquibase version explicitly.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0592" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0593">
+        <steps xmi:id="_step0594" description="run Liquibase migrations under Boot 3" order="1" type="A"/>
+        <steps xmi:id="_step0595" description="inspect changelog or driver failures" order="2" type="M"/>
+        <steps xmi:id="_step0596" description="if affected by 4.17.x problems" order="3" type="NONE">
+          <nestedSteps xmi:id="_step0597" description="override Liquibase version" order="1" type="A"/>
+        </steps>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0598" name="Hibernate 5.x to Hibernate 6.1" sourceFeature="_f0066" targetFeature="_f0159" relation="Spring Boot 3 uses Hibernate 6.1 and updates the JPA starter dependency management to the org.hibernate.orm group ID. API, query, dialect, and type behavior can require manual changes.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0599" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0600">
+        <steps xmi:id="_step0601" description="replace old Hibernate dependency group/artifact/version declarations with Boot-managed Hibernate 6.1 org.hibernate.orm coordinates" order="1" type="A"/>
+        <steps xmi:id="_step0602" description="rewrite imports and obvious API changes" order="2" type="A"/>
+        <steps xmi:id="_step0603" description="inspect HQL/criteria/native query compatibility" order="3" type="M"/>
+        <steps xmi:id="_step0604" description="run persistence integration tests and migrations" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0605" name="Flapdoodle embedded Mongo auto-config to external/Testcontainers" sourceFeature="_f0068" targetFeature="_f0161" relation="Spring Boot 3 removes auto-configuration and dependency management for Flapdoodle embedded MongoDB. Tests should use Flapdoodle's own auto-configuration library or Testcontainers.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" xmi:id="_comp0606" rationale="Spring Boot no longer provides this auto-configuration, so the target is an externalized test infrastructure rather than a direct Boot feature." possibleApproximation="_f0161 _f0178" operators="_op0188" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st0607">
+        <steps xmi:id="_step0608" description="detect embedded MongoDB test dependency or annotations" order="1" type="A"/>
+        <steps xmi:id="_step0609" description="choose Flapdoodle external auto-config or Testcontainers" order="2" type="M"/>
+        <steps xmi:id="_step0610" description="update test dependencies and setup" order="3" type="A"/>
+        <steps xmi:id="_step0611" description="validate test isolation and startup time" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0612" name="R2DBC BOM override to module-specific versions" sourceFeature="_f0069" targetFeature="_f0162" relation="R2DBC 1.0 no longer publishes a BOM, so r2dbc-bom.version cannot override the stack. Spring Boot exposes individual module version properties instead.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0613" difficulty="EASY"/>
+      <strategy xmi:id="_st0614">
+        <steps xmi:id="_step0615" description="find r2dbc-bom.version override" order="1" type="A"/>
+        <steps xmi:id="_step0616" description="replace with oracle-r2dbc.version, r2dbc-h2.version, r2dbc-pool.version, r2dbc-postgres.version, r2dbc-proxy.version, or r2dbc-spi.version as needed" order="2" type="A"/>
+        <steps xmi:id="_step0617" description="resolve dependencies" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0618" name="Elasticsearch client/template exclusions" sourceFeature="_f0070" targetFeature="_f0163" relation="Elasticsearch client and template auto-configurations have changed names/packages. Applications excluding or ordering old auto-configurations must update those references.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0619" difficulty="EASY"/>
+      <strategy xmi:id="_st0620">
+        <steps xmi:id="_step0621" description="find exclusions/order references to old Elasticsearch auto-configuration classes" order="1" type="A"/>
+        <steps xmi:id="_step0622" description="replace ReactiveElasticsearchRestClientAutoConfiguration with ReactiveElasticsearchClientAutoConfiguration and update package" order="2" type="A"/>
+        <steps xmi:id="_step0623" description="run application context tests" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0624" name="MySQL driver coordinate change" sourceFeature="_f0071" targetFeature="_f0164" relation="The MySQL JDBC driver coordinate changes from mysql:mysql-connector-java to com.mysql:mysql-connector-j.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0625" difficulty="EASY"/>
+      <strategy xmi:id="_st0626">
+        <steps xmi:id="_step0627" description="find mysql:mysql-connector-java dependency" order="1" type="A"/>
+        <steps xmi:id="_step0628" description="replace with com.mysql:mysql-connector-j" order="2" type="A"/>
+        <steps xmi:id="_step0629" description="run database connection test" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+  <correspondences xmi:id="_p1008" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve JPA Domain Model Intent Under Hibernate 6 and Jakarta Persistence" preservedFeatures="_f0023 _f0115 _f0066 _f0159" kind="SEMANTICALLY_PRESERVED" reason="Entity modeling intent is generally preserved, but imports, Hibernate group IDs, query behavior, identifier generation, and custom types must be validated."/><correspondences xmi:id="_e1028" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Redis Property Prefix Moved" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="Redis properties move from spring.redis to spring.data.redis." affectedSourceFeatures="_f0062" affectedTargetFeatures="_f0155"/><correspondences xmi:id="_e1029" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Cassandra Property Prefix Moved" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="Cassandra properties move from spring.data.cassandra to spring.cassandra." affectedSourceFeatures="_f0063" affectedTargetFeatures="_f0156"/><correspondences xmi:id="_e1030" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Flyway Customizer Ordering Changed" kind="BEHAVIOR_CHANGE" rationale="FlywayConfigurationCustomizer beans are called after callbacks and Java migrations are added, so custom ordering assumptions may need adjustment." affectedSourceFeatures="_f0064" affectedTargetFeatures="_f0157"/><correspondences xmi:id="_e1031" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Liquibase Managed Version Risk" kind="RISK_INTRODUCED" rationale="Spring Boot 3 manages Liquibase 4.17.x, and affected applications may need an explicit override." affectedSourceFeatures="_f0065" affectedTargetFeatures="_f0158"/><correspondences xmi:id="_e1032" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Hibernate 6 Migration Risk" kind="BEHAVIOR_CHANGE" rationale="Hibernate 6 and the org.hibernate.orm coordinates can affect query behavior, custom types, identifier generation, and dependency declarations." affectedSourceFeatures="_f0066" affectedTargetFeatures="_f0159"/><correspondences xmi:id="_e1033" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Hibernate Old ID Generator Fallback Removed" kind="SUPPORT_REMOVED" rationale="spring.jpa.hibernate.use-new-id-generator-mappings is removed because Hibernate no longer supports switching back to the old generator mappings." affectedSourceFeatures="_f0067" affectedTargetFeatures="_f0160"/><correspondences xmi:id="_e1034" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Flapdoodle Embedded Mongo Support Externalized" kind="SUPPORT_EXTERNALIZED" rationale="Boot 3 removes Flapdoodle embedded Mongo auto-configuration and dependency management; tests should use Flapdoodle external auto-configuration or Testcontainers." affectedSourceFeatures="_f0068" affectedTargetFeatures="_f0161"/><correspondences xmi:id="_e1035" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="R2DBC BOM Override Removed" kind="SUPPORT_REMOVED" rationale="R2DBC 1.0 no longer publishes a BOM; Boot exposes module-specific version properties instead of r2dbc-bom.version." affectedSourceFeatures="_f0069" affectedTargetFeatures="_f0162"/><correspondences xmi:id="_e1036" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Elasticsearch High-Level REST Client Support Removed" kind="SUPPORT_REMOVED" rationale="The high-level REST client and templates built on it are replaced by the new Java client and updated templates." affectedSourceFeatures="_f0070" affectedTargetFeatures="_f0163"/><correspondences xmi:id="_e1037" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="MySQL JDBC Driver Coordinates Changed" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="The MySQL connector coordinate changes from mysql:mysql-connector-java to com.mysql:mysql-connector-j." affectedSourceFeatures="_f0071" affectedTargetFeatures="_f0164"/></mappings>
+  <mappings xmi:id="_map0630" name="Batch, Session, and Startup Semantics">
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0631" name="@EnableBatchProcessing to Boot 3 Batch auto-configuration" sourceFeature="_f0073" targetFeature="_f0166" relation="In Spring Boot 3 / Spring Batch 5, @EnableBatchProcessing is no longer required for Boot auto-configuration and now causes auto-configuration to back off when used.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0632" difficulty="EASY"/>
+      <strategy xmi:id="_st0633">
+        <steps xmi:id="_step0634" description="detect @EnableBatchProcessing on configuration classes" order="1" type="A"/>
+        <steps xmi:id="_step0635" description="remove it if the application wants Boot Batch auto-configuration" order="2" type="A"/>
+        <steps xmi:id="_step0636" description="keep custom DefaultBatchConfiguration only when intentionally taking full control" order="3" type="M"/>
+        <steps xmi:id="_step0637" description="run batch startup tests" order="4" type="A"/>
+      </strategy>
+    <conditions xmi:id="_c0631_guard1" polarity="REQUIRED" expression="Applies when @EnableBatchProcessing is used mainly to activate Boot auto-configuration rather than to take full control of Batch configuration." subjectFeatures="_f0073"/></correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0638" name="multiple startup batch jobs to explicit job selection" sourceFeature="_f0074" targetFeature="_f0167" relation="Boot 3 no longer runs multiple batch jobs automatically at startup. If multiple Job beans exist, the user must provide spring.batch.job.name to select one.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0639" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0640">
+        <steps xmi:id="_step0641" description="count Job beans in the application context" order="1" type="A"/>
+        <steps xmi:id="_step0642" description="if more than one job exists" order="2" type="NONE">
+          <nestedSteps xmi:id="_step0643" description="select the intended startup job" order="1" type="M"/>
+          <nestedSteps xmi:id="_step0644" description="set spring.batch.job.name" order="2" type="A"/>
+        </steps>
+        <steps xmi:id="_step0645" description="validate startup and job-launch behavior" order="3" type="M"/>
+      </strategy>
+    <conditions xmi:id="_c0638_guard1" polarity="REQUIRED" expression="Applies when more than one Batch Job bean is present and startup execution is expected." subjectFeatures="_f0074"/></correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0646" name="spring.session.store-type to classpath order or SessionRepository bean" sourceFeature="_f0075" targetFeature="_f0168" relation="Explicit spring.session.store-type is no longer supported. When multiple SessionRepository implementations are present, Boot uses a fixed classpath order unless the application defines its own SessionRepository bean.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" xmi:id="_comp0647" rationale="The old explicit property is removed, and the target behavior is either implicit classpath selection or an operator-provided bean, not a direct property rename." possibleApproximation="_f0168" operators="_op0188" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st0648">
+        <steps xmi:id="_step0649" description="remove spring.session.store-type" order="1" type="A"/>
+        <steps xmi:id="_step0650" description="inspect available session repository implementations on the classpath" order="2" type="M"/>
+        <steps xmi:id="_step0651" description="define a SessionRepository bean if Boot selection is not the intended one" order="3" type="M"/>
+        <steps xmi:id="_step0652" description="test session persistence behavior" order="4" type="A"/>
+      </strategy>
+    <conditions xmi:id="_c0646_guard1" polarity="REQUIRED" expression="Applies when spring.session.store-type is explicitly configured or multiple SessionRepository implementations are present." subjectFeatures="_f0075"/></correspondences>
+  <correspondences xmi:id="_e1038" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="@EnableBatchProcessing Backs Off Boot Auto-configuration" kind="BEHAVIOR_CHANGE" rationale="@EnableBatchProcessing is no longer required for Boot Batch auto-configuration and now signals that the application takes control." affectedSourceFeatures="_f0073" affectedTargetFeatures="_f0166"/><correspondences xmi:id="_e1039" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Multiple Startup Batch Jobs No Longer Supported" kind="SUPPORT_REMOVED" rationale="Boot 3 no longer runs multiple jobs automatically; a single job must exist or spring.batch.job.name must select one." affectedSourceFeatures="_f0074" affectedTargetFeatures="_f0167"/><correspondences xmi:id="_e1040" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="spring.session.store-type Removed" kind="SUPPORT_REMOVED" rationale="Explicit spring.session.store-type configuration is no longer supported; Boot uses classpath order or a user-provided SessionRepository bean." affectedSourceFeatures="_f0075" affectedTargetFeatures="_f0168"/></mappings>
+  <mappings xmi:id="_map0653" name="Removed or Externalized Dependency Support">
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0654" name="Apache ActiveMQ support removal" sourceFeature="_f0077" targetFeature="_f0175 _f0170" relation="Spring Boot 3 removes support for Apache ActiveMQ from its dependency management/autoconfiguration set. Applications must move to another supported messaging path or manage integration explicitly.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" xmi:id="_comp0655" rationale="The removed support has no direct Spring Boot 3 equivalent in Boot's managed feature set." possibleApproximation="_f0170" operators="_op0188" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st0656">
+        <steps xmi:id="_step0657" description="detect ActiveMQ dependencies/configuration" order="1" type="A"/>
+        <steps xmi:id="_step0658" description="choose replacement or explicit self-managed integration" order="2" type="M"/>
+        <steps xmi:id="_step0659" description="validate messaging behavior" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0660" name="Atomikos support removal" sourceFeature="_f0078" targetFeature="_f0175 _f0170" relation="Spring Boot 3 removes Atomikos support; transaction-management behavior must be redesigned or explicitly managed.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" xmi:id="_comp0661" rationale="Atomikos support is removed from Spring Boot 3 and requires operator-selected transaction redesign." possibleApproximation="_f0170" operators="_op0188" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st0662">
+        <steps xmi:id="_step0663" description="detect Atomikos dependencies/configuration" order="1" type="A"/>
+        <steps xmi:id="_step0664" description="select replacement transaction strategy" order="2" type="M"/>
+        <steps xmi:id="_step0665" description="run distributed transaction tests" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0666" name="EhCache 2 support removal" sourceFeature="_f0079" targetFeature="_f0175 _f0170" relation="Spring Boot 3 removes EhCache 2 support; applications must move to a supported cache provider or manage compatibility externally.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" xmi:id="_comp0667" rationale="EhCache 2 is not retained as a managed Boot 3 feature." possibleApproximation="_f0170" operators="_op0188" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st0668">
+        <steps xmi:id="_step0669" description="detect EhCache 2 dependencies/configuration" order="1" type="A"/>
+        <steps xmi:id="_step0670" description="choose supported cache provider or explicit self-managed path" order="2" type="M"/>
+        <steps xmi:id="_step0671" description="test cache behavior" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0672" name="Hazelcast 3 support removal" sourceFeature="_f0080" targetFeature="_f0175 _f0170" relation="Spring Boot 3 removes Hazelcast 3 support; Hazelcast usage must be updated to a compatible version or redesigned.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" xmi:id="_comp0673" rationale="Hazelcast 3 is removed from Boot 3 managed support." possibleApproximation="_f0170" operators="_op0188" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st0674">
+        <steps xmi:id="_step0675" description="detect Hazelcast 3 dependencies/configuration" order="1" type="A"/>
+        <steps xmi:id="_step0676" description="select compatible Hazelcast version or alternative" order="2" type="M"/>
+        <steps xmi:id="_step0677" description="run clustering/cache tests" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0678" name="Apache Solr support removal" sourceFeature="_f0081" targetFeature="_f0175 _f0170" relation="Spring Boot 3 removes support for Apache Solr because its Jetty-based Http2SolrClient is not compatible with Jetty 11.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" xmi:id="_comp0679" rationale="There is no direct Boot-managed Solr support in Spring Boot 3 for this case." possibleApproximation="_f0170" operators="_op0188" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st0680">
+        <steps xmi:id="_step0681" description="detect Solr dependencies/auto-configuration usage" order="1" type="A"/>
+        <steps xmi:id="_step0682" description="choose self-managed Solr client strategy or alternative search stack" order="2" type="M"/>
+        <steps xmi:id="_step0683" description="test search integration" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0684" name="Johnzon management to Yasson or explicit Johnzon" sourceFeature="_f0082" targetFeature="_f0171" relation="Dependency management for Apache Johnzon is removed in favor of Eclipse Yasson; applications can use a Jakarta-compatible Johnzon version only by specifying it explicitly.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0685" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0686">
+        <steps xmi:id="_step0687" description="detect Apache Johnzon dependency" order="1" type="A"/>
+        <steps xmi:id="_step0688" description="choose default Eclipse Yasson or explicit Jakarta-compatible Johnzon" order="2" type="M"/>
+        <steps xmi:id="_step0689" description="update dependency declaration" order="3" type="A"/>
+        <steps xmi:id="_step0690" description="run JSON-B tests" order="4" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0691" name="ANTLR 2 management removal" sourceFeature="_f0083" targetFeature="_f0170" relation="ANTLR 2 is no longer managed by Spring Boot. Applications still using it must specify a version explicitly.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0692" difficulty="EASY"/>
+      <strategy xmi:id="_st0693">
+        <steps xmi:id="_step0694" description="detect antlr:antlr dependency without explicit version" order="1" type="A"/>
+        <steps xmi:id="_step0695" description="add explicit version or remove dependency" order="2" type="A"/>
+        <steps xmi:id="_step0696" description="resolve build" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0697" name="RxJava 1/2 management to RxJava 3" sourceFeature="_f0084" targetFeature="_f0172 _f0170" relation="Spring Boot 3 removes dependency management for RxJava 1.x/2.x and adds RxJava 3 management instead.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0698" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0699">
+        <steps xmi:id="_step0700" description="detect RxJava 1.x or 2.x usage" order="1" type="A"/>
+        <steps xmi:id="_step0701" description="decide whether to migrate APIs to RxJava 3 or self-manage older versions" order="2" type="M"/>
+        <steps xmi:id="_step0702" description="rewrite reactive code where API differences matter" order="3" type="M"/>
+        <steps xmi:id="_step0703" description="run reactive tests" order="4" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0704" name="Hazelcast Hibernate management removal" sourceFeature="_f0085" targetFeature="_f0173 _f0170" relation="Spring Boot no longer manages Hazelcast Hibernate. Applications can specify their own version or consider Hibernate JCache.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0705" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0706">
+        <steps xmi:id="_step0707" description="detect Hazelcast Hibernate dependency" order="1" type="A"/>
+        <steps xmi:id="_step0708" description="choose explicit version or org.hibernate.orm:hibernate-jcache" order="2" type="M"/>
+        <steps xmi:id="_step0709" description="validate second-level cache behavior" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0710" name="Ehcache3 dependency to jakarta classifier" sourceFeature="_f0086" targetFeature="_f0174" relation="Ehcache3 dependencies should use the jakarta classifier to support Jakarta EE 9 and later.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0711" difficulty="EASY"/>
+      <strategy xmi:id="_st0712">
+        <steps xmi:id="_step0713" description="detect org.ehcache dependencies without jakarta classifier" order="1" type="A"/>
+        <steps xmi:id="_step0714" description="add jakarta classifier for ehcache and ehcache-transactions declarations" order="2" type="A"/>
+        <steps xmi:id="_step0715" description="run cache tests" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+  <correspondences xmi:id="_p1009" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Explicit Johnzon Usage with Declared Version" preservedFeatures="_f0082 _f0171" kind="TEMPORARILY_RETAINED" reason="Boot 3 favors Eclipse Yasson for JSON-B dependency management, but applications can keep Johnzon by declaring an explicit Jakarta-compatible version."/><correspondences xmi:id="_p1010" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Ehcache3 Usage with Jakarta Classifier" preservedFeatures="_f0086 _f0174" kind="SEMANTICALLY_PRESERVED" reason="Ehcache3 can remain in use if dependency declarations adopt the Jakarta classifier required by the Boot 3 dependency management model."/><correspondences xmi:id="_e1041" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Apache ActiveMQ Boot-managed Support Removed" kind="SUPPORT_REMOVED" rationale="Apache ActiveMQ Boot-managed Support Removed. This case requires either an explicit version, a replacement library, a Jakarta-compatible declaration, or acceptance that no direct Boot-managed support remains." affectedSourceFeatures="_f0077" affectedTargetFeatures="_f0175"/><correspondences xmi:id="_e1042" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Atomikos Boot-managed Support Removed" kind="SUPPORT_REMOVED" rationale="Atomikos Boot-managed Support Removed. This case requires either an explicit version, a replacement library, a Jakarta-compatible declaration, or acceptance that no direct Boot-managed support remains." affectedSourceFeatures="_f0078" affectedTargetFeatures="_f0175"/><correspondences xmi:id="_e1043" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="EhCache 2 Support Removed" kind="SUPPORT_REMOVED" rationale="EhCache 2 Support Removed. This case requires either an explicit version, a replacement library, a Jakarta-compatible declaration, or acceptance that no direct Boot-managed support remains." affectedSourceFeatures="_f0079" affectedTargetFeatures="_f0175"/><correspondences xmi:id="_e1044" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Hazelcast 3 Support Removed" kind="SUPPORT_REMOVED" rationale="Hazelcast 3 Support Removed. This case requires either an explicit version, a replacement library, a Jakarta-compatible declaration, or acceptance that no direct Boot-managed support remains." affectedSourceFeatures="_f0080" affectedTargetFeatures="_f0175"/><correspondences xmi:id="_e1045" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Apache Solr Support Removed" kind="SUPPORT_REMOVED" rationale="Apache Solr Support Removed. This case requires either an explicit version, a replacement library, a Jakarta-compatible declaration, or acceptance that no direct Boot-managed support remains." affectedSourceFeatures="_f0081" affectedTargetFeatures="_f0175"/><correspondences xmi:id="_e1046" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Apache Johnzon Dependency Management Externalized" kind="SUPPORT_EXTERNALIZED" rationale="Apache Johnzon Dependency Management Externalized. This case requires either an explicit version, a replacement library, a Jakarta-compatible declaration, or acceptance that no direct Boot-managed support remains." affectedSourceFeatures="_f0082" affectedTargetFeatures="_f0171"/><correspondences xmi:id="_e1047" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="ANTLR 2 Dependency Management Externalized" kind="SUPPORT_EXTERNALIZED" rationale="ANTLR 2 Dependency Management Externalized. This case requires either an explicit version, a replacement library, a Jakarta-compatible declaration, or acceptance that no direct Boot-managed support remains." affectedSourceFeatures="_f0083" affectedTargetFeatures="_f0170"/><correspondences xmi:id="_e1048" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="RxJava 1.x and 2.x Management Removed in Favor of RxJava 3" kind="SUPPORT_REMOVED" rationale="RxJava 1.x and 2.x Management Removed in Favor of RxJava 3. This case requires either an explicit version, a replacement library, a Jakarta-compatible declaration, or acceptance that no direct Boot-managed support remains." affectedSourceFeatures="_f0084" affectedTargetFeatures="_f0172"/><correspondences xmi:id="_e1049" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Hazelcast Hibernate Dependency Management Externalized" kind="SUPPORT_EXTERNALIZED" rationale="Hazelcast Hibernate Dependency Management Externalized. This case requires either an explicit version, a replacement library, a Jakarta-compatible declaration, or acceptance that no direct Boot-managed support remains." affectedSourceFeatures="_f0085" affectedTargetFeatures="_f0173"/><correspondences xmi:id="_e1050" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Ehcache3 Jakarta Classifier Required" kind="CONFIGURATION_SEMANTICS_CHANGED" rationale="Ehcache3 Jakarta Classifier Required. This case requires either an explicit version, a replacement library, a Jakarta-compatible declaration, or acceptance that no direct Boot-managed support remains." affectedSourceFeatures="_f0086" affectedTargetFeatures="_f0174"/></mappings>
+  <mappings xmi:id="_map0716" name="Testing and Auxiliary Library Migration">
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0717" name="test dependencies to compatible JUnit/Mockito versions" sourceFeature="_f0088" targetFeature="_f0177" relation="Practical migrations often update test dependencies so tests compile and run against Java 17, Spring Boot 3, and Mockito/JUnit versions compatible with the new platform.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0718" difficulty="EASY"/>
+      <strategy xmi:id="_st0719">
+        <steps xmi:id="_step0720" description="remove unnecessary explicit versions managed by Spring Boot where possible" order="1" type="A"/>
+        <steps xmi:id="_step0721" description="update Mockito and JUnit Jupiter artifacts to compatible versions" order="2" type="A"/>
+        <steps xmi:id="_step0722" description="run unit tests" order="3" type="A"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0723" name="embedded Mongo tests to Testcontainers or external support" sourceFeature="_f0089" targetFeature="_f0178" relation="Tests depending on Boot-managed Flapdoodle embedded Mongo must move to Testcontainers or Flapdoodle's external auto-configuration because Boot 3 removed the built-in support.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:NoDirectMapping" xmi:id="_comp0724" rationale="The built-in Boot test support is removed, so migration changes the test infrastructure rather than mapping to an equivalent Boot feature." possibleApproximation="_f0178" operators="_op0188" difficulty="COMPLEX" kind="MANUAL"/>
+      <strategy xmi:id="_st0725">
+        <steps xmi:id="_step0726" description="detect embedded Mongo test setup" order="1" type="A"/>
+        <steps xmi:id="_step0727" description="choose Testcontainers or external Flapdoodle library" order="2" type="M"/>
+        <steps xmi:id="_step0728" description="update test fixtures and lifecycle management" order="3" type="A"/>
+        <steps xmi:id="_step0729" description="verify local and CI behavior" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0730" name="javax-based tests to jakarta-based tests" sourceFeature="_f0090" targetFeature="_f0179" relation="Test code and fixtures must follow the same Jakarta namespace migration as production code.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:FullAutomation" xmi:id="_comp0731" difficulty="EASY"/>
+      <strategy xmi:id="_st0732">
+        <steps xmi:id="_step0733" description="rewrite javax imports in test sources to jakarta equivalents" order="1" type="A"/>
+        <steps xmi:id="_step0734" description="compile tests" order="2" type="A"/>
+        <steps xmi:id="_step0735" description="inspect mocks/stubs that expose javax types" order="3" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0736" name="Commons FileUpload javax variant to jakarta variant" sourceFeature="_f0091" targetFeature="_f0180" relation="Applications using Commons FileUpload 1.x with Java EE types may need the Jakarta-compatible FileUpload 2 variant or an alternative upload strategy.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0737" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0738">
+        <steps xmi:id="_step0739" description="detect commons-fileupload 1.x" order="1" type="A"/>
+        <steps xmi:id="_step0740" description="check whether upload code is still needed with Servlet multipart support" order="2" type="M"/>
+        <steps xmi:id="_step0741" description="choose commons-fileupload2-jakarta or remove dependency" order="3" type="M"/>
+        <steps xmi:id="_step0742" description="test multipart upload behavior" order="4" type="A"/>
+      </strategy>
+    </correspondences>
+  <correspondences xmi:id="_p1011" xsi:type="smdsl_updated_updated_prefix:Preservation" name="Preserve Test Coverage During Dependency and Jakarta Migration" preservedFeatures="_f0088 _f0177 _f0090 _f0179" kind="SEMANTICALLY_PRESERVED" reason="Existing test intent should be preserved while test libraries and imports are updated to Boot 3-compatible versions."/><correspondences xmi:id="_e1051" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Embedded Mongo Test Support Externalized" kind="SUPPORT_EXTERNALIZED" rationale="Tests that relied on Boot-managed Flapdoodle embedded Mongo must move to external Flapdoodle auto-configuration or Testcontainers." affectedSourceFeatures="_f0089" affectedTargetFeatures="_f0178"/><correspondences xmi:id="_e1052" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Test Dependencies Need Version Compatibility Validation" kind="VALIDATION_REQUIRED" rationale="JUnit Jupiter, Mockito, Jakarta-based test fixtures, and auxiliary test libraries must be updated and validated together with the Boot 3 baseline." affectedSourceFeatures="_f0088 _f0090" affectedTargetFeatures="_f0177 _f0179"/></mappings>
+  <mappings xmi:id="_map0743" name="Automation and Tool Evidence">
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0744" name="manual migration to OpenRewrite composite recipe" sourceFeature="_f0096" targetFeature="_f0183 _f0186" relation="OpenRewrite provides a Spring Boot 3 migration recipe that modifies build files, deprecated/preferred APIs, configuration settings, and chains related framework migrations such as Boot 2.7, Java 17, Batch, Security, Hibernate, and Spring Data. It is evidence of automation support but not a guarantee of full correctness.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0745" kind="MIX" operators="_op0187"/>
+      <strategy xmi:id="_st0746">
+        <steps xmi:id="_step0747" description="configure rewrite-spring recipe dependency or run OpenRewrite command" order="1" type="A"/>
+        <steps xmi:id="_step0748" description="activate org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_0" order="2" type="A"/>
+        <steps xmi:id="_step0749" description="inspect generated diffs for build, Java, and property changes" order="3" type="A"/>
+        <steps xmi:id="_step0750" description="review security, data, and behavior-sensitive changes manually" order="4" type="M"/>
+        <steps xmi:id="_step0751" description="run full test and smoke-test suite" order="5" type="M"/>
+      </strategy>
+    <conditions xmi:id="_c0744_guard1" polarity="OPTIONAL" expression="Use when the project can be parsed and safely rewritten by OpenRewrite; review git diff and manually handle unsupported project-specific changes." subjectFeatures="_f0096 _f0183"/></correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0752" name="manual IDE compile-error loop to compiler/test validation evidence" sourceFeature="_f0095" targetFeature="_f0185" relation="Practitioner guidance commonly treats compilation errors after the build and Java/Jakarta changes as an iterative discovery mechanism. In SMDSL this becomes evidence and strategy, not a formal first-class guard.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0753" kind="MIX" operators="_op0188"/>
+      <strategy xmi:id="_st0754">
+        <steps xmi:id="_step0755" description="perform the initial version/build/Jakarta changes" order="1" type="A"/>
+        <steps xmi:id="_step0756" description="compile the project" order="2" type="A"/>
+        <steps xmi:id="_step0757" description="classify remaining errors by namespace, dependency, framework API, security, data, or behavior change" order="3" type="M"/>
+        <steps xmi:id="_step0758" description="fix each category and rerun tests" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+    <correspondences xsi:type="smdsl_updated_updated_prefix:Transformation" xmi:id="_c0759" name="manual inspection to Spring Boot Migrator or IntelliJ support" sourceFeature="_f0094" targetFeature="_f0184 _f0186" relation="The official guide lists additional tools such as Spring Boot Migrator and IntelliJ migration support for Jakarta migration. These are auxiliary automation/evidence features that still require operator review.">
+      <complexity xsi:type="smdsl_updated_updated_prefix:OperatorHelp" xmi:id="_comp0760" kind="MIX" operators="_op0187"/>
+      <strategy xmi:id="_st0761">
+        <steps xmi:id="_step0762" description="choose applicable migration tool based on project build and IDE constraints" order="1" type="M"/>
+        <steps xmi:id="_step0763" description="run the selected migration assistance" order="2" type="A"/>
+        <steps xmi:id="_step0764" description="review generated changes and unresolved warnings" order="3" type="M"/>
+        <steps xmi:id="_step0765" description="validate with tests and runtime startup" order="4" type="M"/>
+      </strategy>
+    </correspondences>
+  <correspondences xmi:id="_e1053" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Automated Rewrite Output Requires Manual Validation" kind="VALIDATION_REQUIRED" rationale="OpenRewrite can automate many code, dependency, and configuration changes, but generated diffs require review and unsupported project-specific changes must be fixed manually." affectedSourceFeatures="_f0096 _f0094" affectedTargetFeatures="_f0183 _f0186"/><correspondences xmi:id="_e1054" xsi:type="smdsl_updated_updated_prefix:SemanticEffect" name="Compiler and Test Feedback Becomes Migration Evidence" kind="VALIDATION_REQUIRED" rationale="Compile failures, test failures, and runtime smoke-test failures become evidence for unresolved compatibility and semantic migration gaps." affectedSourceFeatures="_f0095" affectedTargetFeatures="_f0185"/></mappings>
+</smdsl_updated_updated_prefix:Migration>

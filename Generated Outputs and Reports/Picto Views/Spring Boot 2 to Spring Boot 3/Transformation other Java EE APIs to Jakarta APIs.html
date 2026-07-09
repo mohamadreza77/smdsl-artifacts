@@ -1,0 +1,541 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Transformation: other Java EE APIs to Jakarta APIs</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Transformation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> Spring Boot 2.7.x / late Spring Boot 2 application =&gt; Spring Boot 3.0 application / migration target
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Transformation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Source feature:</strong> javax.annotation, javax.transaction, javax.mail, and related Java EE APIs
+
+            <br>
+
+            
+
+            <strong>Target feature(s):</strong> jakarta.annotation, jakarta.transaction, jakarta.mail, and related APIs
+
+            <br>
+
+            
+
+            <strong>Automation:</strong> OperatorHelp / MIX
+
+            <br>
+
+            
+
+            <strong>Relation:</strong> Several specification APIs used by applications or libraries move from javax to jakarta packages. Th
+
+e exact replacement is guarded by which specification is used.
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Operators:</strong> Application Developer 2
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Realization strategy</h2>
+
+        
+
+        <pre>
+
+1. [A] scan for javax.annotation, javax.transaction, javax.mail, and related APIs
+
+
+
+2. [M] classify each as Jakarta EE migration, Java SE API, or removed API
+
+
+
+3. [A] update dependencies and imports for Jakarta EE cases
+
+
+
+4. [M] test integration behavior
+
+
+
+</pre>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="434pt" viewBox="0.00 0.00 1426.00 434.00" width="1426pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 416)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="695" y="-382.8">Transformation: other Java EE APIs to Jakarta APIs</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M54,-8C54,-8 126,-8 126,-8 132,-8 138,-14 138,-20 138,-20 138,-272 138,-272 138,-278 132,-284 126,-284 126,-284 54,-284 54,-284 48,-284 42,-278 42,-272 42,-272 42,-20 42,-20 42,-14 48,-8 54,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="90" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M648,-292C648,-292 974,-292 974,-292 980,-292 986,-298 986,-304 986,-304 986,-355 986,-355 986,-361 980,-367 974,-367 974,-367 648,-367 648,-367 642,-367 636,-361 636,-355 636,-355 636,-304 636,-304 636,-298 642,-292 648,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="811" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M20,-292C20,-292 549,-292 549,-292 555,-292 561,-298 561,-304 561,-304 561,-355 561,-355 561,-361 555,-367 549,-367 549,-367 20,-367 20,-367 14,-367 8,-361 8,-355 8,-355 8,-304 8,-304 8,-298 14,-292 20,-292" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="284.5" y="-351.8">Source platform feature context: Spring Boot 2.7.x / late Spring Boot 2 application</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust4">
+
+                    
+
+                    <title>cluster_target</title>
+
+                    
+
+                    <path d="M763.5,-209C763.5,-209 1370,-209 1370,-209 1376,-209 1382,-215 1382,-221 1382,-221 1382,-272 1382,-272 1382,-278 1376,-284 1370,-284 1370,-284 763.5,-284 763.5,-284 757.5,-284 751.5,-278 751.5,-272 751.5,-272 751.5,-221 751.5,-221 751.5,-215 757.5,-209 763.5,-209" fill="#fdeeee" stroke="#ea9999"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="1066.75" y="-268.8">Target platform feature context: Spring Boot 3.0 application / migration target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M116,-256C116,-256 64,-256 64,-256 58,-256 52,-250 52,-244 52,-244 52,-232 52,-232 52,-226 58,-220 64,-220 64,-220 116,-220 116,-220 122,-220 128,-226 128,-232 128,-232 128,-244 128,-244 128,-250 122,-256 116,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="90" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M111,-188C111,-188 69,-188 69,-188 63,-188 57,-182 57,-176 57,-176 57,-164 57,-164 57,-158 63,-152 69,-152 69,-152 111,-152 111,-152 117,-152 123,-158 123,-164 123,-164 123,-176 123,-176 123,-182 117,-188 111,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="90" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M105,-120C105,-120 75,-120 75,-120 69,-120 63,-114 63,-108 63,-108 63,-96 63,-96 63,-90 69,-84 75,-84 75,-84 105,-84 105,-84 111,-84 117,-90 117,-96 117,-96 117,-108 117,-108 117,-114 111,-120 105,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="90" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M118,-52C118,-52 62,-52 62,-52 56,-52 50,-46 50,-40 50,-40 50,-28 50,-28 50,-22 56,-16 62,-16 62,-16 118,-16 118,-16 124,-16 130,-22 130,-28 130,-28 130,-40 130,-40 130,-46 124,-52 118,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="90" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1436601475 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1436601475</title>
+
+                    
+
+                    <path d="M152,-336C152,-336 28,-336 28,-336 22,-336 16,-330 16,-324 16,-324 16,-312 16,-312 16,-306 22,-300 28,-300 28,-300 152,-300 152,-300 158,-300 164,-306 164,-312 164,-312 164,-324 164,-324 164,-330 158,-336 152,-336" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="90" y="-315.5">Java EE and Jakarta EE Usage</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1587209327 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_1587209327</title>
+
+                    
+
+                    <path d="M541,-336C541,-336 239,-336 239,-336 233,-336 227,-330 227,-324 227,-324 227,-312 227,-312 227,-306 233,-300 239,-300 239,-300 541,-300 541,-300 547,-300 553,-306 553,-312 553,-312 553,-324 553,-324 553,-330 547,-336 541,-336" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="390" y="-315.5">javax.annotation, javax.transaction, javax.mail, and related Java EE APIs</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1436601475&#45;&gt;S_1587209327 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>S_1436601475-&gt;S_1587209327</title>
+
+                    
+
+                    <path d="M164.28,-318C183.5,-318 205,-318 226.88,-318" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1506184915 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>C_1506184915</title>
+
+                    
+
+                    <path d="M966,-336C966,-336 656,-336 656,-336 650,-336 644,-330 644,-324 644,-324 644,-312 644,-312 644,-306 650,-300 656,-300 656,-300 966,-300 966,-300 972,-300 978,-306 978,-312 978,-312 978,-324 978,-324 978,-330 972,-336 966,-336" fill="#e8f0fe" stroke="#3c78d8" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="811" y="-315.5">Transformation * &nbsp;other Java EE APIs to Jakarta APIs * OperatorHelp / MIX</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1587209327&#45;&gt;C_1506184915 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>S_1587209327-&gt;C_1506184915</title>
+
+                    
+
+                    <path d="M553.3,-318C580.44,-318 608.69,-318 636.11,-318" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="636.31,-320.63 643.81,-318 636.31,-315.38 636.31,-320.63" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="598.5" y="-320.8">source</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_1304345230 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>T_1304345230</title>
+
+                    
+
+                    <path d="M1362,-253C1362,-253 1076,-253 1076,-253 1070,-253 1064,-247 1064,-241 1064,-241 1064,-229 1064,-229 1064,-223 1070,-217 1076,-217 1076,-217 1362,-217 1362,-217 1368,-217 1374,-223 1374,-229 1374,-229 1374,-241 1374,-241 1374,-247 1368,-253 1362,-253" fill="#ffffff" stroke="#cc0000" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="1219" y="-232.5">jakarta.annotation, jakarta.transaction, jakarta.mail, and related APIs</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_1506184915&#45;&gt;T_1304345230 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_1506184915-&gt;T_1304345230</title>
+
+                    
+
+                    <path d="M941.93,-299.94C956.82,-297.47 971.77,-294.81 986,-292 1039.19,-281.51 1098.56,-266.87 1143.92,-255.06" fill="none" stroke="#3c78d8"></path>
+
+                    
+
+                    <polygon fill="#3c78d8" points="1144.77,-257.55 1151.36,-253.11 1143.44,-252.47 1144.77,-257.55" stroke="#3c78d8"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="1021" y="-288.8">target</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_334337848 -->
+
+                
+
+                <g class="node" id="node9">
+
+                    
+
+                    <title>T_334337848</title>
+
+                    
+
+                    <path d="M850.5,-253C850.5,-253 771.5,-253 771.5,-253 765.5,-253 759.5,-247 759.5,-241 759.5,-241 759.5,-229 759.5,-229 759.5,-223 765.5,-217 771.5,-217 771.5,-217 850.5,-217 850.5,-217 856.5,-217 862.5,-223 862.5,-229 862.5,-229 862.5,-241 862.5,-241 862.5,-247 856.5,-253 850.5,-253" fill="#ffffff" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="811" y="-232.5">Jakarta EE 10 Stack</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- T_334337848&#45;&gt;T_1304345230 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>T_334337848-&gt;T_1304345230</title>
+
+                    
+
+                    <path d="M862.6,-235C912.87,-235 992.53,-235 1063.7,-235" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>

@@ -1,0 +1,459 @@
+<!DOCTYPE html><html>
+
+    <head>
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet">
+
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script><script defer onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true});</script>
+
+    </head>
+
+    <body style="zoom:1.0;">
+
+        <h1>Preservation: Preserve Exception Type Intent</h1>
+
+        
+
+        <p>
+
+            <strong>Migration relation type:</strong> <code>Preservation</code>
+
+            <br>
+
+            
+
+            <strong>Migration scope:</strong> JUnit 4 =&gt; JUnit 5 / JUnit Jupiter and JUnit Platform
+
+        </p>
+
+        
+
+        <p>
+
+            <strong>Applicability conditions:</strong> None specified.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Preservation intent</h2>
+
+        
+
+        <p>
+
+            <strong>Preserved feature(s):</strong> @Test(expected), ExpectedException Rule
+
+            <br>
+
+            
+
+            <strong>Preservation kind:</strong> SEMANTICALLY_PRESERVED
+
+            <br>
+
+            
+
+            <strong>Reason:</strong> The intended exception type can be preserved even though the syntax changes from annotation/rule-bas
+
+ed expectation to assertThrows.
+
+        </p>
+
+        
+
+        <hr>
+
+        
+
+        <hr>
+
+        
+
+        <h2>Feature-level migration overview</h2>
+
+        
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="585pt" viewBox="0.00 0.00 655.00 585.00" width="655pt">
+
+            
+
+            <g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(18 567)">
+
+                
+
+                <title>CorrespondenceOverview</title>
+
+                
+
+                <text font-family="Arial" font-size="14.00" text-anchor="middle" x="309.5" y="-533.8">Preservation: Preserve Exception Type Intent</text>
+
+                
+
+                <g class="cluster" id="clust1">
+
+                    
+
+                    <title>cluster_legend</title>
+
+                    
+
+                    <path d="M161.5,-8C161.5,-8 233.5,-8 233.5,-8 239.5,-8 245.5,-14 245.5,-20 245.5,-20 245.5,-272 245.5,-272 245.5,-278 239.5,-284 233.5,-284 233.5,-284 161.5,-284 161.5,-284 155.5,-284 149.5,-278 149.5,-272 149.5,-272 149.5,-20 149.5,-20 149.5,-14 155.5,-8 161.5,-8" fill="#fafafa" stroke="#dddddd"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="11.00" text-anchor="middle" x="197.5" y="-271.2">Legend</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust3">
+
+                    
+
+                    <title>cluster_relations</title>
+
+                    
+
+                    <path d="M20,-292C20,-292 375,-292 375,-292 381,-292 387,-298 387,-304 387,-304 387,-355 387,-355 387,-361 381,-367 375,-367 375,-367 20,-367 20,-367 14,-367 8,-361 8,-355 8,-355 8,-304 8,-304 8,-298 14,-292 20,-292" fill="#f8f8f8" stroke="#cccccc"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="197.5" y="-351.8">Typed migration relations</text>
+
+                    
+
+                </g>
+
+                
+
+                <g class="cluster" id="clust2">
+
+                    
+
+                    <title>cluster_source</title>
+
+                    
+
+                    <path d="M156,-375C156,-375 599,-375 599,-375 605,-375 611,-381 611,-387 611,-387 611,-506 611,-506 611,-512 605,-518 599,-518 599,-518 156,-518 156,-518 150,-518 144,-512 144,-506 144,-506 144,-387 144,-387 144,-381 150,-375 156,-375" fill="#eaf4ff" stroke="#9fc5e8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="14.00" text-anchor="middle" x="377.5" y="-502.8">Source platform feature context: JUnit 4</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_T -->
+
+                
+
+                <g class="node" id="node1">
+
+                    
+
+                    <title>LEG_T</title>
+
+                    
+
+                    <path d="M223.5,-256C223.5,-256 171.5,-256 171.5,-256 165.5,-256 159.5,-250 159.5,-244 159.5,-244 159.5,-232 159.5,-232 159.5,-226 165.5,-220 171.5,-220 171.5,-220 223.5,-220 223.5,-220 229.5,-220 235.5,-226 235.5,-232 235.5,-232 235.5,-244 235.5,-244 235.5,-250 229.5,-256 223.5,-256" fill="#e8f0fe" stroke="#3c78d8"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="197.5" y="-235.5">Transformation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_P -->
+
+                
+
+                <g class="node" id="node2">
+
+                    
+
+                    <title>LEG_P</title>
+
+                    
+
+                    <path d="M218.5,-188C218.5,-188 176.5,-188 176.5,-188 170.5,-188 164.5,-182 164.5,-176 164.5,-176 164.5,-164 164.5,-164 164.5,-158 170.5,-152 176.5,-152 176.5,-152 218.5,-152 218.5,-152 224.5,-152 230.5,-158 230.5,-164 230.5,-164 230.5,-176 230.5,-176 230.5,-182 224.5,-188 218.5,-188" fill="#eaf7ea" stroke="#6aa84f"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="197.5" y="-167.5">Preservation</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_B -->
+
+                
+
+                <g class="node" id="node3">
+
+                    
+
+                    <title>LEG_B</title>
+
+                    
+
+                    <path d="M212.5,-120C212.5,-120 182.5,-120 182.5,-120 176.5,-120 170.5,-114 170.5,-108 170.5,-108 170.5,-96 170.5,-96 170.5,-90 176.5,-84 182.5,-84 182.5,-84 212.5,-84 212.5,-84 218.5,-84 224.5,-90 224.5,-96 224.5,-96 224.5,-108 224.5,-108 224.5,-114 218.5,-120 212.5,-120" fill="#fff2cc" stroke="#f1a208"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="197.5" y="-99.5">Bridge</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- LEG_E -->
+
+                
+
+                <g class="node" id="node4">
+
+                    
+
+                    <title>LEG_E</title>
+
+                    
+
+                    <path d="M225.5,-52C225.5,-52 169.5,-52 169.5,-52 163.5,-52 157.5,-46 157.5,-40 157.5,-40 157.5,-28 157.5,-28 157.5,-22 163.5,-16 169.5,-16 169.5,-16 225.5,-16 225.5,-16 231.5,-16 237.5,-22 237.5,-28 237.5,-28 237.5,-40 237.5,-40 237.5,-46 231.5,-52 225.5,-52" fill="#fce5e5" stroke="#cc0000"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="197.5" y="-31.5">Semantic effect</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1100945310 -->
+
+                
+
+                <g class="node" id="node5">
+
+                    
+
+                    <title>S_1100945310</title>
+
+                    
+
+                    <path d="M231,-453C231,-453 164,-453 164,-453 158,-453 152,-447 152,-441 152,-441 152,-429 152,-429 152,-423 158,-417 164,-417 164,-417 231,-417 231,-417 237,-417 243,-423 243,-429 243,-429 243,-441 243,-441 243,-447 237,-453 231,-453" fill="#ffffff" stroke="#3d85c6"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="197.5" y="-432.5">Exception Testing</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_2050390304 -->
+
+                
+
+                <g class="node" id="node6">
+
+                    
+
+                    <title>S_2050390304</title>
+
+                    
+
+                    <path d="M591,-487C591,-487 495,-487 495,-487 489,-487 483,-481 483,-475 483,-475 483,-463 483,-463 483,-457 489,-451 495,-451 495,-451 591,-451 591,-451 597,-451 603,-457 603,-463 603,-463 603,-475 603,-475 603,-481 597,-487 591,-487" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="543" y="-466.5">ExpectedException Rule</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1100945310&#45;&gt;S_2050390304 -->
+
+                
+
+                <g class="edge" id="edge4">
+
+                    
+
+                    <title>S_1100945310-&gt;S_2050390304</title>
+
+                    
+
+                    <path d="M243.05,-439.41C304.32,-445.47 414.71,-456.4 482.84,-463.14" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1820244208 -->
+
+                
+
+                <g class="node" id="node7">
+
+                    
+
+                    <title>S_1820244208</title>
+
+                    
+
+                    <path d="M574.5,-419C574.5,-419 511.5,-419 511.5,-419 505.5,-419 499.5,-413 499.5,-407 499.5,-407 499.5,-395 499.5,-395 499.5,-389 505.5,-383 511.5,-383 511.5,-383 574.5,-383 574.5,-383 580.5,-383 586.5,-389 586.5,-395 586.5,-395 586.5,-407 586.5,-407 586.5,-413 580.5,-419 574.5,-419" fill="#ffffff" stroke="#3d85c6" stroke-width="2.2"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="543" y="-398.5">@Test(expected)</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- S_1100945310&#45;&gt;S_1820244208 -->
+
+                
+
+                <g class="edge" id="edge3">
+
+                    
+
+                    <title>S_1100945310-&gt;S_1820244208</title>
+
+                    
+
+                    <path d="M243.05,-430.59C309.58,-424 434.05,-411.69 499.41,-405.22" fill="none" stroke="#666666" stroke-dasharray="1,5"></path>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_60418809 -->
+
+                
+
+                <g class="node" id="node8">
+
+                    
+
+                    <title>C_60418809</title>
+
+                    
+
+                    <path d="M367,-336C367,-336 28,-336 28,-336 22,-336 16,-330 16,-324 16,-324 16,-312 16,-312 16,-306 22,-300 28,-300 28,-300 367,-300 367,-300 373,-300 379,-306 379,-312 379,-312 379,-324 379,-324 379,-330 373,-336 367,-336" fill="#eaf7ea" stroke="#6aa84f" stroke-width="3"></path>
+
+                    
+
+                    <text font-family="Arial" font-size="10.00" text-anchor="middle" x="197.5" y="-315.5">Preservation * &nbsp;Preserve Exception Type Intent * SEMANTICALLY_PRESERVED</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_60418809&#45;&gt;S_2050390304 -->
+
+                
+
+                <g class="edge" id="edge2">
+
+                    
+
+                    <title>C_60418809-&gt;S_2050390304</title>
+
+                    
+
+                    <path d="M295.28,-336.05C325.46,-343.54 358.33,-353.67 387,-367 434.41,-389.05 438.97,-406.8 483,-435 489.27,-439.02 496.03,-443.11 502.66,-447.01" fill="none" stroke="#6aa84f"></path>
+
+                    
+
+                    <polygon fill="#6aa84f" points="501.41,-449.33 509.21,-450.83 504.05,-444.79 501.41,-449.33" stroke="#6aa84f"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="431" y="-414.8">preserves</text>
+
+                    
+
+                </g>
+
+                
+
+                <!-- C_60418809&#45;&gt;S_1820244208 -->
+
+                
+
+                <g class="edge" id="edge1">
+
+                    
+
+                    <title>C_60418809-&gt;S_1820244208</title>
+
+                    
+
+                    <path d="M379.27,-312.8C404.21,-316.03 429.09,-321.44 452,-330 478.63,-339.95 503.57,-360.9 520.4,-377.48" fill="none" stroke="#6aa84f"></path>
+
+                    
+
+                    <polygon fill="#6aa84f" points="518.65,-379.44 525.8,-382.92 522.38,-375.74 518.65,-379.44" stroke="#6aa84f"></polygon>
+
+                    
+
+                    <text font-family="Arial" font-size="9.00" text-anchor="middle" x="431" y="-332.8">preserves</text>
+
+                    
+
+                </g>
+
+                
+
+            </g>
+
+            
+
+        </svg>
+
+        
+
+    </body>
+
+</html>
+
+

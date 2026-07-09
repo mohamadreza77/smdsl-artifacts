@@ -1,0 +1,700 @@
+[%
+// params from EGX:
+// - correspondence : Correspondence
+// - migration      : Migration
+//
+// SMDSL v2 correspondence detail view.
+// This template intentionally ignores Repository/Sample details and PreMigrationRequirement.
+// It focuses on typed Correspondence elements:
+// Transformation, Preservation, Bridge, and SemanticEffect.
+%]
+
+[% var c = correspondence; %]
+[% var family = correspondenceFamily(c); %]
+[% var ctype = correspondenceType(c); %]
+
+# [%=displayCorrespondenceType(ctype)%]: [%=c.name%]
+
+**Migration relation type:** `[%=ctype%]`  
+**Migration scope:** [%=migration.source.name%] => [%=migration.target.name%]
+
+[% if (not c.conditions.isEmpty()) { %]
+**Applicability conditions:**  
+[% for (cond in c.conditions) { %]
+- **[%=cond.polarity%]** [%=conditionSubjectText(cond)%]: [%=wrap(cond.expression, 100)%]
+[% } %]
+[% } else { %]
+**Applicability conditions:** None specified.
+[% } %]
+
+---
+[% if (ctype = "Transformation") { %]
+## Transformation intent
+
+**Source feature:** [%=c.sourceFeature.name%]  
+**Target feature(s):** [%=featureNames(targetsIncludingApprox(c))%]  
+**Automation:** [%=automationLabel(c)%]  
+**Relation:** [%=wrap(c.relation, 100)%]
+
+[% var ops = operatorsFor(c); %]
+[% if (not ops.isEmpty()) { %]
+**Operators:** [%=ops.collect(o | o.name).concat(", ")%]
+[% } %]
+
+[% if (c.complexity.eClass().name = "NoDirectMapping") { %]
+**No-direct-mapping rationale:** [%=wrap(c.complexity.rationale, 100)%]
+
+[% var cas = c.complexity.possibleApproximation; %]
+[% if (cas.isDefined() and not cas.isEmpty()) { %]
+**Possible approximation feature(s):** [%=featureNames(cas)%]  
+**Approximation profile:** [%=c.complexity.difficulty%], [%=c.complexity.kind%]
+[% } %]
+[% } %]
+
+[% } else if (ctype = "Preservation") { %]
+## Preservation intent
+
+**Preserved feature(s):** [%=featureNames(c.preservedFeatures)%]  
+**Preservation kind:** [%=c.kind%]  
+**Reason:** [%=wrap(c.reason, 100)%]
+
+[% } else if (ctype = "Bridge") { %]
+## Bridge intent
+
+**Bridge feature(s):** [%=featureNames(c.bridgeFeatures)%]  
+**Scope:** [%=c.scope%]  
+**Cleanup required:** [%=c.cleanupRequired%]  
+**Rationale:** [%=wrap(c.rationale, 100)%]
+
+[% } else if (ctype = "SemanticEffect") { %]
+## Semantic effect
+
+**Effect kind:** [%=c.kind%]  
+**Affected source feature(s):** [%=featureNames(c.affectedSourceFeatures)%]  
+**Affected target feature(s):** [%=featureNames(c.affectedTargetFeatures)%]  
+**Rationale:** [%=wrap(c.rationale, 100)%]
+
+[% } else { %]
+## Correspondence intent
+
+This correspondence type is not explicitly handled by the template.
+[% } %]
+
+---
+[% if (ctype = "Transformation") { %]
+## Realization strategy
+
+[% if (c.strategy.isDefined()) { %]
+<pre>
+[%=formatSteps(c.strategy.steps, "", 0)%]</pre>
+[% } else { %]
+No explicit strategy defined.
+[% } %]
+[% } %]
+
+[% var subsWithStrategy = family.select(fc | fc <> c and hasTransformationStrategy(fc)); %]
+[% if (not subsWithStrategy.isEmpty()) { %]
+---
+## Strategies of nested transformations
+
+[% for (fc in subsWithStrategy) { %]
+### [%=fc.name%]
+
+<pre>
+[%=formatSteps(fc.strategy.steps, "", 0)%]</pre>
+[% } %]
+[% } %]
+
+[% if (not c.subcorrespondences.isEmpty()) { %]
+---
+## Nested migration relations
+
+| Name | Type | Summary |
+|---|---|---|
+[% for (sc in c.subcorrespondences) { %]
+| [%=sc.name%] | `[%=correspondenceType(sc)%]` | [%=shortSummary(sc)%] |
+[% } %]
+[% } %]
+
+---
+## Feature-level migration overview
+
+```render-graphviz-dot
+digraph CorrespondenceOverview {
+  rankdir=LR;
+  compound=true;
+  bgcolor="transparent";
+  fontname="Arial";
+  labelloc="t";
+  label="[%=displayCorrespondenceType(ctype)%]: [%=graphLabel(c.name)%]";
+  pad="0.25";
+  nodesep="0.45";
+  ranksep="0.85";
+
+  node [
+    fontname="Arial",
+    fontsize=10,
+    shape=box,
+    style="rounded,filled",
+    margin="0.08,0.05"
+  ];
+
+  edge [
+    fontname="Arial",
+    fontsize=9,
+    arrowsize=0.75,
+    color="#555555"
+  ];
+
+  // Legend
+  subgraph cluster_legend {
+    label="Legend";
+    style="rounded,filled";
+    color="#DDDDDD";
+    fillcolor="#FAFAFA";
+    fontsize=11;
+
+    "LEG_T" [label="Transformation", fillcolor="#E8F0FE", color="#3C78D8"];
+    "LEG_P" [label="Preservation", fillcolor="#EAF7EA", color="#6AA84F"];
+    "LEG_B" [label="Bridge", fillcolor="#FFF2CC", color="#F1A208"];
+    "LEG_E" [label="Semantic effect", fillcolor="#FCE5E5", color="#CC0000"];
+  }
+
+[% var allFeatureSeeds = Set{}; %]
+[% for (fc in family) { %]
+  [% for (f in allFeaturesForCorrespondence(fc)) { %]
+    [% allFeatureSeeds.add(f); %]
+  [% } %]
+[% } %]
+
+[% var sourceSeeds = Set{}; %]
+[% var targetSeeds = Set{}; %]
+[% var otherSeeds = Set{}; %]
+[% for (f in allFeatureSeeds) { %]
+  [% if (isFeatureInPlatform(f, migration.source)) { %]
+    [% sourceSeeds.add(f); %]
+  [% } else if (isFeatureInPlatform(f, migration.target)) { %]
+    [% targetSeeds.add(f); %]
+  [% } else { %]
+    [% otherSeeds.add(f); %]
+  [% } %]
+[% } %]
+
+[% var srcAll = featuresWithAncestors(sourceSeeds, migration.source); %]
+[% var tgtAll = featuresWithAncestors(targetSeeds, migration.target); %]
+
+  // Source feature context
+  subgraph cluster_source {
+    label="Source platform feature context: [%=graphLabel(migration.source.name)%]";
+    style="rounded,filled";
+    color="#9FC5E8";
+    fillcolor="#EAF4FF";
+
+[% for (f in srcAll) { %]
+    "[%=nodeId("S", f)%]" [
+      label="[%=graphLabel(f.name)%]"
+      fillcolor="#FFFFFF"
+      color="#3D85C6"
+      penwidth="[%=featurePenwidth(f, sourceSeeds)%]"
+    ];
+[% } %]
+  }
+
+  // Typed migration relations
+  subgraph cluster_relations {
+    label="Typed migration relations";
+    style="rounded,filled";
+    color="#CCCCCC";
+    fillcolor="#F8F8F8";
+
+[% for (fc in family) { %]
+    "[%=corrNodeId(fc)%]" [
+      label="[%=graphLabel(displayCorrespondenceType(correspondenceType(fc)))%] *  [%=graphLabel(fc.name)%][%=graphLabel(corrNodeSubtitle(fc))%]"
+      fillcolor="[%=corrFillColor(fc)%]"
+      color="[%=corrBorderColor(fc)%]"
+      penwidth="[%=corrPenwidth(fc, c)%]"
+    ];
+[% } %]
+  }
+
+  // Target feature context
+  subgraph cluster_target {
+    label="Target platform feature context: [%=graphLabel(migration.target.name)%]";
+    style="rounded,filled";
+    color="#EA9999";
+    fillcolor="#FDEEEE";
+
+[% for (f in tgtAll) { %]
+    "[%=nodeId("T", f)%]" [
+      label="[%=graphLabel(f.name)%]"
+      fillcolor="#FFFFFF"
+      color="#CC0000"
+      penwidth="[%=featurePenwidth(f, targetSeeds)%]"
+    ];
+[% } %]
+  }
+
+[% if (not otherSeeds.isEmpty()) { %]
+  // Features not classified under source or target platform
+  subgraph cluster_related {
+    label="Related feature context";
+    style="rounded,filled";
+    color="#D9D2E9";
+    fillcolor="#F3F0FA";
+
+[% for (f in otherSeeds) { %]
+    "[%=nodeId("R", f)%]" [
+      label="[%=graphLabel(f.name)%]"
+      fillcolor="#FFFFFF"
+      color="#674EA7"
+      penwidth="2"
+    ];
+[% } %]
+  }
+[% } %]
+
+  // Correspondence hierarchy
+[% for (fc in family) { %]
+  [% for (sc in fc.subcorrespondences) { %]
+    "[%=corrNodeId(fc)%]" -> "[%=corrNodeId(sc)%]" [
+      label="subrelation",
+      style=dotted,
+      arrowhead=vee,
+      color="#777777",
+      constraint=false
+    ];
+  [% } %]
+[% } %]
+
+  // Typed correspondence-feature edges
+[% for (fc in family) { %]
+  [% if (fc.eClass().name = "Transformation") { %]
+    "[%=featureNodeId(fc.sourceFeature, migration)%]" -> "[%=corrNodeId(fc)%]" [
+      label="source",
+      color="[%=corrBorderColor(fc)%]"
+    ];
+    [% var approxTargets = approximationTargets(fc); %]
+    [% for (t in fc.targetFeature) { %]
+      "[%=corrNodeId(fc)%]" -> "[%=featureNodeId(t, migration)%]" [
+        label="target",
+        color="[%=corrBorderColor(fc)%]"
+      ];
+    [% } %]
+    [% for (t in approxTargets) { %]
+      "[%=corrNodeId(fc)%]" -> "[%=featureNodeId(t, migration)%]" [
+        label="approx.",
+        style=dashed,
+        color="#6A329F"
+      ];
+    [% } %]
+  [% } else if (fc.eClass().name = "Preservation") { %]
+    [% for (f in fc.preservedFeatures) { %]
+      "[%=corrNodeId(fc)%]" -> "[%=featureNodeId(f, migration)%]" [
+        label="preserves",
+        color="[%=corrBorderColor(fc)%]"
+      ];
+    [% } %]
+  [% } else if (fc.eClass().name = "Bridge") { %]
+    [% for (f in fc.bridgeFeatures) { %]
+      "[%=corrNodeId(fc)%]" -> "[%=featureNodeId(f, migration)%]" [
+        label="bridge",
+        color="[%=corrBorderColor(fc)%]"
+      ];
+    [% } %]
+  [% } else if (fc.eClass().name = "SemanticEffect") { %]
+    [% for (f in fc.affectedSourceFeatures) { %]
+      "[%=featureNodeId(f, migration)%]" -> "[%=corrNodeId(fc)%]" [
+        label="affects",
+        color="[%=corrBorderColor(fc)%]"
+      ];
+    [% } %]
+    [% for (f in fc.affectedTargetFeatures) { %]
+      "[%=corrNodeId(fc)%]" -> "[%=featureNodeId(f, migration)%]" [
+        label="effect",
+        color="[%=corrBorderColor(fc)%]"
+      ];
+    [% } %]
+  [% } %]
+[% } %]
+
+  // Parent-child feature nesting edges in the source platform
+[% for (f in srcAll) { %]
+  [% for (child in f.nestedFeatures) { %]
+    [% if (srcAll.contains(child)) { %]
+      "[%=nodeId("S", f)%]" -> "[%=nodeId("S", child)%]" [
+        style=dotted,
+        arrowhead=none,
+        color="#666666"
+      ];
+    [% } %]
+  [% } %]
+[% } %]
+
+  // Parent-child feature nesting edges in the target platform
+[% for (f in tgtAll) { %]
+  [% for (child in f.nestedFeatures) { %]
+    [% if (tgtAll.contains(child)) { %]
+      "[%=nodeId("T", f)%]" -> "[%=nodeId("T", child)%]" [
+        style=dotted,
+        arrowhead=none,
+        color="#666666"
+      ];
+    [% } %]
+  [% } %]
+[% } %]
+}
+```
+
+[% operation correspondenceType(c : smdsl_updated_updated_package::Correspondence) : String {
+  return c.eClass().name;
+} %]
+
+[% operation displayCorrespondenceType(t : String) : String {
+  if (t = "Transformation") return "Transformation";
+  if (t = "Preservation") return "Preservation";
+  if (t = "Bridge") return "Compatibility bridge";
+  if (t = "SemanticEffect") return "Semantic effect";
+  return "Migration relation";
+} %]
+
+[% operation conditionSubjectText(cond : smdsl_updated_updated_package::ApplicabilityCondition) : String {
+  if (cond.subjectFeatures.isDefined() and not cond.subjectFeatures.isEmpty()) {
+    return "on " + cond.subjectFeatures.collect(f | f.name).concat(", ");
+  }
+  return "globally";
+} %]
+
+[% operation featureNames(features) : String {
+  if (not features.isDefined()) return "None specified";
+  if (features.isEmpty()) return "None specified";
+  return features.collect(f | f.name).concat(", ");
+} %]
+
+[% operation automationLabel(c : smdsl_updated_updated_package::Correspondence) : String {
+  if (c.eClass().name <> "Transformation") return "Not applicable";
+
+  var a = c.complexity;
+  if (not a.isDefined()) return "Not specified";
+
+  var n = a.eClass().name;
+  if (n = "FullAutomation") return "FullAutomation / " + a.difficulty.toString();
+  if (n = "OperatorHelp") return "OperatorHelp / " + a.kind.toString();
+  if (n = "NoDirectMapping") return "NoDirectMapping / " + a.difficulty.toString() + ", " + a.kind.toString();
+  return n;
+} %]
+
+[% operation operatorsFor(c : smdsl_updated_updated_package::Correspondence) {
+  if (c.eClass().name <> "Transformation") return Sequence{};
+
+  var a = c.complexity;
+  if (not a.isDefined()) return Sequence{};
+
+  if (a.eClass().name = "OperatorHelp" or a.eClass().name = "NoDirectMapping") {
+    return a.operators;
+  }
+
+  return Sequence{};
+} %]
+
+[% operation hasTransformationStrategy(c : smdsl_updated_updated_package::Correspondence) : Boolean {
+  if (c.eClass().name <> "Transformation") {
+    return false;
+  }
+
+  return c.strategy.isDefined();
+} %]
+
+[% operation shortSummary(c : smdsl_updated_updated_package::Correspondence) : String {
+  var t = c.eClass().name;
+
+  if (t = "Transformation") {
+    return "maps " + c.sourceFeature.name + " to " + featureNames(targetsIncludingApprox(c));
+  }
+
+  if (t = "Preservation") {
+    return "preserves " + featureNames(c.preservedFeatures) + " (" + c.kind.toString() + ")";
+  }
+
+  if (t = "Bridge") {
+    return "uses " + featureNames(c.bridgeFeatures) + " as a bridge (" + c.scope.toString() + ")";
+  }
+
+  if (t = "SemanticEffect") {
+    return c.kind.toString() + " on " + featureNames(allFeaturesForCorrespondence(c));
+  }
+
+  return "migration relation";
+} %]
+
+[% operation corrNodeSubtitle(c : smdsl_updated_updated_package::Correspondence) : String {
+  var t = c.eClass().name;
+  if (t = "Transformation") return " * " + automationLabel(c);
+  if (t = "Preservation") return " * " + c.kind.toString();
+  if (t = "Bridge") {
+    var cleanup = "";
+    if (c.cleanupRequired) cleanup = " * cleanup required";
+    return " * " + c.scope.toString() + cleanup;
+  }
+  if (t = "SemanticEffect") return " * " + c.kind.toString();
+  return "";
+} %]
+
+[% operation corrFillColor(c : smdsl_updated_updated_package::Correspondence) : String {
+  var t = c.eClass().name;
+  if (t = "Transformation") return "#E8F0FE";
+  if (t = "Preservation") return "#EAF7EA";
+  if (t = "Bridge") return "#FFF2CC";
+  if (t = "SemanticEffect") return "#FCE5E5";
+  return "#F3F3F3";
+} %]
+
+[% operation corrBorderColor(c : smdsl_updated_updated_package::Correspondence) : String {
+  var t = c.eClass().name;
+  if (t = "Transformation") return "#3C78D8";
+  if (t = "Preservation") return "#6AA84F";
+  if (t = "Bridge") return "#F1A208";
+  if (t = "SemanticEffect") return "#CC0000";
+  return "#999999";
+} %]
+
+[% operation corrPenwidth(c : smdsl_updated_updated_package::Correspondence, root : smdsl_updated_updated_package::Correspondence) : String {
+  if (c = root) return "3";
+  return "1.7";
+} %]
+
+[% operation featurePenwidth(f : smdsl_updated_updated_package::Feature, seeds) : String {
+  if (seeds.contains(f)) return "2.2";
+  return "1";
+} %]
+
+[% operation corrNodeId(c : smdsl_updated_updated_package::Correspondence) : String {
+  return "C_" + c.hashCode().toString();
+} %]
+
+[% operation featureNodeId(f : smdsl_updated_updated_package::Feature, migration : smdsl_updated_updated_package::Migration) : String {
+  if (isFeatureInPlatform(f, migration.source)) return nodeId("S", f);
+  if (isFeatureInPlatform(f, migration.target)) return nodeId("T", f);
+  return nodeId("R", f);
+} %]
+
+[% operation nodeId(side : String, f : smdsl_updated_updated_package::Feature) : String {
+  return side + "_" + f.hashCode().toString();
+} %]
+
+[% operation approximationTargets(c : smdsl_updated_updated_package::Correspondence) {
+  var result = Sequence{};
+
+  if (c.eClass().name <> "Transformation") {
+    return result;
+  }
+
+  if (not c.complexity.isDefined()) {
+    return result;
+  }
+
+  if (c.complexity.eClass().name = "NoDirectMapping") {
+    var cas = c.complexity.possibleApproximation;
+    if (cas.isDefined()) {
+      for (ca in cas) {
+        if (not result.contains(ca) and not c.targetFeature.contains(ca)) {
+          result.add(ca);
+        }
+      }
+    }
+  }
+
+  return result;
+} %]
+
+[% operation targetsIncludingApprox(c : smdsl_updated_updated_package::Correspondence) {
+  var result = Sequence{};
+
+  if (c.eClass().name = "Transformation") {
+    result.addAll(c.targetFeature);
+    for (ca in approximationTargets(c)) {
+      if (not result.contains(ca)) result.add(ca);
+    }
+  }
+
+  return result;
+} %]
+
+[% operation allFeaturesForCorrespondence(c : smdsl_updated_updated_package::Correspondence) {
+  var result = Sequence{};
+  var t = c.eClass().name;
+
+  if (t = "Transformation") {
+    if (c.sourceFeature.isDefined()) result.add(c.sourceFeature);
+    for (f in c.targetFeature) {
+      if (not result.contains(f)) result.add(f);
+    }
+    for (f in approximationTargets(c)) {
+      if (not result.contains(f)) result.add(f);
+    }
+  } else if (t = "Preservation") {
+    for (f in c.preservedFeatures) {
+      if (not result.contains(f)) result.add(f);
+    }
+  } else if (t = "Bridge") {
+    for (f in c.bridgeFeatures) {
+      if (not result.contains(f)) result.add(f);
+    }
+  } else if (t = "SemanticEffect") {
+    for (f in c.affectedSourceFeatures) {
+      if (not result.contains(f)) result.add(f);
+    }
+    for (f in c.affectedTargetFeatures) {
+      if (not result.contains(f)) result.add(f);
+    }
+  }
+
+  for (cond in c.conditions) {
+    for (f in cond.subjectFeatures) {
+      if (not result.contains(f)) result.add(f);
+    }
+  }
+
+  return result;
+} %]
+
+[% operation correspondenceFamily(root : smdsl_updated_updated_package::Correspondence) {
+  var acc = Sequence{};
+  addWithChildren(root, acc);
+  return acc;
+} %]
+
+[% operation addWithChildren(c : smdsl_updated_updated_package::Correspondence, acc : Sequence) {
+  if (acc.contains(c)) return;
+  acc.add(c);
+
+  for (sc in c.subcorrespondences) {
+    addWithChildren(sc, acc);
+  }
+} %]
+
+[% operation featuresWithAncestors(features, p : smdsl_updated_updated_package::Platform) {
+  var result = Set{};
+  for (f in features) {
+    var anc = ancestorsInPlatform(f, p);
+    for (a in anc) {
+      result.add(a);
+    }
+  }
+  return result;
+} %]
+
+[% operation ancestorsInPlatform(f : smdsl_updated_updated_package::Feature,
+                                 p : smdsl_updated_updated_package::Platform) : Sequence {
+  for (root in p.features) {
+    var path = findPathToFeature(root, f, Sequence{});
+    if (path.isDefined()) return path;
+  }
+
+  var s = Sequence{};
+  s.add(f);
+  return s;
+} %]
+
+[% operation findPathToFeature(current : smdsl_updated_updated_package::Feature,
+                               target  : smdsl_updated_updated_package::Feature,
+                               acc     : Sequence) {
+  var path = acc.clone();
+  path.add(current);
+
+  if (current = target) return path;
+
+  for (child in current.nestedFeatures) {
+    var res = findPathToFeature(child, target, path);
+    if (res.isDefined()) return res;
+  }
+
+  return null;
+} %]
+
+[% operation isFeatureInPlatform(f : smdsl_updated_updated_package::Feature,
+                                 p : smdsl_updated_updated_package::Platform) : Boolean {
+  for (root in p.features) {
+    if (featureTreeContains(root, f)) return true;
+  }
+  return false;
+} %]
+
+[% operation featureTreeContains(current : smdsl_updated_updated_package::Feature,
+                                 target  : smdsl_updated_updated_package::Feature) : Boolean {
+  if (current = target) return true;
+
+  for (child in current.nestedFeatures) {
+    if (featureTreeContains(child, target)) return true;
+  }
+
+  return false;
+} %]
+
+[% operation wrap(text : String, max : Integer) : String {
+  if (not text.isDefined()) return "";
+
+  var result = "";
+  var i = 0;
+
+  while (i < text.length()) {
+    var end = i + max;
+    if (end > text.length()) end = text.length();
+
+    var chunk = text.substring(i, end);
+    result = result + chunk;
+
+    if (end < text.length()) {
+      result = result + "\n";
+    }
+
+    i = end;
+  }
+
+  return result;
+} %]
+
+[% operation graphLabel(text : String) : String {
+  if (not text.isDefined()) return "";
+
+  var s = text;
+  s = s.replaceAll("\"", "'");
+  s = s.replaceAll("\n", "\\n");
+  return s;
+} %]
+
+[% operation formatSteps(steps, prefix : String, level : Integer) : String {
+  var result = "";
+  var sorted = steps.sortBy(s | s.order);
+
+  for (s in sorted) {
+    var num = "";
+    if (prefix = "") {
+      num = s.order.toString();
+    } else {
+      num = prefix + "." + s.order.toString();
+    }
+
+    var indent = "";
+    var i = 0;
+    while (i < level) {
+      indent = indent + "    ";
+      i = i + 1;
+    }
+
+    var wrapped = wrap(s.description, 90);
+
+    result = result
+      + indent
+      + num + ". [" + s.type.toString() + "] "
+      + wrapped
+      + "\n";
+
+    if (not s.nestedSteps.isEmpty()) {
+      result = result + formatSteps(s.nestedSteps, num, level + 1);
+    }
+
+    result = result + "\n";
+  }
+
+  return result;
+} %]
